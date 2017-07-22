@@ -35,7 +35,7 @@
       "styleguide": "public/node_modules/fepper-ui"
     }
   },
-  "cacheBust": true,
+  "cacheBust": false,
   "cleanPublic": false,
   "compileUiOnEveryBuild": false,
   "debug": false,

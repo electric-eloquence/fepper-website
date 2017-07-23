@@ -39,76 +39,10 @@ figure {
   display: block;
 }
 @font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 100;
-  src: url("fonts/SourceSansPro/SourceSansPro-ExtraLight.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 200;
-  src: url("fonts/SourceSansPro/SourceSansPro-Light.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
+  font-family: 'Fira Sans';
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/SourceSansPro/SourceSansPro-Regular.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 600;
-  src: url("fonts/SourceSansPro/SourceSansPro-Semibold.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/SourceSansPro/SourceSansPro-Bold.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 900;
-  src: url("fonts/SourceSansPro/SourceSansPro-Black.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 100;
-  src: url("fonts/SourceSansPro/SourceSansPro-ExtraLightIt.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 200;
-  src: url("fonts/SourceSansPro/SourceSansPro-LightIt.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 400;
-  src: url("fonts/SourceSansPro/SourceSansPro-It.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 600;
-  src: url("fonts/SourceSansPro/SourceSansPro-SemiboldIt.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 700;
-  src: url("fonts/SourceSansPro/SourceSansPro-BoldIt.otf") format('opentype');
-}
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: italic;
-  font-weight: 900;
-  src: url("fonts/SourceSansPro/SourceSansPro-BlackIt.otf") format('opentype');
+  src: url("fonts/FiraSans/FiraSans-Book.otf") format('opentype');
 }
 .cf::before,
 .cf::after {
@@ -125,28 +59,11 @@ html {
 }
 body {
   background: $white;
-  font: 1.6em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 1.6em/1.5 "Fira Sans", sans-serif;
   -webkit-text-size-adjust: 100%;
-  color: $gray-dark;
   min-width: 320px;
   min-height: 100vh;
-  padding-bottom: 5rem;
   position: relative;
-}
-@media all and (max-width: 767px) {
-  body {
-    font-size: 1.4em;
-  }
-}
-article h1,
-aside h1,
-nav h1,
-section h1 {
-  font-size: 2em;
-}
-h1,
-h2 {
-  line-height: 1.2;
 }
 h4 {
   font-size: 1.1em;
@@ -157,17 +74,24 @@ h5 {
 h6 {
   font-size: 1em;
 }
-p {
-  margin-bottom: 1.6rem;
-}
 a {
-  color: $gray-dark;
   text-decoration: none;
-  outline: 0;
 }
 a:hover,
 a:focus {
-  color: $gray;
+  color: #808080;
+}
+p a {
+  text-decoration: underline;
+}
+.bg--green-fepper {
+  background: #027d15;
+}
+.bg--red-fepper {
+  background: #d00000;
+}
+.bg--yellow-fepper {
+  background: #f0c000;
 }
 .hidden {
   display: none !important;

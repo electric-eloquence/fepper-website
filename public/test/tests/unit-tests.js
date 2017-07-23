@@ -26,9 +26,9 @@ describe('Fepper website', function () {
     const brandingState = app.$orgs.branding.getState();
     const brandingPosition = brandingState.style.position;
     const brandingTop = brandingState.style.top;
-    const videoHeadHeight = app.$orgs.videoHead.height();
     const htmlState = app.$orgs.html.getState();
     const htmlScrollTop = htmlState.scrollTop;
+    const videoHeadHeight = app.$orgs.videoHead.height();
 
     // Assert.
     if (htmlScrollTop > videoHeadHeight) {

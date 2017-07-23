@@ -17,6 +17,7 @@ const patternsPubDir = utils.pathResolve(conf.ui.paths.public.patterns);
 const testDir = path.resolve(utils.pathResolve(conf.ui.paths.public.root), 'test');
 
 gulp.task('rollup', function () {
+  // Copy any changes to the homepage to the test index.html file.
   fs.copySync(`${patternsPubDir}/04-pages-00-homepage/04-pages-00-homepage.html`, `${testDir}/files/index.html`);
 
   return rollup({
@@ -24,10 +25,9 @@ gulp.task('rollup', function () {
     format: 'cjs'
   })
 
-  // give the file the name you want to output with
+  // Rollup-stream requires this extra step. Pass the filename you want to output to.
   .pipe(source('app.js'))
 
-  // and output to ./dist/app.js as normal.
   .pipe(gulp.dest(testDir));
 });
 

@@ -16,7 +16,7 @@ gulp.task('contrib:frontend-copy', [
 
 gulp.task('contrib:once', [
 // Uncomment if you wish to enable this.
-  'stylus:once'
+  'stylus:no-comment'
 ]);
 
 gulp.task('contrib:static', [

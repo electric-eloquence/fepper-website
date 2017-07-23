@@ -28,13 +28,13 @@ function reducerClosure(orgId) {
      *   htmlparser2 dependency. The htmlparser2 package has had this property since its initial release.
      * @property {null|string} innerHTML - to DOM Element.innerHTML spec. null means the initial innerHTML state wasn't
      *   modified. null has a completely different meaning than empty string.
-     * @property {string} method - to apply toward jQuery or Cheerio.
+     * @property {null|number} scrollTop - number of pixels scrolled.
      * @property {object} style - to DOM Element.style spec.
      */
     const stateDefault = {
       attribs: {},
       innerHTML: null,
-      method: '',
+      scrollTop: null,
       style: {}
     };
 
@@ -68,6 +68,18 @@ function reducerClosure(orgId) {
             if (action.args.length === 2) {
               state.style[action.args[0]] = action.args[1];
             }
+            else if (
+              action.args.length === 1 &&
+              action.args[0] instanceof Object &&
+              action.args[0].constructor === Object
+            ) {
+              for (let i in action.args[0]) {
+                if (!action.args[0].hasOwnProperty(i)) {
+                  continue;
+                }
+                state.style[i] = action.args[0][i];
+              }
+            }
             break;
           case 'html':
           case 'text':
@@ -79,6 +91,12 @@ function reducerClosure(orgId) {
             if (action.args.length === 2) {
               state.attribs[action.args[0]] = action.args[1];
             }
+            break;
+          case 'scrollTop':
+            if (action.args.length === 1) {
+              state.scrollTop = action.args[0];
+            }
+            break;
         }
       } catch (err) {
         console.error(err); // eslint-disable-line no-console

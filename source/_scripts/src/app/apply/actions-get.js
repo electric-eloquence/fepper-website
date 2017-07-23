@@ -5,19 +5,22 @@ export default app => {
 
   return {
 
-    ripen: () => {
+    logoRipen: () => {
       const MAX_PERCENTAGE = 400;
-      // Firefox recognizes html.scrollTop; the rest recognize body.scrollTop.
-      const scrollTop = $orgs.html.scrollTop() > 0 ? $orgs.html.scrollTop() : $orgs.body.scrollTop();
 
-      let percentage = MAX_PERCENTAGE * scrollTop / ($orgs.html.height() - app.$window.height());
+      let percentage = MAX_PERCENTAGE * app.$window.scrollTop() / ($orgs.html.height() - app.$window.height());
       percentage = percentage < MAX_PERCENTAGE ? percentage : MAX_PERCENTAGE;
 
-      $orgs.logoBackground.dispatchAction('css', ['right', `-${percentage}%`]);
+      $orgs.logoBg.dispatchAction('css', ['right', `-${percentage}%`]);
     },
 
-    test: () => {
-      $orgs.logoBackground.dispatchAction('css', ['right', '-66%']);
+    logoFix: () => {
+      if (app.$window.scrollTop() > $orgs.videoHead.height()) {
+        $orgs.branding.dispatchAction('css', {position: 'fixed', top: '0'});
+      }
+      else {
+        $orgs.branding.dispatchAction('css', {position: 'static', top: 'auto'});
+      }
     }
   }
 };

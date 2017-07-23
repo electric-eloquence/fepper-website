@@ -5,15 +5,39 @@ const expect = require('chai').expect;
 const app = require('../init.js');
 
 describe('Fepper website', function () {
-  it('should move #logoBackground between 0 and -400% right when #bodyContainer is scrolled', function () {
+  it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
     // Act.
-    app.actions.ripen();
+    app.actions.logoRipen();
 
     // Get results.
-    let percentage = app.$orgs.logoBackground[0].attribs.style;
-    percentage = parseFloat(percentage.slice(percentage.indexOf(':') + 2, -2));
+    const logoBgState = app.$orgs.logoBg.getState();
+    const logoBgRight = logoBgState.style.right;
+    const percentage = parseFloat(logoBgRight.slice(0, -1));
 
     // Assert.
     expect(percentage).to.be.within(-400, 0);
+  });
+
+  it('should fix #branding to top when window is scrolled beyond #videoHeader', function () {
+    // Act.
+    app.actions.logoFix();
+
+    // Get results.
+    const brandingState = app.$orgs.branding.getState();
+    const brandingPosition = brandingState.style.position;
+    const brandingTop = brandingState.style.top;
+    const videoHeadHeight = app.$orgs.videoHead.height();
+    const htmlState = app.$orgs.html.getState();
+    const htmlScrollTop = htmlState.scrollTop;
+
+    // Assert.
+    if (htmlScrollTop > videoHeadHeight) {
+      expect(brandingPosition).to.equal('fixed');
+      expect(brandingTop).to.equal('0');
+    }
+    else {
+      expect(brandingPosition).to.equal('static');
+      expect(brandingTop).to.equal('auto');
+    }
   });
 });

@@ -7,9 +7,7 @@ export default app => {
   const $orgs = app.$orgs;
 
   app.$window.scroll(function () {
-    // Firefox recognizes html.scrollTop; the rest recognize body.scrollTop.
-    if ($orgs.html.scrollTop() > 0 || $orgs.body.scrollTop() > 0) {
-      actions.ripen();
-    }
+    actions.logoRipen();
+    actions.logoFix();
   });
 };

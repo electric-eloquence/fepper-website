@@ -8,6 +8,8 @@
 export default {
   'html': null,
   'body': null,
-  'logoBackground': null,
-  'logoImage': null
+  'videoHead': null,
+  'branding': null,
+  'logoBg': null,
+  'logoImg': null
 };

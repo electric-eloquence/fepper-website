@@ -5,19 +5,22 @@ var actionsGet = app => {
 
   return {
 
-    ripen: () => {
+    logoRipen: () => {
       const MAX_PERCENTAGE = 400;
-      // Firefox recognizes html.scrollTop; the rest recognize body.scrollTop.
-      const scrollTop = $orgs.html.scrollTop() > 0 ? $orgs.html.scrollTop() : $orgs.body.scrollTop();
 
-      let percentage = MAX_PERCENTAGE * scrollTop / ($orgs.html.height() - app.$window.height());
+      let percentage = MAX_PERCENTAGE * app.$window.scrollTop() / ($orgs.html.height() - app.$window.height());
       percentage = percentage < MAX_PERCENTAGE ? percentage : MAX_PERCENTAGE;
 
-      $orgs.logoBackground.dispatchAction('css', ['right', `-${percentage}%`]);
+      $orgs.logoBg.dispatchAction('css', ['right', `-${percentage}%`]);
     },
 
-    test: () => {
-      $orgs.logoBackground.dispatchAction('css', ['right', '-66%']);
+    logoFix: () => {
+      if (app.$window.scrollTop() > $orgs.videoHead.height()) {
+        $orgs.branding.dispatchAction('css', {position: 'fixed', top: '0'});
+      }
+      else {
+        $orgs.branding.dispatchAction('css', {position: 'static', top: 'auto'});
+      }
     }
   }
 };
@@ -30,8 +33,10 @@ var actionsGet = app => {
 var $orgs = {
   'html': null,
   'body': null,
-  'logoBackground': null,
-  'logoImage': null
+  'videoHead': null,
+  'branding': null,
+  'logoBg': null,
+  'logoImg': null
 };
 
 /**
@@ -73,21 +78,25 @@ var prototypeOverride = stateStore => {
    *   3. Call the Redux store.dispatch() method.
    *
    * @param {string} method - The name of the method native to the component's object prototype.
-   * @param {string|array} args_ - If this param is passed as a string, an array containing this string will be
-   *   created and dispatched.  Otherwise, the args_ array is dispatched directly.
+   * @param {*} args_ - This param contains the values to be passed within the args array to this[method].apply()
+   *   If args_ is not an array, it will get wrapped in an array and submitted.
    * @return {object} The new application state.
    */
   if (!$.prototype.dispatchAction) {
     $.prototype.dispatchAction = function (method, args_) {
 
       let args = [];
-      if (typeof args_ === 'string') {
-        args = [args_];
-      } else if (Array.isArray(args_)) {
+
+      if (Array.isArray(args_)) {
         args = args_;
       }
+      else {
+        args = [args_];
+      }
 
-      this[method].apply(this, args);
+      if (typeof window === 'object') {
+        this[method].apply(this, args);
+      }
 
       const stateNew = stateStore.dispatch({
         type: '',
@@ -152,13 +161,13 @@ function reducerClosure(orgId) {
      *   htmlparser2 dependency. The htmlparser2 package has had this property since its initial release.
      * @property {null|string} innerHTML - to DOM Element.innerHTML spec. null means the initial innerHTML state wasn't
      *   modified. null has a completely different meaning than empty string.
-     * @property {string} method - to apply toward jQuery or Cheerio.
+     * @property {null|number} scrollTop - number of pixels scrolled.
      * @property {object} style - to DOM Element.style spec.
      */
     const stateDefault = {
       attribs: {},
       innerHTML: null,
-      method: '',
+      scrollTop: null,
       style: {}
     };
 
@@ -192,6 +201,18 @@ function reducerClosure(orgId) {
             if (action.args.length === 2) {
               state.style[action.args[0]] = action.args[1];
             }
+            else if (
+              action.args.length === 1 &&
+              action.args[0] instanceof Object &&
+              action.args[0].constructor === Object
+            ) {
+              for (let i in action.args[0]) {
+                if (!action.args[0].hasOwnProperty(i)) {
+                  continue;
+                }
+                state.style[i] = action.args[0][i];
+              }
+            }
             break;
           case 'html':
           case 'text':
@@ -203,6 +224,12 @@ function reducerClosure(orgId) {
             if (action.args.length === 2) {
               state.attribs[action.args[0]] = action.args[1];
             }
+            break;
+          case 'scrollTop':
+            if (action.args.length === 1) {
+              state.scrollTop = action.args[0];
+            }
+            break;
         }
       } catch (err) {
         console.error(err); // eslint-disable-line no-console

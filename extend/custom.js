@@ -29,5 +29,5 @@ gulp.task('custom:template', [
 ]);
 
 gulp.task('custom:watch', [
-  'rollup'
+  'rollup:watch'
 ]);

@@ -23,21 +23,25 @@ export default stateStore => {
    *   3. Call the Redux store.dispatch() method.
    *
    * @param {string} method - The name of the method native to the component's object prototype.
-   * @param {string|array} args_ - If this param is passed as a string, an array containing this string will be
-   *   created and dispatched.  Otherwise, the args_ array is dispatched directly.
+   * @param {*} args_ - This param contains the values to be passed within the args array to this[method].apply()
+   *   If args_ is not an array, it will get wrapped in an array and submitted.
    * @return {object} The new application state.
    */
   if (!$.prototype.dispatchAction) {
     $.prototype.dispatchAction = function (method, args_) {
 
       let args = [];
-      if (typeof args_ === 'string') {
-        args = [args_];
-      } else if (Array.isArray(args_)) {
+
+      if (Array.isArray(args_)) {
         args = args_;
       }
+      else {
+        args = [args_];
+      }
 
-      this[method].apply(this, args);
+      if (typeof window === 'object') {
+        this[method].apply(this, args);
+      }
 
       const stateNew = stateStore.dispatch({
         type: '',

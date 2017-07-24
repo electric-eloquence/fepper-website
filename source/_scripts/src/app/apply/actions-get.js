@@ -5,6 +5,10 @@ export default app => {
 
   return {
 
+    browserAdviceHide: () => {
+      $orgs.browserAdvice.dispatchAction('css', ['display', 'none']);
+    },
+
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
 

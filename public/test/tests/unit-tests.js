@@ -5,6 +5,19 @@ const expect = require('chai').expect;
 const app = require('../init.js');
 
 describe('Fepper website', function () {
+
+  it('should hide the browserAdvice organism on browsers supporting ES6 Modules', function () {
+    // Act.
+    app.actions.browserAdviceHide();
+
+    // Get results.
+    const browserAdviceState = app.$orgs.browserAdvice.getState();
+    const browserAdviceDisplay = browserAdviceState.style.display;
+
+    // Assert.
+    expect(browserAdviceDisplay).to.equal('none');
+  });
+
   it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
     // Act.
     app.actions.logoRipen();
@@ -16,6 +29,7 @@ describe('Fepper website', function () {
 
     // Assert.
     expect(percentage).to.be.within(-400, 0);
+    expect(percentage).to.not.equal(0);
   });
 
   it('should fix #branding to top when window is scrolled beyond #videoHeader', function () {

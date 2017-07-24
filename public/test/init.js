@@ -19,7 +19,7 @@ app.$orgs.html.height = () => {
   return 2000;
 }
 app.$window.scrollTop = () => {
-  const num = Math.random() * 1000;
+  const num = (1 - Math.random()) * 1000;
   app.$orgs.html.dispatchAction('scrollTop', num);
   return num;
 }

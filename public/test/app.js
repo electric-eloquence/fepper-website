@@ -5,6 +5,10 @@ var actionsGet = app => {
 
   return {
 
+    browserAdviceHide: () => {
+      $orgs.browserAdvice.dispatchAction('css', ['display', 'none']);
+    },
+
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
 
@@ -36,7 +40,8 @@ var $orgs = {
   'videoHead': null,
   'branding': null,
   'logoBg': null,
-  'logoImg': null
+  'logoImg': null,
+  'browserAdvice': null
 };
 
 /**

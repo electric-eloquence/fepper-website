@@ -84,6 +84,10 @@ a:focus {
 p a {
   text-decoration: underline;
 }
+ol,
+ul {
+  list-style-type: none;
+}
 .bg--green-fepper {
   background: #027d15;
 }
@@ -143,4 +147,13 @@ body {
   position: relative;
   top: 0;
   left: 0;
+}
+.main {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+@media all and (max-width: 1024px) {
+  .main {
+    margin: 0 1.2rem;
+  }
 }

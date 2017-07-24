@@ -11,5 +11,6 @@ export default {
   'videoHead': null,
   'branding': null,
   'logoBg': null,
-  'logoImg': null
+  'logoImg': null,
+  'browserAdvice': null
 };

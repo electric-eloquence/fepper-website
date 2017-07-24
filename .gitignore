@@ -5,6 +5,7 @@
 /conf.yml
 /install.log
 /npm-debug.log
+/public/index.html
 ignore/
 node_modules/
 package-lock.json

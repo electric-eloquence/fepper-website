@@ -11,6 +11,9 @@ const $ = global.$ = cheerio.load(html);
 
 const app = new (require('./app'))($, Redux);
 
+// Need to init before defining organisms.
+app.init();
+
 // Organism property defs for testing.
 app.$window.height = () => {
   return 1000;

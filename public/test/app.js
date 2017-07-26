@@ -288,9 +288,11 @@ class App {
   get $orgs() {
     return $orgs;
   }
-}
 
-prototypeOverride(store);
-organismsIncept($orgs);
+  init() {
+    prototypeOverride(store);
+    organismsIncept($orgs);
+  }
+}
 
 module.exports = App;

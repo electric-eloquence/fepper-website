@@ -20,11 +20,23 @@ var actionsGet = app => {
 
     logoFix: () => {
       if (app.$window.scrollTop() > $orgs.videoHead.height()) {
+        const brandingHeight = $orgs.branding.height();
+
         $orgs.branding.dispatchAction('css', {position: 'fixed', top: '0'});
+        $orgs.main.dispatchAction('css', ['padding-top', `${brandingHeight}px`]);
       }
       else {
         $orgs.branding.dispatchAction('css', {position: 'static', top: 'auto'});
+        $orgs.main.dispatchAction('css', ['padding-top', '0']);
       }
+    },
+
+    mainContentFadeIn: () => {
+      $orgs.mainContent.dispatchAction('addClass', 'fade fade--in');
+    },
+
+    mainContentHide: () => {
+      $orgs.mainContent.dispatchAction('removeClass', 'fade--in');
     }
   }
 };
@@ -41,7 +53,9 @@ var $orgs = {
   'branding': null,
   'logoBg': null,
   'logoImg': null,
-  'browserAdvice': null
+  'main': null,
+  'browserAdvice': null,
+  'mainContent': null
 };
 
 /**
@@ -84,7 +98,8 @@ var prototypeOverride = stateStore => {
    *
    * @param {string} method - The name of the method native to the component's object prototype.
    * @param {*} args_ - This param contains the values to be passed within the args array to this[method].apply()
-   *   If args_ is not an array, it will get wrapped in an array and submitted.
+   *   If args_ is not an array, we want to preemptively limit the allowed types to string, number, and object.
+   *   If it is one of these types, it will get wrapped in an array and submitted.
    * @return {object} The new application state.
    */
   if (!$.prototype.dispatchAction) {
@@ -95,12 +110,26 @@ var prototypeOverride = stateStore => {
       if (Array.isArray(args_)) {
         args = args_;
       }
-      else {
+      else if (
+        typeof args_ === 'string' ||
+        typeof args_ === 'number' ||
+        args_ instanceof Object && args_.constructor === Object
+      ) {
         args = [args_];
       }
 
-      if (typeof window === 'object') {
-        this[method].apply(this, args);
+      // On the client, stateStore.dispatch() depends on this.
+      if (typeof this[method] === 'function') {
+
+        // Make the .addClass() more convenient by checking if the class already exists.
+        if (method === 'addClass') {
+          if (!this.hasClass(args[0])) {
+            this[method].apply(this, args);
+          }
+        }
+        else {
+          this[method].apply(this, args);
+        }
       }
 
       const stateNew = stateStore.dispatch({
@@ -187,6 +216,9 @@ function reducerClosure(orgId) {
     if (action.id === orgId) {
       const $org = action.$org;
 
+      // Add class attribute to stateDefault.
+      stateDefault.attribs.class = $org.attr('class');
+
       try {
         // The attributes property of jQuery objects is based off of the DOM's Element.attributes collection.
         const domElAttr = $org[0].attributes;
@@ -201,7 +233,72 @@ function reducerClosure(orgId) {
           state.attribs = $org[0].attribs;
         }
 
+        function addClass() {
+          const classesOld = stateDefault.attribs.class.split(' ');
+          const classesToAdd = action.args[0].split(' ');
+
+          classesToAdd.forEach(classToAdd => {
+            if (classesOld.indexOf(classToAdd) === -1) {
+              state.attribs.class += ` ${classToAdd}`;
+            }
+          });
+        }
+
+        function removeClass() {
+          const classesNew = stateDefault.attribs.class.split(' ');
+          const classesToRemove = action.args[0].split(' ');
+
+          classesToRemove.forEach(classToRemove => {
+            const classesNewIdx = classesNew.indexOf(classToRemove);
+
+            if (classesNewIdx > -1) {
+              classesNew.splice(classesNewIdx, 1);
+            }
+          });
+
+          state.attribs.class = classesNew.join(' ');
+        }
+
         switch (action.method) {
+
+          case 'addClass':
+            if (action.args.length === 1) {
+              addClass();
+            }
+            break;
+
+          case 'removeClass':
+            if (action.args.length === 1) {
+              removeClass();
+            }
+            break;
+
+          case 'toggleClass':
+            if (action.args.length === 1) {
+              const classesNew = stateDefault.attribs.class.split(' ');
+              const classesToToggle = action.args[0].split(' ');
+
+              classesToToggle.forEach(classToToggle => {
+                const classesNewIdx = classesNew.indexOf(classToToggle);
+
+                if (classesNewIdx === -1) {
+                  addClass();
+                  classesNew.push(classToToggle);
+                }
+                else {
+                  removeClass();
+                  classesNew.splice(classesNewIdx, 1);
+                }
+              });
+
+              state.attribs.class = classesNew.join(' ');
+            }
+
+            else if (action.args.length === 2) {
+            }
+
+            break;
+
           case 'css':
             if (action.args.length === 2) {
               state.style[action.args[0]] = action.args[1];
@@ -219,23 +316,26 @@ function reducerClosure(orgId) {
               }
             }
             break;
+
           case 'html':
-          case 'text':
             if (action.args.length === 1) {
               state.innerHTML = action.args[0];
             }
             break;
+
           case 'prop':
             if (action.args.length === 2) {
               state.attribs[action.args[0]] = action.args[1];
             }
             break;
+
           case 'scrollTop':
             if (action.args.length === 1) {
               state.scrollTop = action.args[0];
             }
             break;
         }
+
       } catch (err) {
         console.error(err); // eslint-disable-line no-console
         throw err;

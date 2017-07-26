@@ -12,5 +12,7 @@ export default {
   'branding': null,
   'logoBg': null,
   'logoImg': null,
-  'browserAdvice': null
+  'main': null,
+  'browserAdvice': null,
+  'mainContent': null
 };

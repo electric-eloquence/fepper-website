@@ -20,11 +20,23 @@ export default app => {
 
     logoFix: () => {
       if (app.$window.scrollTop() > $orgs.videoHead.height()) {
+        const brandingHeight = $orgs.branding.height();
+
         $orgs.branding.dispatchAction('css', {position: 'fixed', top: '0'});
+        $orgs.main.dispatchAction('css', ['padding-top', `${brandingHeight}px`]);
       }
       else {
         $orgs.branding.dispatchAction('css', {position: 'static', top: 'auto'});
+        $orgs.main.dispatchAction('css', ['padding-top', '0']);
       }
+    },
+
+    mainContentFadeIn: () => {
+      $orgs.mainContent.dispatchAction('addClass', 'fade fade--in');
+    },
+
+    mainContentHide: () => {
+      $orgs.mainContent.dispatchAction('removeClass', 'fade--in');
     }
   }
 };

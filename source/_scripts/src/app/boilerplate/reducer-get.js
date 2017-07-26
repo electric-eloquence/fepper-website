@@ -49,6 +49,9 @@ function reducerClosure(orgId) {
     if (action.id === orgId) {
       const $org = action.$org;
 
+      // Add class attribute to stateDefault.
+      stateDefault.attribs.class = $org.attr('class');
+
       try {
         // The attributes property of jQuery objects is based off of the DOM's Element.attributes collection.
         const domElAttr = $org[0].attributes;
@@ -63,7 +66,72 @@ function reducerClosure(orgId) {
           state.attribs = $org[0].attribs;
         }
 
+        function addClass() {
+          const classesOld = stateDefault.attribs.class.split(' ');
+          const classesToAdd = action.args[0].split(' ');
+
+          classesToAdd.forEach(classToAdd => {
+            if (classesOld.indexOf(classToAdd) === -1) {
+              state.attribs.class += ` ${classToAdd}`;
+            }
+          });
+        }
+
+        function removeClass() {
+          const classesNew = stateDefault.attribs.class.split(' ');
+          const classesToRemove = action.args[0].split(' ');
+
+          classesToRemove.forEach(classToRemove => {
+            const classesNewIdx = classesNew.indexOf(classToRemove);
+
+            if (classesNewIdx > -1) {
+              classesNew.splice(classesNewIdx, 1);
+            }
+          });
+
+          state.attribs.class = classesNew.join(' ');
+        }
+
         switch (action.method) {
+
+          case 'addClass':
+            if (action.args.length === 1) {
+              addClass();
+            }
+            break;
+
+          case 'removeClass':
+            if (action.args.length === 1) {
+              removeClass();
+            }
+            break;
+
+          case 'toggleClass':
+            if (action.args.length === 1) {
+              const classesNew = stateDefault.attribs.class.split(' ');
+              const classesToToggle = action.args[0].split(' ');
+
+              classesToToggle.forEach(classToToggle => {
+                const classesNewIdx = classesNew.indexOf(classToToggle);
+
+                if (classesNewIdx === -1) {
+                  addClass();
+                  classesNew.push(classToToggle);
+                }
+                else {
+                  removeClass();
+                  classesNew.splice(classesNewIdx, 1);
+                }
+              });
+
+              state.attribs.class = classesNew.join(' ');
+            }
+
+            else if (action.args.length === 2) {
+            }
+
+            break;
+
           case 'css':
             if (action.args.length === 2) {
               state.style[action.args[0]] = action.args[1];
@@ -81,23 +149,26 @@ function reducerClosure(orgId) {
               }
             }
             break;
+
           case 'html':
-          case 'text':
             if (action.args.length === 1) {
               state.innerHTML = action.args[0];
             }
             break;
+
           case 'prop':
             if (action.args.length === 2) {
               state.attribs[action.args[0]] = action.args[1];
             }
             break;
+
           case 'scrollTop':
             if (action.args.length === 1) {
               state.scrollTop = action.args[0];
             }
             break;
         }
+
       } catch (err) {
         console.error(err); // eslint-disable-line no-console
         throw err;

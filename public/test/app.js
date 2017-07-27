@@ -246,6 +246,7 @@ function reducerClosure(orgSelector) {
       $items: []
     };
 
+    // If this is the reducer for the selected organism, reduce and return a new state.
     if (action.selector === orgSelector) {
 
       let state;
@@ -321,7 +322,10 @@ function reducerClosure(orgSelector) {
           state.attribs.class = classesForReducedState.join(' ');
         }
 
-        const classesForReducedState = stateDefault.attribs.class.split(' ');
+        let classesForReducedState = [];
+        if (stateDefault.attribs.class) {
+          classesForReducedState = stateDefault.attribs.class.split(' ');
+        }
 
         switch (action.method) {
 
@@ -468,6 +472,8 @@ function reducerClosure(orgSelector) {
       return state;
     }
 
+    // If this is not the reducer for the selected organism, return the unmutated state if submitted as a defined param.
+    // Else return the default state.
     else {
       if (state_) {
         return state_;

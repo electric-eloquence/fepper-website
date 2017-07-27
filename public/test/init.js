@@ -18,18 +18,18 @@ app.init();
 app.$window.height = () => {
   return 1000;
 }
-app.$orgs.html.height = () => {
+app.$orgs['#html'].height = () => {
   return 2000;
 }
-app.$orgs.branding.height = () => {
+app.$orgs['#branding'].height = () => {
   return 220;
 }
 app.$window.scrollTop = () => {
   const num = (1 - Math.random()) * 1000;
-  app.$orgs.html.dispatchAction('scrollTop', num);
+  app.$orgs['#html'].dispatchAction('scrollTop', num);
   return num;
 }
-app.$orgs.videoHead.height = () => {
+app.$orgs['#videoHead'].height = () => {
   return 400;
 }
 

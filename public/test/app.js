@@ -47,7 +47,8 @@ var actionsGet = app => {
     fadeTest: () => {
       if (app.$window.scrollTop() > 20) {
         $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
-        console.warn($orgs['#mainContent'].offset());
+        console.warn($orgs['#mainContent'].getState());
+//        console.warn($orgs['#mainContent'].offset());
       }
     }
   }
@@ -83,6 +84,29 @@ var organismsIncept = $orgs => {
     }
 
     const $org = $(`${i}`);
+
+    if (typeof window === 'undefined') {
+      $org.selector = i;
+    }
+
+    /**
+     * @property {array} $items
+     * A true Array of the selection's numerically-keyed properties.
+     * This is necessary for selection by class and tag, where results number more than one.
+     * Members of this array will be fully-incepted organisms.
+     */
+    $org.$items = [];
+
+    /**
+     * @function
+     * $org.$items will be populated on organism inception and re-populated on dispatch of actions.
+     * It will only be populated at the top level of the $orgs object.
+     */
+    $org.$itemsFill = function () {
+      $org.each(function () {
+        $org.$items.push($(this));
+      });
+    };
 
     $org.$itemsFill();
     $orgs[i] = $org;
@@ -139,7 +163,7 @@ var prototypeOverride = stateStore => {
       }
 
       // Populate $items before dispatching.
-      this.$itemsFill();
+//      this.$itemsFill();
 
       const stateNew = stateStore.dispatch({
         type: '',
@@ -173,36 +197,6 @@ var prototypeOverride = stateStore => {
   if (!$.prototype.getStore) {
     $.prototype.getStore = function () {
       return stateStore;
-    };
-  }
-
-  /**
-   * A true Array of the selection's numerically-keyed properties.
-   * This is necessary for selection by class and tag, where results number more than one.
-   * Members of this array will be fully-incepted organisms.
-   * This array will be populated on organism inception and re-populated on dispatch of actions.
-   * It will only be populated at the top level of the $orgs object.
-   *
-   * @type {array}
-   */
-  if (!$.prototype.$items) {
-    $.prototype.$items = [];
-  }
-
-  /**
-   * Populate organismsArray.
-   */
-  if (!$.prototype.$itemsFill) {
-    $.prototype.$itemsFill = function () {
-
-      // Only populate at top level of selection.
-      if (this.selector) {
-        const $org = this;
-
-        this.each(function () {
-          $org.$items.push($(this));
-        });
-      }
     };
   }
 };

@@ -44,5 +44,13 @@ body
   text-align: center
   @media all and (max-width: $bp-md-max)
     margin: 0 ($space-quarter * 3)
-.main__content
-  opacity: 0
+.main__content__slid
+  display: block
+  visibility: visible
+  padding-top: 0
+.main__content__slider
+  display: none
+.main__content__slid + .main__content__slider
+  display: block
+  padding-top: 20rem
+  visibility: hidden

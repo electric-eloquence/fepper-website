@@ -32,11 +32,23 @@ export default app => {
     },
 
     mainContentFadeIn: () => {
-      $orgs.mainContent.dispatchAction('addClass', 'fade fade--in');
+      $orgs.mainContent.dispatchAction('addClass', 'fade--in');
     },
 
-    mainContentHide: () => {
-      $orgs.mainContent.dispatchAction('removeClass', 'fade--in');
+    mainContentInit: () => {
+      new Promise(resolve => {
+        $orgs.mainContent.dispatchAction('removeClass', 'fade--in');
+        resolve();
+      }).then(() => {
+        $orgs.mainContent.dispatchAction('addClass', 'fade');
+      });
+    },
+
+    fadeTest: () => {
+      if (app.$window.scrollTop() > 20) {
+        $orgs.mainContent.dispatchAction('addClass', 'fade--in');
+        console.warn($orgs.mainContent.offset());
+      }
     }
   }
 };

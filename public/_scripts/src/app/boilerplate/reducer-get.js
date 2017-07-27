@@ -66,75 +66,123 @@ function reducerClosure(orgId) {
           state.attribs = $org[0].attribs;
         }
 
-        function addClass() {
-          const classesOld = stateDefault.attribs.class.split(' ');
-          const classesToAdd = action.args[0].split(' ');
+        function addClass(classesForReducedState, classParam) {
+          let classesToAdd;
+
+          if (typeof classParam === 'string') {
+            classesToAdd = classParam.split(' ');
+          }
+          else if (typeof classParam === 'function') {
+            const retval = classParam();
+
+            if (typeof retval === 'string') {
+              classesToAdd = retval.split(' ');
+            }
+          }
 
           classesToAdd.forEach(classToAdd => {
-            if (classesOld.indexOf(classToAdd) === -1) {
+            if (classesForReducedState.indexOf(classToAdd) === -1) {
               state.attribs.class += ` ${classToAdd}`;
             }
           });
         }
 
-        function removeClass() {
-          const classesNew = stateDefault.attribs.class.split(' ');
-          const classesToRemove = action.args[0].split(' ');
+        function removeClass(classesForReducedState, classParam, classIdx_) {
+          let classesToRemove;
+
+          if (typeof classParam === 'string') {
+            classesToRemove = classParam.split(' ');
+          }
+          else if (typeof classParam === 'function') {
+            const retval = classParam();
+
+            if (typeof retval === 'string') {
+              classesToRemove = retval.split(' ');
+            }
+          }
 
           classesToRemove.forEach(classToRemove => {
-            const classesNewIdx = classesNew.indexOf(classToRemove);
+            const classIdx = classIdx_ || classesForReducedState.indexOf(classToRemove);
 
-            if (classesNewIdx > -1) {
-              classesNew.splice(classesNewIdx, 1);
+            if (classIdx > -1) {
+              classesForReducedState.splice(classIdx, 1);
             }
           });
 
-          state.attribs.class = classesNew.join(' ');
+          state.attribs.class = classesForReducedState.join(' ');
         }
+
+        const classesForReducedState = stateDefault.attribs.class.split(' ');
 
         switch (action.method) {
 
           case 'addClass':
             if (action.args.length === 1) {
-              addClass();
+              addClass(classesForReducedState, action.args[0]);
             }
             break;
 
           case 'removeClass':
             if (action.args.length === 1) {
-              removeClass();
+              removeClass(classesForReducedState, action.args[0]);
             }
             break;
 
           case 'toggleClass':
-            if (action.args.length === 1) {
-              const classesNew = stateDefault.attribs.class.split(' ');
-              const classesToToggle = action.args[0].split(' ');
+            let classesToToggle;
 
-              classesToToggle.forEach(classToToggle => {
-                const classesNewIdx = classesNew.indexOf(classToToggle);
+            if (typeof action.args[0] === 'string') {
+              classesToToggle = action.args[0].split(' ');
+            }
+            else if (typeof action.args[0] === 'function') {
+              const retval = actions.args[0]();
 
-                if (classesNewIdx === -1) {
-                  addClass();
-                  classesNew.push(classToToggle);
+              if (typeof retval === 'string') {
+                classesToToggle = retval.split(' ');
+              }
+            }
+
+            classesToToggle.forEach(classToToggle => {
+
+              if (action.args.length === 1) {
+                const classIdx = classesForReducedState.indexOf(classToToggle);
+
+                if (classIdx === -1) {
+                  addClass(classesForReducedState, classToToggle);
                 }
                 else {
-                  removeClass();
-                  classesNew.splice(classesNewIdx, 1);
+                  removeClass(classesForReducedState, classToToggle, classIdx);
                 }
-              });
+              }
 
-              state.attribs.class = classesNew.join(' ');
-            }
+              else if (action.args.length === 2) {
+                if (action.args[1]) {
+                  addClass(classesForReducedState, classToToggle);
+                }
+                else {
+                  const classIdx = classesForReducedState.indexOf(classToToggle);
 
-            else if (action.args.length === 2) {
-            }
+                  removeClass(classesForReducedState, classToToggle, classIdx);
+                }
+              }
+            });
 
             break;
 
           case 'css':
             if (action.args.length === 2) {
-              state.style[action.args[0]] = action.args[1];
+              if (typeof action.args[0] === 'string') {
+                if (typeof action.args[1] === 'string') {
+                  state.style[action.args[0]] = action.args[1];
+                }
+                else if (typeof action.args[1] === 'function') {
+                  const retval = action.args[1]();
+
+                  if (typeof retval === 'string') {
+                    state.style[action.args[0]] = retval;
+                  }
+                }
+              }
             }
             else if (
               action.args.length === 1 &&
@@ -152,19 +200,53 @@ function reducerClosure(orgId) {
 
           case 'html':
             if (action.args.length === 1) {
-              state.innerHTML = action.args[0];
+              if (typeof action.args[0] === 'string') {
+                state.innerHTML = action.args[0];
+              }
+              else if (typeof action.args[0] === 'function') {
+                const retval = action.args[0]();
+
+                if (typeof retval === 'string') {
+                  state.style[action.args[0]] = retval;
+                }
+              }
             }
             break;
 
           case 'prop':
             if (action.args.length === 2) {
-              state.attribs[action.args[0]] = action.args[1];
+              if (typeof action.args[0] === 'string') {
+                if (typeof action.args[1] === 'string') {
+                  state.attribs[action.args[0]] = action.args[1];
+                }
+                else if (typeof action.args[1] === 'function') {
+                  const retval = action.args[1]();
+
+                  if (typeof retval === 'string') {
+                    state.attribs[action.args[0]] = retval;
+                  }
+                }
+              }
+            }
+            else if (
+              action.args.length === 1 &&
+              action.args[0] instanceof Object &&
+              action.args[0].constructor === Object
+            ) {
+              for (let i in action.args[0]) {
+                if (!action.args[0].hasOwnProperty(i)) {
+                  continue;
+                }
+                state.attribs[i] = action.args[0][i];
+              }
             }
             break;
 
           case 'scrollTop':
             if (action.args.length === 1) {
-              state.scrollTop = action.args[0];
+              if (typeof action.args[0] === 'number') {
+                state.scrollTop = action.args[0];
+              }
             }
             break;
         }

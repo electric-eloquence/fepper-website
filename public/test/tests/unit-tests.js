@@ -58,4 +58,16 @@ describe('Fepper website', function () {
     // Assert.
     expect(browserAdviceDisplay).to.equal('none');
   });
+
+  it('should hide the #mainContent organism on init', function () {
+    // Act.
+    app.actions.mainContentInit();
+
+    // Get results.
+    const mainContentState = app.$orgs.mainContent.getState();
+    const mainContentClasses = mainContentState.style.attribs.class;
+
+    // Assert.
+    expect(mainContentClasses.indexOf('fade--in').to.equal(-1);
+  });
 });

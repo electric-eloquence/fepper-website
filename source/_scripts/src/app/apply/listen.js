@@ -9,5 +9,6 @@ export default app => {
   app.$window.scroll(function () {
     actions.logoRipen();
     actions.logoFix();
+    actions.fadeTest();
   });
 };

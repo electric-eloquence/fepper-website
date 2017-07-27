@@ -3,10 +3,10 @@
 /**
  * Closure to generate reducers specific to organisms.
  *
- * @param {string} orgId
+ * @param {string} orgSelector
  * @return
  */
-function reducerClosure(orgId) {
+function reducerClosure(orgSelector) {
 
   /**
    * Clone an old state, update the clone based on an action, and return the clone.
@@ -35,22 +35,24 @@ function reducerClosure(orgId) {
       attribs: {},
       innerHTML: null,
       scrollTop: null,
-      style: {}
+      style: {},
+      $items: []
     };
 
-    let state;
-    try {
-      // Clone old state into new state.
-      state = JSON.parse(JSON.stringify(state_));
-    } catch (err) {
-      state = stateDefault;
-    }
+    if (action.selector === orgSelector) {
 
-    if (action.id === orgId) {
+      let state;
       const $org = action.$org;
 
-      // Add class attribute to stateDefault.
-      stateDefault.attribs.class = $org.attr('class');
+      try {
+        // Clone old state into new state.
+        state = JSON.parse(JSON.stringify(state_));
+      } catch (err) {
+        state = stateDefault;
+      }
+
+      state.attribs.class = $org.attr('class');
+      state.$items = action.$items;
 
       try {
         // The attributes property of jQuery objects is based off of the DOM's Element.attributes collection.
@@ -255,10 +257,19 @@ function reducerClosure(orgId) {
         console.error(err); // eslint-disable-line no-console
         throw err;
       }
+
+      return state;
     }
 
-    return state;
-  }
+    else {
+      if (state_) {
+        return state_;
+      }
+      else {
+        return stateDefault;
+      }
+    }
+  };
 }
 
 /**

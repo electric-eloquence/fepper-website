@@ -6,48 +6,48 @@ var actionsGet = app => {
   return {
 
     browserAdviceHide: () => {
-      $orgs.browserAdvice.dispatchAction('css', ['display', 'none']);
+      $orgs['#browserAdvice'].dispatchAction('css', ['display', 'none']);
     },
 
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
 
-      let percentage = MAX_PERCENTAGE * app.$window.scrollTop() / ($orgs.html.height() - app.$window.height());
+      let percentage = MAX_PERCENTAGE * app.$window.scrollTop() / ($orgs['#html'].height() - app.$window.height());
       percentage = percentage < MAX_PERCENTAGE ? percentage : MAX_PERCENTAGE;
 
-      $orgs.logoBg.dispatchAction('css', ['right', `-${percentage}%`]);
+      $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);
     },
 
     logoFix: () => {
-      if (app.$window.scrollTop() > $orgs.videoHead.height()) {
-        const brandingHeight = $orgs.branding.height();
+      if (app.$window.scrollTop() > $orgs['#videoHead'].height()) {
+        const brandingHeight = $orgs['#branding'].height();
 
-        $orgs.branding.dispatchAction('css', {position: 'fixed', top: '0'});
-        $orgs.main.dispatchAction('css', ['padding-top', `${brandingHeight}px`]);
+        $orgs['#branding'].dispatchAction('css', {position: 'fixed', top: '0'});
+        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingHeight}px`]);
       }
       else {
-        $orgs.branding.dispatchAction('css', {position: 'static', top: 'auto'});
-        $orgs.main.dispatchAction('css', ['padding-top', '0']);
+        $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});
+        $orgs['#main'].dispatchAction('css', ['padding-top', '0']);
       }
     },
 
     mainContentFadeIn: () => {
-      $orgs.mainContent.dispatchAction('addClass', 'fade--in');
+      $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
     },
 
     mainContentInit: () => {
       new Promise(resolve => {
-        $orgs.mainContent.dispatchAction('removeClass', 'fade--in');
+        $orgs['#mainContent'].dispatchAction('removeClass', 'fade--in');
         resolve();
       }).then(() => {
-        $orgs.mainContent.dispatchAction('addClass', 'fade');
+        $orgs['#mainContent'].dispatchAction('addClass', 'fade');
       });
     },
 
     fadeTest: () => {
       if (app.$window.scrollTop() > 20) {
-        $orgs.mainContent.dispatchAction('addClass', 'fade--in');
-        console.warn($orgs.mainContent.offset());
+        $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
+        console.warn($orgs['#mainContent'].offset());
       }
     }
   }
@@ -59,15 +59,15 @@ var actionsGet = app => {
  * @return {object} Keyed by organism ID.
  */
 var $orgs = {
-  'html': null,
-  'body': null,
-  'videoHead': null,
-  'branding': null,
-  'logoBg': null,
-  'logoImg': null,
-  'main': null,
-  'browserAdvice': null,
-  'mainContent': null
+  '#html': null,
+  '#body': null,
+  '#videoHead': null,
+  '#branding': null,
+  '#logoBg': null,
+  '#logoImg': null,
+  '#main': null,
+  '#browserAdvice': null,
+  '#mainContent': null
 };
 
 /**
@@ -82,7 +82,10 @@ var organismsIncept = $orgs => {
       continue;
     }
 
-    $orgs[i] = $(`#${i}`);
+    const $org = $(`${i}`);
+
+    $org.$itemsFill();
+    $orgs[i] = $org;
   }
 };
 
@@ -92,15 +95,6 @@ var organismsIncept = $orgs => {
  * @param {object} stateStore
  */
 var prototypeOverride = stateStore => {
-
-  /**
-   * Convenience method.
-   *
-   * @return {string} The organism's ID.
-   */
-  if (!$.prototype.id) {
-    $.prototype.id = function () {return this.attr('id')};
-  }
 
   /**
    * A shorthand for dispatching state actions.
@@ -130,10 +124,10 @@ var prototypeOverride = stateStore => {
         args = [args_];
       }
 
-      // On the client, stateStore.dispatch() depends on this.
+      // On the client, side-effects must happen here. stateStore.dispatch() depends on this.
       if (typeof this[method] === 'function') {
 
-        // Make the .addClass() more convenient by checking if the class already exists.
+        // Make addClass more convenient by checking if the class already exists.
         if (method === 'addClass') {
           if (!this.hasClass(args[0])) {
             this[method].apply(this, args);
@@ -144,10 +138,14 @@ var prototypeOverride = stateStore => {
         }
       }
 
+      // Populate $items before dispatching.
+      this.$itemsFill();
+
       const stateNew = stateStore.dispatch({
         type: '',
-        id: this.id(),
+        selector: this.selector,
         $org: this,
+        $items: this.$items,
         method: method,
         args: args
       });
@@ -163,7 +161,7 @@ var prototypeOverride = stateStore => {
    */
   if (!$.prototype.getState) {
     $.prototype.getState = function () {
-      return stateStore.getState()[this.id()];
+      return stateStore.getState()[this.selector];
     };
   }
 
@@ -177,15 +175,45 @@ var prototypeOverride = stateStore => {
       return stateStore;
     };
   }
+
+  /**
+   * A true Array of the selection's numerically-keyed properties.
+   * This is necessary for selection by class and tag, where results number more than one.
+   * Members of this array will be fully-incepted organisms.
+   * This array will be populated on organism inception and re-populated on dispatch of actions.
+   * It will only be populated at the top level of the $orgs object.
+   *
+   * @type {array}
+   */
+  if (!$.prototype.$items) {
+    $.prototype.$items = [];
+  }
+
+  /**
+   * Populate organismsArray.
+   */
+  if (!$.prototype.$itemsFill) {
+    $.prototype.$itemsFill = function () {
+
+      // Only populate at top level of selection.
+      if (this.selector) {
+        const $org = this;
+
+        this.each(function () {
+          $org.$items.push($(this));
+        });
+      }
+    };
+  }
 };
 
 /**
  * Closure to generate reducers specific to organisms.
  *
- * @param {string} orgId
+ * @param {string} orgSelector
  * @return
  */
-function reducerClosure(orgId) {
+function reducerClosure(orgSelector) {
 
   /**
    * Clone an old state, update the clone based on an action, and return the clone.
@@ -214,22 +242,24 @@ function reducerClosure(orgId) {
       attribs: {},
       innerHTML: null,
       scrollTop: null,
-      style: {}
+      style: {},
+      $items: []
     };
 
-    let state;
-    try {
-      // Clone old state into new state.
-      state = JSON.parse(JSON.stringify(state_));
-    } catch (err) {
-      state = stateDefault;
-    }
+    if (action.selector === orgSelector) {
 
-    if (action.id === orgId) {
+      let state;
       const $org = action.$org;
 
-      // Add class attribute to stateDefault.
-      stateDefault.attribs.class = $org.attr('class');
+      try {
+        // Clone old state into new state.
+        state = JSON.parse(JSON.stringify(state_));
+      } catch (err) {
+        state = stateDefault;
+      }
+
+      state.attribs.class = $org.attr('class');
+      state.$items = action.$items;
 
       try {
         // The attributes property of jQuery objects is based off of the DOM's Element.attributes collection.
@@ -434,10 +464,19 @@ function reducerClosure(orgId) {
         console.error(err); // eslint-disable-line no-console
         throw err;
       }
+
+      return state;
     }
 
-    return state;
-  }
+    else {
+      if (state_) {
+        return state_;
+      }
+      else {
+        return stateDefault;
+      }
+    }
+  };
 }
 
 /**

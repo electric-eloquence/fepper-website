@@ -8,15 +8,6 @@
 export default stateStore => {
 
   /**
-   * Convenience method.
-   *
-   * @return {string} The organism's ID.
-   */
-  if (!$.prototype.id) {
-    $.prototype.id = function () {return this.attr('id')};
-  }
-
-  /**
    * A shorthand for dispatching state actions.
    *   1. Apply the jQuery or Cheerio method.
    *   2. Apply any additional changes.
@@ -44,10 +35,10 @@ export default stateStore => {
         args = [args_];
       }
 
-      // On the client, stateStore.dispatch() depends on this.
+      // On the client, side-effects must happen here. stateStore.dispatch() depends on this.
       if (typeof this[method] === 'function') {
 
-        // Make the .addClass() more convenient by checking if the class already exists.
+        // Make addClass more convenient by checking if the class already exists.
         if (method === 'addClass') {
           if (!this.hasClass(args[0])) {
             this[method].apply(this, args);
@@ -58,10 +49,14 @@ export default stateStore => {
         }
       }
 
+      // Populate $items before dispatching.
+      this.$itemsFill();
+
       const stateNew = stateStore.dispatch({
         type: '',
-        id: this.id(),
+        selector: this.selector,
         $org: this,
+        $items: this.$items,
         method: method,
         args: args
       });
@@ -77,7 +72,7 @@ export default stateStore => {
    */
   if (!$.prototype.getState) {
     $.prototype.getState = function () {
-      return stateStore.getState()[this.id()];
+      return stateStore.getState()[this.selector];
     };
   }
 
@@ -89,6 +84,36 @@ export default stateStore => {
   if (!$.prototype.getStore) {
     $.prototype.getStore = function () {
       return stateStore;
+    };
+  }
+
+  /**
+   * A true Array of the selection's numerically-keyed properties.
+   * This is necessary for selection by class and tag, where results number more than one.
+   * Members of this array will be fully-incepted organisms.
+   * This array will be populated on organism inception and re-populated on dispatch of actions.
+   * It will only be populated at the top level of the $orgs object.
+   *
+   * @type {array}
+   */
+  if (!$.prototype.$items) {
+    $.prototype.$items = [];
+  }
+
+  /**
+   * Populate organismsArray.
+   */
+  if (!$.prototype.$itemsFill) {
+    $.prototype.$itemsFill = function () {
+
+      // Only populate at top level of selection.
+      if (this.selector) {
+        const $org = this;
+
+        this.each(function () {
+          $org.$items.push($(this));
+        });
+      }
     };
   }
 };

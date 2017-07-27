@@ -11,7 +11,7 @@ describe('Fepper website', function () {
     app.actions.logoRipen();
 
     // Get results.
-    const logoBgState = app.$orgs.logoBg.getState();
+    const logoBgState = app.$orgs['#logoBg'].getState();
     const logoBgRight = logoBgState.style.right;
     const percentage = parseFloat(logoBgRight.slice(0, -1));
 
@@ -25,14 +25,14 @@ describe('Fepper website', function () {
     app.actions.logoFix();
 
     // Get results.
-    const brandingState = app.$orgs.branding.getState();
+    const brandingState = app.$orgs['#branding'].getState();
     const brandingPosition = brandingState.style.position;
     const brandingTop = brandingState.style.top;
-    const htmlState = app.$orgs.html.getState();
+    const htmlState = app.$orgs['#html'].getState();
     const htmlScrollTop = htmlState.scrollTop;
-    const mainState = app.$orgs.main.getState();
+    const mainState = app.$orgs['#main'].getState();
     const mainPaddingTop = mainState.style['padding-top'];
-    const videoHeadHeight = app.$orgs.videoHead.height();
+    const videoHeadHeight = app.$orgs['#videoHead'].height();
 
     // Assert.
     if (htmlScrollTop > videoHeadHeight) {
@@ -52,7 +52,7 @@ describe('Fepper website', function () {
     app.actions.browserAdviceHide();
 
     // Get results.
-    const browserAdviceState = app.$orgs.browserAdvice.getState();
+    const browserAdviceState = app.$orgs['#browserAdvice'].getState();
     const browserAdviceDisplay = browserAdviceState.style.display;
 
     // Assert.
@@ -64,10 +64,10 @@ describe('Fepper website', function () {
     app.actions.mainContentInit();
 
     // Get results.
-    const mainContentState = app.$orgs.mainContent.getState();
-    const mainContentClasses = mainContentState.style.attribs.class;
+    const mainContentState = app.$orgs['#mainContent'].getState();
+    const mainContentClasses = mainContentState.attribs.class;
 
     // Assert.
-    expect(mainContentClasses.indexOf('fade--in').to.equal(-1);
+    expect(mainContentClasses.indexOf('fade--in')).to.equal(-1);
   });
 });

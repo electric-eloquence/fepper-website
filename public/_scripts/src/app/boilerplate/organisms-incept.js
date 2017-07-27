@@ -12,6 +12,9 @@ export default $orgs => {
       continue;
     }
 
-    $orgs[i] = $(`#${i}`);
+    const $org = $(`${i}`);
+
+    $org.$itemsFill();
+    $orgs[i] = $org;
   }
 };

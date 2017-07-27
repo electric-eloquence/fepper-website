@@ -46,9 +46,10 @@ export default app => {
 
     fadeTest: () => {
       if (app.$window.scrollTop() > 20) {
-        $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
-        console.warn($orgs['#mainContent'].getState());
-//        console.warn($orgs['#mainContent'].offset());
+        $orgs['.main__content__slider'].$items[0].dispatchAction('addClass', 'fade--in');
+console.warn($orgs['.main__content__slider'].$items[0]);
+console.warn($orgs['.main__content__slider'].$items[0].dispatchAction);
+console.warn($orgs['.main__content__slider'].$items[0].getState);
       }
     }
   }

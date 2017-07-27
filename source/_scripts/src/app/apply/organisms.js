@@ -14,5 +14,6 @@ export default {
   '#logoImg': null,
   '#main': null,
   '#browserAdvice': null,
-  '#mainContent': null
+  '#mainContent': null,
+  '.main__content__slider': null
 };

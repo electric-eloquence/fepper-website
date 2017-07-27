@@ -28,7 +28,7 @@ export default $orgs => {
 
     /**
      * @property {function} $itemsReset - Empty and fill $org.$items array with organisms selected by jQuery/Cheerio.
-     * To be run on dispatch of action.
+     * To be run on organism inception and dispatch of action.
      * Must only fill $items property of $orgs at top level of the $orgs object.
      */
     $org.$itemsReset = function () {
@@ -39,6 +39,7 @@ export default $orgs => {
       });
     };
 
+    $org.$itemsReset();
     $orgs[i] = $org;
   }
 };

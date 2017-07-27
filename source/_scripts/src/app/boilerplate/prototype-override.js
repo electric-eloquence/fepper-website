@@ -50,7 +50,9 @@ export default stateStore => {
       }
 
       // Reset $items before dispatching.
-      this.$itemsReset();
+      if (typeof this.$itemsReset === 'function') {
+        this.$itemsReset();
+      }
 
       const stateNew = stateStore.dispatch({
         type: '',

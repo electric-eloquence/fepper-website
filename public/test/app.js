@@ -46,9 +46,10 @@ var actionsGet = app => {
 
     fadeTest: () => {
       if (app.$window.scrollTop() > 20) {
-        $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
-        console.warn($orgs['#mainContent'].getState());
-//        console.warn($orgs['#mainContent'].offset());
+        $orgs['.main__content__slider'].$items[0].dispatchAction('addClass', 'fade--in');
+console.warn($orgs['.main__content__slider'].$items[0]);
+console.warn($orgs['.main__content__slider'].$items[0].dispatchAction);
+console.warn($orgs['.main__content__slider'].$items[0].getState);
       }
     }
   }
@@ -68,7 +69,8 @@ var $orgs = {
   '#logoImg': null,
   '#main': null,
   '#browserAdvice': null,
-  '#mainContent': null
+  '#mainContent': null,
+  '.main__content__slider': null
 };
 
 /**
@@ -99,7 +101,7 @@ var organismsIncept = $orgs => {
 
     /**
      * @property {function} $itemsReset - Empty and fill $org.$items array with organisms selected by jQuery/Cheerio.
-     * To be run on dispatch of action.
+     * To be run on organism inception and dispatch of action.
      * Must only fill $items property of $orgs at top level of the $orgs object.
      */
     $org.$itemsReset = function () {
@@ -110,6 +112,7 @@ var organismsIncept = $orgs => {
       });
     };
 
+    $org.$itemsReset();
     $orgs[i] = $org;
   }
 };
@@ -164,7 +167,9 @@ var prototypeOverride = stateStore => {
       }
 
       // Reset $items before dispatching.
-      this.$itemsReset();
+      if (typeof this.$itemsReset === 'function') {
+        this.$itemsReset();
+      }
 
       const stateNew = stateStore.dispatch({
         type: '',

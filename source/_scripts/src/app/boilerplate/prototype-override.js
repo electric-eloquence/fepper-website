@@ -49,8 +49,8 @@ export default stateStore => {
         }
       }
 
-      // Populate $items before dispatching.
-//      this.$itemsFill();
+      // Reset $items before dispatching.
+      this.$itemsReset();
 
       const stateNew = stateStore.dispatch({
         type: '',

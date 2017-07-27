@@ -98,17 +98,18 @@ var organismsIncept = $orgs => {
     $org.$items = [];
 
     /**
-     * @function
-     * $org.$items will be populated on organism inception and re-populated on dispatch of actions.
-     * It will only be populated at the top level of the $orgs object.
+     * @property {function} $itemsReset - Empty and fill $org.$items array with organisms selected by jQuery/Cheerio.
+     * To be run on dispatch of action.
+     * Must only fill $items property of $orgs at top level of the $orgs object.
      */
-    $org.$itemsFill = function () {
+    $org.$itemsReset = function () {
+      $org.$items = [];
+
       $org.each(function () {
         $org.$items.push($(this));
       });
     };
 
-    $org.$itemsFill();
     $orgs[i] = $org;
   }
 };
@@ -162,8 +163,8 @@ var prototypeOverride = stateStore => {
         }
       }
 
-      // Populate $items before dispatching.
-//      this.$itemsFill();
+      // Reset $items before dispatching.
+      this.$itemsReset();
 
       const stateNew = stateStore.dispatch({
         type: '',

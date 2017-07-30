@@ -18,15 +18,21 @@ const testDir = path.resolve(utils.pathResolve(conf.ui.paths.public.root), 'test
 
 gulp.task('rollup', function () {
   // Copy any changes to the homepage to the test index.html file.
-  fs.copySync(`${patternsPubDir}/04-pages-00-homepage/04-pages-00-homepage.html`, `${testDir}/files/index.html`);
+  const testMarkupSrc = `${patternsPubDir}/04-pages-00-homepage/04-pages-00-homepage.html`;
+
+  if (fs.existsSync(testMarkupSrc)) {
+    fs.copySync(testMarkupSrc, `${testDir}/files/index.html`);
+  }
+
+  const name = 'bundle-node.js';
 
   return rollup({
-    entry: `${jsSrcDir}/app/main.js`,
+    entry: `${jsSrcDir}/app/${name}`,
     format: 'cjs'
   })
 
   // Rollup-stream requires this extra step. Pass the filename you want to output to.
-  .pipe(source('app.js'))
+  .pipe(source(name))
 
   .pipe(gulp.dest(testDir));
 });

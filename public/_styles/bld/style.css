@@ -204,6 +204,9 @@ body {
   top: 0;
   left: 0;
 }
+.browser-advice {
+  padding-top: calc(100vh - 17vw - 20rem - 1rem - 1rem);
+}
 .main {
   max-width: 100rem;
   margin: 0 auto;
@@ -214,16 +217,15 @@ body {
     margin: 0 1.2rem;
   }
 }
+.main__content__item {
+  transition: padding-top 1s;
+}
 .main__content__slid {
   display: block;
-  visibility: visible;
   padding-top: 0;
-}
-.main__content__slider {
-  display: none;
 }
 .main__content__slid + .main__content__slider {
   display: block;
-  padding-top: 20rem;
+  padding-top: calc(100vh - 17vw - 20rem - 1rem - 1rem);
   visibility: hidden;
 }

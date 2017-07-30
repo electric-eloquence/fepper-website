@@ -17,8 +17,9 @@
 
 
   <link rel="stylesheet" href="../../_styles/bld/style.css?0" media="all">
-  <script src="../../node_modules/jquery/dist/jquery.slim.min.js?0"></script>
+  <script src="../../node_modules/jquery/dist/jquery.min.js?0"></script>
   <script src="../../node_modules/redux/dist/redux.min.js?0"></script>
+  <script src="../../_scripts/src/app/module-support-check.js?0" type="module"></script>
 </head>
 <body id="body" class="">
 <style>  .colors {    display: table;  }  .colors__row {    display: table-row;  }  .colors__cell {    display: table-cell;    padding: 0 0.25rem  } </style> <div class="colors"> <div class="colors__row bg--green-fepper"> <div class="colors__cell">green fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> </div> <div class="colors__row bg--yellow-fepper"> <div class="colors__cell">yellow fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> </div> <div class="colors__row bg--red-fepper"> <div class="colors__cell">red fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> </div> </div> <script>  function decToHex(dec) {    const hex = dec.toString(16);    return hex.length == 1 ? '0' + hex : hex;  }  function rgbToHex(rgb) {    const rgbStr = rgb.slice(rgb.indexOf('(') + 1, -1);    const rgbArr = rgbStr.split(',');    let hex = '#';    rgbArr.forEach(dec => {      hex += decToHex(parseInt(dec, 10));    });    return hex;  }  const rows = document.querySelectorAll('.colors__row');  for (let i = 0; i < rows.length; i++) {    const colorRgb = window.getComputedStyle(rows[i], null).getPropertyValue('background-color');    const colorHex = rgbToHex(colorRgb);    const cells = rows[i].children;    cells[1].innerHTML = colorHex;    cells[2].innerHTML = colorRgb;  } </script>
@@ -94,6 +95,7 @@
   <script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js?0"></script>
 
   <script src="../../_scripts/src/index.js?0" type="module"></script>
+  <script src="../../_scripts/src/backward-compat.js?0"></script>
 </body>
 </html>
 

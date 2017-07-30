@@ -9,28 +9,33 @@ const Redux = global.Redux = require('redux');
 const html = fs.readFileSync(path.resolve(__dirname, 'files', 'index.html'), 'utf8');
 const $ = global.$ = cheerio.load(html);
 
-const app = new (require('./app'))($, Redux);
+const bundle = require('./bundle-node.js');
+const actionsGet = bundle.actionsGet;
+const $organisms = bundle.$organisms;
+
+const Requerio = require('requerio/dist/requerio-node');
+const requerio = new Requerio($, Redux, $organisms, actionsGet);
 
 // Need to init before defining organisms.
-app.init();
+requerio.init();
 
 // Organism property defs for testing.
-app.$window.height = () => {
+requerio.$window.height = () => {
   return 1000;
 }
-app.$orgs['#html'].height = () => {
+requerio.$orgs['#html'].height = () => {
   return 2000;
 }
-app.$orgs['#branding'].height = () => {
+requerio.$orgs['#branding'].height = () => {
   return 220;
 }
-app.$window.scrollTop = () => {
+requerio.$window.scrollTop = () => {
   const num = (1 - Math.random()) * 1000;
-  app.$orgs['#html'].dispatchAction('scrollTop', num);
+  requerio.$orgs['#html'].dispatchAction('scrollTop', num);
   return num;
 }
-app.$orgs['#videoHead'].height = () => {
+requerio.$orgs['#videoHead'].height = () => {
   return 400;
 }
 
-module.exports = app;
+module.exports = requerio;

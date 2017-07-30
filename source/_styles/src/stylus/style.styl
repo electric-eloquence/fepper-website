@@ -12,6 +12,9 @@
 @import '0-base/03-helpers'
 @import '0-base/04-global'
 
+$logo-height = 20rem
+$logo-margin = 1rem
+
 body
   height: 200vh
   position: relative
@@ -22,11 +25,11 @@ body
   background: white
   width: 100%
 .logo
-  margin 1rem auto
+  margin $logo-margin auto
   overflow: hidden
   position: relative
   width: 30rem
-  height: 20rem
+  height: $logo-height
   &__bg
     background: linear-gradient(to left, $green-fepper, $green-fepper 20%, $yellow-fepper 40%, $yellow-fepper 60%, $red-fepper 80%, $red-fepper);
     position: absolute
@@ -38,19 +41,20 @@ body
     position: relative
     top: 0
     left: 0
+.browser-advice
+  padding-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $logo-margin $logo-margin)
 .main
   max-width: $content-width-max
   margin: 0 auto
   text-align: center
   @media all and (max-width: $bp-md-max)
     margin: 0 ($space-quarter * 3)
+.main__content__item
+  transition: padding-top 1s
 .main__content__slid
   display: block
-  visibility: visible
   padding-top: 0
-.main__content__slider
-  display: none
 .main__content__slid + .main__content__slider
   display: block
-  padding-top: 20rem
+  padding-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $logo-margin $logo-margin)
   visibility: hidden

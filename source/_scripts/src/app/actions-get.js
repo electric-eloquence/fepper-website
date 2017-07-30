@@ -31,24 +31,18 @@ export default app => {
       }
     },
 
-    mainContentFadeIn: () => {
-      $orgs['#mainContent'].dispatchAction('addClass', 'fade--in');
-    },
-
     mainContentInit: () => {
-      new Promise(resolve => {
-        $orgs['#mainContent'].dispatchAction('removeClass', 'fade--in');
-        resolve();
-      }).then(() => {
-        $orgs['#mainContent'].dispatchAction('addClass', 'fade');
-      });
     },
 
     fadeTest: () => {
-      if (app.$window.scrollTop() > 20) {
-        $orgs['.main__content__slider'].$items[0].dispatchAction('removeClass', 'main__content__slider');
-console.warn($orgs['.main__content__slider'].$items[0].dispatchAction);
-console.warn($orgs['.main__content__slider'].$items[0].getState);
+      if (
+        app.$window.scrollTop() > 20 &&
+        $orgs['.main__content__slider'].$items.length
+      ) {
+        $orgs['.main__content__slider'].dispatchAction('addClass', 'main__content__slid', 0);
+        $orgs['.main__content__slider'].dispatchAction('removeClass', 'main__content__slider', 0);
+        $orgs['.main__content__slid'].dispatchAction('removeClass', 'main__content__slid', 0);
+console.warn($orgs['.main__content__slid'].getState());
       }
     }
   }

@@ -1,11 +1,16 @@
 'use strict';
 
-import AppMain from  './app/main.js'; // Edge bug prevents using same varname as classname "App".
-import apply from './app/apply/apply.js';
-import listen from './app/apply/listen.js';
+// MS Edge bug prevents same varname as classname.
+import RequerioClass from  '../../node_modules/requerio/src/requerio.js';
 
-const app = new AppMain(window.$, window.Redux);
+import actionsGet from './app/actions-get.js';
+import $organisms from './app/organisms.js';
 
-app.init();
-apply(app);
-listen(app);
+import apply from './app/apply.js';
+import listen from './app/listen.js';
+
+const requerio = new RequerioClass($, Redux, $organisms, actionsGet);
+
+requerio.init();
+apply(requerio);
+listen(requerio);

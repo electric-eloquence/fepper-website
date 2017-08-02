@@ -1,26 +1,6 @@
-
-/* line 297 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
-
-/* line 1 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/extend/node_modules/stylus/lib/functions/index.styl */
-
-/* line 6 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/extend/node_modules/stylus/lib/functions/index.styl */
-
-/* line 1 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_scripts/src/variables.styl */
-
-/* line 25 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_scripts/src/variables.styl */
-
-/* line 2 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/00-variables.styl */
-
-/* line 8 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/00-variables.styl */
-
-/* line 1 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/01-reset.styl */
-
-/* line 2 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/01-reset.styl */
 * {
   box-sizing: border-box;
 }
-
-/* line 4 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/01-reset.styl */
 html,
 body,
 div,
@@ -49,8 +29,6 @@ figure {
   margin: 0;
   padding: 0;
 }
-
-/* line 7 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/01-reset.styl */
 header,
 footer,
 nav,
@@ -60,24 +38,12 @@ hgroup,
 figure {
   display: block;
 }
-
-/* line 95 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/01-reset.styl */
-
-/* line 2 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/02-fonts.styl */
 @font-face {
   font-family: 'Fira Sans';
   font-style: normal;
   font-weight: 400;
   src: url("fonts/FiraSans/FiraSans-Book.otf") format('opentype');
 }
-
-/* line 9 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/02-fonts.styl */
-
-/* line 1 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/03-helpers.styl */
-
-/* line 2 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/03-helpers.styl */
-
-/* line 3 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/03-helpers.styl */
 .cf::before,
 .cf::after {
   content: " ";
@@ -85,22 +51,12 @@ figure {
   display: table;
 /* 2 */
 }
-
-/* line 8 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/03-helpers.styl */
 .cf::after {
   clear: both;
 }
-
-/* line 90 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/03-helpers.styl */
-
-/* line 1 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
-
-/* line 2 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 html {
   font-size: 62.5%;
 }
-
-/* line 4 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 body {
   background: $white;
   font: 1.6em/1.5 "Fira Sans", sans-serif;
@@ -109,159 +65,97 @@ body {
   min-height: 100vh;
   position: relative;
 }
-
-/* line 12 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 h4 {
   font-size: 1.1em;
 }
-
-/* line 14 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 h5 {
   font-size: 1.0625em;
 }
-
-/* line 16 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 h6 {
   font-size: 1em;
 }
-
-/* line 18 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 a {
   text-decoration: none;
 }
-
-/* line 20 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 a:hover,
 a:focus {
   color: #808080;
 }
-
-/* line 22 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
-
-/* line 23 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 p a {
   text-decoration: underline;
 }
-
-/* line 25 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 ol,
 ul {
   list-style-type: none;
 }
-
-/* line 27 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
-
-/* line 28 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .bg--green-fepper {
   background: #027d15;
 }
-
-/* line 30 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .bg--red-fepper {
   background: #d00000;
 }
-
-/* line 32 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .bg--yellow-fepper {
   background: #f0c000;
 }
-
-/* line 34 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .align-left {
   text-align: left;
 }
-
-/* line 36 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .align-center {
   text-align: center;
 }
-
-/* line 38 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-top-space {
   padding-top: 1.6rem;
 }
-
-/* line 40 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-top-space-half {
   padding-top: 0.8rem;
 }
-
-/* line 42 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-bottom-space {
   padding-bottom: 1.6rem;
 }
-
-/* line 44 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-bottom-space-half {
   padding-bottom: 0.8rem;
 }
-
-/* line 46 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-top-bottom-space {
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
 }
-
-/* line 49 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .pad-top-bottom-space-half {
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
-
-/* line 52 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-top-space {
   margin-top: 1.6rem;
 }
-
-/* line 54 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-top-space-half {
   margin-top: 0.8rem;
 }
-
-/* line 56 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-bottom-space {
   margin-bottom: 1.6rem;
 }
-
-/* line 58 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-bottom-space-half {
   margin-bottom: 0.8rem;
 }
-
-/* line 60 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-top-bottom-space {
   margin-top: 1.6rem;
   margin-bottom: 1.6rem;
 }
-
-/* line 63 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .margin-top-bottom-space-half {
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
 }
-
-/* line 66 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .fade {
   transition: opacity 1s;
 }
-
-/* line 68 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .fade--in.fade--in {
   opacity: 1;
 }
-
-/* line 70 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .fade--out.fade--out {
   opacity: 0;
 }
-
-/* line 73 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
-
-/* line 77 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
 .visually-hidden {
   position: absolute !important;
   overflow: hidden;
@@ -272,43 +166,31 @@ ul {
   clip: rect(1px, 1px, 1px, 1px);
 }
 @media print {
-
-/* line 87 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/0-base/04-global.styl */
   header.header,
   form,
   footer.footer {
     display: none;
   }
 }
-
-/* line 19 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 body {
-  height: 200vh;
   position: relative;
 }
-
-/* line 22 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .video-head {
   width: 100%;
   height: 33.334vw;
 }
-
-/* line 25 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .branding {
   background: #fff;
+  padding: 1rem 0;
   width: 100%;
 }
-
-/* line 28 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .logo {
-  margin: 1rem auto;
+  margin: 0 auto;
   overflow: hidden;
   position: relative;
   width: 30rem;
   height: 20rem;
 }
-
-/* line 34 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .logo__bg {
   background: linear-gradient(to left, #027d15, #027d15 20%, #f0c000 40%, #f0c000 60%, #d00000 80%, #d00000);
   position: absolute;
@@ -317,47 +199,36 @@ body {
   width: 150rem;
   height: 100%;
 }
-
-/* line 41 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .logo__img {
   position: relative;
   top: 0;
   left: 0;
 }
-
-/* line 45 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .browser-advice {
   margin-top: calc(100vh - 33.334vw - 20rem - 1rem - 1rem);
 }
-
-/* line 47 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .main {
   max-width: 100rem;
   margin: 0 auto;
   text-align: center;
 }
 @media all and (max-width: 1024px) {
-
-/* line 51 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
   .main {
     margin: 0 1.2rem;
   }
 }
-
-/* line 53 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .main__content__item {
   transition: margin-top 1s;
 }
-
-/* line 55 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .main__content__slid {
-  display: block;
   margin-top: 0;
 }
-
-/* line 58 : /Users/Shared/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/style.styl */
 .main__content__slid + .main__content__slider {
-  display: block;
   margin-top: calc(100vh - 17vw - 20rem - 1rem - 1rem);
+}
+.main__content__slider {
   visibility: hidden;
+}
+.main__content__item--last {
+  margin-top: calc(100vh - 8rem - 20rem - 1rem - 1rem);
 }

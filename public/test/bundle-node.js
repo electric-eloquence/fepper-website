@@ -27,7 +27,7 @@ var actionsGet = app => {
 
       if (windowState.scrollTop > videoHeadState.height) {
         $orgs['#branding'].dispatchAction('css', {position: 'fixed', top: '0'});
-        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingState.height}px`]);
+        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingState.boundingClientRect.height}px`]);
       }
       else {
         $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});
@@ -40,51 +40,29 @@ var actionsGet = app => {
         return;
       }
 
-      const htmlState = $orgs['#html'].getState();
-      const windowState = $orgs.window.getState();
-      const scrollTop = windowState.scrollTop;
+      const bodyState = $orgs['#body'].getState();
       const mainContentItems = $orgs['.main__content__item'];
-      let mainContentItemState = $orgs['.main__content__item'].getState();
+      const mainContentItemState = $orgs['.main__content__item'].getState();
       const mainContentSliders = $orgs['.main__content__slider'];
-      let mainContentSliderState = $orgs['.main__content__slider'].getState();
+      const mainContentSliderState = $orgs['.main__content__slider'].getState();
+      const windowState = $orgs.window.getState();
+
+      const scrollTop = windowState.scrollTop;
       const firstMainContentItemState = mainContentSliders.getState(0);
-console.warn(firstMainContentItemState);
-
-console.warn(mainContentItemState);
-//console.warn(mainContentSliderState.$items);
-
-      const scrollDistance = htmlState.height - windowState.height;
-      const scrollDivisor = scrollDistance / mainContentItemState.$items.length;
-//      const scrollIndex = Math.floor(scrollTop / scrollDivisor);
       const scrollIndex = mainContentItemState.$items.length - mainContentSliderState.$items.length;
+console.warn(scrollTop);
+console.warn(bodyState.boundingClientRect.height);
 
       let scrollThreshold = 0;
       for (let i = 0; i < scrollIndex; i++) {
-        scrollThreshold += mainContentItems.getState(i).height;
+        scrollThreshold += mainContentItems.getState(i).boundingClientRect.height;
       }
-/*
-console.warn(scrollDistance);
-console.warn(scrollDivisor);
-console.warn(scrollTop);
-console.warn(scrollIndex);
-*/
-console.warn(scrollThreshold);
 
-
-
-//      if (scrollPercent) {
-        $orgs['.main__content__slider'].dispatchAction('addClass', 'main__content__slid', 0);
-        $orgs['.main__content__slider'].dispatchAction('removeClass', 'main__content__slider', 0);
+      if (scrollTop > scrollThreshold) {
+        mainContentSliders.dispatchAction('addClass', 'main__content__slid', 0);
+        mainContentSliders.dispatchAction('removeClass', 'main__content__slider', 0);
         $orgs['.main__content__slid'].dispatchAction('removeClass', 'main__content__slid', 0);
-//console.warn(windowState.scrollTop);
-//console.warn(scrollDistance);
-//      }
-//console.warn($('.main__content__slider'));
-
-      mainContentItemState = $orgs['.main__content__item'].getState();
-      mainContentSliderState = $orgs['.main__content__slider'].getState();
-//console.warn(mainContentItemState.$items);
-//console.warn(mainContentSliderState.$items);
+      }
     }
   }
 };

@@ -14,19 +14,19 @@
 
 $video-head-height = 33.334vw
 $logo-height = 20rem
-$logo-margin = 1rem
+$branding-pad = 1rem
 
 body
-  height: 200vh
   position: relative
 .video-head
   width: 100%
   height: $video-head-height
 .branding
   background: white
+  padding: 1rem 0
   width: 100%
 .logo
-  margin $logo-margin auto
+  margin: 0 auto
   overflow: hidden
   position: relative
   width: 30rem
@@ -43,7 +43,7 @@ body
     top: 0
     left: 0
 .browser-advice
-  margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($video-head-height $logo-height $logo-margin $logo-margin)
+  margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($video-head-height $logo-height $branding-pad $branding-pad)
 .main
   max-width: $content-width-max
   margin: 0 auto
@@ -53,9 +53,10 @@ body
 .main__content__item
   transition: margin-top 1s
 .main__content__slid
-  display: block
   margin-top: 0
 .main__content__slid + .main__content__slider
-  display: block
-  margin-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $logo-margin $logo-margin)
+  margin-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $branding-pad $branding-pad)
+.main__content__slider
   visibility: hidden
+.main__content__item--last
+  margin-top: 'calc(100vh - 8rem - %s - %s - %s)' % ($logo-height $branding-pad $branding-pad)

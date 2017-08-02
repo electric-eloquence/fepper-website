@@ -28,14 +28,14 @@ describe('Fepper website', function () {
     const brandingState = app.$orgs['#branding'].getState();
     const brandingPosition = brandingState.style.position;
     const brandingTop = brandingState.style.top;
-    const htmlState = app.$orgs['#html'].getState();
-    const htmlScrollTop = htmlState.scrollTop;
+    const windowState = app.$orgs.window.getState();
+    const windowScrollTop = windowState.scrollTop;
     const mainState = app.$orgs['#main'].getState();
     const mainPaddingTop = mainState.style['padding-top'];
     const videoHeadHeight = app.$orgs['#videoHead'].height();
 
     // Assert.
-    if (htmlScrollTop > videoHeadHeight) {
+    if (windowScrollTop > videoHeadHeight) {
       expect(brandingPosition).to.equal('fixed');
       expect(brandingTop).to.equal('0');
       expect(mainPaddingTop).to.equal('220px');
@@ -61,13 +61,12 @@ describe('Fepper website', function () {
 
   it('should hide the #mainContent organism on init', function () {
     // Act.
-    app.actions.mainContentInit();
+    //app.actions.mainContentInit();
 
     // Get results.
-    const mainContentState = app.$orgs['#mainContent'].getState();
-    const mainContentClasses = mainContentState.attribs.class;
+    const mainContent = app.$orgs['#check1'];
+//    const mainContentState = app.$orgs['#checked1'].getState();
 
     // Assert.
-    expect(mainContentClasses.indexOf('fade--in')).to.equal(-1);
   });
 });

@@ -6,9 +6,9 @@ export default app => {
   const actions = actionsGet(app);
   const $orgs = app.$orgs;
 
-  app.$window.scroll(function () {
+  $orgs['window'].scroll(function () {
     actions.logoRipen();
     actions.logoFix();
-    actions.fadeTest();
+    actions.mainContentReveal();
   });
 };

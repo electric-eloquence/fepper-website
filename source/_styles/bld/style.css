@@ -226,9 +226,6 @@ body {
 .main__content__slid + .main__content__slider {
   margin-top: calc(100vh - 17vw - 20rem - 1rem - 1rem);
 }
-.main__content__slider {
-  visibility: hidden;
-}
 .main__content__item--last {
   margin-top: calc(100vh - 8rem - 20rem - 1rem - 1rem);
 }

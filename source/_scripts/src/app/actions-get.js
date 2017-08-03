@@ -40,18 +40,12 @@ export default app => {
         return;
       }
 
-      const bodyState = $orgs['#body'].getState();
       const mainContentItems = $orgs['.main__content__item'];
-      const mainContentItemState = $orgs['.main__content__item'].getState();
       const mainContentSliders = $orgs['.main__content__slider'];
-      const mainContentSliderState = $orgs['.main__content__slider'].getState();
       const windowState = $orgs.window.getState();
 
       const scrollTop = windowState.scrollTop;
-      const firstMainContentItemState = mainContentSliders.getState(0);
-      const scrollIndex = mainContentItemState.$items.length - mainContentSliderState.$items.length;
-console.warn(scrollTop);
-console.warn(bodyState.boundingClientRect.height);
+      const scrollIndex = mainContentItems.getState().$items.length - mainContentSliders.getState().$items.length;
 
       let scrollThreshold = 0;
       for (let i = 0; i < scrollIndex; i++) {

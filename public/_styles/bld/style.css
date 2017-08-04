@@ -156,7 +156,8 @@ ul {
   display: none !important;
   visibility: hidden !important;
 }
-.visually-hidden {
+.visually-hidden,
+.main__content__slider {
   position: absolute !important;
   overflow: hidden;
   width: 1px;

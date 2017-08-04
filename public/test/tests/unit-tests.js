@@ -21,8 +21,28 @@ describe('Fepper website', function () {
   });
 
   it('should fix #branding to top when window is scrolled beyond #videoHeader', function () {
+    // Prep.
+    const videoHeadHeight = 400;
+    const videoHeadGetStateDefault = app.$orgs['#videoHead'].getState;
+    app.$orgs['#videoHead'].getState = () => {
+      return {
+        height: videoHeadHeight
+      };
+    };
+
+    const brandingGetStateDefault = app.$orgs['#branding'].getState;
+    app.$orgs['#branding'].getState = () => {
+      return {
+        boundingClientRect: {
+          height: 220
+        }
+      };
+    };
+
     // Act.
     app.actions.logoFix();
+    app.$orgs['#videoHead'].getState = videoHeadGetStateDefault;
+    app.$orgs['#branding'].getState = brandingGetStateDefault;
 
     // Get results.
     const brandingState = app.$orgs['#branding'].getState();
@@ -32,7 +52,6 @@ describe('Fepper website', function () {
     const windowScrollTop = windowState.scrollTop;
     const mainState = app.$orgs['#main'].getState();
     const mainPaddingTop = mainState.style['padding-top'];
-    const videoHeadHeight = app.$orgs['#videoHead'].height();
 
     // Assert.
     if (windowScrollTop > videoHeadHeight) {
@@ -59,14 +78,38 @@ describe('Fepper website', function () {
     expect(browserAdviceDisplay).to.equal('none');
   });
 
-  it('should hide the #mainContent organism on init', function () {
-    // Act.
-    //app.actions.mainContentInit();
+  describe('on mainContentReveal', function () {
+    it('should move the main__content__slid class from the 1st .main__content__item element to the next', function () {
+      // Prep.
+      const mainContentItemFirstStateBefore = app.$orgs['.main__content__item'].getState(0);
 
-    // Get results.
-    const mainContent = app.$orgs['#check1'];
-//    const mainContentState = app.$orgs['#checked1'].getState();
+//  console.warn(mainContentItemFirstStateBefore);
+      // Act.
+      app.actions.mainContentReveal();
 
-    // Assert.
+      // Get results.
+      const mainContentItemFirstStateAfter = app.$orgs['.main__content__item'].getState(0);
+      const mainContentItemSecondStateAfter = app.$orgs['.main__content__item'].getState(1);
+  console.warn(app.$orgs['.main__content__item'][1].attribs);
+  console.warn(mainContentItemSecondStateAfter.attribs.class);
+
+      // Assert.
+    });
+
+    it('should remove a main__content__slider class from the .main__content__item elements', function () {
+      // Prep.
+      const mainContentSliderStateBefore = app.$orgs['.main__content__slider'].getState();
+      const mainContentSliderCountBefore = mainContentSliderStateBefore.$items.length;
+
+      // Act.
+      app.actions.mainContentReveal();
+
+      // Get results.
+      const mainContentSliderStateAfter = app.$orgs['.main__content__slider'].getState();
+      const mainContentSliderCountAfter = mainContentSliderStateAfter.$items.length;
+
+      // Assert.
+      expect(mainContentSliderCountAfter).to.equal(mainContentSliderCountBefore - 1);
+    });
   });
 });

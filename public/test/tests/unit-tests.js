@@ -79,37 +79,38 @@ describe('Fepper website', function () {
   });
 
   describe('on mainContentReveal', function () {
-    it('should move the main__content__slid class from the 1st .main__content__item element to the next', function () {
-      // Prep.
-      const mainContentItemFirstStateBefore = app.$orgs['.main__content__item'].getState(0);
+    // Prep.
+    const mainContentItemFirstStateBefore = app.$orgs['.main__content__item'].getState(0);
+    const mainContentItemSecondStateBefore = app.$orgs['.main__content__item'].getState(1);
+    const mainContentSlidersStateBefore = app.$orgs['.main__content__slider'].getState();
 
-//  console.warn(mainContentItemFirstStateBefore);
+    let mainContentItemSecondStateAfter;
+    let mainContentItemSecondClassesAfter;
+    let mainContentSlidersStateAfter;
+
+    const mainContentItemFirstClassesBefore = mainContentItemFirstStateBefore.attribs.class.split(/\s+/);
+    const mainContentItemSecondClassesBefore = mainContentItemSecondStateBefore.attribs.class.split(/\s+/);
+
+    before(function () {
       // Act.
       app.actions.mainContentReveal();
 
-      // Get results.
-      const mainContentItemFirstStateAfter = app.$orgs['.main__content__item'].getState(0);
-      const mainContentItemSecondStateAfter = app.$orgs['.main__content__item'].getState(1);
-  console.warn(app.$orgs['.main__content__item'][1].attribs);
-  console.warn(mainContentItemSecondStateAfter.attribs.class);
+      // Get Results.
+      mainContentItemSecondStateAfter = app.$orgs['.main__content__item'].getState(1);
+      mainContentItemSecondClassesAfter = mainContentItemSecondStateAfter.attribs.class.split(/\s+/);
+      mainContentSlidersStateAfter = app.$orgs['.main__content__slider'].getState();
+    });
 
+    it('should add the main__content__slid class the first .main__content__item element without it', function () {
       // Assert.
+      expect(mainContentItemFirstClassesBefore.indexOf('main__content__slid')).to.be.above(-1);
+      expect(mainContentItemSecondClassesBefore.indexOf('main__content__slid')).to.equal(-1);
+      expect(mainContentItemSecondClassesAfter.indexOf('main__content__slid')).to.be.above(-1);
     });
 
     it('should remove a main__content__slider class from the .main__content__item elements', function () {
-      // Prep.
-      const mainContentSliderStateBefore = app.$orgs['.main__content__slider'].getState();
-      const mainContentSliderCountBefore = mainContentSliderStateBefore.$items.length;
-
-      // Act.
-      app.actions.mainContentReveal();
-
-      // Get results.
-      const mainContentSliderStateAfter = app.$orgs['.main__content__slider'].getState();
-      const mainContentSliderCountAfter = mainContentSliderStateAfter.$items.length;
-
       // Assert.
-      expect(mainContentSliderCountAfter).to.equal(mainContentSliderCountBefore - 1);
+      expect(mainContentSlidersStateAfter.$items.length).to.equal(mainContentSlidersStateBefore.$items.length - 1);
     });
   });
 });

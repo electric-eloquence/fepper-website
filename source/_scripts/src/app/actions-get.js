@@ -55,7 +55,6 @@ export default app => {
       if (scrollTop > scrollThreshold) {
         mainContentSliders.dispatchAction('addClass', 'main__content__slid', 0);
         mainContentSliders.dispatchAction('removeClass', 'main__content__slider', 0);
-        $orgs['.main__content__slid'].dispatchAction('removeClass', 'main__content__slid', 0);
       }
     }
   }

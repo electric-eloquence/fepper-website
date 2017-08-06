@@ -36,22 +36,6 @@ describe('Fepper website', function () {
     });
   });
 
-  describe('on logoRipen', function () {
-    it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
-      // Act.
-      $orgs.window.scrollTop((1 - Math.random()) * 1000);
-      app.actions.logoRipen();
-
-      // Get results.
-      const logoBgRight = $orgs['#logoBg'].getState().style.right;
-      const percentage = parseFloat(logoBgRight.slice(0, -1));
-
-      // Assert.
-      expect(percentage).to.be.within(-400, 0);
-      expect(percentage).to.not.equal(0);
-    });
-  });
-
   describe('on logoFix', function () {
     const videoHeadHeight = 400;
     const videoHeadGetStateDefault = $orgs['#videoHead'].getState;
@@ -115,6 +99,22 @@ describe('Fepper website', function () {
     });
   });
 
+  describe('on logoRipen', function () {
+    it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
+      // Act.
+      $orgs.window.scrollTop(-(1 - Math.random()) * 1000);
+      app.actions.logoRipen();
+
+      // Get results.
+      const logoBgRight = $orgs['#logoBg'].getState().style.right;
+      const percentage = parseFloat(logoBgRight.slice(0, -1));
+
+      // Assert.
+      expect(percentage).to.be.within(-400, 0);
+      expect(percentage).to.not.equal(0);
+    });
+  });
+
   describe('on mainContentReveal', function () {
     // Prep.
     const mainContentItemFirstStateBefore = $orgs['.main__content__item'].getState(0);
@@ -130,6 +130,7 @@ describe('Fepper website', function () {
 
     before(function () {
       // Act.
+      $orgs.window.scrollTop(50);
       app.actions.mainContentReveal();
 
       // Get Results.

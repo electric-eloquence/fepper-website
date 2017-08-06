@@ -15,50 +15,6 @@ var actionsGet = (app, params) => {
       $orgs['#browserAdvice'].dispatchAction('css', ['display', 'none']);
     },
 
-    logoRipen: () => {
-      const MAX_PERCENTAGE = 400;
-      const bodyState = $orgs['#body'].getState();
-      const bodyHeight = bodyState.boundingClientRect.height;
-      const htmlState = $orgs['#html'].getState();
-      const mainHeight = $orgs['#main'].getState().boundingClientRect.height;
-      const mainContentSliders = $orgs['.main__content__slider'];
-      const windowState = $orgs.window.getState();
-      const windowHeight = windowState.height;
-      const windowWidth = windowState.width;
-      let percentage;
-
-      const sliderMarginHeight =
-        windowHeight - (0.17 * windowWidth) - (logo_height * 10) - (2 * branding_pad * 10);
-      const itemLastMarginHeight =
-        windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
-
-      if (bodyState.attribs.class.split(/\s+/).indexOf('revealed') > -1) {
-        percentage = windowState.scrollTop / (htmlState.height - windowHeight);
-      }
-      else if (bodyState.style.height === 'auto') {
-        percentage = windowState.scrollTop / (htmlState.height - windowHeight - itemLastMarginHeight);
-      }
-      else {
-        percentage =
-          windowState.scrollTop / (htmlState.height - windowHeight - sliderMarginHeight - (itemLastMarginHeight / 2));
-      }
-
-      percentage = MAX_PERCENTAGE * percentage;
-
-      if (percentage >= MAX_PERCENTAGE) {
-        percentage = MAX_PERCENTAGE;
-        $orgs['#body'].dispatchAction('css', ['height', 'auto']);
-
-        if ($orgs['.main__content__item--last'].getState().boundingClientRect.top < windowHeight) {
-          if (bodyState.attribs.class.split(/\s+/).indexOf('revealed') === -1) {
-            $orgs['#body'].dispatchAction('addClass', 'revealed');
-          }
-        }
-      }
-
-      $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);
-    },
-
     logoFix: () => {
       const brandingState = $orgs['#branding'].getState();
       const videoHeadState = $orgs['#videoHead'].getState();
@@ -72,6 +28,43 @@ var actionsGet = (app, params) => {
         $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});
         $orgs['#main'].dispatchAction('css', ['padding-top', '0']);
       }
+    },
+
+    logoRipen: () => {
+      const MAX_PERCENTAGE = 400;
+      const bodyState = $orgs['#body'].getState();
+      const bodyHeight = bodyState.boundingClientRect.height;
+      const htmlState = $orgs['#html'].getState();
+      const mainContentSliders = $orgs['.main__content__slider'];
+      const windowState = $orgs.window.getState();
+      const windowHeight = windowState.height;
+      const windowWidth = windowState.width;
+      let percentage;
+
+      const sliderMarginHeight =
+        windowHeight - (0.17 * windowWidth) - (logo_height * 10) - (2 * branding_pad * 10);
+      const itemLastMarginHeight =
+        windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
+
+      if (bodyState.style.height === 'auto') {
+        percentage = windowState.scrollTop / (htmlState.height - windowHeight);
+      }
+      else {
+        percentage =
+          windowState.scrollTop / (htmlState.height - windowHeight - sliderMarginHeight - itemLastMarginHeight);
+      }
+
+      percentage = MAX_PERCENTAGE * percentage;
+
+      if (percentage >= MAX_PERCENTAGE) {
+        percentage = MAX_PERCENTAGE;
+
+        if (bodyState.style.height !== 'auto') {
+          $orgs['#body'].dispatchAction('css', ['height', 'auto']);
+        }
+      }
+
+      $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);
     },
 
     mainContentReveal: () => {

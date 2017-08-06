@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 
 const cheerio = require('cheerio');
-const JSON5 = require('JSON5');
 const Redux = global.Redux = require('redux');
 
 const html = fs.readFileSync(path.resolve(__dirname, 'files', 'index.html'), 'utf8');

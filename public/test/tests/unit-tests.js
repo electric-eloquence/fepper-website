@@ -7,7 +7,23 @@ const $orgs = app.$orgs;
 
 describe('Fepper website', function () {
 
-  describe('on init', function () {
+  describe('on bodyHeightFix', function () {
+    it('should fix the body style height rule so percentage-based scroll events occur smoothly', function () {
+      // Prep.
+      const htmlHeight = $orgs['#html'].getState().height;
+
+      // Act.
+      app.actions.bodyHeightFix();
+
+      // Get results.
+      const bodyStyleHeight = $orgs['#body'].getState().style.height;
+
+      // Assert.
+      expect(bodyStyleHeight).to.equal(`${htmlHeight / 10}rem`);
+    });
+  });
+
+  describe('on browserAdviceHide', function () {
     it('should hide the browserAdvice organism on browsers supporting ES6 Modules', function () {
       // Act.
       app.actions.browserAdviceHide();

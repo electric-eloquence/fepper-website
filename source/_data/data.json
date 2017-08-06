@@ -7,6 +7,7 @@
   "bp_xs_max": "480",
   "bp_xx_max": "320",
   "bp_xx_min": "0",
-  "logo_height": "'20rem'",
-  "branding_pad": "'1rem'"
+  "logo_height": "20",
+  "branding_pad": "1",
+  "item_last_offset": "8"
 }

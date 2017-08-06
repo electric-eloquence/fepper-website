@@ -17,6 +17,7 @@ export default {
   '#browserAdvice': null,
   '#mainContent': null,
   '.main__content__item': null,
+  '.main__content__item--last': null,
   '.main__content__slid': null,
   '.main__content__slider': null
 };

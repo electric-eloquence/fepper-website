@@ -18,7 +18,9 @@ export default (app, params) => {
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
       const bodyState = $orgs['#body'].getState();
+      const bodyHeight = bodyState.boundingClientRect.height;
       const htmlState = $orgs['#html'].getState();
+      const mainHeight = $orgs['#main'].getState().boundingClientRect.height;
       const mainContentSliders = $orgs['.main__content__slider'];
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
@@ -30,7 +32,10 @@ export default (app, params) => {
       const itemLastMarginHeight =
         windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
 
-      if (bodyState.style.height === 'auto' && mainContentSliders.$items.length === 0) {
+      if (bodyState.attribs.class.split(/\s+/).indexOf('revealed') > -1) {
+        percentage = windowState.scrollTop / (htmlState.height - windowHeight);
+      }
+      else if (bodyState.style.height === 'auto') {
         percentage = windowState.scrollTop / (htmlState.height - windowHeight - itemLastMarginHeight);
       }
       else {
@@ -40,9 +45,15 @@ export default (app, params) => {
 
       percentage = MAX_PERCENTAGE * percentage;
 
-      if (percentage > MAX_PERCENTAGE) {
+      if (percentage >= MAX_PERCENTAGE) {
         percentage = MAX_PERCENTAGE;
         $orgs['#body'].dispatchAction('css', ['height', 'auto']);
+
+        if ($orgs['.main__content__item--last'].getState().boundingClientRect.top < windowHeight) {
+          if (bodyState.attribs.class.split(/\s+/).indexOf('revealed') === -1) {
+            $orgs['#body'].dispatchAction('addClass', 'revealed');
+          }
+        }
       }
 
       $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);

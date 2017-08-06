@@ -4,5 +4,7 @@
   "bp_sm_max": "767",
   "bp_xs_max": "480",
   "bp_xx_max": "320",
-  "bp_xx_min": "0"
+  "bp_xx_min": "0",
+  "logo_height": "'20rem'",
+  "branding_pad": "'1rem'"
 }

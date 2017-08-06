@@ -1,9 +1,15 @@
 'use strict';
 
-var actionsGet = app => {
+var actionsGet = (app, params) => {
   const $orgs = app.$orgs;
 
   return {
+
+    bodyHeightFix: () => {
+      const htmlHeight = $orgs['#html'].getState().height;
+
+      $orgs['#body'].dispatchAction('css', ['height', `${htmlHeight / 10}rem`]);
+    },
 
     browserAdviceHide: () => {
       $orgs['#browserAdvice'].dispatchAction('css', ['display', 'none']);
@@ -11,11 +17,33 @@ var actionsGet = app => {
 
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
+      const bodyState = $orgs['#body'].getState();
       const htmlState = $orgs['#html'].getState();
+      const mainContentSliders = $orgs['.main__content__slider'];
       const windowState = $orgs.window.getState();
+      const windowHeight = windowState.height;
+      const windowWidth = windowState.width;
+      let percentage;
 
-      let percentage = MAX_PERCENTAGE * windowState.scrollTop / (htmlState.height - windowState.height);
-      percentage = percentage < MAX_PERCENTAGE ? percentage : MAX_PERCENTAGE;
+      const sliderMarginHeight =
+        windowHeight - (0.17 * windowWidth) - (logo_height * 10) - (2 * branding_pad * 10);
+      const itemLastMarginHeight =
+        windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
+
+      if (bodyState.style.height === 'auto' && mainContentSliders.$items.length === 0) {
+        percentage = windowState.scrollTop / (htmlState.height - windowHeight - itemLastMarginHeight);
+      }
+      else {
+        percentage =
+          windowState.scrollTop / (htmlState.height - windowHeight - sliderMarginHeight - (itemLastMarginHeight / 2));
+      }
+
+      percentage = MAX_PERCENTAGE * percentage;
+
+      if (percentage > MAX_PERCENTAGE) {
+        percentage = MAX_PERCENTAGE;
+        $orgs['#body'].dispatchAction('css', ['height', 'auto']);
+      }
 
       $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);
     },
@@ -27,7 +55,7 @@ var actionsGet = app => {
 
       if (windowState.scrollTop > videoHeadState.height) {
         $orgs['#branding'].dispatchAction('css', {position: 'fixed', top: '0'});
-        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingState.boundingClientRect.height}px`]);
+        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingState.boundingClientRect.height / 10}rem`]);
       }
       else {
         $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});

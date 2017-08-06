@@ -3,35 +3,50 @@
 const expect = require('chai').expect;
 
 const app = require('../init.js');
+const $orgs = app.$orgs;
 
 describe('Fepper website', function () {
 
-  it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
-    // Act.
-    app.actions.logoRipen();
+  describe('on init', function () {
+    it('should hide the browserAdvice organism on browsers supporting ES6 Modules', function () {
+      // Act.
+      app.actions.browserAdviceHide();
 
-    // Get results.
-    const logoBgState = app.$orgs['#logoBg'].getState();
-    const logoBgRight = logoBgState.style.right;
-    const percentage = parseFloat(logoBgRight.slice(0, -1));
+      // Get results.
+      const browserAdviceDisplay = $orgs['#browserAdvice'].getState().style.display;
 
-    // Assert.
-    expect(percentage).to.be.within(-400, 0);
-    expect(percentage).to.not.equal(0);
+      // Assert.
+      expect(browserAdviceDisplay).to.equal('none');
+    });
   });
 
-  it('should fix #branding to top when window is scrolled beyond #videoHeader', function () {
-    // Prep.
+  describe('on logoRipen', function () {
+    it('should move #logoBg between 0 and -400% right when window is scrolled', function () {
+      // Act.
+      $orgs.window.scrollTop((1 - Math.random()) * 1000);
+      app.actions.logoRipen();
+
+      // Get results.
+      const logoBgRight = $orgs['#logoBg'].getState().style.right;
+      const percentage = parseFloat(logoBgRight.slice(0, -1));
+
+      // Assert.
+      expect(percentage).to.be.within(-400, 0);
+      expect(percentage).to.not.equal(0);
+    });
+  });
+
+  describe('on logoFix', function () {
     const videoHeadHeight = 400;
-    const videoHeadGetStateDefault = app.$orgs['#videoHead'].getState;
-    app.$orgs['#videoHead'].getState = () => {
+    const videoHeadGetStateDefault = $orgs['#videoHead'].getState;
+    $orgs['#videoHead'].getState = () => {
       return {
         height: videoHeadHeight
       };
     };
 
-    const brandingGetStateDefault = app.$orgs['#branding'].getState;
-    app.$orgs['#branding'].getState = () => {
+    const brandingGetStateDefault = $orgs['#branding'].getState;
+    $orgs['#branding'].getState = () => {
       return {
         boundingClientRect: {
           height: 220
@@ -39,50 +54,56 @@ describe('Fepper website', function () {
       };
     };
 
-    // Act.
-    app.actions.logoFix();
-    app.$orgs['#videoHead'].getState = videoHeadGetStateDefault;
-    app.$orgs['#branding'].getState = brandingGetStateDefault;
+    it('should fix #branding to top when window is scrolled within #videoHeader', function () {
+      // Prep.
+      $orgs.window.scrollTop(videoHeadHeight - 1);
 
-    // Get results.
-    const brandingState = app.$orgs['#branding'].getState();
-    const brandingPosition = brandingState.style.position;
-    const brandingTop = brandingState.style.top;
-    const windowState = app.$orgs.window.getState();
-    const windowScrollTop = windowState.scrollTop;
-    const mainState = app.$orgs['#main'].getState();
-    const mainPaddingTop = mainState.style['padding-top'];
+      // Act.
+      app.actions.logoFix();
+      $orgs['#videoHead'].getState = videoHeadGetStateDefault;
+      $orgs['#branding'].getState = brandingGetStateDefault;
 
-    // Assert.
-    if (windowScrollTop > videoHeadHeight) {
-      expect(brandingPosition).to.equal('fixed');
-      expect(brandingTop).to.equal('0');
-      expect(mainPaddingTop).to.equal('220px');
-    }
-    else {
+      // Get results.
+      const brandingState = $orgs['#branding'].getState();
+      const brandingPosition = brandingState.style.position;
+      const brandingTop = brandingState.style.top;
+      const windowScrollTop = $orgs.window.getState().scrollTop;
+      const mainPaddingTop = $orgs['#main'].getState().style['padding-top'];
+
+      // Assert.
       expect(brandingPosition).to.equal('static');
       expect(brandingTop).to.equal('auto');
       expect(mainPaddingTop).to.equal('0');
-    }
-  });
+    });
 
-  it('should hide the browserAdvice organism on browsers supporting ES6 Modules', function () {
-    // Act.
-    app.actions.browserAdviceHide();
+    it('should fix #branding to top when window is scrolled beyond #videoHeader', function () {
+      // Prep.
+      $orgs.window.scrollTop(videoHeadHeight + 1);
 
-    // Get results.
-    const browserAdviceState = app.$orgs['#browserAdvice'].getState();
-    const browserAdviceDisplay = browserAdviceState.style.display;
+      // Act.
+      app.actions.logoFix();
+      $orgs['#videoHead'].getState = videoHeadGetStateDefault;
+      $orgs['#branding'].getState = brandingGetStateDefault;
 
-    // Assert.
-    expect(browserAdviceDisplay).to.equal('none');
+      // Get results.
+      const brandingState = $orgs['#branding'].getState();
+      const brandingPosition = brandingState.style.position;
+      const brandingTop = brandingState.style.top;
+      const windowScrollTop = $orgs.window.getState().scrollTop;
+      const mainPaddingTop = $orgs['#main'].getState().style['padding-top'];
+
+      // Assert.
+      expect(brandingPosition).to.equal('fixed');
+      expect(brandingTop).to.equal('0');
+      expect(mainPaddingTop).to.equal('22rem');
+    });
   });
 
   describe('on mainContentReveal', function () {
     // Prep.
-    const mainContentItemFirstStateBefore = app.$orgs['.main__content__item'].getState(0);
-    const mainContentItemSecondStateBefore = app.$orgs['.main__content__item'].getState(1);
-    const mainContentSlidersStateBefore = app.$orgs['.main__content__slider'].getState();
+    const mainContentItemFirstStateBefore = $orgs['.main__content__item'].getState(0);
+    const mainContentItemSecondStateBefore = $orgs['.main__content__item'].getState(1);
+    const mainContentSlidersStateBefore = $orgs['.main__content__slider'].getState();
 
     let mainContentItemSecondStateAfter;
     let mainContentItemSecondClassesAfter;
@@ -96,9 +117,9 @@ describe('Fepper website', function () {
       app.actions.mainContentReveal();
 
       // Get Results.
-      mainContentItemSecondStateAfter = app.$orgs['.main__content__item'].getState(1);
+      mainContentItemSecondStateAfter = $orgs['.main__content__item'].getState(1);
       mainContentItemSecondClassesAfter = mainContentItemSecondStateAfter.attribs.class.split(/\s+/);
-      mainContentSlidersStateAfter = app.$orgs['.main__content__slider'].getState();
+      mainContentSlidersStateAfter = $orgs['.main__content__slider'].getState();
     });
 
     it('should add the main__content__slid class the first .main__content__item element without it', function () {

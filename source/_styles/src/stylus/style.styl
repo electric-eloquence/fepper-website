@@ -13,8 +13,9 @@
 @import '0-base/04-global'
 
 $video-head-height = 33.334vw
-$logo-height = 20rem
-$branding-pad = 1rem
+$logo-height = '%srem' % logo_height
+$branding-pad = '%srem' % branding_pad
+$item-last-offset = '%srem' % item_last_offset
 
 body
   position: relative
@@ -57,6 +58,6 @@ body
 .main__content__slid + .main__content__slider
   margin-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $branding-pad $branding-pad)
 .main__content__slider
-  @extend .visually-hidden
+  color: transparent
 .main__content__item--last
-  margin-top: 'calc(100vh - 8rem - %s - %s - %s)' % ($logo-height $branding-pad $branding-pad)
+  margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($item-last-offset $logo-height $branding-pad $branding-pad)

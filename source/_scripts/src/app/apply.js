@@ -12,4 +12,5 @@ export default app => {
   }
 
   actions.browserAdviceHide();
+  actions.bodyHeightFix();
 };

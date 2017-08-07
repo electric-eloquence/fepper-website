@@ -3,6 +3,19 @@
 export default (app, params) => {
   const $orgs = app.$orgs;
 
+  function debounce(callback, wait, context = this) {
+    let timeout = null;
+    let callbackArgs = null;
+
+    const later = () => callback.apply(context, callbackArgs);
+
+    return () => {
+      callbackArgs = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   return {
 
     bodyHeightFix: () => {
@@ -88,6 +101,10 @@ export default (app, params) => {
         mainContentSliders.dispatchAction('addClass', 'main__content__slid', 0);
         mainContentSliders.dispatchAction('removeClass', 'main__content__slider', 0);
       }
-    }
+    },
+
+    updateWindowDims: debounce(() => {
+      $orgs.window.getState();
+    }, 200)
   }
 };

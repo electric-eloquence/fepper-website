@@ -3,7 +3,7 @@
 export default (app, params) => {
   const $orgs = app.$orgs;
 
-  function debounce(callback, wait, context = this) {
+  function debounce(callback, wait = 200, context = this) {
     let timeout = null;
     let callbackArgs = null;
 
@@ -19,9 +19,19 @@ export default (app, params) => {
   return {
 
     bodyHeightFix: () => {
-      const htmlHeight = $orgs['#html'].getState().height;
+      const videoHeadHeight = $orgs['#videoHead'].getState().boundingClientRect.height;
+      const mainContentSliderFirstHeight = $orgs['.main__content__slider'].getState(0).boundingClientRect.height;
+      const mainContentItemLastHeight = $orgs['.main__content__item--last'].getState().boundingClientRect.height;
 
-      $orgs['#body'].dispatchAction('css', ['height', `${htmlHeight / 10}rem`]);
+      $orgs['.main__content__slider'].dispatchAction('css', ['display', 'none'], 0);
+      $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'none']);
+
+      let bodyContainHeight = $orgs['#bodyContain'].getState().boundingClientRect.height;
+      bodyContainHeight += (videoHeadHeight / 2) + mainContentSliderFirstHeight + mainContentItemLastHeight;
+
+      $orgs['#bodyContain'].dispatchAction('css',['height', `${bodyContainHeight / 10}rem`]);
+      $orgs['.main__content__slider'].dispatchAction('css', ['display', 'block'], 0);
+      $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'block']);
     },
 
     browserAdviceHide: () => {
@@ -45,8 +55,7 @@ export default (app, params) => {
 
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
-      const bodyState = $orgs['#body'].getState();
-      const bodyHeight = bodyState.boundingClientRect.height;
+      const bodyContainState = $orgs['#bodyContain'].getState();
       const htmlState = $orgs['#html'].getState();
       const mainContentSliders = $orgs['.main__content__slider'];
       const windowState = $orgs.window.getState();
@@ -59,35 +68,39 @@ export default (app, params) => {
       const itemLastMarginHeight =
         windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
 
-      if (bodyState.style.height === 'auto') {
+      if (bodyContainState.style.height === 'auto') {
         percentage = windowState.scrollTop / (htmlState.height - windowHeight);
       }
       else {
         percentage =
-          windowState.scrollTop / (htmlState.height - windowHeight - sliderMarginHeight - itemLastMarginHeight);
+          windowState.scrollTop / (bodyContainState.boundingClientRect.height - windowHeight);
       }
 
       percentage = MAX_PERCENTAGE * percentage;
 
       if (percentage >= MAX_PERCENTAGE) {
         percentage = MAX_PERCENTAGE;
-
-        if (bodyState.style.height !== 'auto') {
-          $orgs['#body'].dispatchAction('css', ['height', 'auto']);
-        }
       }
 
       $orgs['#logoBg'].dispatchAction('css', ['right', `-${percentage}%`]);
     },
 
     mainContentReveal: () => {
+      const bodyContainState = $orgs['#bodyContain'].getState();
+      const mainContentItemLastTop = $orgs['.main__content__item--last'].getState().boundingClientRect.top;
+      const windowState = $orgs.window.getState();
+
+      if (mainContentItemLastTop < windowState.height && bodyContainState.style.height !== 'auto') {
+        $orgs['#bodyContain'].dispatchAction('css', ['height', 'auto']);
+      }
+
+      // Do not proceed if all sliders have slid.
       if (!$orgs['.main__content__slider'].$items.length) {
         return;
       }
 
       const mainContentItems = $orgs['.main__content__item'];
       const mainContentSliders = $orgs['.main__content__slider'];
-      const windowState = $orgs.window.getState();
 
       const scrollTop = windowState.scrollTop;
       const scrollIndex = mainContentItems.getState().$items.length - mainContentSliders.getState().$items.length;
@@ -103,8 +116,6 @@ export default (app, params) => {
       }
     },
 
-    updateWindowDims: debounce(() => {
-      $orgs.window.getState();
-    }, 200)
+    updateWindowDims: debounce(() => {$orgs.window.getState();})
   }
 };

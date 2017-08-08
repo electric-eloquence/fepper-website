@@ -44,6 +44,12 @@ figure {
   font-weight: 400;
   src: url("fonts/FiraSans/FiraSans-Book.otf") format('opentype');
 }
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/FiraSans/FiraSans-Bold.otf") format('opentype');
+}
 .cf::before,
 .cf::after {
   content: " ";
@@ -87,6 +93,10 @@ p a {
 ol,
 ul {
   list-style-type: none;
+}
+.bg--black-less-contrast {
+  background: #333;
+  color: #fff;
 }
 .bg--green-fepper {
   background: #027d15;
@@ -173,7 +183,11 @@ ul {
   }
 }
 body {
+  color: #333;
   position: relative;
+}
+.body__contain {
+  overflow: hidden;
 }
 .video-head {
   width: 100%;

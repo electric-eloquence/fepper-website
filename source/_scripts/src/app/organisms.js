@@ -9,6 +9,7 @@ export default {
   'window': null,
   '#html': null,
   '#body': null,
+  '#bodyContain': null,
   '#videoHead': null,
   '#branding': null,
   '#logoBg': null,

@@ -21,17 +21,15 @@ export default (app, params) => {
     bodyHeightFix: () => {
       const videoHeadHeight = $orgs['#videoHead'].getState().boundingClientRect.height;
       const mainContentSliderFirstHeight = $orgs['.main__content__slider'].getState(0).boundingClientRect.height;
-      const mainContentItemLastHeight = $orgs['.main__content__item--last'].getState().boundingClientRect.height;
 
       $orgs['.main__content__slider'].dispatchAction('css', ['display', 'none'], 0);
       $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'none']);
 
       let bodyContainHeight = $orgs['#bodyContain'].getState().boundingClientRect.height;
-      bodyContainHeight += (videoHeadHeight / 2) + mainContentSliderFirstHeight + mainContentItemLastHeight;
+      bodyContainHeight += (videoHeadHeight / 2) + mainContentSliderFirstHeight;
 
       $orgs['#bodyContain'].dispatchAction('css',['height', `${bodyContainHeight / 10}rem`]);
       $orgs['.main__content__slider'].dispatchAction('css', ['display', 'block'], 0);
-      $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'block']);
     },
 
     browserAdviceHide: () => {
@@ -87,10 +85,22 @@ export default (app, params) => {
 
     mainContentReveal: () => {
       const bodyContainState = $orgs['#bodyContain'].getState();
+      const mainContentSlidersState = $orgs['.main__content__slider'].getState();
       const mainContentItemLastTop = $orgs['.main__content__item--last'].getState().boundingClientRect.top;
+      const sliderLastIdx = mainContentSlidersState.$items.length - 1;
       const windowState = $orgs.window.getState();
+      let sliderLastTop;
 
-      if (mainContentItemLastTop < windowState.height && bodyContainState.style.height !== 'auto') {
+      if (sliderLastIdx > -1) {  
+        sliderLastTop = $orgs['.main__content__slider'].getState(sliderLastIdx).boundingClientRect.top;
+      }
+
+      if (
+        mainContentSlidersState.$items.length === 1 ||
+        typeof sliderLastTop !== 'undefined' && sliderLastTop < windowState.height
+      ) {
+        $orgs['.main__content__slider'].dispatchAction('removeClass', 'main__content__slider');
+        $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'block']);
         $orgs['#bodyContain'].dispatchAction('css', ['height', 'auto']);
       }
 

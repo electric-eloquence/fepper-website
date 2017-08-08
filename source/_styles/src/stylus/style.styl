@@ -54,6 +54,8 @@ body
   text-align: center
   @media all and (max-width: $bp-md-max)
     margin: 0 ($space-quarter * 3)
+.main__content
+  padding-top: $space-double
 .main__content__item
   transition: margin-top 1s
 .main__content__slid
@@ -62,5 +64,7 @@ body
   margin-top: 'calc(100vh - 17vw - %s - %s - %s)' % ($logo-height $branding-pad $branding-pad)
 .main__content__slider
   color: transparent
+p.pad-bottom-space
+  padding-bottom: $space
 .main__content__item--last
   margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($item-last-offset $logo-height $branding-pad $branding-pad)

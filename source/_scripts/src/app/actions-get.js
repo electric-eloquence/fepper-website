@@ -61,8 +61,6 @@ export default (app, params) => {
       const windowWidth = windowState.width;
       let percentage;
 
-      const sliderMarginHeight =
-        windowHeight - (0.17 * windowWidth) - (logo_height * 10) - (2 * branding_pad * 10);
       const itemLastMarginHeight =
         windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
 

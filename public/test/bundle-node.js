@@ -1,5 +1,7 @@
 'use strict';
 
+'use strict';
+
 var actionsGet = (app, params) => {
   const $orgs = app.$orgs;
 
@@ -55,14 +57,9 @@ var actionsGet = (app, params) => {
       const MAX_PERCENTAGE = 400;
       const bodyContainState = $orgs['#bodyContain'].getState();
       const htmlState = $orgs['#html'].getState();
-      const mainContentSliders = $orgs['.main__content__slider'];
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
-      const windowWidth = windowState.width;
       let percentage;
-
-      const itemLastMarginHeight =
-        windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
 
       if (bodyContainState.style.height === 'auto') {
         percentage = windowState.scrollTop / (htmlState.height - windowHeight);
@@ -128,6 +125,8 @@ var actionsGet = (app, params) => {
   }
 };
 
+'use strict';
+
 /**
  * Declare keys with null values here.
  *
@@ -150,6 +149,8 @@ var $organisms = {
   '.main__content__slid': null,
   '.main__content__slider': null
 };
+
+'use strict';
 
 var bundleNode = {
   actionsGet: actionsGet,

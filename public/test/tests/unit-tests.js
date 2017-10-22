@@ -253,8 +253,8 @@ describe('Fepper website', function () {
 
       updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount);
 
-      for (let i = 1; i < panesCount; i++) {
-        it(`the updated height of pane ${i} differs from its original height`, function () {
+      for (let i = 0; i < panesCount; i++) {
+        it(`updates pane ${i} with a height different from its original height`, function () {
           const paneHeightAfter = $orgs['.main__content__pane'].getState(i).style.height;
 
           expect(paneHeightAfter).to.not.equal(paneHeightsBefore[i]);

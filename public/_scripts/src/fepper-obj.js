@@ -3,6 +3,8 @@
  * Be sure this is loaded before scripts that depend on it. Add additional properties as necessary.
  */
 (function () {
+
+  // eslint-disable-next-line strict
   'use strict';
 
   var FEPPER = {

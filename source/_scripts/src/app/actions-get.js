@@ -1,77 +1,125 @@
-'use strict';
+function intToRem(distance) {
+  return `${distance / 10}rem`;
+}
 
-export default (app, params) => {
+export default (app, root) => {
   const $orgs = app.$orgs;
 
-  function debounce(callback, wait = 200, context = this) {
-    let timeout = null;
-    let callbackArgs = null;
-
-    const later = () => callback.apply(context, callbackArgs);
-
-    return () => {
-      callbackArgs = arguments;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-
   return {
+    bgColorReveal: () => {
+      const brandingState = $orgs['#branding'].getState();
+      const paneOrg = $orgs['.main__content__pane'];
+      const panesLength = paneOrg.getState().$items.length;
+      const windowState = $orgs.window.getState();
 
-    bodyHeightFix: () => {
-      const videoHeadHeight = $orgs['#videoHead'].getState().boundingClientRect.height;
-      const mainContentSliderFirstHeight = $orgs['.main__content__slider'].getState(0).boundingClientRect.height;
+      let paneState;
 
-      $orgs['.main__content__slider'].dispatchAction('css', ['display', 'none'], 0);
-      $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'none']);
+      for (let i = 1; i < panesLength; i += 2) {
+        paneState = paneOrg.getState(i);
 
-      let bodyContainHeight = $orgs['#bodyContain'].getState().boundingClientRect.height;
-      bodyContainHeight += (videoHeadHeight / 2) + mainContentSliderFirstHeight;
+        if (
+          paneState.boundingClientRect.top < windowState.height &&
+          paneState.boundingClientRect.top > brandingState.innerHeight
+        ) {
+          let red;
+          let green;
+          let blue;
+          let alpha;
 
-      $orgs['#bodyContain'].dispatchAction('css',['height', `${bodyContainHeight / 10}rem`]);
-      $orgs['.main__content__slider'].dispatchAction('css', ['display', 'block'], 0);
+          // Calculate bgColor.
+          switch (i) {
+            case 1: {
+              red = root.fepper_green_r;
+              green = root.fepper_green_g;
+              blue = root.fepper_green_b;
+
+              break;
+            }
+
+            case 3: {
+              red = root.fepper_yellow_r;
+              green = root.fepper_yellow_g;
+              blue = root.fepper_yellow_b;
+
+              break;
+            }
+
+            case 5: {
+              red = root.fepper_red_r;
+              green = root.fepper_red_g;
+              blue = root.fepper_red_b;
+
+              break;
+            }
+          }
+
+          alpha = paneState.boundingClientRect.top - windowState.height;
+          alpha = alpha / (windowState.height - brandingState.innerHeight);
+          alpha = (alpha * alpha) / 10;
+
+          $orgs['.main__content__pane']
+            .dispatchAction('css', ['background-color', `rgba(${red}, ${green}, ${blue}, ${alpha})`], i);
+        }
+
+        // Only need this else case for testing. The pane should be out of view.
+        else if (paneState.boundingClientRect.top >= windowState.height) {
+          if (paneState.style['background-color'] !== 'transparent') {
+            $orgs['.main__content__pane'].dispatchAction('css', ['background-color', 'transparent'], i);
+          }
+        }
+      }
     },
 
-    browserAdviceHide: () => {
-      $orgs['#browserAdvice'].dispatchAction('css', ['display', 'none']);
+    flagModulesEnabled: () => {
+      $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
     },
 
     logoFix: () => {
-      const brandingState = $orgs['#branding'].getState();
+      const bodyState = $orgs['#body'].getState();
       const videoHeadState = $orgs['#videoHead'].getState();
       const windowState = $orgs.window.getState();
 
-      if (windowState.scrollTop > videoHeadState.height) {
-        $orgs['#branding'].dispatchAction('css', {position: 'fixed', top: '0'});
-        $orgs['#main'].dispatchAction('css', ['padding-top', `${brandingState.boundingClientRect.height / 10}rem`]);
+      if (windowState.scrollTop > videoHeadState.innerHeight) {
+        if (bodyState.attribs.class.indexOf('logo-fixed') === -1) {
+          const brandingState = $orgs['#branding'].getState();
+
+          $orgs['#body'].dispatchAction('addClass', 'logo-fixed');
+          $orgs['#branding'].dispatchAction('css', {position: 'fixed', top: '0'});
+          $orgs['#foundation']
+            .dispatchAction('css', {'padding-top': intToRem(brandingState.innerHeight)});
+          $orgs['#mainContent']
+            .dispatchAction('css', {'padding-top': intToRem(brandingState.innerHeight)});
+        }
       }
       else {
-        $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});
-        $orgs['#main'].dispatchAction('css', ['padding-top', '0']);
+        if (bodyState.attribs.class.indexOf('logo-fixed') > -1) {
+          $orgs['#body'].dispatchAction('removeClass', 'logo-fixed');
+          $orgs['#branding'].dispatchAction('css', {position: 'static', top: 'auto'});
+          $orgs['#foundation'].dispatchAction('css', ['padding-top', '0']);
+          $orgs['#mainContent'].dispatchAction('css', ['padding-top', '0']);
+        }
+      }
+    },
+
+    logoFixedPaddingAdjust: () => {
+      const bodyState = $orgs['#body'].getState();
+
+      if (bodyState.attribs.class.indexOf('logo-fixed') > -1) {
+        const brandingState = $orgs['#branding'].getState();
+
+        $orgs['#foundation'].dispatchAction('css', {'padding-top': intToRem(brandingState.innerHeight)});
+        $orgs['#mainContent'].dispatchAction('css', {'padding-top': intToRem(brandingState.innerHeight)});
       }
     },
 
     logoRipen: () => {
       const MAX_PERCENTAGE = 400;
-      const bodyContainState = $orgs['#bodyContain'].getState();
       const htmlState = $orgs['#html'].getState();
-      const mainContentSliders = $orgs['.main__content__slider'];
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
-      const windowWidth = windowState.width;
+
       let percentage;
-
-      const itemLastMarginHeight =
-        windowHeight - (item_last_offset * 10) - (logo_height * 10) - (2 * branding_pad * 10);
-
-      if (bodyContainState.style.height === 'auto') {
-        percentage = windowState.scrollTop / (htmlState.height - windowHeight);
-      }
-      else {
-        percentage =
-          windowState.scrollTop / (bodyContainState.boundingClientRect.height - windowHeight);
-      }
-
+      percentage = windowState.scrollTop / (htmlState.height - windowHeight);
       percentage = MAX_PERCENTAGE * percentage;
 
       if (percentage >= MAX_PERCENTAGE) {
@@ -82,48 +130,48 @@ export default (app, params) => {
     },
 
     mainContentReveal: () => {
-      const bodyContainState = $orgs['#bodyContain'].getState();
-      const mainContentSlidersState = $orgs['.main__content__slider'].getState();
-      const mainContentItemLastTop = $orgs['.main__content__item--last'].getState().boundingClientRect.top;
-      const sliderLastIdx = mainContentSlidersState.$items.length - 1;
-      const windowState = $orgs.window.getState();
-      let sliderLastTop;
+      const slidersOrg = $orgs['.main__content__slider'];
+      const slidersCount = slidersOrg.getState().$items.length;
 
-      if (sliderLastIdx > -1) {  
-        sliderLastTop = $orgs['.main__content__slider'].getState(sliderLastIdx).boundingClientRect.top;
-      }
-
-      if (
-        mainContentSlidersState.$items.length === 1 ||
-        typeof sliderLastTop !== 'undefined' && sliderLastTop < windowState.height
-      ) {
-        $orgs['.main__content__slider'].dispatchAction('removeClass', 'main__content__slider');
-        $orgs['.main__content__item--last'].dispatchAction('css', ['display', 'block']);
-        $orgs['#bodyContain'].dispatchAction('css', ['height', 'auto']);
-      }
-
-      // Do not proceed if all sliders have slid.
-      if (!$orgs['.main__content__slider'].$items.length) {
+      if (!slidersCount) {
         return;
       }
 
-      const mainContentItems = $orgs['.main__content__item'];
-      const mainContentSliders = $orgs['.main__content__slider'];
-
-      const scrollTop = windowState.scrollTop;
-      const scrollIndex = mainContentItems.getState().$items.length - mainContentSliders.getState().$items.length;
+      const slidsOrg = $orgs['.main__content__slid'];
+      const slidsCount = slidsOrg.getState().$items.length;
 
       let scrollThreshold = 0;
-      for (let i = 0; i < scrollIndex; i++) {
-        scrollThreshold += mainContentItems.getState(i).boundingClientRect.height;
+
+      for (let i = 0; i < slidsCount; i++) {
+        scrollThreshold += slidsOrg.getState(i).innerHeight;
       }
 
-      if (scrollTop > scrollThreshold) {
-        mainContentSliders.dispatchAction('addClass', 'main__content__slid', 0);
-        mainContentSliders.dispatchAction('removeClass', 'main__content__slider', 0);
+      const windowState = $orgs.window.getState();
+
+      if (windowState.scrollTop > scrollThreshold) {
+        slidersOrg.dispatchAction('addClass', 'main__content__slid', 0);
+        slidersOrg.dispatchAction('removeClass', 'main__content__slider', 0);
       }
     },
 
-    updateWindowDims: debounce(() => {$orgs.window.getState();})
-  }
+    updateDims: () => {
+      $orgs.window.getState();
+
+      const blocksOrg = $orgs['.main__content__block'];
+      const panesOrg = $orgs['.main__content__pane'];
+      const panesCount = panesOrg.getState().$items.length;
+
+      for (let i = 0; i < panesCount; i++) {
+        let height = 0;
+
+        if (i === 0) {
+          height += blocksOrg.getState(0).innerHeight;
+        }
+
+        height += blocksOrg.getState(i + 1).innerHeight;
+
+        panesOrg.dispatchAction('css', {height: intToRem(height)}, i);
+      }
+    }
+  };
 };

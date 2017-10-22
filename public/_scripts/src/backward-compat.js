@@ -1,4 +1,6 @@
 (function ($) {
+
+  // eslint-disable-next-line strict
   'use strict';
 
   $(document).ready(function () {

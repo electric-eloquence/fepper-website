@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Declare keys with null values here.
  *
@@ -16,9 +14,11 @@ export default {
   '#logoImg': null,
   '#main': null,
   '#browserAdvice': null,
+  '#foundation': null,
   '#mainContent': null,
-  '.main__content__item': null,
-  '.main__content__item--last': null,
+  '.main__content__pane': null,
+  '.main__content__block': null,
   '.main__content__slid': null,
-  '.main__content__slider': null
+  '.main__content__slider': null,
+  '.footer': null
 };

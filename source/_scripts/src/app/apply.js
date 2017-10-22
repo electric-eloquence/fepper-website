@@ -1,9 +1,7 @@
-'use strict';
-
 import actionsGet from './actions-get.js';
 
 export default app => {
-  const actions = actionsGet(app);
+  const actions = actionsGet(app, window);
 
   if (typeof window === 'object') {
     window.onbeforeunload = () => {
@@ -11,6 +9,6 @@ export default app => {
     };
   }
 
-  actions.bodyHeightFix();
-  actions.browserAdviceHide();
+  actions.flagModulesEnabled();
+  actions.updateDims();
 };

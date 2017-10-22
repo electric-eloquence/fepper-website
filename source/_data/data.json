@@ -7,7 +7,17 @@
   "bp_xs_max": "480",
   "bp_xx_max": "320",
   "bp_xx_min": "0",
-  "logo_height": "20",
   "branding_pad": "1",
-  "item_last_offset": "8"
+  "fepper_green_r": "2",
+  "fepper_green_g": "125",
+  "fepper_green_b": "21",
+  "fepper_yellow_r": "240",
+  "fepper_yellow_g": "192",
+  "fepper_yellow_b": "0",
+  "fepper_red_r": "208",
+  "fepper_red_g": "0",
+  "fepper_red_b": "0",
+  "item_last_offset": "8",
+  "logo_width": "300",
+  "logo_height": "200"
 }

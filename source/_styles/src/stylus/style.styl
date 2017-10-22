@@ -83,15 +83,15 @@ p
   display: flex
   justify-content: center
   line-height: 2.8rem
-  a
+  &__anchor
     display: block
-  &__arrow
-    font-size: 2rem
-    padding-left: 1rem
-    width: 3.2rem
-  &:hover
-    .link-github__arrow
+    &:hover + .link-github__anchor--arrow,
+    &--arrow:hover
       font-size: 2.2rem
+    &--arrow
+      font-size: 2rem
+      padding-left: 1rem
+      width: 3.2rem
 .footer
   background-color: black
   color: white

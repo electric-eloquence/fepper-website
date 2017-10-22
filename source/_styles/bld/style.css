@@ -231,16 +231,17 @@ p {
   justify-content: center;
   line-height: 2.8rem;
 }
-.link-github a {
+.link-github__anchor {
   display: block;
 }
-.link-github__arrow {
+.link-github__anchor:hover + .link-github__anchor--arrow,
+.link-github__anchor--arrow:hover {
+  font-size: 2.2rem;
+}
+.link-github__anchor--arrow {
   font-size: 2rem;
   padding-left: 1rem;
   width: 3.2rem;
-}
-.link-github:hover .link-github__arrow {
-  font-size: 2.2rem;
 }
 .footer {
   background-color: #000;

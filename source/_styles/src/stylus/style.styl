@@ -26,6 +26,8 @@ p
 .body__contain
   overflow: hidden
 .video-head
+  background: url('../../_assets/src/video-bg.png') no-repeat 0 0
+  background-size: contain
   width: 100%
   height: $video-head-height
 .branding
@@ -110,6 +112,5 @@ html.es6-modules-enabled
     top: 0
     left: 0
     width: 100%
-    &__slider
-      opacity: 0;
-      transform: translateY(5rem);
+    &__slid:first-child
+      padding-top: 0.5rem

@@ -162,6 +162,9 @@ p {
   width: 100%;
   height: 33.334vw;
 }
+.video-head__video {
+  width: 100%;
+}
 .branding {
   background: #fff;
   padding: 1rem 0;
@@ -210,7 +213,7 @@ p {
 }
 .main__content__block {
   opacity: 1;
-  padding: 5rem 0;
+  padding: 1rem 0;
   transform: translateY(0);
   transition: opacity 0.5s, transform 0.5s;
 }
@@ -263,7 +266,6 @@ html.es6-modules-enabled .main__content {
   left: 0;
   width: 100%;
 }
-html.es6-modules-enabled .main__content__slider {
-  opacity: 0;
-  transform: translateY(5rem);
+html.es6-modules-enabled .main__content__slid:first-child {
+  padding-top: 0.5rem;
 }

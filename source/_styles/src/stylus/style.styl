@@ -28,6 +28,8 @@ p
 .video-head
   width: 100%
   height: $video-head-height
+  &__video
+    width: 100%
 .branding
   background: white
   padding: 1rem 0
@@ -69,7 +71,7 @@ p
     max-width: $content-width-max
   &__block
     opacity: 1
-    padding: 5rem 0
+    padding: 1rem 0
     transform: translateY(0)
     transition: opacity 0.5s, transform 0.5s
     @media all and (max-width: $bp-md-max)
@@ -110,6 +112,5 @@ html.es6-modules-enabled
     top: 0
     left: 0
     width: 100%
-    &__slider
-      opacity: 0;
-      transform: translateY(5rem);
+    &__slid:first-child
+      padding-top: 0.5rem

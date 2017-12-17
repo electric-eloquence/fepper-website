@@ -13,7 +13,6 @@ gulp.task('custom:frontend-copy', [
 ]);
 
 gulp.task('custom:once', [
-  'rollup'
 ]);
 
 gulp.task('custom:static', [
@@ -29,5 +28,4 @@ gulp.task('custom:template', [
 ]);
 
 gulp.task('custom:watch', [
-  'rollup:watch'
 ]);

@@ -4,40 +4,9 @@ const expect = require('chai').expect;
 
 const app = require('../init.js');
 const $orgs = app.$orgs;
-
-const videoHeadHeight = $orgs['#videoHead'].getState().innerHeight;
-
-function bgColorBelowViewportClosure(i) {
-  return () => {
-    const contentPaneOrg = $orgs['.main__content__pane'];
-
-    // Act.
-    contentPaneOrg.dispatchAction('setBoundingClientRect', {top: 1001}, i);
-    app.actions.bgColorReveal();
-
-    // Get Results.
-    const contentPaneStateAfter = contentPaneOrg.getState(i);
-
-    // Assert.
-    expect(contentPaneStateAfter.style['background-color']).to.equal('transparent');
-  };
-}
-
-function bgColorWithinViewportClosure(i, match) {
-  return () => {
-    const contentPaneOrg = $orgs['.main__content__pane'];
-
-    // Act.
-    contentPaneOrg.dispatchAction('setBoundingClientRect', {top: 500}, i);
-    app.actions.bgColorReveal();
-
-    // Get Results.
-    const contentPaneStateAfter = contentPaneOrg.getState(i);
-
-    // Assert.
-    expect(contentPaneStateAfter.style['background-color']).to.include(match);
-  };
-}
+const panesOrg = $orgs['.main__content__pane'];
+const panesCount = panesOrg.getState().$members.length;
+const slidersOrg = $orgs['.main__content__slider'];
 
 function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHeightsBefore) {
   before(function () {
@@ -73,26 +42,74 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 
 describe('Fepper website', function () {
   describe('bgColorReveal', function () {
-    for (let i = 1; i <= 5; i += 2) {
-      it(
-        `removes background-color from .main__content__pane[${i}] when it is scrolled below viewport`,
-        bgColorBelowViewportClosure(i)
-      );
-    }
+    describe('adds background-color', function () {
+      it('to .main__content__pane[1] when it is scrolled within viewport', function () {
+        // Act.
+        $orgs.window.scrollTop(500);
+        app.actions.bgColorReveal();
 
-    it(
-      'adds background-color to .main__content__pane[1] when it is scrolled within viewport',
-      bgColorWithinViewportClosure(1, 'rgba(2, 125, 21')
-    );
-    it(
-      'adds background-color to .main__content__pane[3] when it is scrolled within viewport',
-      bgColorWithinViewportClosure(3, 'rgba(240, 192, 0')
-    );
+        // Get Results.
+        const contentPaneState = panesOrg.getState(1);
 
-    it(
-      'adds background-color to .main__content__pane[5] when it is scrolled within viewport',
-      bgColorWithinViewportClosure(5, 'rgba(208, 0, 0')
-    );
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.include('rgba(2, 125, 21');
+      });
+
+      it('to .main__content__pane[3] when it is scrolled within viewport', function () {
+        // Act.
+        $orgs.window.scrollTop(900);
+        app.actions.bgColorReveal();
+
+        // Get Results.
+        const contentPaneState = panesOrg.getState(3);
+
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.include('rgba(240, 192, 0');
+      });
+
+      it('to .main__content__pane[5] when it is scrolled within viewport', function () {
+        // Act.
+        $orgs.window.scrollTop(1300);
+        app.actions.bgColorReveal();
+
+        // Get Results.
+        const contentPaneState = panesOrg.getState(5);
+
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.include('rgba(208, 0, 0');
+      });
+    });
+
+    describe('removes background-color', function () {
+      before(function () {
+        $orgs.window.scrollTop(0);
+        app.actions.bgColorReveal();
+      });
+
+      it('from .main__content__pane[1] when it is scrolled beyond viewport', function () {
+        // Get Results.
+        const contentPaneState = panesOrg.getState(1);
+
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.equal('transparent');
+      });
+
+      it('from .main__content__pane[3] when it is scrolled beyond viewport', function () {
+        // Get Results.
+        const contentPaneState = panesOrg.getState(3);
+
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.equal('transparent');
+      });
+
+      it('from .main__content__pane[5] when it is scrolled beyond viewport', function () {
+        // Get Results.
+        const contentPaneState = panesOrg.getState(5);
+
+        // Assert.
+        expect(contentPaneState.style['background-color']).to.equal('transparent');
+      });
+    });
   });
 
   describe('flagModulesEnabled', function () {
@@ -115,88 +132,10 @@ describe('Fepper website', function () {
     });
   });
 
-  describe('logoFix, when window is scrolled beyond #videoHeader,', function () {
-    // Prep.
-    before(function () {
-      $orgs.window.scrollTop(videoHeadHeight + 1);
-      app.actions.logoFix();
-    });
-
-    it('fixes #branding to top', function () {
-      // Get results.
-      const bodyClasses = $orgs['#body'].getState().attribs.class;
-
-      // Assert.
-      expect(bodyClasses).to.include('logo-fixed');
-    });
-
-    it('adds padding-top to #foundation and #mainContent', function () {
-      // Get results.
-      const foundationPaddingTop = $orgs['#foundation'].getState().style['padding-top'];
-      const mainContentPaddingTop = $orgs['#mainContent'].getState().style['padding-top'];
-
-      // Assert.
-      expect(foundationPaddingTop).to.equal('22rem');
-      expect(mainContentPaddingTop).to.equal('22rem');
-    });
-  });
-
-  describe('logoFix, when window is scrolled within #videoHeader,', function () {
-    // Prep.
-    before(function () {
-      $orgs.window.scrollTop(videoHeadHeight - 1);
-      app.actions.logoFix();
-    });
-
-    it('positions #branding statically', function () {
-      // Get results.
-      const bodyClasses = $orgs['#body'].getState().attribs.class;
-
-      // Assert.
-      expect(bodyClasses).to.not.include('logo-fixed');
-    });
-
-    it('removes padding-top from #foundation and #mainContent', function () {
-      // Get results.
-      const foundationPaddingTop = $orgs['#foundation'].getState().style['padding-top'];
-      const mainContentPaddingTop = $orgs['#mainContent'].getState().style['padding-top'];
-
-      // Assert.
-      expect(foundationPaddingTop).to.equal('0');
-      expect(mainContentPaddingTop).to.equal('0');
-    });
-  });
-
-  describe('logoFixedPaddingAdjust', function () {
-    let foundationPaddingTopBefore;
-    let mainContentPaddingTopBefore;
-
-    // Prep.
-    before(function () {
-      foundationPaddingTopBefore = $orgs['#foundation'].getState().style['padding-top'];
-      mainContentPaddingTopBefore = $orgs['#mainContent'].getState().style['padding-top'];
-
-      $orgs['#body'].dispatchAction('addClass', 'logo-fixed');
-      app.actions.logoFixedPaddingAdjust();
-    });
-
-    it('adds padding-top to #foundation and #mainContent', function () {
-      // Get results.
-      const foundationPaddingTopAfter = $orgs['#foundation'].getState().style['padding-top'];
-      const mainContentPaddingTopAfter = $orgs['#mainContent'].getState().style['padding-top'];
-
-      // Assert.
-      expect(foundationPaddingTopBefore).to.equal('0');
-      expect(mainContentPaddingTopBefore).to.equal('0');
-      expect(foundationPaddingTopAfter).to.equal('22rem');
-      expect(mainContentPaddingTopAfter).to.equal('22rem');
-    });
-  });
-
   describe('logoRipen', function () {
     // Prep.
     before(function () {
-      $orgs.window.scrollTop(-(1 - Math.random()) * 1000);
+      $orgs.window.scrollTop((1 - Math.random()) * 1200);
       app.actions.logoRipen();
     });
 
@@ -211,36 +150,65 @@ describe('Fepper website', function () {
     });
   });
 
-  describe('mainContentReveal', function () {
-    const panesCount = $orgs['.main__content__pane'].getState().$items.length;
-    const slidHeight = 200;
-    const slidsOrg = $orgs['.main__content__slid'];
-
-    for (let i = 1; i <= panesCount; i++) {
-      it(`adds .main__content__slid class to the element scrolled into position ${i}`, function () {
-        const slidsCountBefore = slidsOrg.getState().$items.length;
-
-        // Prep.
-        slidsOrg.dispatchAction('innerHeight', slidHeight, slidsCountBefore - 1);
-
+  describe('mainContentSlideIn', function () {
+    function mainContentSlideInClosure(i, scrollDistance) {
+      return function () {
         // Act.
-        $orgs.window.scrollTop((i * slidHeight) + (slidHeight / 2));
-        app.actions.mainContentReveal();
+        $orgs.window.scrollTop(scrollDistance);
+        app.actions.mainContentSlideIn();
 
         // Get results.
-        const slidsCountAfter = slidsOrg.getState().$items.length;
+        const sliderClasses = slidersOrg.getState(i).classArray;
 
         // Assert.
-        expect(slidsCountAfter).to.equal(slidsCountBefore + 1);
-      });
+        expect(sliderClasses).to.include('main__content__slid');
+      };
+    }
+
+    let scrollDistance = 0;
+
+    for (let i = 0; i < panesCount; i++) {
+      it(
+        `.main__content__slider[${i}] has class "main__content__slid" when window is scrolled ${scrollDistance}`,
+        mainContentSlideInClosure(i, scrollDistance)
+      );
+
+      scrollDistance += 200;
+    }
+  });
+
+  describe('mainContentSlideOut', function () {
+    function mainContentSlideOutClosure(i, scrollDistance) {
+      return function () {
+        // Act.
+        $orgs.window.scrollTop(scrollDistance);
+        app.actions.mainContentSlideOut();
+
+        // Get results.
+        const sliderClasses = slidersOrg.getState(i).classArray;
+
+        // Assert.
+        expect(sliderClasses).to.not.include('main__content__slid');
+      };
+    }
+
+    let scrollDistance = 800;
+
+    for (let i = panesCount - 1; i >= 1; i--) {
+      it(
+        // eslint-disable-next-line max-len
+        `.main__content__slider[${i}] does not have class "main__content__slid" when window is scrolled ${scrollDistance}`,
+        mainContentSlideOutClosure(i, scrollDistance)
+      );
+
+      scrollDistance -= 200;
     }
   });
 
   describe('updateDims', function () {
     const blocksOrg = $orgs['.main__content__block'];
-    const blocksCount = blocksOrg.getState().$items.length;
+    const blocksCount = blocksOrg.getState().$members.length;
     const paneHeightsBefore = [];
-    const panesCount = $orgs['.main__content__pane'].getState().$items.length;
 
     describe('on init', function () {
       const blockHeight = 200;
@@ -260,6 +228,258 @@ describe('Fepper website', function () {
           expect(paneHeightAfter).to.not.equal(paneHeightsBefore[i]);
         });
       }
+    });
+  });
+
+  describe('videoRender', function () {
+    const logicalImages = {
+      '03': new Image(),
+      '04': new Image(),
+      '05': new Image(),
+      '06': new Image(),
+      '07': new Image(),
+      '08': new Image()
+    };
+    const videoImgsOrg = $orgs['.video-head__img'];
+    const videoPlay = app.actions.videoPromise(logicalImages, videoImgsOrg, 0);
+
+    describe('at Generation 0', function () {
+      // Prep.
+      before(async function () {
+        await videoPlay[0]();
+
+        return videoPlay[1]();
+      });
+
+      it('videoImgsOrg member 3 has src === logicalImages[\'03\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(3).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['03'].src);
+      });
+
+      it('videoImgsOrg member 4 has src === logicalImages[\'04\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(4).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['04'].src);
+      });
+
+      it('videoImgsOrg member 5 has src === logicalImages[\'05\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(5).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['05'].src);
+      });
+    });
+
+    describe('at Generation 1', function () {
+      // Prep.
+      before(function () {
+        return videoPlay[2]();
+      });
+
+      it('videoImgsOrg member 3 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(3).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 4 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(4).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 5 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(5).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 3 has src === "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(3).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 4 has src "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(4).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 5 has src "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(5).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 6 has src === logicalImages[\'06\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(6).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['06'].src);
+      });
+
+      it('videoImgsOrg member 7 has src === logicalImages[\'07\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(7).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['07'].src);
+      });
+
+      it('videoImgsOrg member 8 has src === logicalImages[\'08\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(8).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['08'].src);
+      });
+
+      it('videoImgsOrg member 9 has src === logicalImages[\'03\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(9).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['03'].src);
+      });
+
+      it('videoImgsOrg member 10 has src === logicalImages[\'04\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(10).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['04'].src);
+      });
+
+      it('videoImgsOrg member 11 has src === logicalImages[\'05\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(11).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['05'].src);
+      });
+    });
+
+    describe('at Generation 3', function () {
+      // Prep.
+      before(function () {
+        return videoPlay[3]();
+      });
+
+      it('videoImgsOrg member 9 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(9).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 10 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(10).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 11 has display === "none"', function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(11).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      });
+
+      it('videoImgsOrg member 9 has src === "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(9).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 10 has src "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(10).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 11 has src "#"', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(11).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      });
+
+      it('videoImgsOrg member 12 has src === logicalImages[\'06\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(12).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['06'].src);
+      });
+
+      it('videoImgsOrg member 13 has src === logicalImages[\'07\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(13).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['07'].src);
+      });
+
+      it('videoImgsOrg member 14 has src === logicalImages[\'08\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(14).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['08'].src);
+      });
+
+      it('videoImgsOrg member 15 has src === logicalImages[\'03\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(15).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['03'].src);
+      });
+
+      it('videoImgsOrg member 16 has src === logicalImages[\'04\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(16).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['04'].src);
+      });
+
+      it('videoImgsOrg member 17 has src === logicalImages[\'05\'].src', function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(17).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages['05'].src);
+      });
     });
   });
 });

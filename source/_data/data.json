@@ -1,6 +1,7 @@
 {
   "homepage": "04-pages-00-homepage",
   "title": "Fepper",
+  "offline": true,
   "bp_lg_max": "-1",
   "bp_md_max": "1024",
   "bp_sm_max": "767",
@@ -19,5 +20,6 @@
   "fepper_red_b": "0",
   "item_last_offset": "8",
   "logo_width": "300",
-  "logo_height": "200"
+  "logo_height": "200",
+  "main_content_translate_y": "5"
 }

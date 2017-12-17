@@ -6,6 +6,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "fepper-ui": "*",
     "he": "1.1.0",
     "hogan.js": "3.0.2",
@@ -15,7 +16,8 @@
     "prismjs": "1.5.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "requerio": "*",
+    "redux": "^3.7.2",
+    "requerio": "^0.3.0-rc.1",
     "typeahead.js": "0.10.5",
     "wolfy87-eventemitter": "4.2.11"
   }

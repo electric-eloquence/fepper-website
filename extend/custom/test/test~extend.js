@@ -21,7 +21,7 @@ const testDir = path.resolve(utils.pathResolve(conf.ui.paths.public.root), 'test
 
 const plugins = require('gulp-load-plugins')({config: packageJson});
 
-gulp.task('test:eslint:public', () => {
+gulp.task('test:public:eslint', () => {
   return gulp.src(testDir + '/**/*.js')
     .pipe(plugins.eslint({
       parserOptions: {
@@ -32,15 +32,15 @@ gulp.task('test:eslint:public', () => {
     .pipe(plugins.eslint.failAfterError());
 });
 
-gulp.task('test:mocha:public', () => {
+gulp.task('test:public:mocha', () => {
   return gulp.src(testDir + '/**/*.js')
     .pipe(mocha());
 });
 
 gulp.task('test:public', cb => {
   runSequence(
-    'test:eslint:public',
-    'test:mocha:public',
+    'test:public:eslint',
+    'test:public:mocha',
     cb
   );
 });

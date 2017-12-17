@@ -9,8 +9,8 @@
     "node": ">=7.6.0"
   },
   "devDependencies": {
-    "fp-eslint": "*",
-    "fp-stylus": "*",
+    "fp-eslint": "^0.1.2",
+    "fp-stylus": "^0.1.2",
     "gulp-eslint": "^3.0.1"
   },
   "dependencies": {

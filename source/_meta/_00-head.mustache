@@ -14,10 +14,23 @@
   {{{ patternLabHead }}}
   {{! End Pattern Lab }}
 
+  {{# offline }}
+    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css?{{ cacheBuster }}" media="all">
+  {{/ offline }}
+  {{^ offline }}
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700" rel="stylesheet">
+  {{/ offline }}
   <link rel="stylesheet" href="../../_styles/bld/style.css?{{ cacheBuster }}" media="all">
-  <script src="../../node_modules/jquery/dist/jquery.min.js?{{ cacheBuster }}"></script>
-  <script src="../../node_modules/redux/dist/redux.min.js?{{ cacheBuster }}"></script>
-  <script src="../../node_modules/requerio/dist/requerio.min.js?{{ cacheBuster }}"></script>
+  {{# offline }}
+    <script src="../../node_modules/redux/dist/redux.min.js"></script>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/requerio/src/requerio.js?{{ cacheBuster }}" type="module"></script>
+  {{/ offline }}
+  {{^ offline }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script src="../../node_modules/requerio/dist/requerio.min.js"></script>
+  {{/ offline }}
   <script src="../../_scripts/src/app/module-support-check.js?{{ cacheBuster }}" type="module"></script>
 </head>
 <body id="body" class="{{ body_class }}">

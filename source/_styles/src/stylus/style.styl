@@ -8,12 +8,11 @@
 // /////////////////////////////////////////////////////////////////////////////
 @import '0-base/00-variables'
 @import '0-base/01-reset'
-@import '0-base/02-fonts'
-@import '0-base/03-helpers'
-@import '0-base/04-global'
+@import '0-base/02-helpers'
+@import '0-base/03-global'
 
-$video-head-height = 33.334vw
-$logo-width= '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$video-head-height = (100vw / 3)
+$logo-width = '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $logo-height = '%spx' % logo_height // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $branding-pad = '%srem' % branding_pad
 $item-last-offset = '%srem' % item_last_offset
@@ -26,13 +25,224 @@ p
 .body__contain
   overflow: hidden
 .video-head
+  position: sticky
+  top: 0
   width: 100%
   height: $video-head-height
-  &__video
-    width: 100%
+  &__bg
+    background: black
+    position: absolute
+    top: 0
+    left: 0
+    width: 50%
+    height: $video-head-height
+  &__img
+    position: absolute
+    &--gen-0
+      &--0
+        width: 50%
+        z-index: 1
+      &--1
+        height: $video-head-height
+      &--2
+        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192)) // top rule (not bottom) necessary for Safari.
+        width: 50%
+      &--3
+        top: $video-head-height * (48 / 640)
+        width: 30%
+      &--4
+        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192))
+        width: 50%
+      &--5
+        right: 0
+        width: 50%
+    &--gen-1
+      &--0
+        top: $video-head-height * (48 / 640)
+        width: 30%
+      &--1
+        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192))
+        width: 50%
+      &--2
+        right: 0
+        width: 50%
+      &--3
+        top: $video-head-height * (24 / 640)
+        left: 50%
+        width: 15%
+      &--4
+        top: 14.9vw // Need to hard-code value for MS Edge.
+        left: 50%
+        width: 25%
+      &--5
+        right: 0
+        width: 25%
+    &--gen-2
+      &--0
+        top: $video-head-height * (24 / 640)
+        left: 50%
+        width: 15%
+      &--1
+        top: 14.9vw // Need to hard-code value for MS Edge.
+        left: 50%
+        width: 25%
+      &--2
+        right: 0
+        width: 25%
+      &--3
+        top: $video-head-height * (12 / 640)
+        left: 75%
+        width: 7.5%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 4) (160 / 192))
+        left: 75%
+        width: 12.5%
+      &--5
+        right: 0
+        width: 12.5%
+    &--gen-3
+      &--0
+        top: $video-head-height * (12 / 640)
+        left: 75%
+        width: 7.5%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 4) (160 / 192))
+        left: 75%
+        width: 12.5%
+      &--2
+        right: 0
+        width: 12.5%
+      &--3
+        top: $video-head-height * (6 / 640)
+        left: 87.5%
+        width: 3.75%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 8) (80 / 192))
+        left: 87.5%
+        width: 6.25%
+      &--5
+        right: 0
+        width: 6.25%
+    &--gen-4
+      &--0
+        top: $video-head-height * (6 / 640)
+        left: 87.5%
+        width: 3.75%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 8) (80 / 192))
+        left: 87.5%
+        width: 6.25%
+      &--2
+        right: 0
+        width: 6.25%
+      &--3
+        top: $video-head-height * (3 / 640)
+        left: 93.75%
+        width: 1.875%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 16) (40 / 192))
+        left: 93.75%
+        width: 3.125%
+      &--5
+        right: 0
+        width: 3.125%
+    &--gen-5
+      &--0
+        top: $video-head-height * (3 / 640)
+        left: 93.75%
+        width: 1.875%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 16) (40 / 192))
+        left: 93.75%
+        width: 3.125%
+      &--2
+        right: 0
+        width: 3.125%
+      &--3
+        top: $video-head-height * (1.5 / 640)
+        left: 96.875%
+        width: 0.9375%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 32) (20 / 192))
+        left: 96.875%
+        width: 1.5625%
+      &--5
+        right: 0
+        width: 1.5625%
+    &--gen-6
+      &--0
+        top: $video-head-height * (1.5 / 640)
+        left: 96.875%
+        width: 0.9375%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 32) (20 / 192))
+        left: 96.875%
+        width: 1.5625%
+      &--2
+        right: 0
+        width: 1.5625%
+      &--3
+        top: $video-head-height * (0.75 / 640)
+        left: 98.4375%
+        width: 0.46875%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 64) (10 / 192))
+        left: 98.4375%
+        width: 0.78125%
+      &--5
+        right: 0
+        width: 0.78125%
+    &--gen-7
+      &--0
+        top: $video-head-height * (0.75 / 640)
+        left: 98.4375%
+        width: 0.46875%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 64) (10 / 192))
+        left: 98.4375%
+        width: 0.78125%
+      &--2
+        right: 0
+        width: 0.78125%
+      &--3
+        top: $video-head-height * (0.375 / 640)
+        left: 99.21875%
+        width: 0.234375%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 128) (5 / 192))
+        left: 99.21875%
+        width: 0.390625%
+      &--5
+        right: 0
+        width: 0.390625%
+    &--gen-8
+      &--0
+        top: $video-head-height * (0.375 / 640)
+        left: 99.21875%
+        width: 0.234375%
+      &--1
+        top: 'calc(%s - %svw)' % (($video-head-height / 128) (5 / 192))
+        left: 99.21875%
+        width: 0.390625%
+      &--2
+        right: 0
+        width: 0.390625%
+      &--3
+        top: $video-head-height * (0.1875 / 640)
+        left: 99.609375%
+        width: 0.1171875%
+      &--4
+        top: 'calc(%s - %svw)' % (($video-head-height / 256) (2.5 / 192))
+        left: 99.609375%
+        width: 0.1953125%
+      &--5
+        right: 0
+        width: 0.1953125%
 .branding
   background: white
   padding: 1rem 0
+  position: sticky
+  top: 0
   width: 100%
   z-index: 1
   -webkit-transform: translateZ(0); // Hack to fix bouncy fixed element in Chrome.
@@ -60,27 +270,22 @@ p
     right: 0
     width: 100%
     height: 100%
-.browser-advice
-  margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($video-head-height $logo-height $branding-pad $branding-pad)
 .main
+  background: white
   position: relative
   text-align: center
 .main__content
   &__center
     margin: 0 auto
     max-width: $content-width-max
-  &__block
-    opacity: 1
-    padding: 1rem 0
-    transform: translateY(0)
-    transition: opacity 0.5s, transform 0.5s
+  &__fixed
+    padding-top: 1rem
+  &__slider
+    padding: '%srem 0' % main_content_translate_y
     @media all and (max-width: $bp-md-max)
       margin: 0 ($space-quarter * 3)
-    &:first-child
-      margin-bottom: 0
-      padding-bottom: 0
-    &:nth-child(2)
-      padding-top: 0
+  &__fixed + .main__content__slider
+    padding: '0 0 %srem' % (main_content_translate_y - 1)
 .link-github
   display: flex
   justify-content: center
@@ -94,10 +299,13 @@ p
       font-size: 2rem
       padding-left: 1rem
       width: 3.2rem
+.bottom
+  background: white
+  padding-top: 'calc(100vh - %s - %s - %s - %s)' % ($item-last-offset $logo-height $branding-pad $branding-pad)
+  position: relative
 .footer
-  background-color: black
+  background: black
   color: white
-  margin-top: 'calc(100vh - %s - %s - %s - %s)' % ($item-last-offset $logo-height $branding-pad $branding-pad)
   padding: 3rem 0
   text-align: center
   width: 100%
@@ -112,5 +320,15 @@ html.es6-modules-enabled
     top: 0
     left: 0
     width: 100%
-    &__slid:first-child
-      padding-top: 0.5rem
+    &__slider
+      opacity: 0;
+      transform: 'translateY(%srem)' % main_content_translate_y
+      transition: opacity 0.5s, transform 0.5s
+    &__slid
+      opacity: 1
+      transform: translateY(0)
+// Remove this if position: sticky ever renders well on MS Edge.
+html.ms-edge
+  .video-head,
+  .branding
+    position: static

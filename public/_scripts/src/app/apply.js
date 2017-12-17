@@ -1,6 +1,6 @@
 import actionsGet from './actions-get.js';
 
-export default app => {
+export default (app) => {
   const actions = actionsGet(app, window);
 
   if (typeof window === 'object') {

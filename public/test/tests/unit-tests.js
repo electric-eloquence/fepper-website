@@ -243,6 +243,61 @@ describe('Fepper website', function () {
     const videoImgsOrg = $orgs['.video-head__img'];
     const videoPlay = app.actions.videoPromise(logicalImages, videoImgsOrg, 0);
 
+    function imageHideClosure(j) {
+      return function () {
+        // Get results.
+        const videoImgDisplay = $orgs['.video-head__img'].getState(j).style.display;
+
+        // Assert.
+        expect(videoImgDisplay).to.equal('none');
+      };
+    }
+
+    function imageKillClosure(j) {
+      return function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(j).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal('#');
+      };
+    }
+
+    function imageSourceTest(j, key) {
+      it(`videoImgsOrg member ${j} has src === logicalImages['${key}'].src`, function () {
+        // Get results.
+        const videoImgSrc = $orgs['.video-head__img'].getState(j).attribs.src;
+
+        // Assert.
+        expect(videoImgSrc).to.equal(logicalImages[key].src);
+      });
+    }
+
+    function generationClosure(i) {
+      return function () {
+        const ix6 = 6 * i;
+        // Prep.
+        before(function () {
+          return videoPlay[i + 1]();
+        });
+
+        for (let j = ix6 - 3; j < ix6; j++) {
+          it(`videoImgsOrg member ${j} has display === "none"`, imageHideClosure(j));
+        }
+
+        for (let j = ix6 - 3; j < ix6; j++) {
+          it(`videoImgsOrg member ${j} has src === "#"`, imageKillClosure(j));
+        }
+
+        imageSourceTest(ix6, '06');
+        imageSourceTest(ix6 + 1, '07');
+        imageSourceTest(ix6 + 2, '08');
+        imageSourceTest(ix6 + 3, '03');
+        imageSourceTest(ix6 + 4, '04');
+        imageSourceTest(ix6 + 5, '05');
+      };
+    }
+
     describe('at Generation 0', function () {
       // Prep.
       before(async function () {
@@ -276,210 +331,8 @@ describe('Fepper website', function () {
       });
     });
 
-    describe('at Generation 1', function () {
-      // Prep.
-      before(function () {
-        return videoPlay[2]();
-      });
-
-      it('videoImgsOrg member 3 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(3).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 4 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(4).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 5 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(5).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 3 has src === "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(3).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 4 has src "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(4).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 5 has src "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(5).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 6 has src === logicalImages[\'06\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(6).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['06'].src);
-      });
-
-      it('videoImgsOrg member 7 has src === logicalImages[\'07\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(7).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['07'].src);
-      });
-
-      it('videoImgsOrg member 8 has src === logicalImages[\'08\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(8).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['08'].src);
-      });
-
-      it('videoImgsOrg member 9 has src === logicalImages[\'03\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(9).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['03'].src);
-      });
-
-      it('videoImgsOrg member 10 has src === logicalImages[\'04\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(10).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['04'].src);
-      });
-
-      it('videoImgsOrg member 11 has src === logicalImages[\'05\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(11).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['05'].src);
-      });
-    });
-
-    describe('at Generation 2', function () {
-      // Prep.
-      before(function () {
-        return videoPlay[3]();
-      });
-
-      it('videoImgsOrg member 9 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(9).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 10 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(10).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 11 has display === "none"', function () {
-        // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(11).style.display;
-
-        // Assert.
-        expect(videoImgDisplay).to.equal('none');
-      });
-
-      it('videoImgsOrg member 9 has src === "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(9).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 10 has src "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(10).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 11 has src "#"', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(11).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
-      });
-
-      it('videoImgsOrg member 12 has src === logicalImages[\'06\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(12).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['06'].src);
-      });
-
-      it('videoImgsOrg member 13 has src === logicalImages[\'07\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(13).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['07'].src);
-      });
-
-      it('videoImgsOrg member 14 has src === logicalImages[\'08\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(14).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['08'].src);
-      });
-
-      it('videoImgsOrg member 15 has src === logicalImages[\'03\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(15).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['03'].src);
-      });
-
-      it('videoImgsOrg member 16 has src === logicalImages[\'04\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(16).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['04'].src);
-      });
-
-      it('videoImgsOrg member 17 has src === logicalImages[\'05\'].src', function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(17).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal(logicalImages['05'].src);
-      });
-    });
+    for (let i = 1; i <= 8; i++) {
+      describe(`at Generation ${i}`, generationClosure(i));
+    }
   });
 });

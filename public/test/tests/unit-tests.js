@@ -379,7 +379,7 @@ describe('Fepper website', function () {
       });
     });
 
-    describe('at Generation 3', function () {
+    describe('at Generation 2', function () {
       // Prep.
       before(function () {
         return videoPlay[3]();

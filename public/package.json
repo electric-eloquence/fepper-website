@@ -17,7 +17,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "redux": "^3.7.2",
-    "requerio": "^0.3.0-rc.1",
+    "requerio": "^0.3.0",
     "typeahead.js": "0.10.5",
     "wolfy87-eventemitter": "4.2.11"
   }

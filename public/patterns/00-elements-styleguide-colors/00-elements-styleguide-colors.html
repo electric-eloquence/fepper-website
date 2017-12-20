@@ -11,18 +11,18 @@
   <meta http-equiv="pragma" content="no-cache">
 
   <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
-<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/styleguide.css?0" media="all">
-<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/prism-typeahead.css?0" media="all">
+<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/styleguide.css" media="all">
+<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/prism-typeahead.css" media="all">
 <!-- End Pattern Lab -->
 
 
   <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css?0" media="all">
-  <link rel="stylesheet" href="../../_styles/bld/style.css?0" media="all">
+    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css" media="all">
+  <link rel="stylesheet" href="../../_styles/bld/style.css" media="all">
     <script src="../../node_modules/redux/dist/redux.min.js"></script>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/requerio/src/requerio.js?0" type="module"></script>
-  <script src="../../_scripts/src/app/module-support-check.js?0" type="module"></script>
+    <script src="../../node_modules/requerio/src/requerio.js" type="module"></script>
+  <script src="../../_scripts/src/app/module-support-check.js" type="module"></script>
 </head>
 <body id="body" class="">
 <!-- Keeping these styles specific to this file because we don't need them in the app. --> <style>  .colors {    display: table;  }  .colors__row {    display: table-row;  }  .colors__cell {    display: table-cell;    padding: 0 0.3rem  }  .colors__cell:last-child {    width: 5rem;  } </style> <div class="colors"> <div class="colors__row"> <div class="colors__cell">black less contrast:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--black-less-contrast"></div> </div> <div class="colors__row"> <div class="colors__cell">green fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--green-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">yellow fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--yellow-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">red fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--red-fepper"></div> </div> </div> <script>  function decToHex(dec) {    const hex = dec.toString(16);    return hex.length == 1 ? '0' + hex : hex;  }  function rgbToHex(rgb) {    const rgbStr = rgb.slice(rgb.indexOf('(') + 1, -1);    const rgbArr = rgbStr.split(',');    let hex = '#';    rgbArr.forEach(dec => {      hex += decToHex(parseInt(dec, 10));    });    return hex;  }  const rows = document.querySelectorAll('.colors__row');  for (let i = 0; i < rows.length; i++) {    const colorCell = rows[i].querySelector('.colors__cell:last-child');    const colorRgb = window.getComputedStyle(colorCell, null).getPropertyValue('background-color');    const colorHex = rgbToHex(colorRgb);    const cells = rows[i].children;    cells[1].innerHTML = colorHex;    cells[2].innerHTML = colorRgb;  } </script>
@@ -73,29 +73,29 @@
   var cssEnabled = false;
 </script>
 
-<script id="pl-js-insert-0">
+<script id="pl-js-insert-">
   (function() {
     if (self != top) {
-      var cb = '0';
+      var cb = '';
       var js = [ { 'src': 'node_modules/jwerty/jwerty.js', 'dep': [ 'node_modules/fepper-ui/scripts/patternlab-pattern.js' ] } ];
       scriptLoader.run(js,cb,'pl-js-insert');
     }
   })();
 </script>
 
-<script src="../../node_modules/jwerty/jwerty.js?0"></script>
-<script src="../../node_modules/fepper-ui/scripts/postmessage.js?0"></script>
-<script src="../../annotations/annotations.js?0"></script>
-<script src="../../node_modules/fepper-ui/scripts/annotations-pattern.js?0"></script>
-<script src="../../node_modules/fepper-ui/scripts/code-pattern.js?0"></script>
-<script src="../../node_modules/fepper-ui/scripts/mustache-browser.js?0"></script>
-<script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js?0"></script>
+<script src="../../node_modules/jwerty/jwerty.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/postmessage.js"></script>
+<script src="../../annotations/annotations.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/annotations-pattern.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/code-pattern.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/mustache-browser.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js"></script>
 <!-- End Pattern Lab -->
 
 
-  <script src="../../_scripts/src/variables.styl?0" type="text/javascript"></script>
-  <script src="../../_scripts/src/fepper-obj.js?0"></script>
-  <script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js?0"></script>
+  <script src="../../_scripts/src/variables.styl" type="text/javascript"></script>
+  <script src="../../_scripts/src/fepper-obj.js"></script>
+  <script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js"></script>
   <script src="../../_scripts/src/index.js" type="module"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@ const path = require('path');
 
 const fs = require('fs-extra');
 const gulp = require('gulp');
-const mocha = require('gulp-mocha');
 const rollup = require('rollup-stream');
 const runSequence = require('run-sequence');
 const source = require('vinyl-source-stream');
@@ -34,7 +33,7 @@ gulp.task('test:public:eslint', () => {
 
 gulp.task('test:public:mocha', () => {
   return gulp.src(testDir + '/**/*.js')
-    .pipe(mocha());
+    .pipe(plugins.mocha());
 });
 
 gulp.task('test:public', cb => {

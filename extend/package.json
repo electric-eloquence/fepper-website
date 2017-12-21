@@ -9,9 +9,9 @@
     "node": ">=7.6.0"
   },
   "devDependencies": {
-    "fp-eslint": "^0.1.2",
     "fp-stylus": "^0.1.2",
-    "gulp-eslint": "^3.0.1"
+    "gulp-eslint": "3.x",
+    "gulp-mocha": "4.x"
   },
   "dependencies": {
     "rollup-stream": "^1.24.1",

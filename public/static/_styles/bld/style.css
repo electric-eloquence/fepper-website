@@ -450,22 +450,22 @@ p {
   position: relative;
   text-align: center;
 }
-.main__content__center {
+.content__center {
   margin: 0 auto;
   max-width: 100rem;
 }
-.main__content__fixed {
+.content__fixed {
   padding-top: 1rem;
 }
-.main__content__slider {
+.content__slider {
   padding: 5rem 0;
 }
 @media all and (max-width: 1024px) {
-  .main__content__slider {
+  .content__slider {
     margin: 0 1.2rem;
   }
 }
-.main__content__fixed + .main__content__slider {
+.content__fixed + .content__slider {
   padding: 0 0 4rem;
 }
 .link-github {
@@ -500,7 +500,7 @@ p {
 html.es6-modules-enabled .browser-advice {
   display: none;
 }
-html.es6-modules-enabled .main__content {
+html.es6-modules-enabled .content {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -509,12 +509,12 @@ html.es6-modules-enabled .main__content {
   left: 0;
   width: 100%;
 }
-html.es6-modules-enabled .main__content__slider {
+html.es6-modules-enabled .content__slider {
   opacity: 0;
   transform: translateY(5rem);
   transition: opacity 0.5s, transform 0.5s;
 }
-html.es6-modules-enabled .main__content__slid {
+html.es6-modules-enabled .content__slid {
   opacity: 1;
   transform: translateY(0);
 }

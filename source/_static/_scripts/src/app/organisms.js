@@ -9,7 +9,7 @@ export default {
   '.video-head__img': null,
   '#branding': null,
   '#logoBg': null,
-  '.main__content__pane': null,
-  '.main__content__block': null,
-  '.main__content__slider': null
+  '.content__pane': null,
+  '.content__block': null,
+  '.content__slider': null
 };

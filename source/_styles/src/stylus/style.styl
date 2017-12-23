@@ -274,7 +274,7 @@ p
   background: white
   position: relative
   text-align: center
-.main__content
+.content
   &__center
     margin: 0 auto
     max-width: $content-width-max
@@ -284,7 +284,7 @@ p
     padding: '%srem 0' % main_content_translate_y
     @media all and (max-width: $bp-md-max)
       margin: 0 ($space-quarter * 3)
-  &__fixed + .main__content__slider
+  &__fixed + .content__slider
     padding: '0 0 %srem' % (main_content_translate_y - 1)
 .link-github
   display: flex
@@ -312,7 +312,7 @@ p
 html.es6-modules-enabled
   .browser-advice
     display: none
-  .main__content
+  .content
     display: flex
     align-items: center
     flex-direction: column

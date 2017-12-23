@@ -6,7 +6,7 @@
 export default {
   'window': null,
   '#html': null,
-  '.video-head__img': null,
+  '.video__img': null,
   '#branding': null,
   '#logoBg': null,
   '.content__pane': null,

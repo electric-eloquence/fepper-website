@@ -171,7 +171,7 @@ export default (app, root) => {
     videoPromise: videoPromise,
 
     videoRender: async (logicalImages) => {
-      const videoImgsOrg = $orgs['.video-head__img'];
+      const videoImgsOrg = $orgs['.video__img'];
       const videoPlay = videoPromise(logicalImages, videoImgsOrg, 13000);
 
       for (let i = 0; i < videoPlay.length; i++) {

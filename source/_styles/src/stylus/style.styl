@@ -11,7 +11,7 @@
 @import '0-base/02-helpers'
 @import '0-base/03-global'
 
-$video-head-height = (100vw / 3)
+$video-height = (100vw / 3)
 $logo-width = '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $logo-height = '%spx' % logo_height // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $branding-pad = '%srem' % branding_pad
@@ -24,18 +24,18 @@ p
   margin-bottom: $space
 .body__contain
   overflow: hidden
-.video-head
+.video
   position: sticky
   top: 0
   width: 100%
-  height: $video-head-height
+  height: $video-height
   &__bg
     background: black
     position: absolute
     top: 0
     left: 0
     width: 50%
-    height: $video-head-height
+    height: $video-height
   &__img
     position: absolute
     &--gen-0
@@ -43,31 +43,31 @@ p
         width: 50%
         z-index: 1
       &--1
-        height: $video-head-height
+        height: $video-height
       &--2
-        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192)) // top rule (not bottom) necessary for Safari.
+        top: 'calc(%s - %svw)' % ($video-height (640 / 192)) // top rule (not bottom) necessary for Safari.
         width: 50%
       &--3
-        top: $video-head-height * (48 / 640)
+        top: $video-height * (48 / 640)
         width: 30%
       &--4
-        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192))
+        top: 'calc(%s - %svw)' % ($video-height (640 / 192))
         width: 50%
       &--5
         right: 0
         width: 50%
     &--gen-1
       &--0
-        top: $video-head-height * (48 / 640)
+        top: $video-height * (48 / 640)
         width: 30%
       &--1
-        top: 'calc(%s - %svw)' % ($video-head-height (640 / 192))
+        top: 'calc(%s - %svw)' % ($video-height (640 / 192))
         width: 50%
       &--2
         right: 0
         width: 50%
       &--3
-        top: $video-head-height * (24 / 640)
+        top: $video-height * (24 / 640)
         left: 50%
         width: 15%
       &--4
@@ -79,7 +79,7 @@ p
         width: 25%
     &--gen-2
       &--0
-        top: $video-head-height * (24 / 640)
+        top: $video-height * (24 / 640)
         left: 50%
         width: 15%
       &--1
@@ -90,11 +90,11 @@ p
         right: 0
         width: 25%
       &--3
-        top: $video-head-height * (12 / 640)
+        top: $video-height * (12 / 640)
         left: 75%
         width: 7.5%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 4) (160 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 4) (160 / 192))
         left: 75%
         width: 12.5%
       &--5
@@ -102,22 +102,22 @@ p
         width: 12.5%
     &--gen-3
       &--0
-        top: $video-head-height * (12 / 640)
+        top: $video-height * (12 / 640)
         left: 75%
         width: 7.5%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 4) (160 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 4) (160 / 192))
         left: 75%
         width: 12.5%
       &--2
         right: 0
         width: 12.5%
       &--3
-        top: $video-head-height * (6 / 640)
+        top: $video-height * (6 / 640)
         left: 87.5%
         width: 3.75%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 8) (80 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 8) (80 / 192))
         left: 87.5%
         width: 6.25%
       &--5
@@ -125,22 +125,22 @@ p
         width: 6.25%
     &--gen-4
       &--0
-        top: $video-head-height * (6 / 640)
+        top: $video-height * (6 / 640)
         left: 87.5%
         width: 3.75%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 8) (80 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 8) (80 / 192))
         left: 87.5%
         width: 6.25%
       &--2
         right: 0
         width: 6.25%
       &--3
-        top: $video-head-height * (3 / 640)
+        top: $video-height * (3 / 640)
         left: 93.75%
         width: 1.875%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 16) (40 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 16) (40 / 192))
         left: 93.75%
         width: 3.125%
       &--5
@@ -148,22 +148,22 @@ p
         width: 3.125%
     &--gen-5
       &--0
-        top: $video-head-height * (3 / 640)
+        top: $video-height * (3 / 640)
         left: 93.75%
         width: 1.875%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 16) (40 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 16) (40 / 192))
         left: 93.75%
         width: 3.125%
       &--2
         right: 0
         width: 3.125%
       &--3
-        top: $video-head-height * (1.5 / 640)
+        top: $video-height * (1.5 / 640)
         left: 96.875%
         width: 0.9375%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 32) (20 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 32) (20 / 192))
         left: 96.875%
         width: 1.5625%
       &--5
@@ -171,22 +171,22 @@ p
         width: 1.5625%
     &--gen-6
       &--0
-        top: $video-head-height * (1.5 / 640)
+        top: $video-height * (1.5 / 640)
         left: 96.875%
         width: 0.9375%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 32) (20 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 32) (20 / 192))
         left: 96.875%
         width: 1.5625%
       &--2
         right: 0
         width: 1.5625%
       &--3
-        top: $video-head-height * (0.75 / 640)
+        top: $video-height * (0.75 / 640)
         left: 98.4375%
         width: 0.46875%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 64) (10 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 64) (10 / 192))
         left: 98.4375%
         width: 0.78125%
       &--5
@@ -194,22 +194,22 @@ p
         width: 0.78125%
     &--gen-7
       &--0
-        top: $video-head-height * (0.75 / 640)
+        top: $video-height * (0.75 / 640)
         left: 98.4375%
         width: 0.46875%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 64) (10 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 64) (10 / 192))
         left: 98.4375%
         width: 0.78125%
       &--2
         right: 0
         width: 0.78125%
       &--3
-        top: $video-head-height * (0.375 / 640)
+        top: $video-height * (0.375 / 640)
         left: 99.21875%
         width: 0.234375%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 128) (5 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 128) (5 / 192))
         left: 99.21875%
         width: 0.390625%
       &--5
@@ -217,22 +217,22 @@ p
         width: 0.390625%
     &--gen-8
       &--0
-        top: $video-head-height * (0.375 / 640)
+        top: $video-height * (0.375 / 640)
         left: 99.21875%
         width: 0.234375%
       &--1
-        top: 'calc(%s - %svw)' % (($video-head-height / 128) (5 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 128) (5 / 192))
         left: 99.21875%
         width: 0.390625%
       &--2
         right: 0
         width: 0.390625%
       &--3
-        top: $video-head-height * (0.1875 / 640)
+        top: $video-height * (0.1875 / 640)
         left: 99.609375%
         width: 0.1171875%
       &--4
-        top: 'calc(%s - %svw)' % (($video-head-height / 256) (2.5 / 192))
+        top: 'calc(%s - %svw)' % (($video-height / 256) (2.5 / 192))
         left: 99.609375%
         width: 0.1953125%
       &--5
@@ -329,6 +329,6 @@ html.es6-modules-enabled
       transform: translateY(0)
 // Remove this if position: sticky ever renders well on MS Edge.
 html.ms-edge
-  .video-head,
+  .video,
   .branding
     position: static

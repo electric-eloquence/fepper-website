@@ -9,6 +9,6 @@ export default (app) => {
     };
   }
 
-  actions.flagModulesEnabled();
+  actions.init();
   actions.updateDims();
 };

@@ -425,6 +425,11 @@ p {
   width: 300px;
   height: 200px;
 }
+@media all and (max-width: 767px) {
+  .logo {
+    transform: scale(0.75);
+  }
+}
 .logo__bg {
   background: linear-gradient(to left, #027d15, #027d15 20%, #f0c000 40%, #f0c000 60%, #d00000 80%, #d00000);
   position: absolute;
@@ -486,9 +491,16 @@ p {
   padding-left: 1rem;
   width: 3.2rem;
 }
+.hider {
+  background: #fff;
+  position: fixed;
+  top: calc(33.333333333333336vw + 200px + (2 * 1rem));
+  width: 100%;
+  height: 100vh;
+}
 .bottom {
   background: #fff;
-  padding-top: calc(100vh - 8rem - 200px - 1rem - 1rem);
+  padding-top: calc(100vh - 8rem - 200px - (2 * 1rem));
   position: relative;
 }
 .footer {

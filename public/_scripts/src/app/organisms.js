@@ -11,5 +11,6 @@ export default {
   '#logoBg': null,
   '.content__pane': null,
   '.content__block': null,
-  '.content__slider': null
+  '.content__slider': null,
+  '.hider': null
 };

@@ -112,14 +112,14 @@ describe('Fepper website', function () {
     });
   });
 
-  describe('flagModulesEnabled', function () {
+  describe('init', function () {
     let htmlClassesBefore;
 
     // Prep.
     before(function () {
       htmlClassesBefore = $orgs['#html'].getState().attribs.class;
 
-      app.actions.flagModulesEnabled();
+      app.actions.init();
     });
 
     it('adds .es6-modules-enabled class to #html', function () {
@@ -129,6 +129,18 @@ describe('Fepper website', function () {
       // Assert.
       expect(htmlClassesBefore).to.not.include('es6-modules-enabled');
       expect(htmlClassesAfter).to.include('es6-modules-enabled');
+    });
+
+    it('reveals content by removing the display of .hider', function (done) {
+      // Get results.
+      setTimeout(() => {
+        const hiderDisplay = $orgs['.hider'].getState().style.display;
+
+        // Assert.
+        expect(hiderDisplay).to.equal('none');
+
+        done();
+      }, 500);
     });
   });
 

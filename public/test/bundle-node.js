@@ -253,8 +253,15 @@ var actionsGet = (app, root) => {
       }
     },
 
-    flagModulesEnabled: () => {
+    init: () => {
+      // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
+      // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
+
+      // Content should be hidden on page load. Reveal after initial transformation.
+      setTimeout(() => {
+        $orgs['.hider'].dispatchAction('css', {display: 'none'});
+      }, 500);
 
       // Remove this if position: sticky ever renders well on MS Edge.
       if (typeof window === 'object' && window.navigator.userAgent.indexOf('Edge') > -1) {
@@ -378,7 +385,8 @@ var $organisms = {
   '#logoBg': null,
   '.content__pane': null,
   '.content__block': null,
-  '.content__slider': null
+  '.content__slider': null,
+  '.hider': null
 };
 
 var bundleNode = {

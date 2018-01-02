@@ -25,10 +25,12 @@ p
 .body__contain
   overflow: hidden
 .video
+  position: -webkit-sticky
   position: sticky
   top: 0
   width: 100%
   height: $video-height
+  z-index: -1
   &__bg
     background: black
     position: absolute
@@ -241,11 +243,11 @@ p
 .branding
   background: white
   padding: 1rem 0
+  position: -webkit-sticky
   position: sticky
-  top: 0
+  top: -0.1rem // To not show 1px of text at top of screen on Chrome.
   width: 100%
   z-index: 1
-  -webkit-transform: translateZ(0); // Hack to fix bouncy fixed element in Chrome.
 .logo
   margin: 0 auto
   overflow: hidden

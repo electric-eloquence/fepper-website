@@ -52,7 +52,6 @@ html {
   font-size: 10px;
 }
 body {
-  background: #fff;
   font: 1.6em/1.5 "Fira Sans", sans-serif;
   min-width: 320px;
   min-height: 100vh;
@@ -147,10 +146,12 @@ p {
   overflow: hidden;
 }
 .video {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   width: 100%;
   height: 33.333333333333336vw;
+  z-index: -1;
 }
 .video__bg {
   background: #000;
@@ -411,11 +412,11 @@ p {
 .branding {
   background: #fff;
   padding: 1rem 0;
+  position: -webkit-sticky;
   position: sticky;
-  top: 0;
+  top: -0.1rem;
   width: 100%;
   z-index: 1;
-  -webkit-transform: translateZ(0);
 }
 .logo {
   margin: 0 auto;

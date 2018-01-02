@@ -191,14 +191,14 @@ var actionsGet = (app, root) => {
   return {
     bgColorReveal: () => {
       const brandingState = $orgs['#branding'].getState();
-      const paneOrg = $orgs['.main__content__pane'];
-      const panesLength = paneOrg.getState().$members.length;
+      const panesOrg = $orgs['.content__pane'];
+      const panesLength = panesOrg.getState().$members.length;
       const windowState = $orgs.window.getState();
 
       let paneState;
 
       for (let i = 1; i < panesLength; i += 2) {
-        paneState = paneOrg.getState(i);
+        paneState = panesOrg.getState(i);
 
         if (
           paneState.boundingClientRect.top < windowState.height &&
@@ -240,14 +240,14 @@ var actionsGet = (app, root) => {
           alpha = alpha / (windowState.height - brandingState.innerHeight);
           alpha = (alpha * alpha) / 10;
 
-          $orgs['.main__content__pane']
+          $orgs['.content__pane']
             .dispatchAction('css', {'background-color': `rgba(${red}, ${green}, ${blue}, ${alpha})`}, i);
         }
 
         // Only need this else case for testing. The pane should be out of view.
         else if (paneState.boundingClientRect.top >= windowState.height) {
           if (paneState.style['background-color'] !== 'transparent') {
-            $orgs['.main__content__pane'].dispatchAction('css', {'background-color': 'transparent'}, i);
+            $orgs['.content__pane'].dispatchAction('css', {'background-color': 'transparent'}, i);
           }
         }
       }
@@ -280,12 +280,12 @@ var actionsGet = (app, root) => {
     },
 
     mainContentSlideIn: () => {
-      const panesOrg = $orgs['.main__content__pane'];
-      const slidersOrg = $orgs['.main__content__slider'];
+      const panesOrg = $orgs['.content__pane'];
+      const slidersOrg = $orgs['.content__slider'];
       const panesCount = panesOrg.getState().$members.length;
 
       for (let i = panesCount - 1; i >= 0; i--) {
-        if (slidersOrg.$members[i].hasClass('main__content__slid')) {
+        if (slidersOrg.$members[i].hasClass('content__slid')) {
           break;
         }
 
@@ -294,18 +294,18 @@ var actionsGet = (app, root) => {
         const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
         if (paneDistanceToBottom > mainContentTranslateY) {
-          slidersOrg.dispatchAction('addClass', 'main__content__slid', i);
+          slidersOrg.dispatchAction('addClass', 'content__slid', i);
         }
       }
     },
 
     mainContentSlideOut: () => {
-      const panesOrg = $orgs['.main__content__pane'];
-      const slidersOrg = $orgs['.main__content__slider'];
+      const panesOrg = $orgs['.content__pane'];
+      const slidersOrg = $orgs['.content__slider'];
       const panesCount = panesOrg.getState().$members.length;
 
       for (let i = 0; i < panesCount; i++) {
-        if (!slidersOrg.$members[i].hasClass('main__content__slid')) {
+        if (!slidersOrg.$members[i].hasClass('content__slid')) {
           break;
         }
 
@@ -314,7 +314,7 @@ var actionsGet = (app, root) => {
         const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
         if (paneDistanceToBottom <= mainContentTranslateY) {
-          slidersOrg.dispatchAction('removeClass', 'main__content__slid', i);
+          slidersOrg.dispatchAction('removeClass', 'content__slid', i);
         }
       }
     },
@@ -322,8 +322,8 @@ var actionsGet = (app, root) => {
     updateDims: () => {
       $orgs.window.getState();
 
-      const blocksOrg = $orgs['.main__content__block'];
-      const panesOrg = $orgs['.main__content__pane'];
+      const blocksOrg = $orgs['.content__block'];
+      const panesOrg = $orgs['.content__pane'];
       const panesCount = panesOrg.getState().$members.length;
 
       for (let i = 0; i < panesCount; i++) {
@@ -342,7 +342,7 @@ var actionsGet = (app, root) => {
     videoPromise: videoPromise,
 
     videoRender: async (logicalImages) => {
-      const videoImgsOrg = $orgs['.video-head__img'];
+      const videoImgsOrg = $orgs['.video__img'];
       const videoPlay = videoPromise(logicalImages, videoImgsOrg, 13000);
 
       for (let i = 0; i < videoPlay.length; i++) {
@@ -373,12 +373,12 @@ var actionsGet = (app, root) => {
 var $organisms = {
   'window': null,
   '#html': null,
-  '.video-head__img': null,
+  '.video__img': null,
   '#branding': null,
   '#logoBg': null,
-  '.main__content__pane': null,
-  '.main__content__block': null,
-  '.main__content__slider': null
+  '.content__pane': null,
+  '.content__block': null,
+  '.content__slider': null
 };
 
 var bundleNode = {

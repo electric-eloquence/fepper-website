@@ -4,9 +4,9 @@ const expect = require('chai').expect;
 
 const app = require('../init.js');
 const $orgs = app.$orgs;
-const panesOrg = $orgs['.main__content__pane'];
+const panesOrg = $orgs['.content__pane'];
 const panesCount = panesOrg.getState().$members.length;
-const slidersOrg = $orgs['.main__content__slider'];
+const slidersOrg = $orgs['.content__slider'];
 
 function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHeightsBefore) {
   before(function () {
@@ -18,7 +18,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
   });
 
   it('updates the height of pane 0 to the sum of the innerHeights of block 0 and block 1', function () {
-    const paneHeight = $orgs['.main__content__pane'].getState(0).style.height;
+    const paneHeight = $orgs['.content__pane'].getState(0).style.height;
 
     expect(paneHeight).to.equal(`${blockHeight * 2 / 10}rem`);
 
@@ -29,7 +29,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 
   for (let i = 1; i < panesCount; i++) {
     it(`updates the height of pane ${i} to the innerHeight of block ${i + 1}`, function () {
-      const paneHeight = $orgs['.main__content__pane'].getState(i).style.height;
+      const paneHeight = $orgs['.content__pane'].getState(i).style.height;
 
       expect(paneHeight).to.equal(`${blockHeight / 10}rem`);
 
@@ -43,7 +43,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 describe('Fepper website', function () {
   describe('bgColorReveal', function () {
     describe('adds background-color', function () {
-      it('to .main__content__pane[1] when it is scrolled within viewport', function () {
+      it('to .content__pane[1] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(500);
         app.actions.bgColorReveal();
@@ -55,7 +55,7 @@ describe('Fepper website', function () {
         expect(contentPaneState.style['background-color']).to.include('rgba(2, 125, 21');
       });
 
-      it('to .main__content__pane[3] when it is scrolled within viewport', function () {
+      it('to .content__pane[3] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(900);
         app.actions.bgColorReveal();
@@ -67,7 +67,7 @@ describe('Fepper website', function () {
         expect(contentPaneState.style['background-color']).to.include('rgba(240, 192, 0');
       });
 
-      it('to .main__content__pane[5] when it is scrolled within viewport', function () {
+      it('to .content__pane[5] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(1300);
         app.actions.bgColorReveal();
@@ -86,7 +86,7 @@ describe('Fepper website', function () {
         app.actions.bgColorReveal();
       });
 
-      it('from .main__content__pane[1] when it is scrolled beyond viewport', function () {
+      it('from .content__pane[1] when it is scrolled beyond viewport', function () {
         // Get Results.
         const contentPaneState = panesOrg.getState(1);
 
@@ -94,7 +94,7 @@ describe('Fepper website', function () {
         expect(contentPaneState.style['background-color']).to.equal('transparent');
       });
 
-      it('from .main__content__pane[3] when it is scrolled beyond viewport', function () {
+      it('from .content__pane[3] when it is scrolled beyond viewport', function () {
         // Get Results.
         const contentPaneState = panesOrg.getState(3);
 
@@ -102,7 +102,7 @@ describe('Fepper website', function () {
         expect(contentPaneState.style['background-color']).to.equal('transparent');
       });
 
-      it('from .main__content__pane[5] when it is scrolled beyond viewport', function () {
+      it('from .content__pane[5] when it is scrolled beyond viewport', function () {
         // Get Results.
         const contentPaneState = panesOrg.getState(5);
 
@@ -161,7 +161,7 @@ describe('Fepper website', function () {
         const sliderClasses = slidersOrg.getState(i).classArray;
 
         // Assert.
-        expect(sliderClasses).to.include('main__content__slid');
+        expect(sliderClasses).to.include('content__slid');
       };
     }
 
@@ -169,7 +169,7 @@ describe('Fepper website', function () {
 
     for (let i = 0; i < panesCount; i++) {
       it(
-        `.main__content__slider[${i}] has class "main__content__slid" when window is scrolled ${scrollDistance}`,
+        `.content__slider[${i}] has class "content__slid" when window is scrolled ${scrollDistance}`,
         mainContentSlideInClosure(i, scrollDistance)
       );
 
@@ -188,7 +188,7 @@ describe('Fepper website', function () {
         const sliderClasses = slidersOrg.getState(i).classArray;
 
         // Assert.
-        expect(sliderClasses).to.not.include('main__content__slid');
+        expect(sliderClasses).to.not.include('content__slid');
       };
     }
 
@@ -197,7 +197,7 @@ describe('Fepper website', function () {
     for (let i = panesCount - 1; i >= 1; i--) {
       it(
         // eslint-disable-next-line max-len
-        `.main__content__slider[${i}] does not have class "main__content__slid" when window is scrolled ${scrollDistance}`,
+        `.content__slider[${i}] does not have class "content__slid" when window is scrolled ${scrollDistance}`,
         mainContentSlideOutClosure(i, scrollDistance)
       );
 
@@ -206,7 +206,7 @@ describe('Fepper website', function () {
   });
 
   describe('updateDims', function () {
-    const blocksOrg = $orgs['.main__content__block'];
+    const blocksOrg = $orgs['.content__block'];
     const blocksCount = blocksOrg.getState().$members.length;
     const paneHeightsBefore = [];
 
@@ -223,7 +223,7 @@ describe('Fepper website', function () {
 
       for (let i = 0; i < panesCount; i++) {
         it(`updates pane ${i} with a height different from its original height`, function () {
-          const paneHeightAfter = $orgs['.main__content__pane'].getState(i).style.height;
+          const paneHeightAfter = $orgs['.content__pane'].getState(i).style.height;
 
           expect(paneHeightAfter).to.not.equal(paneHeightsBefore[i]);
         });
@@ -240,13 +240,13 @@ describe('Fepper website', function () {
       '07': new Image(),
       '08': new Image()
     };
-    const videoImgsOrg = $orgs['.video-head__img'];
+    const videoImgsOrg = $orgs['.video__img'];
     const videoPlay = app.actions.videoPromise(logicalImages, videoImgsOrg, 0);
 
     function imageHideClosure(j) {
       return function () {
         // Get results.
-        const videoImgDisplay = $orgs['.video-head__img'].getState(j).style.display;
+        const videoImgDisplay = $orgs['.video__img'].getState(j).style.display;
 
         // Assert.
         expect(videoImgDisplay).to.equal('none');
@@ -256,7 +256,7 @@ describe('Fepper website', function () {
     function imageKillClosure(j) {
       return function () {
         // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(j).attribs.src;
+        const videoImgSrc = $orgs['.video__img'].getState(j).attribs.src;
 
         // Assert.
         expect(videoImgSrc).to.equal('#');
@@ -266,7 +266,7 @@ describe('Fepper website', function () {
     function imageSourceTest(j, key) {
       it(`videoImgsOrg member ${j} has src === logicalImages['${key}'].src`, function () {
         // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(j).attribs.src;
+        const videoImgSrc = $orgs['.video__img'].getState(j).attribs.src;
 
         // Assert.
         expect(videoImgSrc).to.equal(logicalImages[key].src);
@@ -308,7 +308,7 @@ describe('Fepper website', function () {
 
       it('videoImgsOrg member 3 has src === logicalImages[\'03\'].src', function () {
         // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(3).attribs.src;
+        const videoImgSrc = $orgs['.video__img'].getState(3).attribs.src;
 
         // Assert.
         expect(videoImgSrc).to.equal(logicalImages['03'].src);
@@ -316,7 +316,7 @@ describe('Fepper website', function () {
 
       it('videoImgsOrg member 4 has src === logicalImages[\'04\'].src', function () {
         // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(4).attribs.src;
+        const videoImgSrc = $orgs['.video__img'].getState(4).attribs.src;
 
         // Assert.
         expect(videoImgSrc).to.equal(logicalImages['04'].src);
@@ -324,7 +324,7 @@ describe('Fepper website', function () {
 
       it('videoImgsOrg member 5 has src === logicalImages[\'05\'].src', function () {
         // Get results.
-        const videoImgSrc = $orgs['.video-head__img'].getState(5).attribs.src;
+        const videoImgSrc = $orgs['.video__img'].getState(5).attribs.src;
 
         // Assert.
         expect(videoImgSrc).to.equal(logicalImages['05'].src);

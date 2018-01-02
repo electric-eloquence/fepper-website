@@ -29,7 +29,7 @@ const requerio = new Requerio($, Redux, $organisms, actionsGet);
 requerio.init();
 
 // Prep for $window.scrollTop override.
-const panesOrg = requerio.$orgs['.main__content__pane'];
+const panesOrg = requerio.$orgs['.content__pane'];
 const panesCount = panesOrg.getState().$members.length;
 
 const beforePanesHeight = 600;

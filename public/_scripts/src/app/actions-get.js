@@ -20,14 +20,14 @@ export default (app, root) => {
   return {
     bgColorReveal: () => {
       const brandingState = $orgs['#branding'].getState();
-      const paneOrg = $orgs['.content__pane'];
-      const panesLength = paneOrg.getState().$members.length;
+      const panesOrg = $orgs['.content__pane'];
+      const panesLength = panesOrg.getState().$members.length;
       const windowState = $orgs.window.getState();
 
       let paneState;
 
       for (let i = 1; i < panesLength; i += 2) {
-        paneState = paneOrg.getState(i);
+        paneState = panesOrg.getState(i);
 
         if (
           paneState.boundingClientRect.top < windowState.height &&

@@ -104,8 +104,6 @@ export default (app, root) => {
       // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
 
-      // Adapt GitHub link per query string.
-
       // Content should be hidden on page load. Reveal after initial transformation.
       setTimeout(() => {
         $orgs['.hider'].dispatchAction('css', {display: 'none'});

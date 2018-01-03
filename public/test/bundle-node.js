@@ -253,10 +253,29 @@ var actionsGet = (app, root) => {
       }
     },
 
+    gitHubHrefAdapt: (project) => {
+      const hrefBase = 'https://github.com/electric-eloquence/fepper';
+
+      let hrefDownload = hrefBase;
+      let hrefReadme = hrefBase;
+
+      switch (project) {
+        case 'drupal':
+        case 'wordpress':
+          hrefDownload += `-${project}/releases/latest`;
+          hrefReadme += `-${project}#readme`;
+
+          $orgs['.link-github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
+          $orgs['.link-github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
+      }
+    },
+
     init: () => {
       // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
       // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
+
+      // Adapt GitHub link per query string.
 
       // Content should be hidden on page load. Reveal after initial transformation.
       setTimeout(() => {
@@ -386,7 +405,9 @@ var $organisms = {
   '.content__pane': null,
   '.content__block': null,
   '.content__slider': null,
-  '.hider': null
+  '.hider': null,
+  '.link-github__anchor--download': null,
+  '.link-github__anchor--readme': null
 };
 
 var bundleNode = {

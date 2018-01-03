@@ -500,7 +500,7 @@ p {
 }
 .bottom {
   background: #fff;
-  padding-top: calc(100vh - 8rem - 200px - (2 * 1rem));
+  padding-top: calc(100vh - 8rem - 200px - (2 * 1rem) - 15.6rem);
   position: relative;
 }
 .footer {

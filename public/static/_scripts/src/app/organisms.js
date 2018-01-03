@@ -12,5 +12,7 @@ export default {
   '.content__pane': null,
   '.content__block': null,
   '.content__slider': null,
-  '.hider': null
+  '.hider': null,
+  '.link-github__anchor--download': null,
+  '.link-github__anchor--readme': null
 };

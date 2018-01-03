@@ -104,7 +104,7 @@ export default (app, root) => {
       // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
 
-      // Content should be hidden on page load. Reveal after initial transformation.
+      // Content should be hidden on page load. Reveal after initial CSS transformation.
       setTimeout(() => {
         $orgs['.hider'].dispatchAction('css', {display: 'none'});
       }, 500);

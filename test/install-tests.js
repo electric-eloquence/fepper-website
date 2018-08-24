@@ -24,19 +24,11 @@ describe('Installer', function () {
     expect(fs.existsSync('extend')).to.equal(true);
   });
 
-  it('should install npms in /extend', function () {
-    expect(fs.existsSync('extend/node_modules')).to.equal(true);
-  });
-
   it('should install npms in /public', function () {
     expect(fs.existsSync('public/node_modules')).to.equal(true);
   });
 
   it('should compile index.mustache to /node_modules/fepper/ui/core/styleguide/', function () {
     expect(fs.existsSync('node_modules/fepper/ui/core/styleguide/index.mustache')).to.equal(true);
-  });
-
-  it('should compile styleguide.html to /public/node_modules/fepper-ui/', function () {
-    expect(fs.existsSync('public/node_modules/fepper-ui/styleguide.html')).to.equal(true);
   });
 });

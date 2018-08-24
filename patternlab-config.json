@@ -38,36 +38,30 @@
   },
   "cacheBust": false,
   "cleanPublic": true,
-  "compileUiOnEveryBuild": false,
   "debug": false,
   "defaultPattern": "pages-homepage",
   "defaultShowPatternInfo": false,
-  "ignored-extensions": ["yml"],
-  "ignored-directories": [],
+  "frontMatterExtension": ".md",
   "ishControlsHide": {
+    "grow": false,
     "random": true,
     "disco": true,
-    "hay": true,
-    "mqs": true,
     "find": false,
     "views-all": false,
     "views-annotations": false,
     "views-code": false,
     "views-new": false,
     "tools-all": false,
-    "tools-shortcuts": true,
-    "tools-docs": false
+    "tools-fpdocs": false,
+    "tools-docs": false,
+    "tools-shortcuts": false
   },
   "ishMinimum": "240",
   "ishMaximum": "2600",
-  "outputFileSuffixes": {
-    "markupOnly": ".markup-only",
-    "rawTemplate": "",
-    "rendered": ""
-  },
   "patternExportDirectory": "pattern_exports",
-  "patternExportPatternPartials": [],
-  "patternExtension": "mustache",
+  "patternExportPatternPartials": [
+  ],
+  "patternExtension": ".mustache",
   "styleGuideExcludes": [
   ]
 }

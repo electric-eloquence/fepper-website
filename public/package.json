@@ -1,21 +1,17 @@
 {
-  "description": "The Fepper UI",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/electric-eloquence/fepper-ui.git"
-  },
-  "license": "MIT",
-  "dependencies": {
+  "description": "Fepper public directory",
+  "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "fepper-ui": "*",
+    "fepper-ui": "^0.3.2",
     "he": "1.1.0",
     "hogan.js": "3.0.2",
-    "jquery": "^3.2.1",
+    "jquery": "3.3.1",
+    "jquery.cookie": "1.4.1",
     "js-beautify": "1.6.4",
-    "jwerty": "0.3.2",
+    "mousetrap": "1.6.2",
     "prismjs": "1.5.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
     "redux": "^3.7.2",
     "requerio": "^0.3.0",
     "typeahead.js": "0.10.5",

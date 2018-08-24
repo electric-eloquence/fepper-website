@@ -1,19 +1,11 @@
-/* eslint-disable no-console */
 'use strict';
 
 const spawnSync = require('child_process').spawnSync;
 const fs = require('fs');
 const path = require('path');
 
-// Return if node_modules is already installed. (Avoid infinite loops!)
-if (fs.existsSync('node_modules')) {
-  console.warn('Fepper is already installed! Aborting!');
-
-  return;
-}
-
-// Else, run npm install.
-else {
+// Only run npm install if not already installed.
+if (!fs.existsSync('node_modules')) {
   let binNpm = 'npm';
 
   // Spawn npm.cmd if Windows and not BASH.

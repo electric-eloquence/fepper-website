@@ -11,7 +11,7 @@ gulp.task('contrib:data', [
 
 gulp.task('contrib:frontend-copy', [
 // Uncomment if you wish to enable this.
-//  'stylus:frontend-copy'
+  'stylus:frontend-copy'
 ]);
 
 gulp.task('contrib:once', [

@@ -1,13 +1,13 @@
 {
+  "version": "0.5.2",
   "description": "Fepper: a Front End Prototyper tool for rapid prototyping of web sites",
   "scripts": {
     "install-base": "node run/install-base.js",
     "install-windows": "node run/install-windows.js",
     "postinstall": "node run/install.js",
-    "prepush": "fp test:public",
     "test": "npm run test-eslint && npm run test-mocha",
-    "test-eslint": "./node_modules/.bin/eslint run && ./node_modules/.bin/eslint test",
-    "test-mocha": "./node_modules/.bin/mocha test/install-tests.js",
+    "test-eslint": "npx eslint run && npx eslint test",
+    "test-mocha": "npx mocha test/install-tests.js && npx mocha test/install-extension-tests.js",
     "update": "node run/update.js"
   },
   "repository": {
@@ -39,23 +39,11 @@
     "node": ">=8.5.0"
   },
   "devDependencies": {
-    "body-parser": "^1.6.3",
-    "chai": "4.x",
-    "eslint": "3.x",
-    "express": "^4.8.3",
-    "fepper": "*",
-    "fs-extra": "^0.22.1",
+    "fepper": "^0.26.3",
+    "fs-extra": "^7.0.0",
     "gulp": "3.9.1",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-refresh": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "he": "1.1.0",
-    "html2json": "^1.0.2",
-    "husky": "^0.14.3",
-    "js-yaml": "^3.2.7",
-    "mocha": "3.x",
-    "open": "~0.0.5",
-    "request": "^2.40.0",
+    "js-yaml": "^3.12.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.2"
   }

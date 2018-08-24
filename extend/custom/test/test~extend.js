@@ -7,16 +7,16 @@ const gulp = require('gulp');
 const rollup = require('rollup-stream');
 const runSequence = require('run-sequence');
 const source = require('vinyl-source-stream');
+const utils = require('fepper-utils');
 
 const appDir = global.appDir;
 const conf = global.conf;
 
-const utils = require(`${appDir}/core/lib/utils`);
 
-const jsSrcDir = utils.pathResolve(conf.ui.paths.source.jsSrc);
-const packageJson = path.resolve(utils.pathResolve(conf.extend_dir), 'package.json');
-const patternsPubDir = utils.pathResolve(conf.ui.paths.public.patterns);
-const testDir = path.resolve(utils.pathResolve(conf.ui.paths.public.root), 'test');
+const jsSrcDir = conf.ui.paths.source.jsSrc;
+const packageJson = path.resolve(conf.extend_dir, 'package.json');
+const patternsPubDir = conf.ui.paths.public.patterns;
+const testDir = path.resolve(conf.ui.paths.public.root, 'test');
 
 const plugins = require('gulp-load-plugins')({config: packageJson});
 

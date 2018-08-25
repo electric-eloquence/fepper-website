@@ -431,11 +431,11 @@ p {
   }
 }
 .logo__bg {
-  background: linear-gradient(to left, #027d15, #027d15 20%, #f0c000 40%, #f0c000 60%, #d00000 80%, #d00000);
+  background: linear-gradient(to right, #027d15, #027d15 10%, #c8b512 32.5%, #f0c000 42.5%, #f0c000 57.5%, #d5a012 67.5%, #d00000 90%, #d00000);
   position: absolute;
   top: 0;
-  right: 0;
-  width: 150rem;
+  right: -900%;
+  width: 300rem;
   height: 100%;
 }
 .logo__img {

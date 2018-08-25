@@ -36,8 +36,8 @@
       "styleguide": "public/node_modules/fepper-ui"
     }
   },
-  "cacheBust": false,
-  "cleanPublic": true,
+  "cacheBust": true,
+  "cleanPublic": false,
   "debug": false,
   "defaultPattern": "pages-homepage",
   "defaultShowPatternInfo": false,

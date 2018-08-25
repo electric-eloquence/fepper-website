@@ -6,7 +6,7 @@ cd $root_dir
 
 # Check if Node.js is installed. Install if it isn't.
 has_node=`which node`
-node_version="v8.8.1"
+node_version="v8.11.4"
 node_msi="node-${node_version}.pkg"
 
 if [[ $has_node != *bin/node ]]; then
@@ -24,6 +24,12 @@ fi
 has_fp=`which fp`
 if [[ $has_fp != *bin/fp ]]; then
   npm install -g fepper-cli
+
+  if [[ $? != 0 ]]; then
+    echo
+    echo Running this command again as root/Administrator...
+    sudo npm install -g fepper-cli
+  fi
 fi
 
 # Check for mandatory files and dirs. Run installer if missing.

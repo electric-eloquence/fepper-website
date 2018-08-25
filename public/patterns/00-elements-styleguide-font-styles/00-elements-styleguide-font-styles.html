@@ -13,81 +13,96 @@
   <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
 <link rel="stylesheet" href="../../node_modules/fepper-ui/styles/styleguide.css" media="all">
 <link rel="stylesheet" href="../../node_modules/fepper-ui/styles/prism-typeahead.css" media="all">
+<script src="../../node_modules/mousetrap/mousetrap.min.js"></script>
 <!-- End Pattern Lab -->
 
 
   <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css" media="all">
-  <link rel="stylesheet" href="../../_styles/bld/style.css" media="all">
+    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css?1535199030914" media="all">
+  <link rel="stylesheet" href="../../_styles/bld/style.css?1535199030914" media="all">
     <script src="../../node_modules/redux/dist/redux.min.js"></script>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/requerio/src/requerio.js" type="module"></script>
-  <script src="../../_scripts/src/app/module-support-check.js" type="module"></script>
+    <script src="../../node_modules/requerio/src/requerio.js?1535199030914" type="module"></script>
+  <script src="../../_scripts/src/app/module-support-check.js?1535199030914" type="module"></script>
 </head>
 <body id="body" class="">
-<div>font-style: normal;</div> <div style="font-style: italic;">font-style: italic;</div> <div style="font-style: oblique;">font-style: oblique;</div> <div><em>&lt;em&gt;Emphasis tag&lt;/em&gt;</em></div> <div><i>&lt;i&gt;Italic tag&lt;/i&gt;</i></div>
+<div>font-style: normal;</div>
+<div style="font-style: italic;">font-style: italic;</div>
+<div style="font-style: oblique;">font-style: oblique;</div>
+<div><em>&lt;em&gt;Emphasis tag&lt;/em&gt;</em></div>
+<div><i>&lt;i&gt;Italic tag&lt;/i&gt;</i></div>
+
 <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
 <script type="text/json" id="sg-pattern-data-footer" class="sg-pattern-data">
-  {"cssEnabled":false,"patternLineageExists":false,"patternLineages":[],"lineage":[],"patternLineageRExists":false,"patternLineagesR":[],"lineageR":[],"patternLineageEExists":false,"patternDesc":"","patternBreadcrumb":{"patternType":"elements","patternSubtype":"styleguide"},"patternExtension":"mustache","patternName":"Font Styles","patternPartial":"elements-font-styles","patternState":"","extraOutput":{}}
+  {"lineage":[],"lineageExists":false,"lineageR":[],"lineageRExists":false,"patternDesc":"","patternExtension":".mustache","patternName":"Font Styles","patternPartial":"elements-font-styles","patternState":""}
 </script>
 
 <script>
-  /*!
-   * scriptLoader - v0.1
+  // Handle injection of items from Node.
+  window.lineage = [];
+  window.lineageR = [];
+  window.patternPartial = "elements-font-styles";
+  window.patternState = "";
+  window.portReloader = 35729;
+  window.portServer = 3000;
+</script>
+
+<script>
+  /**
+   * Script Loader.
    *
    * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
-   * Licensed under the MIT license
-   *
+   * Licensed under the MIT license.
    */
-  
-  var scriptLoader = {
-    
-    run: function(js,cb,target) {
-      var s  = document.getElementById(target+'-'+cb);
-      for (var i = 0; i < js.length; i++) {
-        var src = (typeof js[i] != 'string') ? js[i].src : js[i];
-        var c   = document.createElement('script');
-        c.src   = '../../'+src+'?'+cb;
-        if (typeof js[i] != 'string') {
-          if (js[i].dep !== undefined) {
-            c.onload = function(dep,cb,target) {
-              return function() {
-                scriptLoader.run(dep,cb,target);
-              }
-            }(js[i].dep,cb,target);
+  const scriptLoader = {
+    run: (js, cb, target) => {
+      const s = document.getElementById(target);
+
+      for (let i = 0, l = js.length; i < l; i++) {
+        const src = (typeof js[i] !== 'string') ? js[i].src : js[i];
+        const c = document.createElement('script');
+        c.src = '../../' + src + cb;
+
+        if (typeof js[i] !== 'string') {
+          if (typeof js[i].dep !== 'undefined') {
+            c.onload = ((dep, cb, target) => {
+              return () => {
+                scriptLoader.run(dep, cb, target);
+              };
+            })(js[i].dep, cb, target);
           }
         }
-        s.parentNode.insertBefore(c,s);
+        s.parentNode.insertBefore(c, s);
       }
     }
-    
   }
 </script>
 
-<script>
-  // handle injection of items from Node
-  var patternPartial = "elements-font-styles";
-  var lineage = [];
-  var lineageR = [];
-  var patternState = "";
-  var cssEnabled = false;
-  var portReloader = 35735;
-  var portServer = 3006;
-</script>
+<script id="pl-js-insert">
+  /**
+   * Use scriptLoader to insert ui-functions.js and its dependents.
+   */
+  (() => {
+    'use strict';
 
-<script id="pl-js-insert-">
-  (function() {
-    if (self != top) {
-      var cb = '';
-      var js = [ { 'src': 'node_modules/jwerty/jwerty.js', 'dep': [ 'node_modules/fepper-ui/scripts/patternlab-pattern.js' ] } ];
-      scriptLoader.run(js,cb,'pl-js-insert');
+    if (self !== top) {
+      const cb = '?1535199030914';
+      const js = [
+        {
+          'src': 'node_modules/fepper-ui/scripts/ui-functions.js',
+          'dep': [
+            'node_modules/fepper-ui/scripts/patternlab-pattern.js',
+            'node_modules/fepper-ui/scripts/postmessage.js'
+          ]
+        }
+      ];
+
+      scriptLoader.run(js, cb, 'pl-js-insert');
     }
   })();
 </script>
 
-<script src="../../node_modules/jwerty/jwerty.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/postmessage.js"></script>
-<script src="../../annotations/annotations.js"></script>
+<script src="../../annotations/annotations.js?1535199030914"></script>
 <script src="../../node_modules/fepper-ui/scripts/annotations-pattern.js"></script>
 <script src="../../node_modules/fepper-ui/scripts/code-pattern.js"></script>
 <script src="../../node_modules/fepper-ui/scripts/mustache-browser.js"></script>
@@ -95,8 +110,8 @@
 <!-- End Pattern Lab -->
 
 
-  <script src="../../_scripts/src/variables.styl" type="text/javascript"></script>
-  <script src="../../_scripts/src/fepper-obj.js"></script>
+  <script src="../../_scripts/src/variables.styl?1535199030914" type="text/javascript"></script>
+  <script src="../../_scripts/src/fepper-obj.js?1535199030914"></script>
   <script src="../../_scripts/src/index.js" type="module"></script>
 </body>
 </html>

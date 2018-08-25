@@ -1,12 +1,14 @@
-!/public/package-lock.json
 !/public/package.json
-!/public/static/node_modules/
+!/source/_static/node_modules/
 .*.swp
 .DS_Store
 .publish/
+/.timestamp
 /conf.yml
 /install.log
 /npm-debug.log
-/public/index.html
+/package-lock.json
+/public/*
+/source/
 ignore/
 node_modules/

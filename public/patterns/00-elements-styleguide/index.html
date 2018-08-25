@@ -13,16 +13,17 @@
   <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
 <link rel="stylesheet" href="../../node_modules/fepper-ui/styles/styleguide.css" media="all">
 <link rel="stylesheet" href="../../node_modules/fepper-ui/styles/prism-typeahead.css" media="all">
+<script src="../../node_modules/mousetrap/mousetrap.min.js"></script>
 <!-- End Pattern Lab -->
 
 
   <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css" media="all">
-  <link rel="stylesheet" href="../../_styles/bld/style.css" media="all">
+    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css?1535199030914" media="all">
+  <link rel="stylesheet" href="../../_styles/bld/style.css?1535199030914" media="all">
     <script src="../../node_modules/redux/dist/redux.min.js"></script>
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/requerio/src/requerio.js" type="module"></script>
-  <script src="../../_scripts/src/app/module-support-check.js" type="module"></script>
+    <script src="../../node_modules/requerio/src/requerio.js?1535199030914" type="module"></script>
+  <script src="../../_scripts/src/app/module-support-check.js?1535199030914" type="module"></script>
 </head>
 <body id="body" class="">
 <!-- View All Patterns in a Pattern Sub-Type -->
@@ -52,7 +53,7 @@
             
           </div>
           <div class="sg-pattern-example">
-            <!-- Keeping these styles specific to this file because we don't need them in the app. --> <style>  .colors {    display: table;  }  .colors__row {    display: table-row;  }  .colors__cell {    display: table-cell;    padding: 0 0.3rem  }  .colors__cell:last-child {    width: 5rem;  } </style> <div class="colors"> <div class="colors__row"> <div class="colors__cell">black less contrast:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--black-less-contrast"></div> </div> <div class="colors__row"> <div class="colors__cell">green fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--green-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">yellow fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--yellow-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">red fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--red-fepper"></div> </div> </div> <script>  function decToHex(dec) {    const hex = dec.toString(16);    return hex.length == 1 ? '0' + hex : hex;  }  function rgbToHex(rgb) {    const rgbStr = rgb.slice(rgb.indexOf('(') + 1, -1);    const rgbArr = rgbStr.split(',');    let hex = '#';    rgbArr.forEach(dec => {      hex += decToHex(parseInt(dec, 10));    });    return hex;  }  const rows = document.querySelectorAll('.colors__row');  for (let i = 0; i < rows.length; i++) {    const colorCell = rows[i].querySelector('.colors__cell:last-child');    const colorRgb = window.getComputedStyle(colorCell, null).getPropertyValue('background-color');    const colorHex = rgbToHex(colorRgb);    const cells = rows[i].children;    cells[1].innerHTML = colorHex;    cells[2].innerHTML = colorRgb;  } </script>
+            
           </div>
           <script type="text/json" id="sg-pattern-data-elements-colors" class="sg-pattern-data">
             
@@ -72,7 +73,7 @@
             
           </div>
           <div class="sg-pattern-example">
-            <div>font-style: normal;</div> <div style="font-style: italic;">font-style: italic;</div> <div style="font-style: oblique;">font-style: oblique;</div> <div><em>&lt;em&gt;Emphasis tag&lt;/em&gt;</em></div> <div><i>&lt;i&gt;Italic tag&lt;/i&gt;</i></div>
+            
           </div>
           <script type="text/json" id="sg-pattern-data-elements-font-styles" class="sg-pattern-data">
             
@@ -92,7 +93,7 @@
             
           </div>
           <div class="sg-pattern-example">
-            <div style="font-weight: 100;">font-weight: 100;</div> <div style="font-weight: 200;">font-weight: 200;</div> <div style="font-weight: 300;">font-weight: 300;</div> <div style="font-weight: 400;">font-weight: 400;</div> <div style="font-weight: 500;">font-weight: 500;</div> <div style="font-weight: 600;">font-weight: 600;</div> <div style="font-weight: 700;">font-weight: 700;</div> <div style="font-weight: 800;">font-weight: 800;</div> <div style="font-weight: 900;">font-weight: 900;</div>
+            
           </div>
           <script type="text/json" id="sg-pattern-data-elements-font-weights" class="sg-pattern-data">
             
@@ -112,7 +113,7 @@
             
           </div>
           <div class="sg-pattern-example">
-            <h1>&lt;h1&gt;Heading&lt;/h1&gt;</h1> <h2>&lt;h2&gt;Heading&lt;/h2&gt;</h2> <h3>&lt;h3&gt;Heading&lt;/h3&gt;</h3> <h4>&lt;h4&gt;Heading&lt;/h4&gt;</h4> <h5>&lt;h5&gt;Heading&lt;/h5&gt;</h5> <h6>&lt;h6&gt;Heading&lt;/h6&gt;</h6>
+            
           </div>
           <script type="text/json" id="sg-pattern-data-elements-headings" class="sg-pattern-data">
             
@@ -128,62 +129,71 @@
 </script>
 
 <script>
-  /*!
-   * scriptLoader - v0.1
-   *
-   * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
-   * Licensed under the MIT license
-   *
-   */
+  // Handle injection of items from Node.
   
-  var scriptLoader = {
-    
-    run: function(js,cb,target) {
-      var s  = document.getElementById(target+'-'+cb);
-      for (var i = 0; i < js.length; i++) {
-        var src = (typeof js[i] != 'string') ? js[i].src : js[i];
-        var c   = document.createElement('script');
-        c.src   = '../../'+src+'?'+cb;
-        if (typeof js[i] != 'string') {
-          if (js[i].dep !== undefined) {
-            c.onload = function(dep,cb,target) {
-              return function() {
-                scriptLoader.run(dep,cb,target);
-              }
-            }(js[i].dep,cb,target);
-          }
-        }
-        s.parentNode.insertBefore(c,s);
-      }
-    }
-    
-  }
+  
+  window.patternPartial = "";
+  window.patternState = "";
+  window.portReloader = ;
+  window.portServer = ;
 </script>
 
 <script>
-  // handle injection of items from Node
-  var patternPartial = "";
-  var lineage;
-  var lineageR;
-  var patternState = "";
-  var cssEnabled = false;
-  var portReloader = ;
-  var portServer = ;
+  /**
+   * Script Loader.
+   *
+   * Copyright (c) 2014 Dave Olsen, http://dmolsen.com
+   * Licensed under the MIT license.
+   */
+  const scriptLoader = {
+    run: (js, cb, target) => {
+      const s = document.getElementById(target);
+
+      for (let i = 0, l = js.length; i < l; i++) {
+        const src = (typeof js[i] !== 'string') ? js[i].src : js[i];
+        const c = document.createElement('script');
+        c.src = '../../' + src + cb;
+
+        if (typeof js[i] !== 'string') {
+          if (typeof js[i].dep !== 'undefined') {
+            c.onload = ((dep, cb, target) => {
+              return () => {
+                scriptLoader.run(dep, cb, target);
+              };
+            })(js[i].dep, cb, target);
+          }
+        }
+        s.parentNode.insertBefore(c, s);
+      }
+    }
+  }
 </script>
 
-<script id="pl-js-insert-">
-  (function() {
-    if (self != top) {
-      var cb = '';
-      var js = [ { 'src': 'node_modules/jwerty/jwerty.js', 'dep': [ 'node_modules/fepper-ui/scripts/patternlab-pattern.js' ] } ];
-      scriptLoader.run(js,cb,'pl-js-insert');
+<script id="pl-js-insert">
+  /**
+   * Use scriptLoader to insert ui-functions.js and its dependents.
+   */
+  (() => {
+    'use strict';
+
+    if (self !== top) {
+      const cb = '?1535199030914';
+      const js = [
+        {
+          'src': 'node_modules/fepper-ui/scripts/ui-functions.js',
+          'dep': [
+            'node_modules/fepper-ui/scripts/patternlab-pattern.js',
+            'node_modules/fepper-ui/scripts/postmessage.js'
+          ]
+        }
+      ];
+
+      scriptLoader.run(js, cb, 'pl-js-insert');
     }
   })();
 </script>
 
-<script src="../../node_modules/jwerty/jwerty.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/postmessage.js"></script>
-<script src="../../annotations/annotations.js"></script>
+<script src="../../annotations/annotations.js?1535199030914"></script>
 <script src="../../node_modules/fepper-ui/scripts/annotations-pattern.js"></script>
 <script src="../../node_modules/fepper-ui/scripts/code-pattern.js"></script>
 <script src="../../node_modules/fepper-ui/scripts/mustache-browser.js"></script>
@@ -191,8 +201,8 @@
 <!-- End Pattern Lab -->
 
 
-  <script src="../../_scripts/src/variables.styl" type="text/javascript"></script>
-  <script src="../../_scripts/src/fepper-obj.js"></script>
+  <script src="../../_scripts/src/variables.styl?1535199030914" type="text/javascript"></script>
+  <script src="../../_scripts/src/fepper-obj.js?1535199030914"></script>
   <script src="../../_scripts/src/index.js" type="module"></script>
 </body>
 </html>

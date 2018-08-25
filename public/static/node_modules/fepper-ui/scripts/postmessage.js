@@ -1,112 +1,148 @@
-/*!
- * Basic postMessage Support - v0.1
- *
- * Copyright (c) 2013-2014 Dave Olsen, http://dmolsen.com
- * Licensed under the MIT license
- *
- * Handles the postMessage stuff in the pattern, view-all, and style guide templates.
- *
- */
+((d) => {
+  'use strict';
 
-// alert the iframe parent that the pattern has loaded assuming this view was loaded in an iframe
-if (self != top) {
-	
-	// handle the options that could be sent to the parent window
-	//   - all get path
-	//   - pattern & view all get a pattern partial, styleguide gets all
-	//   - pattern shares lineage
-	var path = window.location.toString();
-	var parts = path.split("?");
-	var options = { "path": parts[0] };
-	options.patternpartial = (patternPartial !== "") ? patternPartial : "all";
-	if (lineage !== "") {
-		options.lineage = lineage;
-	}
-	
-	var targetOrigin = (window.location.protocol == "file:") ? "*" : window.location.protocol+"//"+window.location.host;
-	parent.postMessage(options, targetOrigin);
-	
-	// find all links and add an onclick handler for replacing the iframe address so the history works
-	var aTags = document.getElementsByTagName('a');
-	for (var i = 0; i < aTags.length; i++) {
-		aTags[i].onclick = function(e) {
-			e.preventDefault();
-			var href = this.getAttribute("href");
-			if (href != "#") {
-				window.location.replace(href);
-			}
-		};
-	}
-	
-	// bind the keyboard shortcuts for various viewport resizings + pattern search
-	var keys = [ "s", "m", "l", "d", "h", "f" ];
-	for (var i = 0; i < keys.length; i++) {
-		jwerty.key('ctrl+shift+'+keys[i],  function (k,t) {
-			return function(e) {
-				parent.postMessage({ "keyPress": "ctrl+shift+"+k },t);
-				return false;
-			}
-		}(keys[i],targetOrigin));
-	}
-	
-	// bind the keyboard shortcuts for mqs
-	var i = 0;
-	while (i < 10) {
-		jwerty.key('ctrl+shift+'+i, function (k,t) {
-			return function(e) {
-				var targetOrigin = (window.location.protocol == "file:") ? "*" : window.location.protocol+"//"+window.location.host;
-				parent.postMessage({ "keyPress": "ctrl+shift+"+k },t);
-				return false;
-			}
-		}(i,targetOrigin));
-		i++;
-	}
-	
-}
+  const Mousetrap = window.Mousetrap;
 
-// if there are clicks on the iframe make sure the nav in the iframe parent closes
-var body = document.getElementsByTagName('body');
-body[0].onclick = function() {
-	var targetOrigin = (window.location.protocol == "file:") ? "*" : window.location.protocol+"//"+window.location.host;
-	parent.postMessage({ "bodyclick": "bodyclick" },targetOrigin);
-};
+  const targetOrigin =
+    (window.location.protocol === 'file:') ? '*' : window.location.protocol + '//' + window.location.host;
 
-// watch the iframe source so that it can be sent back to everyone else.
-function receiveIframeMessage(event) {
-	
-	var path;
-	var data = (typeof event.data !== "string") ? event.data : JSON.parse(event.data);
-	
-	// does the origin sending the message match the current host? if not dev/null the request
-	if ((window.location.protocol != "file:") && (event.origin !== window.location.protocol+"//"+window.location.host)) {
-		return;
-	}
-	
-	// see if it got a path to replace
-	if (data.path !== undefined) {
-		
-		if (patternPartial !== "") {
+  // Watch the iframe source so that it can be sent back to everyone else.
+  function receiveIframeMessage(event) {
+    let data = {};
 
-			// handle patterns and the view all page
-			var re = /patterns\/(.*)$/;
-			path = window.location.protocol+"//"+window.location.host+window.location.pathname.replace(re,'')+data.path+'?'+Date.now();
-      
-			window.location.replace(path);
-			
-		} else {
-			
-			// handle the style guide
-			path = window.location.protocol+"//"+window.location.host+window.location.pathname.replace("node_modules\/fepper-ui\/styleguide.html","")+data.path+'?'+Date.now();
-			window.location.replace(path);
-			
-		}
-		
-	} else if (data.reload !== undefined) {
-		
-		// reload the location if there was a message to do so
-		window.location.reload();
-		
-	}
-	
-}
-window.addEventListener("message", receiveIframeMessage, false);
+    try {
+      data = (typeof event.data === 'string') ? JSON.parse(event.data) : event.data;
+    }
+    catch (e) {
+      // Fail gracefully.
+    }
+
+    let path;
+
+    // Does the origin sending the message match the current host? If not dev/null the request.
+    if (
+      window.location.protocol !== 'file:' &&
+      event.origin !== window.location.protocol + '//' + window.location.host
+    ) {
+      return;
+    }
+
+    // See if it got a path to replace.
+    if (data.path) {
+      if (window.patternPartial !== '') {
+        // Handle patterns and the view all page.
+        const re = /patterns\/(.*)$/;
+        path =
+          window.location.protocol + '//' + window.location.host +
+          window.location.pathname.replace(re, '') + data.path + '?' + Date.now();
+
+        window.location.replace(path);
+      }
+      else {
+        // Handle the style guide.
+        path =
+          window.location.protocol + '//' + window.location.host +
+          window.location.pathname.replace('node_modules\/fepper-ui\/styleguide.html', '') +
+          data.path + '?' + Date.now();
+
+        window.location.replace(path);
+      }
+    }
+  }
+
+  window.addEventListener('message', receiveIframeMessage, false);
+
+  // If there are clicks on the iframe make sure the nav in the iframe parent closes.
+  d.body.addEventListener(
+    'click',
+    function () {
+      parent.postMessage({bodyclick: 'bodyclick'}, targetOrigin);
+    },
+    false
+  );
+
+  /**
+   * Basic postMessage support.
+   *
+   * Copyright (c) 2013-2014 Dave Olsen, http://dmolsen.com
+   * Licensed under the MIT license.
+   *
+   * Handles the postMessage stuff in the pattern, view-all, and style guide templates.
+   * Dependent on ui-functions.js so load after DOMContentLoaded.
+   */
+
+  // Alert the iframe parent that the pattern has loaded assuming this view was loaded in an iframe.
+  if (self !== top) {
+
+    // Handle the options that could be sent to the parent window.
+    const path = window.location.toString();
+    const parts = path.split('?');
+    const options = {path: parts[0]};
+    options.patternpartial = window.patternPartial || 'all';
+    options.lineage = window.lineage;
+
+    parent.postMessage(options, targetOrigin);
+
+    // Find all links and add a click handler for replacing the iframe address so the history works.
+    const aTags = d.getElementsByTagName('a');
+
+    for (let i = 0; i < aTags.length; i++) {
+      aTags[i].addEventListener(
+        'click',
+        function (e) {
+          e.preventDefault();
+
+          const href = this.getAttribute('href');
+
+          if (href !== '#') {
+            window.location.replace(href);
+          }
+        },
+        false
+      );
+    }
+
+    // Bind the keyboard shortcuts using ctrl+alt.
+    const keysAlt = ['0', 'g', 'h', 'l', 'm', 'r', 'w'];
+
+    for (let i = 0; i < keysAlt.length; i++) {
+      Mousetrap.bind(
+        'ctrl+alt+' + keysAlt[i],
+        ((key) => {
+          return function (e) {
+            e.preventDefault();
+
+            const obj = {event: 'patternLab.keyPress', keyPress: 'ctrl+alt+' + key};
+            parent.postMessage(obj, targetOrigin);
+
+            return false;
+          };
+        })(keysAlt[i])
+      );
+    }
+
+    // Bind the keyboard shortcuts using ctrl+shift.
+    const keysShift = ['0', 'a', 'c', 'd', 'f', 'l', 'm', 's', 'u', 'w', 'x', 'y'];
+
+    for (let i = 0; i < keysShift.length; i++) {
+      Mousetrap.bind(
+        'ctrl+shift+' + keysShift[i],
+        ((key) => {
+          return function (e) {
+            e.preventDefault();
+
+            const obj = {event: 'patternLab.keyPress', keyPress: 'ctrl+shift+' + key};
+            parent.postMessage(obj, targetOrigin);
+
+            return false;
+          };
+        })(keysShift[i])
+      );
+    }
+
+    Mousetrap.bind('esc', function () {
+      const obj = {event: 'patternLab.keyPress', keyPress: 'esc'};
+      parent.postMessage(obj, targetOrigin);
+    });
+  }
+})(document);

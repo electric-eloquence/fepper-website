@@ -1,1 +1,68 @@
-<!-- Keeping these styles specific to this file because we don't need them in the app. --> <style>  .colors {    display: table;  }  .colors__row {    display: table-row;  }  .colors__cell {    display: table-cell;    padding: 0 0.3rem  }  .colors__cell:last-child {    width: 5rem;  } </style> <div class="colors"> <div class="colors__row"> <div class="colors__cell">black less contrast:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--black-less-contrast"></div> </div> <div class="colors__row"> <div class="colors__cell">green fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--green-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">yellow fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--yellow-fepper"></div> </div> <div class="colors__row"> <div class="colors__cell">red fepper:</div> <div class="colors__cell"></div> <div class="colors__cell"></div> <div class="colors__cell bg--red-fepper"></div> </div> </div> <script>  function decToHex(dec) {    const hex = dec.toString(16);    return hex.length == 1 ? '0' + hex : hex;  }  function rgbToHex(rgb) {    const rgbStr = rgb.slice(rgb.indexOf('(') + 1, -1);    const rgbArr = rgbStr.split(',');    let hex = '#';    rgbArr.forEach(dec => {      hex += decToHex(parseInt(dec, 10));    });    return hex;  }  const rows = document.querySelectorAll('.colors__row');  for (let i = 0; i < rows.length; i++) {    const colorCell = rows[i].querySelector('.colors__cell:last-child');    const colorRgb = window.getComputedStyle(colorCell, null).getPropertyValue('background-color');    const colorHex = rgbToHex(colorRgb);    const cells = rows[i].children;    cells[1].innerHTML = colorHex;    cells[2].innerHTML = colorRgb;  } </script>
+<!-- Keeping these styles specific to this file because we don't need them in the app. -->
+<style>
+  .colors {
+    display: table;
+  }
+  .colors__row {
+    display: table-row;
+  }
+  .colors__cell {
+    display: table-cell;
+    padding: 0 0.3rem
+  }
+  .colors__cell:last-child {
+    width: 5rem;
+  }
+</style>
+<div class="colors">
+  <div class="colors__row">
+    <div class="colors__cell">black less contrast:</div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell bg--black-less-contrast"></div>
+  </div>
+  <div class="colors__row">
+    <div class="colors__cell">green fepper:</div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell bg--green-fepper"></div>
+  </div>
+  <div class="colors__row">
+    <div class="colors__cell">yellow fepper:</div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell bg--yellow-fepper"></div>
+  </div>
+  <div class="colors__row">
+    <div class="colors__cell">red fepper:</div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell"></div>
+    <div class="colors__cell bg--red-fepper"></div>
+  </div>
+</div>
+<script>
+  function decToHex(dec) {
+    const hex = dec.toString(16);
+    return hex.length == 1 ? '0' + hex : hex;
+  }
+
+  function rgbToHex(rgb) {
+    const rgbStr = rgb.slice(rgb.indexOf('(') + 1, -1);
+    const rgbArr = rgbStr.split(',');
+    let hex = '#';
+    rgbArr.forEach(dec => {
+      hex += decToHex(parseInt(dec, 10));
+    });
+    return hex;
+  }
+
+  const rows = document.querySelectorAll('.colors__row');
+  for (let i = 0; i < rows.length; i++) {
+    const colorCell = rows[i].querySelector('.colors__cell:last-child');
+    const colorRgb = window.getComputedStyle(colorCell, null).getPropertyValue('background-color');
+    const colorHex = rgbToHex(colorRgb);
+    const cells = rows[i].children;
+    cells[1].innerHTML = colorHex;
+    cells[2].innerHTML = colorRgb;
+  }
+</script>

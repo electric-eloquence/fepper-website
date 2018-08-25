@@ -1,7 +1,5 @@
 'use strict';
 
-const path = require('path');
-
 const fs = require('fs-extra');
 const gulp = require('gulp');
 const rollup = require('rollup-stream');
@@ -11,9 +9,9 @@ const source = require('vinyl-source-stream');
 const conf = global.conf;
 
 const jsSrcDir = conf.ui.paths.source.jsSrc;
-const packageJson = path.resolve(conf.extend_dir, 'package.json');
+const packageJson = `${conf.extend_dir}/package.json`;
 const patternsPubDir = conf.ui.paths.public.patterns;
-const testDir = path.resolve(conf.ui.paths.public.root, 'test');
+const testDir = `${conf.ui.paths.public.root}/test`;
 
 const plugins = require('gulp-load-plugins')({config: packageJson});
 

@@ -1,7 +1,6 @@
 {
   "description": "Fepper public directory",
-  "devDependencies": {
-    "cheerio": "^1.0.0-rc.2",
+  "dependencies": {
     "fepper-ui": "^0.3.2",
     "he": "1.1.0",
     "hogan.js": "3.0.2",
@@ -12,8 +11,6 @@
     "prismjs": "1.5.1",
     "react": "15.6.2",
     "react-dom": "15.6.2",
-    "redux": "^3.7.2",
-    "requerio": "^0.3.0",
     "typeahead.js": "0.10.5",
     "wolfy87-eventemitter": "4.2.11"
   }

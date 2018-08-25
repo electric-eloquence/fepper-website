@@ -1,18 +1,20 @@
 ((
-  uiCreate,
-  ReactDOM
+  ReactDOM,
+  React,
+  uiCreate
 ) => {
   'use strict';
 
   document.addEventListener(
     'DOMContentLoaded',
-    () => {
+    function () {
       ReactDOM.render(React.createFactory(uiCreate())(), document);
     },
     false
   );
 
 })(
-  window.FEPPER_UI.uiCreate,
-  window.ReactDOM
+  window.ReactDOM,
+  window.React,
+  window.FEPPER_UI.uiCreate
 );

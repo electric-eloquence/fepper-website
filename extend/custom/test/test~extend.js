@@ -7,11 +7,8 @@ const gulp = require('gulp');
 const rollup = require('rollup-stream');
 const runSequence = require('run-sequence');
 const source = require('vinyl-source-stream');
-const utils = require('fepper-utils');
 
-const appDir = global.appDir;
 const conf = global.conf;
-
 
 const jsSrcDir = conf.ui.paths.source.jsSrc;
 const packageJson = path.resolve(conf.extend_dir, 'package.json');

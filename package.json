@@ -4,6 +4,7 @@
   "scripts": {
     "install-base": "node run/install-base.js",
     "install-windows": "node run/install-windows.js",
+    "prepush": "fp test:public",
     "postinstall": "node run/install-base.js",
     "test": "npm run test-eslint && npm run test-mocha",
     "test-eslint": "npx eslint run && npx eslint test",

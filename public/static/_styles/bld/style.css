@@ -431,7 +431,7 @@ p {
   }
 }
 .logo__bg {
-  background: linear-gradient(to right, #027d15, #027d15 10%, #c8b512 32.5%, #f0c000 42.5%, #f0c000 57.5%, #d5a012 67.5%, #d00000 90%, #d00000);
+  background: linear-gradient(to right, #027d15, #027d15 10%, #c8b512 32.5%, #f0c000 42.5%, #f0c000 57.5%, #ffa012 65%, #d00000 90%, #d00000);
   position: absolute;
   top: 0;
   right: -900%;

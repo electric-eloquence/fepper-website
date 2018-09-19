@@ -11,7 +11,9 @@
 @import '0-base/02-helpers'
 @import '0-base/03-global'
 
+$video-width-max = 1728px
 $video-height = (100vw / 3)
+$video-height-max = ($video-width-max / 3)
 $logo-width = '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $logo-height = '%spx' % logo_height // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $branding-pad = '%srem' % branding_pad
@@ -240,6 +242,39 @@ p
       &--5
         right: 0
         width: 0.1953125%
+@media all and (min-width: $video-width-max)
+  .video
+    &__bg
+      height: $video-height-max
+    &__img
+      &--gen-0
+        &--0,
+        &--2
+          left: 50%
+          transform: translateX(-($video-width-max / 2))
+          width: ($video-width-max / 2)
+        &--1
+          height: $video-height-max
+          left: 50%
+          transform: translateX(-($video-width-max / 2))
+        &--2
+          height: ($video-width-max / (2 * 15))
+          top: ($video-height-max - ($video-width-max / (2 * 15)))
+      &--gen-1
+        &--0,
+        &--1
+          left: 50%
+          transform: translateX(-($video-width-max / 2))
+        &--0
+          top: $video-height-max * (48 / 640)
+          width: ($video-width-max * 0.3)
+        &--1
+          width: ($video-width-max / 2)
+          height: ($video-width-max / (2 * 15))
+          top: ($video-height-max - ($video-width-max / (2 * 15)))
+        &--2
+          left: 50%
+          width: ($video-width-max / 2)
 .branding
   background: white
   padding: 1rem 0

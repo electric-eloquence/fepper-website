@@ -1,17 +1,9 @@
-
-/* line 297 : /Users/ee/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/fonts-offline.styl */
-
-/* line 1 : /Users/ee/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/extend/node_modules/stylus/lib/functions/index.styl */
-
-/* line 2 : /Users/ee/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/fonts-offline.styl */
 @font-face {
   font-family: 'Fira Sans';
   font-style: normal;
   font-weight: 400;
   src: url("fonts/FiraSans/FiraSans-Book.otf") format('opentype');
 }
-
-/* line 7 : /Users/ee/Sites/Vagrant/Trusty64/VHosts/electric-eloquence/fepper-website/source/_styles/src/stylus/fonts-offline.styl */
 @font-face {
   font-family: 'Fira Sans';
   font-style: normal;

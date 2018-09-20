@@ -12,7 +12,6 @@
 @import '0-base/03-global'
 
 $video-width-max = 1728px
-$video-height = (100vw / 3)
 $video-height-max = ($video-width-max / 3)
 $logo-width = '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $logo-height = '%spx' % logo_height // Need px measurement to work around min font-size zoom-out bug in Webkit.
@@ -27,11 +26,11 @@ p
 .body__contain
   overflow: hidden
 .video
+  padding-bottom: (100% / 3)
   position: -webkit-sticky
   position: sticky
   top: 0
   width: 100%
-  height: $video-height
   z-index: -1
   &__bg
     background: black
@@ -39,242 +38,461 @@ p
     top: 0
     left: 0
     width: 50%
-    height: $video-height
+    height: 100%
   &__img
     position: absolute
     &--gen-0
-      &--0
+      &--0,
+      &--2,
+      &--4,
+      &--5
         width: 50%
+      &--0
         z-index: 1
       &--1
-        height: $video-height
-      &--2
-        top: 'calc(%s - %svw)' % ($video-height (640 / 192)) // top rule (not bottom) necessary for Safari.
-        width: 50%
-      &--3
-        top: $video-height * (48 / 640)
-        width: 30%
+        height: 100% 
+      &--2,
       &--4
-        top: 'calc(%s - %svw)' % ($video-height (640 / 192))
-        width: 50%
+        top: (100% - 10%) // top rule (not bottom) necessary for Safari.
+      &--3
+        top: (100% * 48 / 640)
+        width: 30%
       &--5
-        right: 0
-        width: 50%
+        left: 50%
     &--gen-1
       &--0
-        top: $video-height * (48 / 640)
+        top: (100% * 48 / 640)
         width: 30%
-      &--1
-        top: 'calc(%s - %svw)' % ($video-height (640 / 192))
-        width: 50%
+      &--1,
       &--2
-        right: 0
         width: 50%
-      &--3
-        top: $video-height * (24 / 640)
-        left: 50%
-        width: 15%
+      &--1
+        top: 90%
+      &--2,
+      &--3,
       &--4
-        top: 14.9vw // Need to hard-code value for MS Edge.
         left: 50%
-        width: 25%
+      &--3
+        top: (100% * 24 / 640)
+        width: 15%
+      &--4,
       &--5
-        right: 0
         width: 25%
+      &--4
+        top: (50% - 5%)
+      &--5
+        left: (50% + (100% * 1 / 4))
     &--gen-2
-      &--0
-        top: $video-height * (24 / 640)
-        left: 50%
-        width: 15%
+      &--0,
       &--1
-        top: 14.9vw // Need to hard-code value for MS Edge.
         left: 50%
-        width: 25%
+      &--0
+        top: (100% * 24 / 640)
+        width: 15%
+      &--1,
       &--2
-        right: 0
         width: 25%
-      &--3
-        top: $video-height * (12 / 640)
-        left: 75%
-        width: 7.5%
+      &--1
+        top: (50% - 5%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 4) (160 / 192))
-        left: 75%
-        width: 12.5%
+        left: (50% + (100% * 1 / 4))
+      &--3
+        top: (100% * 12 / 640)
+        width: 7.5%
+      &--4,
       &--5
-        right: 0
         width: 12.5%
+      &--4
+        top: (25% - 2.5%)
+      &--5
+        left: (50% + (100% * 3 / 8))
     &--gen-3
       &--0
-        top: $video-height * (12 / 640)
-        left: 75%
-        width: 7.5%
       &--1
-        top: 'calc(%s - %svw)' % (($video-height / 4) (160 / 192))
-        left: 75%
-        width: 12.5%
-      &--2
-        right: 0
-        width: 12.5%
-      &--3
-        top: $video-height * (6 / 640)
-        left: 87.5%
-        width: 3.75%
-      &--4
-        top: 'calc(%s - %svw)' % (($video-height / 8) (80 / 192))
-        left: 87.5%
-        width: 6.25%
-      &--5
-        right: 0
-        width: 6.25%
-    &--gen-4
+        left: (50% + (100% * 1 / 4))
       &--0
-        top: $video-height * (6 / 640)
-        left: 87.5%
-        width: 3.75%
-      &--1
-        top: 'calc(%s - %svw)' % (($video-height / 8) (80 / 192))
-        left: 87.5%
-        width: 6.25%
+        top: (100% * 12 / 640)
+        width: 7.5%
+      &--1,
       &--2
-        right: 0
-        width: 6.25%
-      &--3
-        top: $video-height * (3 / 640)
-        left: 93.75%
-        width: 1.875%
+        width: 12.5%
+      &--1
+        top: (25% - 2.5%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 16) (40 / 192))
-        left: 93.75%
-        width: 3.125%
+        left: (50% + (100% * 3 / 8))
+      &--3
+        top: (100% * 6 / 640)
+        width: 3.75%
+      &--4,
       &--5
-        right: 0
+        width: 6.25%
+      &--4
+        top: (12.5% - 1.25%)
+      &--5
+        left: (50% + (100% * 7 / 16))
+    &--gen-4
+      &--0,
+      &--1
+        left: (50% + (100% * 3 / 8))
+      &--0
+        top: (100% * 6 / 640)
+        width: 3.75%
+      &--1,
+      &--2
+        width: 6.25%
+      &--1
+        top: (12.5% - 1.25%)
+      &--2,
+      &--3,
+      &--4
+        left: (50% + (100% * 7 / 16))
+      &--3
+        top: (100% * 3 / 640)
+        width: 1.875%
+      &--4,
+      &--5
         width: 3.125%
+      &--4
+        top: (6.25% - 0.625%)
+      &--5
+        left: (50% + (100% * 15 / 32))
     &--gen-5
       &--0
-        top: $video-height * (3 / 640)
-        left: 93.75%
+      &--1
+        left: (50% + (100% * 7 / 16))
+      &--0
+        top: (100% * 3 / 640)
         width: 1.875%
-      &--1
-        top: 'calc(%s - %svw)' % (($video-height / 16) (40 / 192))
-        left: 93.75%
-        width: 3.125%
+      &--1,
       &--2
-        right: 0
         width: 3.125%
-      &--3
-        top: $video-height * (1.5 / 640)
-        left: 96.875%
-        width: 0.9375%
+      &--1
+        top: (6.25% - 0.625%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 32) (20 / 192))
-        left: 96.875%
-        width: 1.5625%
+        left: (50% + (100% * 15 / 32))
+      &--3
+        top: (100% * 1.5 / 640)
+        width: 0.9375%
+      &--4,
       &--5
-        right: 0
         width: 1.5625%
+      &--4
+        top: (3.125% - 0.3125%)
+      &--5
+        left: (50% + (100% * 31 / 64))
     &--gen-6
+      &--0,
+      &--1
+        left: (50% + (100% * 15 / 32))
       &--0
-        top: $video-height * (1.5 / 640)
-        left: 96.875%
+        top: (100% * 1.5 / 640)
         width: 0.9375%
-      &--1
-        top: 'calc(%s - %svw)' % (($video-height / 32) (20 / 192))
-        left: 96.875%
-        width: 1.5625%
+      &--1,
       &--2
-        right: 0
         width: 1.5625%
-      &--3
-        top: $video-height * (0.75 / 640)
-        left: 98.4375%
-        width: 0.46875%
+      &--1
+        top: (3.125% - 0.3125%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 64) (10 / 192))
-        left: 98.4375%
-        width: 0.78125%
+        left: (50% + (100% * 31 / 64))
+      &--3
+        top: (100% * 0.75 / 640)
+        width: 0.46875%
+      &--4,
       &--5
-        right: 0
         width: 0.78125%
+      &--4
+        top: (1.5625% - 0.15625%)
+      &--5
+        left: (50% (100% * 63 / 128))
     &--gen-7
+      &--0,
+      &--1
+        left: (50% + (100% * 31 / 64))
       &--0
-        top: $video-height * (0.75 / 640)
-        left: 98.4375%
+        top: (100% * 0.75 / 640)
         width: 0.46875%
-      &--1
-        top: 'calc(%s - %svw)' % (($video-height / 64) (10 / 192))
-        left: 98.4375%
-        width: 0.78125%
+      &--1,
       &--2
-        right: 0
         width: 0.78125%
-      &--3
-        top: $video-height * (0.375 / 640)
-        left: 99.21875%
-        width: 0.234375%
+      &--1
+        top: (1.5625% - 0.15625%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 128) (5 / 192))
-        left: 99.21875%
-        width: 0.390625%
+        left: (50% + (100% * 63 / 128))
+      &--3
+        top: (100% * 0.375 / 640)
+        width: 0.234375%
+      &--4,
       &--5
-        right: 0
         width: 0.390625%
+      &--4
+        top: (0.78125% - 0.078125%)
+      &--5
+        left: (50% + (100% * 127 / 256))
     &--gen-8
-      &--0
-        top: $video-height * (0.375 / 640)
-        left: 99.21875%
-        width: 0.234375%
+      &--0,
       &--1
-        top: 'calc(%s - %svw)' % (($video-height / 128) (5 / 192))
-        left: 99.21875%
-        width: 0.390625%
+        left: (50% + (100% * 63 / 128))
+      &--0
+        top: (100% * 0.375 / 640)
+        width: 0.234375%
+      &--1,
       &--2
-        right: 0
         width: 0.390625%
-      &--3
-        top: $video-height * (0.1875 / 640)
-        left: 99.609375%
-        width: 0.1171875%
+      &--1
+        top: (0.78125% - 0.078125%)
+      &--2,
+      &--3,
       &--4
-        top: 'calc(%s - %svw)' % (($video-height / 256) (2.5 / 192))
-        left: 99.609375%
-        width: 0.1953125%
+        left: (50% + (100% * 127 / 256))
+      &--3
+        top: (100% * 0.1875 / 640)
+        width: 0.1171875%
+      &--4,
       &--5
-        right: 0
         width: 0.1953125%
+      &--4
+        top: (0.390625% - 0.0390625%)
+      &--5
+        left: (50% + (100% * 255 / 512))
 @media all and (min-width: $video-width-max)
   .video
+    padding-top: 0
     &__bg
       height: $video-height-max
     &__img
       &--gen-0
         &--0,
-        &--2
+        &--1,
+        &--2,
+        &--3,
+        &--4
           left: 50%
           transform: translateX(-($video-width-max / 2))
+        &--0,
+        &--2,
+        &--4,
+        &--5
           width: ($video-width-max / 2)
         &--1
           height: $video-height-max
-          left: 50%
-          transform: translateX(-($video-width-max / 2))
-        &--2
-          height: ($video-width-max / (2 * 15))
+        &--2,
+        &--4
           top: ($video-height-max - ($video-width-max / (2 * 15)))
+        &--3
+          top: ($video-height-max * 48 / 640)
+          width: ($video-width-max * 0.3)
       &--gen-1
         &--0,
         &--1
           left: 50%
           transform: translateX(-($video-width-max / 2))
         &--0
-          top: $video-height-max * (48 / 640)
+          top: ($video-height-max * 48 / 640)
           width: ($video-width-max * 0.3)
-        &--1
-          width: ($video-width-max / 2)
-          height: ($video-width-max / (2 * 15))
-          top: ($video-height-max - ($video-width-max / (2 * 15)))
+        &--1,
         &--2
-          left: 50%
           width: ($video-width-max / 2)
+        &--1
+          top: ($video-height-max - ($video-width-max / (2 * 15)))
+        &--3
+          top: ($video-height-max * 24 / 640)
+          width: ($video-width-max * 0.15)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.25)
+        &--4
+          top: ($video-width-max * 0.149)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max / 4)
+      &--gen-2
+        &--0
+          top: ($video-height-max * 24 / 640)
+          width: ($video-width-max * 0.15)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.25)
+        &--1
+          top: ($video-width-max * 0.149)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max / 4)
+        &--3
+          top: ($video-height-max * 12 / 640)
+          width: ($video-width-max * 0.075)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.125)
+        &--4
+          top: ($video-width-max * 0.149 / 2)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 3 / 8)
+      &--gen-3
+        &--0
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max / 4)
+        &--0
+          top: ($video-height-max * 12 / 640)
+          width: ($video-width-max * 0.075)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.125)
+        &--1
+          top: ($video-width-max * 0.149 / 2)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 3 / 8)
+        &--3
+          top: ($video-height-max * 6 / 640)
+          width: ($video-width-max * 0.0375)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.0625)
+        &--4
+          top: ($video-width-max * 0.149 / 4)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 7 / 16)
+      &--gen-4
+        &--0,
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max * 3 / 8)
+        &--0
+          top: ($video-height-max * 6 / 640)
+          width: ($video-width-max * 0.0375)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.0625)
+        &--1
+          top: ($video-width-max * 0.149 / 4)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 7 / 16)
+        &--3
+          top: ($video-height-max * 3 / 640)
+          width: ($video-width-max * 0.01875%)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.03125%)
+        &--4
+          top: ($video-width-max * 0.149 / 8)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 15 / 32)
+      &--gen-5
+        &--0
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max * 7 / 16)
+        &--0
+          top: ($video-height-max * 3 / 640)
+          width: ($video-width-max * 0.01875%)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.03125%)
+        &--1
+          top: ($video-width-max * 0.149 / 8)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 15 / 32)
+        &--3
+          top: ($video-height-max * 1.5 / 640)
+          width: ($video-width-max * 0.009375%)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.015625%)
+        &--4
+          top: ($video-width-max * 0.149 / 16)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 31 / 64)
+      &--gen-6
+        &--0,
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max * 15 / 32)
+        &--0
+          top: ($video-height-max * 1.5 / 640)
+          width: ($video-width-max * 0.009375%)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.015625%)
+        &--1
+          top: ($video-width-max * 0.149 / 16)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 31 / 64)
+        &--3
+          top: ($video-height-max * 0.75 / 640)
+          width: ($video-width-max * 0.0046875%)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.0078125%)
+        &--4
+          top: ($video-width-max * 0.149 / 32)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 63 / 128)
+      &--gen-7
+        &--0,
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max * 31 / 64)
+        &--0
+          top: ($video-height-max * 0.75 / 640)
+          width: ($video-width-max * 0.0046875%)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.0078125%)
+        &--1
+          top: ($video-width-max * 0.149 / 32)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 63 / 128)
+        &--3
+          top: ($video-height-max * 0.375 / 640)
+          width: ($video-width-max * 0.00234375%)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.00390625%)
+        &--4
+          top: ($video-width-max * 0.149 / 64)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 127 / 256)
+      &--gen-8
+        &--0,
+        &--1
+          left: 'calc(50% + %s)' % ($video-width-max * 63 / 128)
+        &--0
+          top: ($video-height-max * 0.375 / 640)
+          width: ($video-width-max * 0.00234375%)
+        &--1,
+        &--2
+          width: ($video-width-max * 0.00390625%)
+        &--1
+          top: ($video-width-max * 0.149 / 64)
+        &--2,
+        &--3,
+        &--4
+          left: 'calc(50% + %s)' % ($video-width-max * 127 / 256)
+        &--3
+          top: ($video-height-max * 0.1875 / 640)
+          width: ($video-width-max * 0.001171875%)
+        &--4,
+        &--5
+          width: ($video-width-max * 0.001953125%)
+        &--4
+          top: ($video-width-max * 0.149 / 128)
+        &--5
+          left: 'calc(50% + %s)' % ($video-width-max * 255 / 512)
 .branding
   background: white
   padding: 1rem 0

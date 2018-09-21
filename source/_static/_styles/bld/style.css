@@ -64,12 +64,10 @@ h5 {
   font-size: 1.0625em;
 }
 h1,
-h2,
 h6 {
   font-size: 1em;
 }
-h1,
-h2 {
+h1 {
   line-height: 1;
 }
 a {
@@ -605,7 +603,7 @@ p {
   bottom: 0;
   right: -900%;
   width: 300rem;
-  height: calc(100% + 4rem);
+  height: calc(100% + 2rem);
 }
 .logo__img {
   position: relative;

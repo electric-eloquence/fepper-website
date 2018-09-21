@@ -63,8 +63,14 @@ h4 {
 h5 {
   font-size: 1.0625em;
 }
+h1,
+h2,
 h6 {
   font-size: 1em;
+}
+h1,
+h2 {
+  line-height: 1;
 }
 a {
   color: #333;
@@ -596,10 +602,10 @@ p {
 .logo__bg {
   background: linear-gradient(to right, #027d15, #027d15 10%, #c8b512 32.5%, #f0c000 42.5%, #f0c000 57.5%, #ffa012 65%, #d00000 92.5%, #d00000);
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: -900%;
   width: 300rem;
-  height: 100%;
+  height: calc(100% + 4rem);
 }
 .logo__img {
   position: relative;

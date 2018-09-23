@@ -128,6 +128,9 @@ export default (app, root) => {
       if (percentage < 0) {
         percentage = 0;
       }
+      else if (percentage > MAX_PERCENTAGE) {
+        percentage = MAX_PERCENTAGE;
+      }
 
       $orgs['#logoBg'].dispatchAction('css', {right: `-${percentage}%`});
     },

@@ -44,7 +44,7 @@ gulp.task('rollup', function () {
   const testMarkupSrc = `${patternsPubDir}/04-pages-00-homepage/04-pages-00-homepage.html`;
 
   if (fs.existsSync(testMarkupSrc)) {
-    fs.copySync(testMarkupSrc, `${testDir}/files/index.html`);
+    fs.copySync(testMarkupSrc, `${testDir}/fixtures/index.html`);
   }
 
   const name = 'bundle-node.js';

@@ -6,7 +6,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 const Redux = global.Redux = require('redux');
 
-const html = fs.readFileSync(path.resolve(__dirname, 'files', 'index.html'), 'utf8');
+const html = fs.readFileSync(path.resolve(__dirname, 'fixtures', 'index.html'), 'utf8');
 const $ = global.$ = cheerio.load(html);
 
 global.Image = class {

@@ -287,16 +287,19 @@ var actionsGet = (app, root) => {
     },
 
     logoRipen: () => {
-      const MAX_PERCENTAGE = 400;
+      const MAX_PERCENTAGE = 900;
       const htmlState = $orgs['#html'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
 
       let percentage;
       percentage = windowState.scrollTop / (htmlState.height - windowHeight);
-      percentage = MAX_PERCENTAGE * percentage;
+      percentage = MAX_PERCENTAGE - (MAX_PERCENTAGE * percentage);
 
-      if (percentage >= MAX_PERCENTAGE) {
+      if (percentage < 0) {
+        percentage = 0;
+      }
+      else if (percentage > MAX_PERCENTAGE) {
         percentage = MAX_PERCENTAGE;
       }
 
@@ -392,7 +395,7 @@ var actionsGet = (app, root) => {
 /**
  * Declare keys with null values here.
  *
- * @return {object} Keyed by organism ID.
+ * @returns {object} Keyed by organism ID.
  */
 var $organisms = {
   'window': null,

@@ -4,7 +4,7 @@
  * @param {array} classesForReducedState - Array of classes.
  * @param {string|function} classParam - Class to add to classesForReducedState.
  * @param {object} state - Current state.
- * @return {undefined} This function mutates the new state object.
+ * @returns {undefined} This function mutates the new state object.
  */
 function addClass(classesForReducedState, classParam, state) {
   let classesToAdd;
@@ -37,7 +37,7 @@ function addClass(classesForReducedState, classParam, state) {
  * @param {string|function} classParam - Class to remove from classesForReducedState.
  * @param {number|null} classIdx_ - Index of class to be removed.
  * @param {object} state - Current state.
- * @return {undefined} This function mutates the new state object.
+ * @returns {undefined} This function mutates the new state object.
  */
 function removeClass(classesForReducedState, classParam, classIdx_, state) {
   let classesToRemove = [];
@@ -79,7 +79,7 @@ function removeClass(classesForReducedState, classParam, classIdx_, state) {
  * @param {object} $org - Organism.
  * @param {object} state - Preinitialized state.
  * @param {object} action - Object defining how we'll act.
- * @return {undefined} This function mutates the state param.
+ * @returns {undefined} This function mutates the state param.
  */
 function stateBuild($org, state, action) {
   try {
@@ -341,7 +341,7 @@ function stateBuild($org, state, action) {
  * Closure to generate reducers specific to organisms.
  *
  * @param {string} orgSelector - The organism's selector.
- * @return {function} A function configured to work on the orgSelector.
+ * @returns {function} A function configured to work on the orgSelector.
  */
 function reducerClosure(orgSelector) {
 
@@ -350,7 +350,7 @@ function reducerClosure(orgSelector) {
    *
    * @param {object} state_ - Old state.
    * @param {object} action - An object with properties defining an action.
-   * @return {object} New state.
+   * @returns {object} New state.
    */
   return function (state_, action) {
 
@@ -476,7 +476,7 @@ function reducerClosure(orgSelector) {
  *
  * @param {object} $orgs - Organisms keyed by selector.
  * @param {object} Redux - Redux object.
- * @return {object} Combined reducers
+ * @returns {object} Combined reducers
  */
 export default ($orgs, Redux) => {
   const reducers = {};

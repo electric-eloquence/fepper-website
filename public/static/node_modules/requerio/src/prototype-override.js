@@ -24,7 +24,7 @@ function applyMethod($org, method, args, memberIdx, $member) {
  *
  * @param {object} $org - Organism object.
  * @param {number|undefined} memberIdx_ - If targeting an organism member, its index.
- * @return {function} The returned function returns an object with properties correspond to the properties of DOMRect.
+ * @returns {function} The returned function returns an object with properties correspond to the properties of DOMRect.
  */
 function getBoundingClientRectClosure($org, memberIdx_) {
   return () => {
@@ -122,7 +122,7 @@ export default ($, stateStore) => {
    *   If args_ is not an array, we want to preemptively limit the allowed types to string, number, and object.
    *   If it is one of these types, it will get wrapped in an array and submitted.
    * @param {number} [memberIdx] - Index of member if targeting a member.
-   * @return {object} The new application state.
+   * @returns {object} The new application state.
    */
   if (!$.prototype.dispatchAction) {
     $.prototype.dispatchAction = function (method, args_, memberIdx) {
@@ -309,7 +309,7 @@ export default ($, stateStore) => {
    * A reference to Redux store.getState().
    *
    * @param {number} [memberIdx] - If targeting a child of a selector, that child's index.
-   * @return {object} The organism's state.
+   * @returns {object} The organism's state.
    */
   if (!$.prototype.getState) {
     $.prototype.getState = function (memberIdx) {
@@ -352,7 +352,7 @@ export default ($, stateStore) => {
   /**
    * A reference to Redux store.
    *
-   * @return {object} This app's state store.
+   * @returns {object} This app's state store.
    */
   if (!$.prototype.getStore) {
     $.prototype.getStore = function () {

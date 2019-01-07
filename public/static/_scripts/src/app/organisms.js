@@ -1,7 +1,7 @@
 /**
  * Declare keys with null values here.
  *
- * @return {object} Keyed by organism ID.
+ * @returns {object} Keyed by organism ID.
  */
 export default {
   'window': null,

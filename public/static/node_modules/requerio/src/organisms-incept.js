@@ -52,7 +52,7 @@ export default ($orgs, $) => {
 
     /**
      * @param {number} [distance] - Distance.
-     * @return {number|undefined} Distance.
+     * @returns {number|undefined} Distance.
      */
     if (typeof $org.scrollTop === 'undefined') {
       $org.scrollTop = (distance) => {
@@ -66,7 +66,7 @@ export default ($orgs, $) => {
 
     /**
      * @param {number} [distance] - Distance.
-     * @return {number|undefined} Distance.
+     * @returns {number|undefined} Distance.
      */
     if (typeof $org.width === 'undefined') {
       $org.width = (distance) => {
@@ -76,7 +76,7 @@ export default ($orgs, $) => {
 
     /**
      * @param {number} [distance] - Distance.
-     * @return {number|undefined} Distance.
+     * @returns {number|undefined} Distance.
      */
     if (typeof $org.height === 'undefined') {
       $org.height = (distance) => {

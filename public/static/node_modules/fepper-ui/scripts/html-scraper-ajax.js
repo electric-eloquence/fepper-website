@@ -51,7 +51,7 @@
    * Validate syntax of Target Selector input.
    *
    * @param {string} selectorRaw_ - CSS selector plus optional array index.
-   * @return {string|null} The selector name or null if invalid.
+   * @returns {string|null} The selector name or null if invalid.
    */
   function selectorValidateAndParse(selectorRaw_) {
     const selectorRaw = selectorRaw_.trim();

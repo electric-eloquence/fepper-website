@@ -20,7 +20,7 @@ install it manually:
 ### Customize
 
 All aspects of the UI are available for customization. For example, the toolbar
-can accept additions, modifications, and deletions per the needs of end users. 
+can accept additions, modifications, and deletions per the needs of end-users. 
 However, the customizations need to be made in your `source` directory, and are 
 not directly relevant to this package.
 

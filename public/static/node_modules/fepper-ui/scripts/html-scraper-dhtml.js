@@ -3,8 +3,8 @@
 
   const d = document;
 
-  /* APPEND SEARCH PARAMS TO TARGET */
-  // targeter is the last form on the HTML Scraper page. Older Fepper versions didn't identify it by name.
+  // Append search params to target.
+  // Targeter is the last form on the HTML Scraper page. Older Fepper versions didn't identify it by name.
   const targeter = d.forms[d.forms.length - 1];
 
   targeter.addEventListener(
@@ -18,7 +18,7 @@
     false
   );
 
-  /* SHOW/HIDE HELP TEXT */
+  // Show/hide help text.
   const helpButton = d.getElementById('help-button');
   const helpText = d.getElementById('help-text');
 
@@ -39,7 +39,7 @@
     false
   );
 
-  /* VALIDATE IMPORTER FORM */
+  // Validate importer form.
   const importer = d.forms.importer;
 
   if (importer) {

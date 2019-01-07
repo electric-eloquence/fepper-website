@@ -21,7 +21,12 @@ class Requerio {
   }
 }
 
-if (typeof window === 'object') {
+if (typeof define === 'function') {
+  define(function () {
+    return Requerio;
+  });
+}
+else if (typeof window === 'object') {
   window.Requerio = Requerio;
 }
 

@@ -1,15 +1,9 @@
 {
-  "version": "0.5.3",
   "description": "Fepper: a Front End Prototyper tool for rapid prototyping of web sites",
   "scripts": {
     "install-base": "node run/install-base.js",
-    "install-windows": "node run/install-windows.js",
-    "prepush": "fp test:public",
-    "postinstall": "node run/install-base.js",
-    "test": "npm run test-eslint && npm run test-mocha",
-    "test-eslint": "npx eslint run && npx eslint test",
-    "test-mocha": "npx mocha test/install-tests.js && npx mocha test/install-base-tests.js",
-    "update": "node run/update.js"
+    "postinstall": "node run/install.js",
+    "start": "node node_modules/fepper/index.js"
   },
   "repository": {
     "type": "git",
@@ -37,16 +31,16 @@
     "url": "https://github.com/electric-eloquence/fepper/issues"
   },
   "engines": {
-    "node": ">=8.5.0"
+    "node": ">=8.10.0"
   },
   "devDependencies": {
-    "chai": "4.x",
-    "fepper": "^0.26.4",
+    "chai": "^4.2.0",
+    "fepper": "^0.30.2",
+    "fepper-utils": "^1.1.5",
     "fs-extra": "^7.0.0",
-    "gulp": "3.9.1",
-    "gulp-load-plugins": "^1.5.0",
+    "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.3",
     "js-yaml": "^3.12.0",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.2"
+    "run-sequence": "^2.2.1"
   }
 }

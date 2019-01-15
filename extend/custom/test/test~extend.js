@@ -50,7 +50,7 @@ gulp.task('rollup', function () {
   const name = 'bundle-node.js';
 
   return rollup({
-    entry: `${jsSrcDir}/app/${name}`,
+    input: `${jsSrcDir}/app/${name}`,
     format: 'cjs'
   })
 

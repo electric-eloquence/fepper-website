@@ -538,7 +538,7 @@ p {
   .video__img--gen-7--4,
   .video__img--gen-8--0,
   .video__img--gen-8--1 {
-    left: calc(50% + 850.5px);
+    left: calc(50% + (850.5px - 0.01px));
   }
   .video__img--gen-7--3,
   .video__img--gen-8--0 {

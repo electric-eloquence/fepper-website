@@ -16,14 +16,13 @@ global.Image = class {
 };
 
 const bundle = require('./bundle-node.js');
-const actionsGet = bundle.actionsGet;
 const $organisms = bundle.$organisms;
 
 // Read variables.style for global defs for testing.
 require('../_scripts/src/variables.styl');
 
 const Requerio = require('requerio');
-const requerio = new Requerio($, Redux, $organisms, actionsGet);
+const requerio = new Requerio($, Redux, $organisms);
 
 // Need to init before defining organisms.
 requerio.init();

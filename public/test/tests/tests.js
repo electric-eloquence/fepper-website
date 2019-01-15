@@ -14,7 +14,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
       blocksOrg.dispatchAction('innerHeight', blockHeight, i);
     }
 
-    app.actions.updateDims();
+    app.behaviors.updateDims();
   });
 
   it('updates the height of pane 0 to the sum of the innerHeights of block 0 and block 1', function () {
@@ -46,7 +46,7 @@ describe('Fepper website', function () {
       it('to .content__pane[1] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(500);
-        app.actions.bgColorReveal();
+        app.behaviors.bgColorReveal();
 
         // Get Results.
         const contentPaneState = panesOrg.getState(1);
@@ -58,7 +58,7 @@ describe('Fepper website', function () {
       it('to .content__pane[3] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(900);
-        app.actions.bgColorReveal();
+        app.behaviors.bgColorReveal();
 
         // Get Results.
         const contentPaneState = panesOrg.getState(3);
@@ -70,7 +70,7 @@ describe('Fepper website', function () {
       it('to .content__pane[5] when it is scrolled within viewport', function () {
         // Act.
         $orgs.window.scrollTop(1300);
-        app.actions.bgColorReveal();
+        app.behaviors.bgColorReveal();
 
         // Get Results.
         const contentPaneState = panesOrg.getState(5);
@@ -83,7 +83,7 @@ describe('Fepper website', function () {
     describe('removes background-color', function () {
       before(function () {
         $orgs.window.scrollTop(0);
-        app.actions.bgColorReveal();
+        app.behaviors.bgColorReveal();
       });
 
       it('from .content__pane[1] when it is scrolled beyond viewport', function () {
@@ -118,7 +118,7 @@ describe('Fepper website', function () {
 
     it('adapts GitHub Download href to Drupal project when provided project=drupal search param', function () {
       // Act.
-      app.actions.gitHubHrefAdapt('drupal');
+      app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
       const gitHubDownloadHrefAfter = $orgs['.link-github__anchor--download'].getState().attribs.href;
@@ -130,7 +130,7 @@ describe('Fepper website', function () {
 
     it('adapts GitHub Readme href to Drupal project when provided project=drupal search param', function () {
       // Act.
-      app.actions.gitHubHrefAdapt('drupal');
+      app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
       const gitHubReadmeHrefAfter = $orgs['.link-github__anchor--readme'].getState().attribs.href;
@@ -142,7 +142,7 @@ describe('Fepper website', function () {
 
     it('adapts GitHub Download href to WordPress project when provided project=wordpress search param', function () {
       // Act.
-      app.actions.gitHubHrefAdapt('wordpress');
+      app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
       const gitHubDownloadHrefAfter = $orgs['.link-github__anchor--download'].getState().attribs.href;
@@ -154,7 +154,7 @@ describe('Fepper website', function () {
 
     it('adapts GitHub Download href to WordPress project when provided project=wordpress search param', function () {
       // Act.
-      app.actions.gitHubHrefAdapt('wordpress');
+      app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
       const gitHubReadmeHrefAfter = $orgs['.link-github__anchor--readme'].getState().attribs.href;
@@ -172,7 +172,7 @@ describe('Fepper website', function () {
     before(function () {
       htmlClassesBefore = $orgs['#html'].getState().attribs.class;
 
-      app.actions.init();
+      app.behaviors.init();
     });
 
     it('adds .es6-modules-enabled class to #html', function () {
@@ -201,7 +201,7 @@ describe('Fepper website', function () {
     // Prep.
     before(function () {
       $orgs.window.scrollTop((1 - Math.random()) * 1200);
-      app.actions.logoRipen();
+      app.behaviors.logoRipen();
     });
 
     it('moves #logoBg between 0 and -400% right when window is scrolled', function () {
@@ -220,7 +220,7 @@ describe('Fepper website', function () {
       return function () {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.actions.mainContentSlideIn();
+        app.behaviors.mainContentSlideIn();
 
         // Get results.
         const sliderClasses = slidersOrg.getState(i).classArray;
@@ -247,7 +247,7 @@ describe('Fepper website', function () {
       return function () {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.actions.mainContentSlideOut();
+        app.behaviors.mainContentSlideOut();
 
         // Get results.
         const sliderClasses = slidersOrg.getState(i).classArray;
@@ -306,7 +306,7 @@ describe('Fepper website', function () {
       '08': new Image()
     };
     const videoImgsOrg = $orgs['.video__img'];
-    const videoPlay = app.actions.videoPromise(logicalImages, videoImgsOrg, 0);
+    const videoPlay = app.behaviors.videoPromise(logicalImages, videoImgsOrg, 0);
 
     function imageHideClosure(j) {
       return function () {

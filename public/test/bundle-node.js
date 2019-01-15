@@ -185,7 +185,7 @@ if (typeof window === 'object') {
   mainContentTranslateY = window.main_content_translate_y * 30;
 }
 
-var actionsGet = (app, root) => {
+var behaviorsGet = (app, root) => {
   const $orgs = app.$orgs;
 
   return {
@@ -412,8 +412,8 @@ var $organisms = {
 };
 
 var bundleNode = {
-  actionsGet: actionsGet,
-  $organisms: $organisms
+  behaviorsGet,
+  $organisms
 };
 
 module.exports = bundleNode;

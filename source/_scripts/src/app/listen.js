@@ -1,4 +1,4 @@
-import actionsGet from './actions-get.js';
+import behaviorsGet from './behaviors-get.js';
 
 function debounce(callback, wait = 200, context = this) {
   let timeout = null;
@@ -14,17 +14,19 @@ function debounce(callback, wait = 200, context = this) {
 }
 
 export default (app) => {
-  const actions = actionsGet(app, window);
+  const behaviors = behaviorsGet(app, window);
   const $orgs = app.$orgs;
 
-  $orgs['window'].resize(debounce(actions.updateDims));
+  $orgs['window'].resize(debounce(behaviors.updateDims));
 
   $orgs['window'].scroll(function () {
-    actions.logoRipen();
-    actions.bgColorReveal();
-    actions.mainContentSlideIn();
-    actions.mainContentSlideOut();
+    behaviors.logoRipen();
+    behaviors.bgColorReveal();
+    behaviors.mainContentSlideIn();
+    behaviors.mainContentSlideOut();
   });
+
+  $orgs['window'].
 
   // Create and load a non-rendered DOM Image for video generation.
   const logicalImages = {
@@ -37,5 +39,5 @@ export default (app) => {
   };
 
   // Load and apply the logicalImages to render like a video.
-  actions.videoRender(logicalImages);
+  behaviors.videoRender(logicalImages);
 };

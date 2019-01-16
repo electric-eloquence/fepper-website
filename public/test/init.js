@@ -24,8 +24,10 @@ require('../_scripts/src/variables.styl');
 const Requerio = require('requerio');
 const requerio = new Requerio($, Redux, $organisms);
 
-// Need to init before defining organisms.
 requerio.init();
+
+import behaviorsGet from '../_scripts/src/app/behaviors-get.js';
+const behaviors = behaviorsGet(requerio, global);
 
 // Prep for $window.scrollTop override.
 const panesOrg = requerio.$orgs['.content__pane'];
@@ -110,6 +112,7 @@ $window.getState = () => {
 };
 
 // More setup.
+requerio.behaviors = behaviors;
 requerio.$orgs['#html'].dispatchAction('height', 2000);
 requerio.$orgs['#branding'].dispatchAction('innerHeight', 200);
 

@@ -3,7 +3,10 @@
   "scripts": {
     "install-base": "node run/install-base.js",
     "postinstall": "node run/install.js",
-    "start": "node node_modules/fepper/index.js"
+    "start": "node node_modules/fepper/index.js",
+    "test": "npm run test:eslint && npm run test:mocha",
+    "test:eslint": "eslint extend/custom && eslint source/_scripts/src && eslint public/test",
+    "test:mocha": "cd public && npm run public:test"
   },
   "repository": {
     "type": "git",
@@ -34,7 +37,7 @@
     "node": ">=8.10.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "eslint": "^3.19.0",
     "fepper": "^0.30.2",
     "fepper-utils": "^1.1.5",
     "fs-extra": "^7.0.0",

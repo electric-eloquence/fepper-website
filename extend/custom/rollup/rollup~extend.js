@@ -3,41 +3,13 @@
 const fs = require('fs-extra');
 const gulp = require('gulp');
 const rollup = require('rollup-stream');
-const runSequence = require('run-sequence');
 const source = require('vinyl-source-stream');
 
 const conf = global.conf;
 
 const jsSrcDir = conf.ui.paths.source.jsSrc;
-const packageJson = `${conf.extend_dir}/package.json`;
 const patternsPubDir = conf.ui.paths.public.patterns;
 const testDir = `${conf.ui.paths.public.root}/test`;
-
-const plugins = require('gulp-load-plugins')({config: packageJson});
-
-gulp.task('test:public:eslint', () => {
-  return gulp.src(testDir + '/**/*.js')
-    .pipe(plugins.eslint({
-      parserOptions: {
-        sourceType: 'script'
-      }
-    }))
-    .pipe(plugins.eslint.format())
-    .pipe(plugins.eslint.failAfterError());
-});
-
-gulp.task('test:public:mocha', () => {
-  return gulp.src(testDir + '/**/*.js')
-    .pipe(plugins.mocha());
-});
-
-gulp.task('test:public', cb => {
-  runSequence(
-    'test:public:eslint',
-    'test:public:mocha',
-    cb
-  );
-});
 
 gulp.task('rollup', function () {
   // Copy any changes to the homepage to the test index.html file.
@@ -61,5 +33,5 @@ gulp.task('rollup', function () {
 });
 
 gulp.task('rollup:watch', () => {
-  gulp.watch('**', {cwd: jsSrcDir}, ['rollup']);
+  gulp.watch('**/*', {cwd: jsSrcDir}, ['rollup']);
 });

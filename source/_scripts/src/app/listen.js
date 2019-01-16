@@ -26,8 +26,6 @@ export default (app) => {
     behaviors.mainContentSlideOut();
   });
 
-  $orgs['window'].
-
   // Create and load a non-rendered DOM Image for video generation.
   const logicalImages = {
     '03': new Image(),

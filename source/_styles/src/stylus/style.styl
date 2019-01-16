@@ -182,7 +182,7 @@ p
     &--gen-7--4,
     &--gen-8--0,
     &--gen-8--1
-      left: (50% + (100% * 63 / 128))
+      left: 'calc(%s - 0.5px)' % (50% + (100% * 63 / 128))
 
     &--gen-7--3,
     &--gen-8--0
@@ -199,7 +199,7 @@ p
     &--gen-8--2,
     &--gen-8--3,
     &--gen-8--4
-      left: (50% + (100% * 127 / 256))
+      left: 'calc(%s - 0.5px)' % (50% + (100% * 127 / 256))
 
     &--gen-8
       &--3
@@ -209,7 +209,7 @@ p
         top: (0.390625% - 0.0390625%)
         width: 0.1953125%
       &--5
-        left: (50% + (100% * 255 / 512))
+        left: 'calc(%s - 0.5px)' % (50% + (100% * 255 / 512))
         width: calc(0.1953125% + 0.5px) // To fix fractional pixel rendering in Chrome.
 
 @media all and (min-width: $video-width-max)
@@ -366,7 +366,7 @@ p
       &--gen-7--4,
       &--gen-8--0,
       &--gen-8--1
-        left: 'calc(50% + (%s - 0.01px))' % ($video-width-max * 63 / 128)
+        left: 'calc(50% + %s)' % (floor($video-width-max * 63 / 128) - 0.01px)
 
       &--gen-7--3,
       &--gen-8--0
@@ -384,7 +384,7 @@ p
       &--gen-8--2,
       &--gen-8--3,
       &--gen-8--4
-        left: 'calc(50% + %s)' % ($video-width-max * 127 / 256)
+        left: 'calc(50% + %s)' % (floor($video-width-max * 127 / 256) - 0.51px)
 
       &--gen-8
         &--3
@@ -396,7 +396,7 @@ p
         &--4
           top: (($video-height-max / 256) - ($video-height-max / (10 * 256)))
         &--5
-          left: 'calc(50% + %s)' % ($video-width-max * 255 / 512)
+          left: 'calc(50% + %s)' % (floor($video-width-max * 255 / 512) - 0.51px)
 
 .branding
   background: white

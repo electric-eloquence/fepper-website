@@ -204,13 +204,13 @@ describe('Fepper website', function () {
       app.behaviors.logoRipen();
     });
 
-    it('moves #logoBg between 0 and -400% right when window is scrolled', function () {
+    it('moves #logoBg between 0 and -900% right when window is scrolled', function () {
       // Get results.
       const logoBgRight = $orgs['#logoBg'].getState().style.right;
       const percentage = parseFloat(logoBgRight.slice(0, -1));
 
       // Assert.
-      expect(percentage).to.be.within(-400, 0);
+      expect(percentage).to.be.within(-900, 0);
       expect(percentage).to.not.equal(0);
     });
   });

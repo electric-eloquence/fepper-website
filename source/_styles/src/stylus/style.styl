@@ -13,10 +13,10 @@
 
 $video-width-max = 1728px
 $video-height-max = ($video-width-max / 3)
-$logo-width = '%spx' % logo_width    // Need px measurement to work around min font-size zoom-out bug in Webkit.
-$logo-height = '%spx' % logo_height // Need px measurement to work around min font-size zoom-out bug in Webkit.
-$branding-pad = '%srem' % branding_pad
-$item-last-offset = '%srem' % item_last_offset
+$logo-width = unit(logo_width, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$logo-height = unit(logo_height, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$branding-pad = unit(branding_pad, 'rem')
+$item-last-offset = unit(item_last_offset, 'rem')
 
 body
   color: $black-less-contrast
@@ -410,7 +410,7 @@ p
   margin: 0 auto
   overflow: hidden
   position: relative
-  width: $logo-width
+  width: $logo-width - 1px // Need to subtract 1px so Safari on iPhone X Simulator doesn't show border.
   height: $logo-height
   @media all and (max-width: $bp-sm-max)
     transform: scale(0.75)

@@ -589,7 +589,7 @@ p {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  width: 300px;
+  width: 299px;
   height: 200px;
 }
 @media all and (max-width: 767px) {

@@ -41,6 +41,38 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 }
 
 describe('Fepper website', function () {
+  describe('init', function () {
+    let htmlClassesBefore;
+
+    // Prep.
+    before(function () {
+      htmlClassesBefore = $orgs['#html'].getState().attribs.class;
+
+      app.behaviors.init();
+    });
+
+    it('adds .es6-modules-enabled class to #html', function () {
+      // Get results.
+      const htmlClassesAfter = $orgs['#html'].getState().attribs.class;
+
+      // Assert.
+      expect(htmlClassesBefore).to.not.include('es6-modules-enabled');
+      expect(htmlClassesAfter).to.include('es6-modules-enabled');
+    });
+
+    it('reveals content by removing the display of .hider', function (done) {
+      // Get results.
+      setTimeout(() => {
+        const hiderDisplay = $orgs['.hider'].getState().style.display;
+
+        // Assert.
+        expect(hiderDisplay).to.equal('none');
+
+        done();
+      }, 500);
+    });
+  });
+
   describe('bgColorReveal', function () {
     describe('adds background-color', function () {
       it('to .content__pane[1] when it is scrolled within viewport', function () {
@@ -165,38 +197,6 @@ describe('Fepper website', function () {
     });
   });
 
-  describe('init', function () {
-    let htmlClassesBefore;
-
-    // Prep.
-    before(function () {
-      htmlClassesBefore = $orgs['#html'].getState().attribs.class;
-
-      app.behaviors.init();
-    });
-
-    it('adds .es6-modules-enabled class to #html', function () {
-      // Get results.
-      const htmlClassesAfter = $orgs['#html'].getState().attribs.class;
-
-      // Assert.
-      expect(htmlClassesBefore).to.not.include('es6-modules-enabled');
-      expect(htmlClassesAfter).to.include('es6-modules-enabled');
-    });
-
-    it('reveals content by removing the display of .hider', function (done) {
-      // Get results.
-      setTimeout(() => {
-        const hiderDisplay = $orgs['.hider'].getState().style.display;
-
-        // Assert.
-        expect(hiderDisplay).to.equal('none');
-
-        done();
-      }, 500);
-    });
-  });
-
   describe('logoRipen', function () {
     // Prep.
     before(function () {
@@ -268,6 +268,178 @@ describe('Fepper website', function () {
 
       scrollDistance -= 200;
     }
+  });
+
+  describe('scrollButtonDisplay', function () {
+    const brandingOrg = $orgs['#branding'];
+    const brandingState = brandingOrg.getState();
+    const scrollButtonOrg = $orgs['.scroll-button--up'];
+    const windowState = $orgs.window.getState();
+
+    it('should hide when the top of #branding is below the top of window', function () {
+      const offset = 100;
+
+      brandingOrg.dispatchAction(
+        'setBoundingClientRect',
+        {
+          width: windowState.width,
+          height: brandingState.innerHeight,
+          top: offset,
+          right: windowState.Width,
+          bottom: offset + brandingState.innerHeight,
+          left: 0
+        }
+      );
+
+      app.behaviors.scrollButtonDisplay();
+
+      const scrollButtonState = scrollButtonOrg.getState();
+
+      expect(scrollButtonState.style.display).to.equal('none');
+    });
+
+    it('should show when the top of #branding is at the top of window', function () {
+      const offset = 0;
+
+      brandingOrg.dispatchAction(
+        'setBoundingClientRect',
+        {
+          width: windowState.width,
+          height: brandingState.innerHeight,
+          top: offset,
+          right: windowState.Width,
+          bottom: offset + brandingState.innerHeight,
+          left: 0
+        }
+      );
+
+      app.behaviors.scrollButtonDisplay();
+
+      const scrollButtonState = scrollButtonOrg.getState();
+
+      expect(scrollButtonState.style.display).to.equal('block');
+    });
+  });
+
+  describe('scrollButtonDown', function () {
+    const bottomOrg = $orgs['.bottom'];
+    const panesOrg = $orgs['.content__pane'];
+    const panesState = panesOrg.getState();
+    const paneHeight = panesState.innerHeight;
+    const windowState = $orgs.window.getState();
+    const windowHeight = windowState.height;
+    const expectedTopVal = (windowHeight - paneHeight) / 2;
+    const expectedBottomVal = (windowHeight + paneHeight) / 2;
+
+    it('should center 1st content pane on 1st click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const paneState = panesOrg.getState(0);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 2nd content pane on 2nd click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const paneState = panesOrg.getState(1);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 3rd content pane on 3rd click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const paneState = panesOrg.getState(2);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 4th content pane on 4th click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const paneState = panesOrg.getState(3);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 5th content pane on 5th click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const paneState = panesOrg.getState(4);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should show footer on 6th click', function () {
+      app.behaviors.scrollButtonDown();
+
+      const bottomState = bottomOrg.getState();
+      const bottomRect = bottomState.boundingClientRect;
+
+      expect(bottomRect.top).to.equal(windowHeight - bottomRect.height);
+      expect(bottomRect.bottom).to.equal(windowHeight);
+    });
+  });
+
+  describe('scrollButtonUp', function () {
+    const panesOrg = $orgs['.content__pane'];
+    const panesState = panesOrg.getState();
+    const paneHeight = panesState.innerHeight;
+    const windowState = $orgs.window.getState();
+    const windowHeight = windowState.height;
+    const expectedTopVal = (windowHeight - paneHeight) / 2;
+    const expectedBottomVal = (windowHeight + paneHeight) / 2;
+
+    it('should center 5th content pane on 1st click', function () {
+      app.behaviors.scrollButtonUp();
+
+      const paneState = panesOrg.getState(4);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 4th content pane on 2nd click', function () {
+      app.behaviors.scrollButtonUp();
+
+      const paneState = panesOrg.getState(3);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 3rd content pane on 3rd click', function () {
+      app.behaviors.scrollButtonUp();
+
+      const paneState = panesOrg.getState(2);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 2nd content pane on 4th click', function () {
+      app.behaviors.scrollButtonUp();
+
+      const paneState = panesOrg.getState(1);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
+
+    it('should center 1st content pane on 5th click', function () {
+      app.behaviors.scrollButtonUp();
+
+      const paneState = panesOrg.getState(0);
+
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+    });
   });
 
   describe('updateDims', function () {

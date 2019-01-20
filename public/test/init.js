@@ -29,7 +29,7 @@ requerio.init();
 import behaviorsGet from '../_scripts/src/app/behaviors-get.js';
 const behaviors = behaviorsGet(requerio, global);
 
-// Prep for $window.scrollTop override.
+// Prep for $window.scrollTop override
 const panesOrg = requerio.$orgs['.content__pane'];
 const panesCount = panesOrg.getState().$members.length;
 
@@ -92,6 +92,37 @@ $window.scrollTop = (...args) => {
   }
 
   return retVal;
+};
+
+// Create .scrollIntoView mock DOM method.
+for (let i = 0; i < panesCount; i++) {
+  panesOrg.dispatchAction('innerHeight', paneHeight, i);
+
+  const paneDomObj = panesOrg[i];
+
+  paneDomObj.scrollIntoView = () => {
+    $window.scrollTop(300 + (paneHeight * i));
+  };
+}
+
+const bottomOrg = requerio.$orgs['.bottom'];
+
+bottomOrg[0].scrollIntoView = () => {
+  const bottomHeight = 50;
+
+  bottomOrg.dispatchAction(
+    'setBoundingClientRect',
+    {
+      width: windowWidth,
+      height: bottomHeight,
+      top: windowHeight - bottomHeight,
+      right: windowWidth,
+      bottom: windowHeight,
+      left: 0
+    }
+  );
+
+  $window.scrollTop(300 + (paneHeight * 6));
 };
 
 $window.getState = () => {

@@ -6,6 +6,9 @@
 export default {
   'window': null,
   '#html': null,
+  '#body': null,
+  '.scroll-button--up': null,
+  '.scroll-button--down': null,
   '.video__img': null,
   '#branding': null,
   '#logoBg': null,
@@ -14,5 +17,6 @@ export default {
   '.content__slider': null,
   '.hider': null,
   '.link-github__anchor--download': null,
-  '.link-github__anchor--readme': null
+  '.link-github__anchor--readme': null,
+  '.bottom': null
 };

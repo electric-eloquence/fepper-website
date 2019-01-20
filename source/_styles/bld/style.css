@@ -641,6 +641,30 @@ p {
 .content__fixed + .content__slider {
   padding: 0 0 4rem;
 }
+.scroll-button {
+  background-color: transparent;
+  border: 0;
+  color: #ddd;
+  cursor: pointer;
+  font-size: 6rem;
+  line-height: 1;
+  outline: 0;
+  position: fixed;
+  right: 1.5rem;
+  z-index: 2;
+}
+.scroll-button--down {
+  bottom: 1rem;
+  transform: rotate(-90deg);
+}
+.scroll-button--up {
+  display: none;
+  top: 1rem;
+  transform: rotate(90deg);
+}
+.scroll-button:hover {
+  color: #bbb;
+}
 .link-github {
   display: flex;
   justify-content: center;
@@ -674,8 +698,10 @@ p {
   background: #000;
   color: #fff;
   padding: 3rem 0;
+  position: relative;
   text-align: center;
   width: 100%;
+  z-index: 3;
 }
 html.es6-modules-enabled .browser-advice {
   display: none;

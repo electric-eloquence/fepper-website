@@ -1,4 +1,4 @@
-import actionsGet from './actions-get.js';
+import behaviorsGet from './behaviors-get.js';
 
 export default (app) => {
   if (typeof window === 'object') {
@@ -7,10 +7,10 @@ export default (app) => {
     };
   }
 
-  const actions = actionsGet(app, window);
+  const behaviors = behaviorsGet(app, window);
 
-  actions.init();
-  actions.updateDims();
+  behaviors.init();
+  behaviors.updateDims();
 
   let project = '';
 
@@ -20,5 +20,5 @@ export default (app) => {
     project = searchParams.get('project');
   }
 
-  actions.gitHubHrefAdapt(project);
+  behaviors.gitHubHrefAdapt(project);
 };

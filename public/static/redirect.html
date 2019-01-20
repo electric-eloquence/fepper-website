@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html id="html" class="">
+  <head>
+    <meta charset="UTF-8">
+    <script>
+      // Not using URLSearchParams because a) not necessary, b) might want to support ancient browsers.
+      var url = window.location.search.slice(5);
+
+      if (url.slice(0, 4) === 'http') {
+        window.location = url;
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

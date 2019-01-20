@@ -1,7 +1,7 @@
-import actionsGet from './actions-get.js';
+import behaviorsGet from './behaviors-get.js';
 import $organisms from './organisms.js';
 
 export default {
-  actionsGet: actionsGet,
-  $organisms: $organisms
+  behaviorsGet,
+  $organisms
 };

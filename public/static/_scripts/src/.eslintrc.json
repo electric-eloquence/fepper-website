@@ -1,0 +1,10 @@
+{
+  "extends": "../../../.eslintrc.json",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "globals": {
+    "$": true,
+    "Redux": true
+  }
+}

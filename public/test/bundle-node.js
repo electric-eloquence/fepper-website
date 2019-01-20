@@ -189,6 +189,22 @@ var behaviorsGet = (app, root) => {
   const $orgs = app.$orgs;
 
   return {
+    init: () => {
+      // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
+      // be applied.
+      $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
+
+      // Content should be hidden on page load. Reveal after initial CSS transformation.
+      setTimeout(() => {
+        $orgs['.hider'].dispatchAction('css', {display: 'none'});
+      }, 500);
+
+      // Remove this if position: sticky ever renders well on MS Edge.
+      if (typeof window === 'object' && window.navigator.userAgent.indexOf('Edge') > -1) {
+        $orgs['#html'].dispatchAction('addClass', 'ms-edge');
+      }
+    },
+
     bgColorReveal: () => {
       const brandingState = $orgs['#branding'].getState();
       const panesOrg = $orgs['.content__pane'];
@@ -270,22 +286,6 @@ var behaviorsGet = (app, root) => {
       }
     },
 
-    init: () => {
-      // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
-      // be applied.
-      $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
-
-      // Content should be hidden on page load. Reveal after initial CSS transformation.
-      setTimeout(() => {
-        $orgs['.hider'].dispatchAction('css', {display: 'none'});
-      }, 500);
-
-      // Remove this if position: sticky ever renders well on MS Edge.
-      if (typeof window === 'object' && window.navigator.userAgent.indexOf('Edge') > -1) {
-        $orgs['#html'].dispatchAction('addClass', 'ms-edge');
-      }
-    },
-
     logoRipen: () => {
       const MAX_PERCENTAGE = 900;
       const htmlState = $orgs['#html'].getState();
@@ -346,6 +346,70 @@ var behaviorsGet = (app, root) => {
       }
     },
 
+    scrollButtonDisplay: () => {
+      const brandingOrg = $orgs['#branding'];
+      const brandingState = brandingOrg.getState();
+      const scrollButtonOrg = $orgs['.scroll-button--up'];
+      const scrollButtonState = scrollButtonOrg.getState();
+
+      if (brandingState.boundingClientRect.top > 0) {
+        if (scrollButtonState.style.display !== 'none') {
+          scrollButtonOrg.dispatchAction('css', {display: 'none'});
+        }
+      }
+      else {
+        if (scrollButtonState.style.display !== 'block') {
+          scrollButtonOrg.dispatchAction('css', {display: 'block'});
+        }
+      }
+    },
+
+    scrollButtonDown: () => {
+      const panesOrg = $orgs['.content__pane'];
+      const panesCount = panesOrg.$members.length;
+      const windowState = $orgs.window.getState();
+      const windowHeight = windowState.height;
+
+      let i;
+
+      for (i = 0; i < panesCount; i++) {
+        const panesState = panesOrg.getState(i);
+        const distanceTop = panesState.boundingClientRect.top;
+        const threshold = (windowHeight - panesState.innerHeight) / 2;
+
+        if (distanceTop > threshold) {
+          if (i < panesCount - 1) {
+            panesOrg[i].scrollIntoView({behavior: 'smooth'});
+          }
+          else {
+            $orgs['.bottom'][0].scrollIntoView({behavior: 'smooth', block: 'end'});
+          }
+
+          break;
+        }
+      }
+    },
+
+    scrollButtonUp: () => {
+      const panesOrg = $orgs['.content__pane'];
+      const panesCount = panesOrg.$members.length;
+      const windowState = $orgs.window.getState();
+      const windowHeight = windowState.height;
+
+      let i = panesCount - 1;
+
+      while (i--) {
+        const panesState = panesOrg.getState(i);
+        const distanceTop = panesState.boundingClientRect.top;
+        const threshold = (windowHeight - panesState.innerHeight) / 2;
+
+        if (distanceTop < threshold) {
+          panesOrg[i].scrollIntoView({behavior: 'smooth'});
+          break;
+        }
+      }
+    },
+
     updateDims: () => {
       $orgs.window.getState();
 
@@ -400,6 +464,9 @@ var behaviorsGet = (app, root) => {
 var $organisms = {
   'window': null,
   '#html': null,
+  '#body': null,
+  '.scroll-button--up': null,
+  '.scroll-button--down': null,
   '.video__img': null,
   '#branding': null,
   '#logoBg': null,
@@ -408,7 +475,8 @@ var $organisms = {
   '.content__slider': null,
   '.hider': null,
   '.link-github__anchor--download': null,
-  '.link-github__anchor--readme': null
+  '.link-github__anchor--readme': null,
+  '.bottom': null
 };
 
 var bundleNode = {

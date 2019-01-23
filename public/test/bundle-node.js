@@ -194,11 +194,6 @@ var behaviorsGet = (app, root) => {
       // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
 
-      // Content should be hidden on page load. Reveal after initial CSS transformation.
-      setTimeout(() => {
-        $orgs['.hider'].dispatchAction('css', {display: 'none'});
-      }, 500);
-
       // Remove this if position: sticky ever renders well on MS Edge.
       if (typeof window === 'object' && window.navigator.userAgent.indexOf('Edge') > -1) {
         $orgs['#html'].dispatchAction('addClass', 'ms-edge');
@@ -365,46 +360,73 @@ var behaviorsGet = (app, root) => {
     },
 
     scrollButtonDown: () => {
+      const brandingState = $orgs['#branding'].getState();
+      const bodyOrg = $orgs['#body'];
+      const htmlOrg = $orgs['#html'];
       const panesOrg = $orgs['.content__pane'];
       const panesCount = panesOrg.$members.length;
+      const videoState = $orgs['.video'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
 
       let i;
+      let distancePanes = 0;
 
       for (i = 0; i < panesCount; i++) {
-        const panesState = panesOrg.getState(i);
-        const distanceTop = panesState.boundingClientRect.top;
-        const threshold = (windowHeight - panesState.innerHeight) / 2;
+        const htmlState = htmlOrg.getState();
+        const paneState = panesOrg.getState(i);
+        const distanceTop = paneState.boundingClientRect.top;
+        const threshold = (windowHeight - paneState.innerHeight) / 2;
 
-        if (distanceTop > threshold) {
+        if (Math.floor(distanceTop) > Math.ceil(threshold)) {
           if (i < panesCount - 1) {
-            panesOrg[i].scrollIntoView({behavior: 'smooth'});
+            const distanceScroll = videoState.innerHeight + brandingState.innerHeight + distancePanes - threshold;
+
+            htmlOrg.animate({scrollTop: distanceScroll});
+            bodyOrg.animate({scrollTop: distanceScroll});
           }
           else {
-            $orgs['.bottom'][0].scrollIntoView({behavior: 'smooth', block: 'end'});
+            htmlOrg.animate({scrollTop: htmlState.innerHeight - windowHeight});
+            bodyOrg.animate({scrollTop: htmlState.innerHeight - windowHeight});
           }
 
           break;
         }
+
+        distancePanes += paneState.innerHeight;
       }
     },
 
     scrollButtonUp: () => {
+      const brandingState = $orgs['#branding'].getState();
+      const bodyOrg = $orgs['#body'];
+      const htmlOrg = $orgs['#html'];
       const panesOrg = $orgs['.content__pane'];
       const panesCount = panesOrg.$members.length;
+      const videoState = $orgs['.video'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
 
-      let i = panesCount - 1;
+      let i;
+      let distancePanes = 0;
+
+      for (i = 0; i < panesCount; i++) {
+        const paneState = panesOrg.getState(i);
+        distancePanes += paneState.innerHeight;
+      }
 
       while (i--) {
-        const panesState = panesOrg.getState(i);
-        const distanceTop = panesState.boundingClientRect.top;
-        const threshold = (windowHeight - panesState.innerHeight) / 2;
+        const paneState = panesOrg.getState(i);
+        const distanceTop = paneState.boundingClientRect.top;
+        const threshold = (windowHeight - paneState.innerHeight) / 2;
+        distancePanes -= paneState.innerHeight;
 
         if (distanceTop < threshold) {
-          panesOrg[i].scrollIntoView({behavior: 'smooth'});
+          const distanceScroll = videoState.innerHeight + brandingState.innerHeight + distancePanes - threshold;
+
+          htmlOrg.animate({scrollTop: distanceScroll});
+          bodyOrg.animate({scrollTop: distanceScroll});
+
           break;
         }
       }
@@ -467,6 +489,7 @@ var $organisms = {
   '#body': null,
   '.scroll-button--up': null,
   '.scroll-button--down': null,
+  '.video': null,
   '.video__img': null,
   '#branding': null,
   '#logoBg': null,
@@ -475,8 +498,7 @@ var $organisms = {
   '.content__slider': null,
   '.hider': null,
   '.link-github__anchor--download': null,
-  '.link-github__anchor--readme': null,
-  '.bottom': null
+  '.link-github__anchor--readme': null
 };
 
 var bundleNode = {

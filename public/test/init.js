@@ -44,6 +44,7 @@ let paneBottomDistance = paneTopDistance;
 for (let i = 0; i < panesCount; i++) {
   paneBottomDistance += paneHeight;
 
+  panesOrg.dispatchAction('innerHeight', paneHeight, i);
   panesOrg.dispatchAction(
     'setBoundingClientRect',
     {
@@ -94,37 +95,6 @@ $window.scrollTop = (...args) => {
   return retVal;
 };
 
-// Create .scrollIntoView mock DOM method.
-for (let i = 0; i < panesCount; i++) {
-  panesOrg.dispatchAction('innerHeight', paneHeight, i);
-
-  const paneDomObj = panesOrg[i];
-
-  paneDomObj.scrollIntoView = () => {
-    $window.scrollTop(300 + (paneHeight * i));
-  };
-}
-
-const bottomOrg = requerio.$orgs['.bottom'];
-
-bottomOrg[0].scrollIntoView = () => {
-  const bottomHeight = 50;
-
-  bottomOrg.dispatchAction(
-    'setBoundingClientRect',
-    {
-      width: windowWidth,
-      height: bottomHeight,
-      top: windowHeight - bottomHeight,
-      right: windowWidth,
-      bottom: windowHeight,
-      left: 0
-    }
-  );
-
-  $window.scrollTop(300 + (paneHeight * 6));
-};
-
 $window.getState = () => {
   let scrollTop;
 
@@ -142,9 +112,19 @@ $window.getState = () => {
   };
 };
 
+// Create mock Cheerio .animate() method.
+requerio.$orgs['#html'].animate = function () {
+  const {scrollTop} = arguments[0];
+
+  $window.scrollTop(scrollTop);
+};
+requerio.$orgs['#body'].animate = () => {};
+
 // More setup.
 requerio.behaviors = behaviors;
 requerio.$orgs['#html'].dispatchAction('height', 2000);
+requerio.$orgs['#html'].dispatchAction('innerHeight', 2000);
+requerio.$orgs['.video'].dispatchAction('innerHeight', 400);
 requerio.$orgs['#branding'].dispatchAction('innerHeight', 200);
 
 module.exports = requerio;

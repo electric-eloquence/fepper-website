@@ -59,18 +59,6 @@ describe('Fepper website', function () {
       expect(htmlClassesBefore).to.not.include('es6-modules-enabled');
       expect(htmlClassesAfter).to.include('es6-modules-enabled');
     });
-
-    it('reveals content by removing the display of .hider', function (done) {
-      // Get results.
-      setTimeout(() => {
-        const hiderDisplay = $orgs['.hider'].getState().style.display;
-
-        // Assert.
-        expect(hiderDisplay).to.equal('none');
-
-        done();
-      }, 500);
-    });
   });
 
   describe('bgColorReveal', function () {
@@ -322,7 +310,6 @@ describe('Fepper website', function () {
   });
 
   describe('scrollButtonDown', function () {
-    const bottomOrg = $orgs['.bottom'];
     const panesOrg = $orgs['.content__pane'];
     const panesState = panesOrg.getState();
     const paneHeight = panesState.innerHeight;
@@ -379,11 +366,10 @@ describe('Fepper website', function () {
     it('should show footer on 6th click', function () {
       app.behaviors.scrollButtonDown();
 
-      const bottomState = bottomOrg.getState();
-      const bottomRect = bottomState.boundingClientRect;
+      const windowState = $orgs.window.getState();
+      const htmlState = $orgs['#html'].getState();
 
-      expect(bottomRect.top).to.equal(windowHeight - bottomRect.height);
-      expect(bottomRect.bottom).to.equal(windowHeight);
+      expect(windowState.scrollTop).to.equal(htmlState.innerHeight - windowState.height);
     });
   });
 

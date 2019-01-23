@@ -1,1 +1,18 @@
-<div class="hider"></div>
+<div id="hider" class="hider fade hidden"></div>
+<script>
+  document.getElementById('hider').className = 'hider fade';
+  document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+      document.getElementById('browser-advice').className += ' fade--in';
+      document.getElementById('hider').className += ' fade--out';
+
+      // Scroll to top of page on page load.
+      // window.scrollTo() does not work onbeforeunload for Safari so need to invoke it here.
+      if (window.pageYOffset > 0) {
+        window.scrollTo(0, 0);
+      }
+    },
+    false
+  );
+</script>

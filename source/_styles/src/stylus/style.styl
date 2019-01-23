@@ -11,12 +11,13 @@
 @import '0-base/02-helpers'
 @import '0-base/03-global'
 
-$video-width-max = 1728px
-$video-height-max = ($video-width-max / 3)
-$logo-width = unit(logo_width, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
-$logo-height = unit(logo_height, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $branding-pad = unit(branding_pad, 'rem')
 $item-last-offset = unit(item_last_offset, 'rem')
+$logo-bg-width = unit(logo_width, 'rem')
+$logo-width = unit(logo_width, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$logo-height = unit(logo_height, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$video-width-max = 1728px
+$video-height-max = ($video-width-max / 3)
 
 body
   color: $black-less-contrast
@@ -400,7 +401,7 @@ p
 
 .branding
   background: white
-  padding: 1rem 0
+  padding: 0 0 $branding-pad
   position: -webkit-sticky
   position: sticky
   top: -0.1rem // To not show 1px of text at top of screen on Chrome.
@@ -410,21 +411,28 @@ p
   margin: 0 auto
   overflow: hidden
   position: relative
-  width: $logo-width - 1px // Need to subtract 1px so Safari on iPhone X Simulator doesn't show border.
+  width: $logo-width
   height: $logo-height
   @media all and (max-width: $bp-sm-max)
-    transform: scale(0.75)
+    height: $logo-height * $bp-sm-ratio
+    width: $logo-width * $bp-sm-ratio
   &__bg
     background: linear-gradient(to right, $green, $green 10%, rgb(200,181,17.5) 32.5%, $yellow 42.5%, $yellow 57.5%, rgb(255,160,17.5) 65%, $red 92.5%, $red);
     position: absolute
-    bottom: 0
+    bottom: 0.1rem
     right: -900%
-    width: 300rem
-    height: calc(100% + 2rem)
+    width: $logo-bg-width
+    height: calc(100% - 0.2rem)
+    @media all and (max-width: $bp-sm-max)
+      width: $logo-bg-width * $bp-sm-ratio
   &__img
     position: relative
     top: 0
-    left: 0
+    right: 0.002rem
+    @media all and (max-width: $bp-sm-max)
+      width: ($logo-width * $bp-sm-ratio) + 0.3rem
+      height: ($logo-height * $bp-sm-ratio) + 0.2rem
+  // This border hides an errant border when zooming in Firefox.
   &__border
     border: 0.05rem solid white
     position: absolute
@@ -436,6 +444,8 @@ p
   background: white
   position: relative
   text-align: center
+.browser-advice
+  opacity: 0
 .content
   &__center
     margin: 0 auto
@@ -453,20 +463,24 @@ p
   border: 0
   color: #ddd
   cursor: pointer
-  font-size: 6rem
+  font-size: 5rem
   line-height: 1
   outline: 0
   position: fixed
   right: 1.5rem
   z-index: 2
+  // No focus border in Linux Firefox.
+  &::-moz-focus-inner
+    border: 0
   &--down
-    bottom: 1rem
-    transform: rotate(-90deg)
+    bottom: 1.5rem
+    transform: rotate(180deg)
   &--up
     display: none
-    top: 1rem
-    transform: rotate(90deg)
-  &:hover
+    top: 1.5rem
+  &:hover,
+  &:active,
+  &:focus
     color: #bbb
 .link-github
   display: flex
@@ -483,13 +497,17 @@ p
       width: 3.2rem
 .hider
   background: white
+  opacity: 1
   position: fixed
-  top: 'calc(%s + %s + (2 * %s))' % ($video-height $logo-height $branding-pad)
+  top: 'calc((100vw / 3) + %s + %s + 3.5rem)' % ($logo-height $branding-pad)
   width: 100%
   height: 100vh
+  z-index: 1
+  @media all and (max-width: $bp-sm-max)
+    top: 'calc((100vw / 3) + (%s * %s) + %s + 3.5rem)' % ($logo-height $bp-sm-ratio $branding-pad)
 .bottom
   background: white
-  padding-top: 'calc(100vh - %s - %s - (2 * %s) - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
+  padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
   position: relative
 .footer
   background: black

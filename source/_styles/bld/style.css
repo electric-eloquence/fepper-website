@@ -603,6 +603,9 @@ p {
     width: 225px;
   }
 }
+.logo--linked {
+  display: block;
+}
 .logo__bg {
   background: linear-gradient(to right, #027d15, #027d15 10%, #c8b512 32.5%, #f0c000 42.5%, #f0c000 57.5%, #ffa012 65%, #d00000 92.5%, #d00000);
   position: absolute;

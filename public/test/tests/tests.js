@@ -133,8 +133,21 @@ describe('Fepper website', function () {
   });
 
   describe('gitHubHrefAdapt', function () {
+    const gitHubHomeHrefBefore = $orgs['.logo--linked'].getState().attribs.href;
     const gitHubDownloadHrefBefore = $orgs['.link-github__anchor--download'].getState().attribs.href;
     const gitHubReadmeHrefBefore = $orgs['.link-github__anchor--readme'].getState().attribs.href;
+
+    it('adapts GitHub Project Home href to Drupal project when provided project=drupal search param', function () {
+      // Act.
+      app.behaviors.gitHubHrefAdapt('drupal');
+
+      // Get results.
+      const gitHubHomeHrefAfter = $orgs['.logo--linked'].getState().attribs.href;
+
+      // Assert.
+      expect(gitHubHomeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal');
+      expect(gitHubHomeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal');
+    });
 
     it('adapts GitHub Download href to Drupal project when provided project=drupal search param', function () {
       // Act.
@@ -158,6 +171,18 @@ describe('Fepper website', function () {
       // Assert.
       expect(gitHubReadmeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal%23readme');
       expect(gitHubReadmeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal%23readme');
+    });
+
+    it('adapts GitHub Project Home href to WordPress project when provided project=wordpress search param', function () {
+      // Act.
+      app.behaviors.gitHubHrefAdapt('wordpress');
+
+      // Get results.
+      const gitHubHomeHrefAfter = $orgs['.logo--linked'].getState().attribs.href;
+
+      // Assert.
+      expect(gitHubHomeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress');
+      expect(gitHubHomeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress');
     });
 
     it('adapts GitHub Download href to WordPress project when provided project=wordpress search param', function () {

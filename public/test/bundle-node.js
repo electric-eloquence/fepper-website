@@ -267,15 +267,18 @@ var behaviorsGet = (app, root) => {
     gitHubHrefAdapt: (project) => {
       const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
 
+      let hrefHome = hrefBase;
       let hrefDownload = hrefBase;
       let hrefReadme = hrefBase;
 
       switch (project) {
         case 'drupal':
         case 'wordpress':
+          hrefHome += `-${project}`;
           hrefDownload += `-${project}/releases/latest`;
           hrefReadme += `-${project}%23readme`;
 
+          $orgs['.logo--linked'].dispatchAction('attr', {href: hrefHome});
           $orgs['.link-github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
           $orgs['.link-github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
       }
@@ -492,6 +495,7 @@ var $organisms = {
   '.video': null,
   '.video__img': null,
   '#branding': null,
+  '.logo--linked': null,
   '#logoBg': null,
   '.content__pane': null,
   '.content__block': null,

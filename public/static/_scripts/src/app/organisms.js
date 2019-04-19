@@ -12,6 +12,7 @@ export default {
   '.video': null,
   '.video__img': null,
   '#branding': null,
+  '.logo--linked': null,
   '#logoBg': null,
   '.content__pane': null,
   '.content__block': null,

@@ -315,9 +315,11 @@ __Returns__: `object` - The organism's state.
       // Do not preemptively update .style property because we only want to track styles dispatched through Requerio.
       resetMembers(this, stateStore);
 
+      // Update attr in case they were changed by user interaction (like the `checked` attr).
       // case state.attribs:
       this.dispatchAction('attr', [], memberIdx);
 
+      // The rest of the cases are measurements.
       // case state.boundingClientRect:
       this.dispatchAction('getBoundingClientRect', [], memberIdx);
 
@@ -347,7 +349,7 @@ __Returns__: `object` - The organism's state.
 
   /**
 ### .getStore()
-A reference to Redux `store`.
+A reference to the Redux `store`. The same reference as `requerio.store`.
 
 __Returns__: `object` - This app's state store.
 */

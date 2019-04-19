@@ -265,7 +265,7 @@ var behaviorsGet = (app, root) => {
     },
 
     gitHubHrefAdapt: (project) => {
-      const hrefBase = 'https://github.com/electric-eloquence/fepper';
+      const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
 
       let hrefDownload = hrefBase;
       let hrefReadme = hrefBase;
@@ -274,7 +274,7 @@ var behaviorsGet = (app, root) => {
         case 'drupal':
         case 'wordpress':
           hrefDownload += `-${project}/releases/latest`;
-          hrefReadme += `-${project}#readme`;
+          hrefReadme += `-${project}%23readme`;
 
           $orgs['.link-github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
           $orgs['.link-github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});

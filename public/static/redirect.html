@@ -7,7 +7,7 @@
       var url = window.location.search.slice(5);
 
       if (url.slice(0, 4) === 'http') {
-        window.location = url;
+        window.location = decodeURIComponent(url);
       }
     </script>
   </head>

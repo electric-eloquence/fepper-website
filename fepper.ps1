@@ -11,7 +11,7 @@ else
   $archMsi = "x64.msi"
 }
 
-$nodeVersion = "v8.14.0"
+$nodeVersion = "v8.15.1"
 $nodeMsi = "node-" + $nodeVersion + "-" + $archMsi
 $nodeMsiFull = $PSScriptRoot + "\" + $nodeMsi
 $whereNode = where.exe node
@@ -30,13 +30,7 @@ if ($whereNode -Like "*\node.exe")
     npm install
   }
 
-  $argList = $args[0]
-  for ($i = 1; $i -lt $args.length; $++)
-  {
-    $argList = "$argList $args[$i]"
-  }
-
-  node_modules\.bin\gulp --gulpfile node_modules\fepper\tasker.js $argList
+  node node_modules/fepper/index.js $args
 }
 else
 {

@@ -38,11 +38,11 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0",
-    "fepper": "^0.30.3",
-    "fepper-utils": "^1.1.5",
+    "fepper": "^0.32.2",
+    "fepper-utils": "^1.2.2",
     "fs-extra": "^7.0.0",
     "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.4",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.13.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^2.2.1"
   }

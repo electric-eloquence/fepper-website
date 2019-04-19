@@ -1,7 +1,7 @@
 {
   "description": "Fepper extensions",
   "devDependencies": {
-    "fp-stylus": "^1.1.4",
+    "fp-stylus": "^1.2.4",
     "rollup-stream": "^1.24.1",
     "vinyl-source-stream": "^2.0.0"
   }

@@ -34,7 +34,7 @@
     "url": "https://github.com/electric-eloquence/fepper/issues"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=8.16.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

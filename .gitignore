@@ -6,6 +6,7 @@
 /.timestamp
 /conf.yml
 /public/*
+!/public/.babelrc
 !/public/package.json
 !/public/static/
 !/public/static/node_modules/jquery/

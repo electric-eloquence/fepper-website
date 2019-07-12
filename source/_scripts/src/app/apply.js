@@ -23,4 +23,17 @@ export default (app) => {
   }
 
   behaviors.gitHubHrefAdapt(project);
+
+  // Create and load non-rendered DOM Images for video generation.
+  const logicalImages = {
+    '03': new Image(),
+    '04': new Image(),
+    '05': new Image(),
+    '06': new Image(),
+    '07': new Image(),
+    '08': new Image()
+  };
+
+  // Load and apply the logicalImages to render like a video.
+  behaviors.videoRender(logicalImages);
 };

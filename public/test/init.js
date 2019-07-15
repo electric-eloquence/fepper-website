@@ -15,7 +15,7 @@ global.Image = class {
   }
 };
 
-const bundle = require('./bundle-node.js');
+const bundle = require('./bundle-node');
 const $organisms = bundle.$organisms;
 
 // Read variables.style for global defs for testing.

@@ -26,10 +26,12 @@ gulp.task('rollup', function () {
     format: 'cjs'
   })
 
+  /* eslint-disable indent */
   // Rollup-stream requires this extra step. Pass the filename you want to output to.
   .pipe(source(name))
 
   .pipe(gulp.dest(testDir));
+  /* eslint-enable indent */
 });
 
 gulp.task('rollup:watch', () => {

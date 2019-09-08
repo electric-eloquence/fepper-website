@@ -15,7 +15,7 @@
   <meta http-equiv="pragma" content="no-cache">
 
   <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
-<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/patternlab-pattern.css" media="all">
+<link rel="stylesheet" href="../../node_modules/fepper-ui/styles/pattern.css" media="all">
 <script src="../../node_modules/mousetrap/mousetrap.min.js"></script>
 <script src="../../annotations/annotations.js"></script>
 <!-- End Pattern Lab -->
@@ -24,8 +24,9 @@
   <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css" media="all">
   <link rel="stylesheet" href="../../_styles/bld/style.css" media="all">
-  <script src="../../node_modules/redux/dist/redux.min.js"></script>
+
   <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../../node_modules/redux/dist/redux.min.js"></script>
   <script src="../../_scripts/src/app/module-support-check.js" type="module"></script>
 </head>
 <body id="body" class="">
@@ -353,24 +354,21 @@
 
 <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
 <script type="text/json" id="sg-pattern-data-footer" class="sg-pattern-data">
-  {"lineage":[{"lineagePattern":"compounds-button-up","lineagePath":"patterns/01-compounds-organisms-button-up/01-compounds-organisms-button-up.html","isHidden":false},{"lineagePattern":"compounds-button-down","lineagePath":"patterns/01-compounds-organisms-button-down/01-compounds-organisms-button-down.html","isHidden":false},{"lineagePattern":"compounds-video-head","lineagePath":"patterns/01-compounds-organisms-video-head/01-compounds-organisms-video-head.html","isHidden":false},{"lineagePattern":"compounds-branding","lineagePath":"patterns/01-compounds-organisms-branding/01-compounds-organisms-branding.html","isHidden":false},{"lineagePattern":"components-main","lineagePath":"patterns/02-components-regions-main/02-components-regions-main.html","isHidden":false},{"lineagePattern":"compounds-hider","lineagePath":"patterns/01-compounds-organisms-hider/01-compounds-organisms-hider.html","isHidden":false},{"lineagePattern":"compounds-bottom","lineagePath":"patterns/01-compounds-organisms-bottom/01-compounds-organisms-bottom.html","isHidden":false}],"lineageExists":true,"lineageR":[],"lineageRExists":false,"patternDesc":"","patternExtension":".mustache","patternName":"Homepage","patternPartial":"pages-homepage","patternState":""}
+  {"lineage":[{"lineagePattern":"compounds-button-up","lineagePath":"patterns/01-compounds-organisms-button-up/01-compounds-organisms-button-up.html","isHidden":false},{"lineagePattern":"compounds-button-down","lineagePath":"patterns/01-compounds-organisms-button-down/01-compounds-organisms-button-down.html","isHidden":false},{"lineagePattern":"compounds-video-head","lineagePath":"patterns/01-compounds-organisms-video-head/01-compounds-organisms-video-head.html","isHidden":false},{"lineagePattern":"compounds-branding","lineagePath":"patterns/01-compounds-organisms-branding/01-compounds-organisms-branding.html","isHidden":false},{"lineagePattern":"components-main","lineagePath":"patterns/02-components-regions-main/02-components-regions-main.html","isHidden":false},{"lineagePattern":"compounds-hider","lineagePath":"patterns/01-compounds-organisms-hider/01-compounds-organisms-hider.html","isHidden":false},{"lineagePattern":"compounds-bottom","lineagePath":"patterns/01-compounds-organisms-bottom/01-compounds-organisms-bottom.html","isHidden":false}],"lineageExists":true,"lineageR":[],"lineageRExists":false,"patternDesc":"","patternExtension":".mustache","patternName":"Homepage","patternPartial":"pages-homepage","patternState":"","portReloader":35735,"portServer":3006}
 </script>
 
 <script>
-  // Handle injection of items from Node.
-  window.lineage = [{"lineagePattern":"compounds-button-up","lineagePath":"patterns/01-compounds-organisms-button-up/01-compounds-organisms-button-up.html","isHidden":false},{"lineagePattern":"compounds-button-down","lineagePath":"patterns/01-compounds-organisms-button-down/01-compounds-organisms-button-down.html","isHidden":false},{"lineagePattern":"compounds-video-head","lineagePath":"patterns/01-compounds-organisms-video-head/01-compounds-organisms-video-head.html","isHidden":false},{"lineagePattern":"compounds-branding","lineagePath":"patterns/01-compounds-organisms-branding/01-compounds-organisms-branding.html","isHidden":false},{"lineagePattern":"components-main","lineagePath":"patterns/02-components-regions-main/02-components-regions-main.html","isHidden":false},{"lineagePattern":"compounds-hider","lineagePath":"patterns/01-compounds-organisms-hider/01-compounds-organisms-hider.html","isHidden":false},{"lineagePattern":"compounds-bottom","lineagePath":"patterns/01-compounds-organisms-bottom/01-compounds-organisms-bottom.html","isHidden":false}];
-  window.lineageR = [];
-  window.patternPartial = 'pages-homepage';
-  window.patternState = '';
-  window.portReloader = '35735';
-  window.portServer = '3006';
+  // LiveReload.
+  const reloader = document.createElement('script');
+  const {protocol, hostname} = window.location;
+
+  if (window.portReloader && protocol !== 'file:') {
+    reloader.setAttribute('src', protocol + '//' + hostname + ':35735/livereload.js');
+    document.body.appendChild(reloader);
+  }
 </script>
 
-<script src="../../node_modules/fepper-ui/scripts/ui-functions.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/annotations-pattern.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/code-pattern.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/pattern-configurer.js"></script>
-<script src="../../node_modules/fepper-ui/scripts/patternlab-pattern.js"></script>
+<script src="../../node_modules/fepper-ui/scripts/pattern/index.js" type="module"></script>
 <!-- End Pattern Lab -->
 
 

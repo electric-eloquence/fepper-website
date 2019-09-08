@@ -14,21 +14,21 @@ function videoPromise(logicalImages, videoImgsOrg, timeout) {
   }
 
   function dispatch(memberIdxs) {
-    videoImgsOrg.dispatchAction('css', ['display', 'none'], memberIdxs[0]);
-    videoImgsOrg.dispatchAction('css', ['display', 'none'], memberIdxs[1]);
-    videoImgsOrg.dispatchAction('css', ['display', 'none'], memberIdxs[2]);
+    videoImgsOrg.dispatchAction('css', {display: 'none'}, memberIdxs[0]);
+    videoImgsOrg.dispatchAction('css', {display: 'none'}, memberIdxs[1]);
+    videoImgsOrg.dispatchAction('css', {display: 'none'}, memberIdxs[2]);
 
-    videoImgsOrg.dispatchAction('attr', ['src', '#'], memberIdxs[0]);
-    videoImgsOrg.dispatchAction('attr', ['src', '#'], memberIdxs[1]);
-    videoImgsOrg.dispatchAction('attr', ['src', '#'], memberIdxs[2]);
+    videoImgsOrg.dispatchAction('attr', {src: '#'}, memberIdxs[0]);
+    videoImgsOrg.dispatchAction('attr', {src: '#'}, memberIdxs[1]);
+    videoImgsOrg.dispatchAction('attr', {src: '#'}, memberIdxs[2]);
 
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['06'].src], memberIdxs[3]);
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['07'].src], memberIdxs[4]);
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['08'].src], memberIdxs[5]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['06'].src}, memberIdxs[3]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['07'].src}, memberIdxs[4]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['08'].src}, memberIdxs[5]);
 
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['03'].src], memberIdxs[6]);
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['04'].src], memberIdxs[7]);
-    videoImgsOrg.dispatchAction('attr', ['src', logicalImages['05'].src], memberIdxs[8]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['03'].src}, memberIdxs[6]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['04'].src}, memberIdxs[7]);
+    videoImgsOrg.dispatchAction('attr', {src: logicalImages['05'].src}, memberIdxs[8]);
   }
 
   function generate(memberIdxs, resolve) {
@@ -88,9 +88,9 @@ function videoPromise(logicalImages, videoImgsOrg, timeout) {
       logicalImages['07'].src = '../../_assets/src/video-07.gif';
       logicalImages['08'].src = '../../_assets/src/video-08.gif';
 
-      videoImgsOrg.dispatchAction('attr', ['src', logicalImages['03'].src], 3);
-      videoImgsOrg.dispatchAction('attr', ['src', logicalImages['04'].src], 4);
-      videoImgsOrg.dispatchAction('attr', ['src', logicalImages['05'].src], 5);
+      videoImgsOrg.dispatchAction('attr', {src: logicalImages['03'].src}, 3);
+      videoImgsOrg.dispatchAction('attr', {src: logicalImages['04'].src}, 4);
+      videoImgsOrg.dispatchAction('attr', {src: logicalImages['05'].src}, 5);
 
       return Promise.resolve();
     },

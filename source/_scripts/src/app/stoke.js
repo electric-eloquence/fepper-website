@@ -34,6 +34,6 @@ export default (app) => {
     '08': new Image()
   };
 
-  // Load and apply the logicalImages to render like a video.
+  // Load and render the logicalImages to play like a video.
   behaviors.videoRender(logicalImages);
 };

@@ -4,28 +4,7 @@
     "public:test": "mocha --require @babel/register test/tests",
     "test": "npm run public:test"
   },
-  "repository": {},
-  "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
-    "@babel/register": "^7.4.4",
-    "@babel/runtime": "^7.5.4",
-    "chai": "^4.2.0",
-    "cheerio": "^1.0.0-rc.3",
-    "feplet": "^0.2.5",
-    "fepper-ui": "^0.5.5",
-    "he": "1.1.0",
-    "jquery": "3.4.1",
-    "jquery.cookie": "1.4.1",
-    "js-beautify": "1.6.4",
-    "mocha": "^5.2.0",
-    "mousetrap": "1.6.2",
-    "prismjs": "1.5.1",
-    "redux": "^3.7.2",
-    "requerio": "^0.4.3",
-    "typeahead.js": "0.10.5",
-    "wolfy87-eventemitter": "4.2.11"
+    "fepper-ui": "^0.5.5"
   }
 }

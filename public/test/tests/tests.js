@@ -289,7 +289,7 @@ describe('Fepper website', function () {
     const scrollButtonOrg = $orgs['.scroll-button--up'];
     const windowState = $orgs.window.getState();
 
-    it('should hide when the top of #branding is below the top of window', function () {
+    it('hides when the top of #branding is below the top of window', function () {
       const offset = 100;
 
       brandingOrg.dispatchAction(
@@ -311,7 +311,7 @@ describe('Fepper website', function () {
       expect(scrollButtonState.style.display).to.equal('none');
     });
 
-    it('should show when the top of #branding is at the top of window', function () {
+    it('shows when the top of #branding is at the top of window', function () {
       const offset = 0;
 
       brandingOrg.dispatchAction(
@@ -343,7 +343,7 @@ describe('Fepper website', function () {
     const expectedTopVal = (windowHeight - paneHeight) / 2;
     const expectedBottomVal = (windowHeight + paneHeight) / 2;
 
-    it('should center 1st content pane on 1st click', function () {
+    it('centers 1st content pane on 1st click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(0);
@@ -352,7 +352,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 2nd content pane on 2nd click', function () {
+    it('centers 2nd content pane on 2nd click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(1);
@@ -361,7 +361,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 3rd content pane on 3rd click', function () {
+    it('centers 3rd content pane on 3rd click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(2);
@@ -370,7 +370,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 4th content pane on 4th click', function () {
+    it('centers 4th content pane on 4th click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(3);
@@ -379,7 +379,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 5th content pane on 5th click', function () {
+    it('centers 5th content pane on 5th click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(4);
@@ -388,7 +388,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should show footer on 6th click', function () {
+    it('shows footer on 6th click', function () {
       app.behaviors.scrollButtonDown();
 
       const windowState = $orgs.window.getState();
@@ -407,7 +407,7 @@ describe('Fepper website', function () {
     const expectedTopVal = (windowHeight - paneHeight) / 2;
     const expectedBottomVal = (windowHeight + paneHeight) / 2;
 
-    it('should center 5th content pane on 1st click', function () {
+    it('centers 5th content pane on 1st click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(4);
@@ -416,7 +416,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 4th content pane on 2nd click', function () {
+    it('centers 4th content pane on 2nd click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(3);
@@ -425,7 +425,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 3rd content pane on 3rd click', function () {
+    it('centers 3rd content pane on 3rd click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(2);
@@ -434,7 +434,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 2nd content pane on 4th click', function () {
+    it('centers 2nd content pane on 4th click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(1);
@@ -443,7 +443,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('should center 1st content pane on 5th click', function () {
+    it('centers 1st content pane on 5th click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(0);

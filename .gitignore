@@ -13,7 +13,6 @@
 !/public/static/node_modules/redux/
 !/public/static/node_modules/requerio/
 !/public/test/
-/source/_static/
 ignore/
 node_modules/
 package-lock.json

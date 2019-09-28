@@ -9,11 +9,13 @@
 !/public/.babelrc
 !/public/package.json
 !/public/static/
+!/public/static/favicon.ico
 !/public/static/node_modules/jquery/
 !/public/static/node_modules/redux/
 !/public/static/node_modules/requerio/
 !/public/test/
 /source/_static/
+!/source/_static/favicon.ico
 ignore/
 node_modules/
 package-lock.json

@@ -8,13 +8,12 @@
 /public/*
 !/public/.babelrc
 !/public/package.json
+!/public/static/
 !/public/static/node_modules/jquery/
 !/public/static/node_modules/redux/
 !/public/static/node_modules/requerio/
 !/public/test/
 /source/_static/
-!/source/_static/favicon.ico
-!/source/_static/redirect.html
 ignore/
 node_modules/
 package-lock.json

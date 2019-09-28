@@ -34,17 +34,4 @@ export default (app) => {
   $orgs['.scroll-button--up'].on('click', function () {
     behaviors.scrollButtonUp();
   });
-
-  // Create and load a non-rendered DOM Image for video generation.
-  const logicalImages = {
-    '03': new Image(),
-    '04': new Image(),
-    '05': new Image(),
-    '06': new Image(),
-    '07': new Image(),
-    '08': new Image()
-  };
-
-  // Load and apply the logicalImages to render like a video.
-  behaviors.videoRender(logicalImages);
 };

@@ -1,4 +1,5 @@
 import organismsIncept from './organisms-incept.js';
+import postInception from './post-inception.js';
 import prototypeOverride from './prototype-override.js';
 import reducerGet from './reducer-get.js';
 
@@ -7,7 +8,7 @@ class Requerio {
   /**
    * @param {object} $ - jQuery or Cheerio.
    * @param {object} Redux - Redux.
-   * @param {object} $organisms - Key-value pairs of selector names and null values.
+   * @param {object} $organisms - Key:value pairs of selector names and null values.
    * @param {function} [customReducer] - Custom Redux reducer for extending the built-in reducer.
    * @param {function} [storeEnhancer] - A function to extend the Redux store with additional capabilities.
    */
@@ -26,10 +27,11 @@ class Requerio {
    */
   init() {
     const reducer = reducerGet(this.$orgs, this.Redux, this.customReducer);
-    const store = this.store = this.Redux.createStore(reducer, this.storeEnhancer);
+    this.store = this.Redux.createStore(reducer, this.storeEnhancer);
 
-    prototypeOverride(this.$, store);
+    prototypeOverride(this);
     organismsIncept(this.$orgs, this.$);
+    postInception(this);
   }
 
   /**
@@ -48,6 +50,10 @@ class Requerio {
 
     organismsIncept($organisms, this.$);
     Object.assign(this.$orgs, $organisms);
+    postInception(this);
+
+    const reducer = reducerGet(this.$orgs, this.Redux, this.customReducer);
+    this.store.replaceReducer(reducer);
   }
 }
 

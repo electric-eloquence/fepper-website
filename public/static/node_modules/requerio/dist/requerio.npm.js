@@ -1210,21 +1210,26 @@ __Returns__: `object` - The organism's state.
       }
 
       // Do update .data property if data were updated on a data attribute, i.e., not by a 'data' action.
-      const argsData = [];
+      // As per jQuery documentation, the 'data' action will only read data from data attributes once. Further changes
+      // to data attributes will not be read by the 'data' action.
+      // https://api.jquery.com/data/#data-html5
+      if (!state.data) {
+        const argsData = [];
 
-      applyData(this, argsData, $member); // Mutates argsData.
+        applyData(this, argsData, $member); // Mutates argsData.
 
-      if (JSON.stringify(state.data) !== JSON.stringify(argsData[0])) {
-        store.dispatch({
-          type: 'DATA',
-          selector: this.selector,
-          $org: this,
-          method: 'data',
-          args: argsData,
-          memberIdx
-        });
+        if (JSON.stringify(state.data) !== JSON.stringify(argsData[0])) {
+          store.dispatch({
+            type: 'DATA',
+            selector: this.selector,
+            $org: this,
+            method: 'data',
+            args: argsData,
+            memberIdx
+          });
 
-        updateState = true;
+          updateState = true;
+        }
       }
 
       // Do update measurements if they were changed by user interaction, e.g., resizing viewport.
@@ -1876,6 +1881,10 @@ DOM.
 */
       case 'data': {
         if (action.args[0] instanceof Object && action.args[0].constructor === Object) {
+          if (!state.data) {
+            state.data = {};
+          }
+
           Object.assign(state.data, action.args[0]);
         }
 
@@ -2208,11 +2217,13 @@ function reducerClosure(orgSelector, customReducer) {
 
     if (orgSelector === 'document') {
       stateDefault = {
-        activeOrganism: null
+        activeOrganism: null,
+        data: null
       };
     }
     else if (orgSelector === 'window') {
       stateDefault = {
+        data: null,
         scrollTop: null,
         width: null,
         height: null
@@ -2231,7 +2242,7 @@ function reducerClosure(orgSelector, customReducer) {
         },
         classArray: [],
         classList: [],
-        data: {},
+        data: null,
         innerHTML: null,
         innerWidth: null,
         innerHeight: null,

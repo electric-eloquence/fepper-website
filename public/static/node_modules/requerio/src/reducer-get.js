@@ -164,6 +164,10 @@ DOM.
 */
       case 'data': {
         if (action.args[0] instanceof Object && action.args[0].constructor === Object) {
+          if (!state.data) {
+            state.data = {};
+          }
+
           Object.assign(state.data, action.args[0]);
         }
 
@@ -496,11 +500,13 @@ function reducerClosure(orgSelector, customReducer) {
 
     if (orgSelector === 'document') {
       stateDefault = {
-        activeOrganism: null
+        activeOrganism: null,
+        data: null
       };
     }
     else if (orgSelector === 'window') {
       stateDefault = {
+        data: null,
         scrollTop: null,
         width: null,
         height: null
@@ -519,7 +525,7 @@ function reducerClosure(orgSelector, customReducer) {
         },
         classArray: [],
         classList: [],
-        data: {},
+        data: null,
         innerHTML: null,
         innerWidth: null,
         innerHeight: null,

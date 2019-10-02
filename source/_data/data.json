@@ -1,7 +1,7 @@
 {
   "homepage": "04-pages-00-homepage",
   "title": "Front End Prototyper | Fepper",
-  "offline": true,
+  "offline": false,
   "bp_lg_max": "-1",
   "bp_md_max": "1024",
   "bp_sm_max": "767",

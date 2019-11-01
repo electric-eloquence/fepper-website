@@ -51,7 +51,7 @@
     const rgbArr = rgbStr.split(',');
     let hex = '#';
     rgbArr.forEach(dec => {
-      hex += decToHex(parseInt(dec, 10));
+      hex += decToHex(parseInt(dec));
     });
     return hex;
   }

@@ -3,17 +3,17 @@ Dim cwd
 Dim fso
 Dim objArgs
 Dim objShell
-Dim pathFull
+Dim ps1Path
 
 Set fso = CreateObject("Scripting.FileSystemObject")
 Set objArgs = Wscript.Arguments
-Set objShell = CreateObject("Wscript.shell")
+Set objShell = CreateObject("Shell.Application")
 cwd = fso.GetAbsolutePathName(".")
-pathFull = fso.BuildPath(cwd, "fepper.ps1")
+ps1Path = fso.BuildPath(cwd, "fepper.ps1")
 
 argsList = ""
 For Each strArg in objArgs
   argsList = argsList & " " & strArg
 Next
 
-objShell.run("powershell -executionpolicy bypass -file " & pathFull & argsList)
+objShell.ShellExecute "powershell", "-ExecutionPolicy Bypass -File " & ps1Path & argsList, cwd, "", 1

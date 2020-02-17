@@ -6,22 +6,23 @@ cd $root_dir
 
 # Check if Node.js is installed. Install if it isn't.
 has_node=`which node`
-node_version="v8.15.1"
-node_msi="node-${node_version}.pkg"
+node_version="v12.15.0"
+node_pkg="node-${node_version}.pkg"
 
 if [[ $has_node != *bin/node ]]; then
-  curl -O https://nodejs.org/dist/${node_version}/${node_msi}
-  sudo installer -pkg $node_msi -target /
+  curl -O https://nodejs.org/dist/${node_version}/${node_pkg}
+  sudo installer -pkg $node_pkg -target /
   sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
 fi
 
 # Delete installer file.
-if [ -f $node_msi ]; then
-  rm $node_msi
+if [ -f $node_pkg ]; then
+  rm $node_pkg
 fi
 
 # Check if fepper-cli is installed. Install if it isn't.
 has_fp=`which fp`
+
 if [[ $has_fp != *bin/fp ]]; then
   npm install -g fepper-cli
 

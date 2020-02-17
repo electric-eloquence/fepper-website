@@ -720,7 +720,7 @@ __Returns__: `object` - The organism's state.
 
       // Do not preemptively update .style property because we only want to track styles dispatched through Requerio.
 
-      // Do update .attribs property if attr were changed by user interaction, e.g., `checked` attr.
+      // Do update .attribs property if an attribute was changed by user interaction, e.g., `checked` attribute.
       const argsAttr = [];
 
       applyAttr(this, argsAttr, $member, memberIdx); // Mutates argsAttr.
@@ -761,7 +761,7 @@ __Returns__: `object` - The organism's state.
         }
       }
 
-      // Do update measurements if they were changed by user interaction, e.g., resizing viewport.
+      // Do update measurements if changed by user interaction, e.g., resizing viewport.
       updateState = this.updateMeasurements(state, $member, memberIdx);
 
       // Do not preemptively update .innerHTML property because we don't want to bloat the app with too much data,

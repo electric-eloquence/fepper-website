@@ -4,7 +4,18 @@ const fs = require('fs');
 const path = require('path');
 
 const cheerio = require('cheerio');
+const Fepper = require('fepper');
 const Redux = global.Redux = require('redux');
+
+const cwd = process.cwd();
+const fepper = new Fepper(`${cwd}/..`);
+
+fepper.ui.copyScripts();
+
+/* eslint-disable no-console */
+console.log('Copied scripts to public directory.');
+console.log('Running tests...');
+/* eslint-enable no-console */
 
 const html = fs.readFileSync(path.resolve(__dirname, 'fixtures', 'index.html'), 'utf8');
 const $ = global.$ = cheerio.load(html);
@@ -14,9 +25,9 @@ global.Image = class {
     this.src = null;
   }
 };
+global.requestAnimationFrame = fn => setImmediate(() => fn());
 
-const bundle = require('./bundle-node');
-const $organisms = bundle.$organisms;
+import $organisms from '../_scripts/src/app/organisms.js';
 
 // Read variables.style for global defs for testing.
 require('../_scripts/src/variables.styl');
@@ -98,8 +109,8 @@ $window.scrollTop = (...args) => {
 $window.getState = () => {
   let scrollTop;
 
-  if (typeof $window._scrollTop !== 'undefined') {
-    scrollTop = $window._scrollTop;
+  if (typeof $window.$members[0]._scrollTop !== 'undefined') {
+    scrollTop = $window.$members[0]._scrollTop;
   }
   else {
     scrollTop = 0;

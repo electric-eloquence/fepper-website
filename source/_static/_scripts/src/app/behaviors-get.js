@@ -1,10 +1,10 @@
-// import videoGenerate from '../../bld/video-generate.js';
-import videoPromise from './video-promise.js';
+import videoGenerate from './video-generate.js';
 
-function intToRem(distance) {
-  return `${distance / 10}rem`;
-}
-
+let bgColorRevealFrameId = null;
+let logoRipenFrameId = null;
+let logoRipenTranslateXLast = '0%';
+let mainContentSlideInFrameId = null;
+let mainContentSlideOutFrameId = null;
 let mainContentTranslateY = 150;
 
 if (typeof window === 'object') {
@@ -12,6 +12,10 @@ if (typeof window === 'object') {
   // We multiply this by 30 first, to translate it into px distance and second, to add buffer to determine the threshold
   // beyond which we slide another pane.
   mainContentTranslateY = window.main_content_translate_y * 30;
+}
+
+function intToRem(distance) {
+  return `${distance / 10}rem`;
 }
 
 export default (app, root) => {
@@ -22,80 +26,81 @@ export default (app, root) => {
       // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
       // be applied.
       $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
-
-      // Remove this if position: sticky ever renders well on MS Edge.
-      if (typeof window === 'object' && window.navigator.userAgent.indexOf('Edge') > -1) {
-        $orgs['#html'].dispatchAction('addClass', 'ms-edge');
-      }
     },
 
     bgColorReveal: () => {
-      const brandingState = $orgs['#branding'].getState();
-      const panesOrg = $orgs['.content__pane'];
-      const panesLength = panesOrg.getState().$members.length;
-      const windowState = $orgs.window.getState();
-
-      let paneState;
-
-      for (let i = 1; i < panesLength; i += 2) {
-        paneState = panesOrg.getState(i);
-
-        if (
-          paneState.boundingClientRect.top < windowState.height &&
-          paneState.boundingClientRect.top > brandingState.innerHeight
-        ) {
-          let red;
-          let green;
-          let blue;
-          let alpha;
-
-          // Calculate bgColor.
-          switch (i) {
-            case 1: {
-              red = root.fepper_green_r;
-              green = root.fepper_green_g;
-              blue = root.fepper_green_b;
-
-              break;
-            }
-
-            case 3: {
-              red = root.fepper_yellow_r;
-              green = root.fepper_yellow_g;
-              blue = root.fepper_yellow_b;
-
-              break;
-            }
-
-            case 5: {
-              red = root.fepper_red_r;
-              green = root.fepper_red_g;
-              blue = root.fepper_red_b;
-
-              break;
-            }
-          }
-
-          alpha = paneState.boundingClientRect.top - windowState.height;
-          alpha = alpha / (windowState.height - brandingState.innerHeight);
-          alpha = (alpha * alpha) / 10;
-
-          $orgs['.content__pane']
-            .dispatchAction('css', {'background-color': `rgba(${red}, ${green}, ${blue}, ${alpha})`}, i);
-        }
-
-        // Only need this else case for testing. The pane should be out of view.
-        else if (paneState.boundingClientRect.top >= windowState.height) {
-          if (paneState.style['background-color'] !== 'transparent') {
-            $orgs['.content__pane'].dispatchAction('css', {'background-color': 'transparent'}, i);
-          }
-        }
+      if (bgColorRevealFrameId) {
+        return;
       }
+
+      bgColorRevealFrameId = requestAnimationFrame(() => {
+        const brandingState = $orgs['#branding'].getState();
+        const panesOrg = $orgs['.content__pane'];
+        const panesLength = panesOrg.getState().$members.length;
+        const windowState = $orgs.window.getState();
+        let paneState;
+
+        for (let i = 1; i < panesLength; i += 2) {
+          paneState = panesOrg.getState(i);
+
+          if (
+            paneState.boundingClientRect.top < windowState.height &&
+            paneState.boundingClientRect.top > brandingState.innerHeight
+          ) {
+            let red;
+            let green;
+            let blue;
+            let alpha;
+
+            // Calculate bgColor.
+            switch (i) {
+              case 1: {
+                red = root.fepper_green_r;
+                green = root.fepper_green_g;
+                blue = root.fepper_green_b;
+
+                break;
+              }
+
+              case 3: {
+                red = root.fepper_yellow_r;
+                green = root.fepper_yellow_g;
+                blue = root.fepper_yellow_b;
+
+                break;
+              }
+
+              case 5: {
+                red = root.fepper_red_r;
+                green = root.fepper_red_g;
+                blue = root.fepper_red_b;
+
+                break;
+              }
+            }
+
+            alpha = paneState.boundingClientRect.top - windowState.height;
+            alpha = alpha / (windowState.height - brandingState.innerHeight);
+            alpha = (alpha * alpha) / 10;
+
+            $orgs['.content__pane']
+              .dispatchAction('css', {'background-color': `rgba(${red}, ${green}, ${blue}, ${alpha})`}, i);
+          }
+
+          // Only need this else case for testing. The pane should be out of view.
+          else if (paneState.boundingClientRect.top >= windowState.height) {
+            if (paneState.style['background-color'] !== 'transparent') {
+              $orgs['.content__pane'].dispatchAction('css', {'background-color': 'transparent'}, i);
+            }
+          }
+        }
+
+        bgColorRevealFrameId = null;
+      });
     },
 
     gitHubHrefAdapt: (project) => {
       const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
-
       let hrefHome = hrefBase;
       let hrefDownload = hrefBase;
       let hrefReadme = hrefBase;
@@ -114,14 +119,16 @@ export default (app, root) => {
     },
 
     logoRipen: () => {
-      const MAX_PERCENTAGE = 900;
+      if (logoRipenFrameId) {
+        return;
+      }
+
+      const MAX_PERCENTAGE = 90;
       const htmlState = $orgs['#html'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
-
       let percentage;
-      percentage = windowState.scrollTop / (htmlState.height - windowHeight);
-      percentage = MAX_PERCENTAGE - (MAX_PERCENTAGE * percentage);
+      percentage = Math.round(100 * windowState.scrollTop / (htmlState.height - windowHeight));
 
       if (percentage < 0) {
         percentage = 0;
@@ -130,47 +137,74 @@ export default (app, root) => {
         percentage = MAX_PERCENTAGE;
       }
 
-      $orgs['#logoBg'].dispatchAction('css', {right: `-${percentage}%`});
+      const translateX = `-${percentage}%`;
+
+      if (logoRipenTranslateXLast === translateX) {
+        return;
+      }
+
+      logoRipenTranslateXLast = translateX;
+      logoRipenFrameId = requestAnimationFrame(() => {
+        $orgs['#logoBg'].dispatchAction('css', {transform: `translateX(${translateX})`});
+        logoRipenFrameId = null;
+      });
     },
 
     mainContentSlideIn: () => {
-      const panesOrg = $orgs['.content__pane'];
-      const slidersOrg = $orgs['.content__slider'];
-      const panesCount = panesOrg.getState().$members.length;
-
-      for (let i = panesCount - 1; i >= 0; i--) {
-        if (slidersOrg.$members[i].hasClass('content__slid')) {
-          break;
-        }
-
-        const paneState = panesOrg.getState(i);
-        const windowState = $orgs.window.getState();
-        const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
-
-        if (paneDistanceToBottom > mainContentTranslateY) {
-          slidersOrg.dispatchAction('addClass', 'content__slid', i);
-        }
+      if (mainContentSlideInFrameId) {
+        return;
       }
+
+      mainContentSlideInFrameId = requestAnimationFrame(() => {
+        const panesOrg = $orgs['.content__pane'];
+        const slidersOrg = $orgs['.content__slider'];
+        const panesCount = panesOrg.getState().$members.length;
+        let i = panesCount;
+
+        while (i--) {
+          if (slidersOrg.$members[i].hasClass('content__slid')) {
+            break;
+          }
+
+          const paneState = panesOrg.getState(i);
+          const windowState = $orgs.window.getState();
+          const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
+
+          if (paneDistanceToBottom > mainContentTranslateY) {
+            slidersOrg.dispatchAction('addClass', 'content__slid', i);
+          }
+        }
+
+        mainContentSlideInFrameId = null;
+      });
     },
 
     mainContentSlideOut: () => {
-      const panesOrg = $orgs['.content__pane'];
-      const slidersOrg = $orgs['.content__slider'];
-      const panesCount = panesOrg.getState().$members.length;
-
-      for (let i = 0; i < panesCount; i++) {
-        if (!slidersOrg.$members[i].hasClass('content__slid')) {
-          break;
-        }
-
-        const paneState = panesOrg.getState(i);
-        const windowState = $orgs.window.getState();
-        const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
-
-        if (paneDistanceToBottom <= mainContentTranslateY) {
-          slidersOrg.dispatchAction('removeClass', 'content__slid', i);
-        }
+      if (mainContentSlideOutFrameId) {
+        return;
       }
+
+      mainContentSlideOutFrameId = requestAnimationFrame(() => {
+        const panesOrg = $orgs['.content__pane'];
+        const slidersOrg = $orgs['.content__slider'];
+        const panesCount = panesOrg.getState().$members.length;
+
+        for (let i = 0; i < panesCount; i++) {
+          if (!slidersOrg.$members[i].hasClass('content__slid')) {
+            break;
+          }
+
+          const paneState = panesOrg.getState(i);
+          const windowState = $orgs.window.getState();
+          const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
+
+          if (paneDistanceToBottom <= mainContentTranslateY) {
+            slidersOrg.dispatchAction('removeClass', 'content__slid', i);
+          }
+        }
+
+        mainContentSlideOutFrameId = null;
+      });
     },
 
     scrollButtonDisplay: () => {
@@ -200,11 +234,9 @@ export default (app, root) => {
       const videoState = $orgs['.video'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
-
-      let i;
       let distancePanes = 0;
 
-      for (i = 0; i < panesCount; i++) {
+      for (let i = 0; i < panesCount; i++) {
         const htmlState = htmlOrg.getState();
         const paneState = panesOrg.getState(i);
         const distanceTop = paneState.boundingClientRect.top;
@@ -238,7 +270,6 @@ export default (app, root) => {
       const videoState = $orgs['.video'].getState();
       const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
-
       let i;
       let distancePanes = 0;
 
@@ -284,28 +315,19 @@ export default (app, root) => {
       }
     },
 
-    videoPromise: videoPromise,
+    videoGenerate,
 
     videoRender: async (logicalImages) => {
       const videoImgsOrg = $orgs['.video__img'];
-      const videoPlay = videoPromise(logicalImages, videoImgsOrg, 13000);
-
-      for (let i = 0; i < videoPlay.length; i++) {
-        await videoPlay[i]();
-      }
-
-      /*
-      // Async generator syntax for when support is commonplace.
       const videoPlay = videoGenerate(logicalImages, videoImgsOrg, 13000);
-
       let i;
 
+      // eslint-disable-next-line no-cond-assign
       while (i = await videoPlay.next()) {
         if (i.done) {
           break;
         }
       }
-      */
     }
   };
 };

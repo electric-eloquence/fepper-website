@@ -63,40 +63,52 @@ describe('Fepper website', function () {
 
   describe('bgColorReveal', function () {
     describe('adds background-color', function () {
-      it('to .content__pane[1] when it is scrolled within viewport', function () {
+      it('to .content__pane[1] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(500);
         app.behaviors.bgColorReveal();
 
-        // Get Results.
-        const contentPaneState = panesOrg.getState(1);
+        setImmediate(() => {
+          // Get Results.
+          const contentPaneState = panesOrg.getState(1);
 
-        // Assert.
-        expect(contentPaneState.style['background-color']).to.include('rgba(2, 125, 21');
+          // Assert.
+          expect(contentPaneState.style['background-color']).to.include('rgba(2, 125, 21');
+
+          done();
+        });
       });
 
-      it('to .content__pane[3] when it is scrolled within viewport', function () {
+      it('to .content__pane[3] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(900);
         app.behaviors.bgColorReveal();
 
-        // Get Results.
-        const contentPaneState = panesOrg.getState(3);
+        setImmediate(() => {
+          // Get Results.
+          const contentPaneState = panesOrg.getState(3);
 
-        // Assert.
-        expect(contentPaneState.style['background-color']).to.include('rgba(240, 192, 0');
+          // Assert.
+          expect(contentPaneState.style['background-color']).to.include('rgba(240, 192, 0');
+
+          done();
+        });
       });
 
-      it('to .content__pane[5] when it is scrolled within viewport', function () {
+      it('to .content__pane[5] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(1300);
         app.behaviors.bgColorReveal();
 
-        // Get Results.
-        const contentPaneState = panesOrg.getState(5);
+        setImmediate(() => {
+          // Get Results.
+          const contentPaneState = panesOrg.getState(5);
 
-        // Assert.
-        expect(contentPaneState.style['background-color']).to.include('rgba(208, 0, 0');
+          // Assert.
+          expect(contentPaneState.style['background-color']).to.include('rgba(208, 0, 0');
+
+          done();
+        });
       });
     });
 
@@ -217,35 +229,40 @@ describe('Fepper website', function () {
       app.behaviors.logoRipen();
     });
 
-    it('moves #logoBg between 0 and -900% right when window is scrolled', function () {
+    it('moves #logoBg between 0 and -90% right when window is scrolled', function () {
       // Get results.
-      const logoBgRight = $orgs['#logoBg'].getState().style.right;
-      const percentage = parseFloat(logoBgRight.slice(0, -1));
+      const logoBgRight = $orgs['#logoBg'].getState().style.transform;
+      const percentage = parseFloat(logoBgRight.replace('translateX(', '').slice(0, -2));
 
       // Assert.
-      expect(percentage).to.be.within(-900, 0);
+      expect(percentage).to.be.within(-90, 0);
       expect(percentage).to.not.equal(0);
     });
   });
 
   describe('mainContentSlideIn', function () {
     function mainContentSlideInClosure(i, scrollDistance) {
-      return function () {
+      return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
         app.behaviors.mainContentSlideIn();
 
-        // Get results.
-        const sliderClasses = slidersOrg.getState(i).classArray;
+        setImmediate(() => {
+          // Get results.
+          const sliderClasses = slidersOrg.getState(i).classArray;
 
-        // Assert.
-        expect(sliderClasses).to.include('content__slid');
+          // Assert.
+          expect(sliderClasses).to.include('content__slid');
+
+          done();
+        });
       };
     }
 
     let scrollDistance = 0;
+    let i;
 
-    for (let i = 0; i < panesCount; i++) {
+    for (i = 0; i < panesCount - 1; i++) {
       it(
         `.content__slider[${i}] has class "content__slid" when window is scrolled ${scrollDistance}`,
         mainContentSlideInClosure(i, scrollDistance)
@@ -253,20 +270,30 @@ describe('Fepper website', function () {
 
       scrollDistance += 200;
     }
+
+    // Last iteration needs to be tweaked by 1px to trigger mainContentSlideIn.
+    it(
+      `.content__slider[${i}] has class "content__slid" when window is scrolled ${++scrollDistance}`,
+      mainContentSlideInClosure(i, scrollDistance)
+    );
   });
 
   describe('mainContentSlideOut', function () {
     function mainContentSlideOutClosure(i, scrollDistance) {
-      return function () {
+      return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
         app.behaviors.mainContentSlideOut();
 
-        // Get results.
-        const sliderClasses = slidersOrg.getState(i).classArray;
+        setImmediate(() => {
+          // Get results.
+          const sliderClasses = slidersOrg.getState(i).classArray;
 
-        // Assert.
-        expect(sliderClasses).to.not.include('content__slid');
+          // Assert.
+          expect(sliderClasses).to.not.include('content__slid');
+
+          done();
+        });
       };
     }
 
@@ -336,14 +363,10 @@ describe('Fepper website', function () {
 
   describe('scrollButtonDown', function () {
     const panesOrg = $orgs['.content__pane'];
-    const panesState = panesOrg.getState();
-    const paneHeight = panesState.innerHeight;
-    const windowState = $orgs.window.getState();
-    const windowHeight = windowState.height;
-    const expectedTopVal = (windowHeight - paneHeight) / 2;
-    const expectedBottomVal = (windowHeight + paneHeight) / 2;
+    const expectedTopVal = 200;
+    const expectedBottomVal = 400;
 
-    it('centers 1st content pane on 1st click', function () {
+    it('scrolls 1st content pane into view on 1st click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(0);
@@ -352,7 +375,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 2nd content pane on 2nd click', function () {
+    it('scrolls 2nd content pane into view on 2nd click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(1);
@@ -361,7 +384,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 3rd content pane on 3rd click', function () {
+    it('scrolls 3rd content pane into view on 3rd click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(2);
@@ -370,7 +393,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 4th content pane on 4th click', function () {
+    it('scrolls 4th content pane into view on 4th click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(3);
@@ -379,7 +402,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 5th content pane on 5th click', function () {
+    it('scrolls 5th content pane into view on 5th click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(4);
@@ -388,26 +411,22 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('shows footer on 6th click', function () {
+    it('scrolls footer into view on 6th click', function () {
       app.behaviors.scrollButtonDown();
 
-      const windowState = $orgs.window.getState();
-      const htmlState = $orgs['#html'].getState();
+      const paneState = panesOrg.getState(5);
 
-      expect(windowState.scrollTop).to.equal(htmlState.innerHeight - windowState.height);
+      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
+      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
   });
 
   describe('scrollButtonUp', function () {
     const panesOrg = $orgs['.content__pane'];
-    const panesState = panesOrg.getState();
-    const paneHeight = panesState.innerHeight;
-    const windowState = $orgs.window.getState();
-    const windowHeight = windowState.height;
-    const expectedTopVal = (windowHeight - paneHeight) / 2;
-    const expectedBottomVal = (windowHeight + paneHeight) / 2;
+    const expectedTopVal = 200;
+    const expectedBottomVal = 400;
 
-    it('centers 5th content pane on 1st click', function () {
+    it('scrolls 5th content pane into view on 1st click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(4);
@@ -416,7 +435,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 4th content pane on 2nd click', function () {
+    it('scrolls 4th content pane into view on 2nd click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(3);
@@ -425,7 +444,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 3rd content pane on 3rd click', function () {
+    it('scrolls 3rd content pane into view on 3rd click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(2);
@@ -434,7 +453,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 2nd content pane on 4th click', function () {
+    it('scrolls 2nd content pane into view on 4th click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(1);
@@ -443,7 +462,7 @@ describe('Fepper website', function () {
       expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
     });
 
-    it('centers 1st content pane on 5th click', function () {
+    it('scrolls 1st content pane into view on 5th click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(0);
@@ -489,7 +508,7 @@ describe('Fepper website', function () {
       '08': new Image()
     };
     const videoImgsOrg = $orgs['.video__img'];
-    const videoPlay = app.behaviors.videoPromise(logicalImages, videoImgsOrg, 0);
+    const videoPlay = app.behaviors.videoGenerate(logicalImages, videoImgsOrg, 0);
 
     function imageHideClosure(j) {
       return function () {
@@ -525,8 +544,8 @@ describe('Fepper website', function () {
       return function () {
         const ix6 = 6 * i;
         // Prep.
-        before(function () {
-          return videoPlay[i + 1]();
+        before(async function () {
+          return await videoPlay.next();
         });
 
         for (let j = ix6 - 3; j < ix6; j++) {
@@ -549,9 +568,7 @@ describe('Fepper website', function () {
     describe('at Generation 0', function () {
       // Prep.
       before(async function () {
-        await videoPlay[0]();
-
-        return videoPlay[1]();
+        return await videoPlay.next();
       });
 
       it('videoImgsOrg member 3 has src === logicalImages[\'03\'].src', function () {

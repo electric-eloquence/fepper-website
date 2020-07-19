@@ -255,7 +255,7 @@ export default (app, root) => {
       const slidersOrg = $orgs['.content__slider'];
       const slidersState = slidersOrg.getState();
 
-      if (Math.floor(brandingState.boundingClientRect.top) > 0) {
+      if (Math.floor(brandingState.boundingClientRect.top) > 1) {
         if (scrollButtonState.style.display !== 'none') {
           scrollButtonOrg.dispatchAction('css', {display: 'none'});
         }

@@ -24,8 +24,9 @@ export default (app) => {
     behaviors.logoRipen();
     behaviors.mainContentSlideIn();
     behaviors.mainContentSlideOut();
-    behaviors.scrollButtonDisplay();
   });
+
+  $orgs.window.scroll(debounce(behaviors.scrollButtonDisplay, 33));
 
   $orgs['.scroll-button--down'].on('click', function () {
     behaviors.scrollButtonDown();

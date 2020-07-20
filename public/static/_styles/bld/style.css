@@ -648,18 +648,19 @@ p {
 }
 .content__center {
   margin: 0 auto;
-  max-width: 100rem;
+  padding: 0 5rem;
+  max-width: 1024px;
+}
+@media all and (max-width: 480px) {
+  .content__center {
+    padding: 0 3rem;
+  }
 }
 .content__fixed {
   padding-top: 1rem;
 }
 .content__slider {
   padding: 5rem 0;
-}
-@media all and (max-width: 1024px) {
-  .content__slider {
-    margin: 0 1.2rem;
-  }
 }
 .content__fixed + .content__slider {
   padding: 0 0 4rem;
@@ -672,9 +673,21 @@ p {
   font-size: 5rem;
   line-height: 1;
   outline: 0;
+  padding: 0;
   position: fixed;
   right: 1.5rem;
   z-index: 2;
+}
+@media all and (max-width: 1024px) {
+  .scroll-button {
+    font-size: 4rem;
+  }
+}
+@media all and (max-width: 480px) {
+  .scroll-button {
+    font-size: 3rem;
+    right: 0.5rem;
+  }
 }
 .scroll-button::-moz-focus-inner {
   border: 0;

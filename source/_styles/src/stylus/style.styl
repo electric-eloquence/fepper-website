@@ -451,13 +451,14 @@ p
 .content
   &__center
     margin: 0 auto
-    max-width: $content-width-max
+    padding: 0 5rem
+    max-width: $bp-md-max
+    @media all and (max-width: $bp-xs-max)
+      padding: 0 3rem
   &__fixed
     padding-top: 1rem
   &__slider
     padding: '%srem 0' % main_content_translate_y
-    @media all and (max-width: $bp-md-max)
-      margin: 0 ($space-quarter * 3)
   &__fixed + .content__slider
     padding: '0 0 %srem' % (main_content_translate_y - 1)
 .scroll-button
@@ -468,9 +469,15 @@ p
   font-size: 5rem
   line-height: 1
   outline: 0
+  padding: 0
   position: fixed
   right: 1.5rem
   z-index: 2
+  @media all and (max-width: $bp-md-max)
+    font-size: 4rem
+  @media all and (max-width: $bp-xs-max)
+    font-size: 3rem
+    right: 0.5rem
   // No focus border in Linux Firefox.
   &::-moz-focus-inner
     border: 0

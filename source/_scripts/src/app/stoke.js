@@ -11,7 +11,22 @@ export default (app) => {
 
   const behaviors = behaviorsGet(app, window);
 
-  behaviors.init();
+  // Create and load non-rendered DOM Images for video generation.
+  const logicalImages = {
+    '03': new Image(),
+    '04': new Image(),
+    '05': new Image(),
+    '06': new Image(),
+    '07': new Image(),
+    '08': new Image()
+  };
+
+  // Try videoRender() first to see if the browser supports async generators.
+  try {
+    behaviors.videoRender(logicalImages);
+  }
+  catch (err) {}
+
   behaviors.updateDims();
 
   let project = '';
@@ -23,17 +38,4 @@ export default (app) => {
   }
 
   behaviors.gitHubHrefAdapt(project);
-
-  // Create and load non-rendered DOM Images for video generation.
-  const logicalImages = {
-    '03': new Image(),
-    '04': new Image(),
-    '05': new Image(),
-    '06': new Image(),
-    '07': new Image(),
-    '08': new Image()
-  };
-
-  // Load and render the logicalImages to play like a video.
-  behaviors.videoRender(logicalImages);
 };

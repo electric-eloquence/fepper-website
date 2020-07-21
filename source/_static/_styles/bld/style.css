@@ -749,10 +749,10 @@ p {
   width: 100%;
   z-index: 3;
 }
-html.es6-modules-enabled .browser-advice {
+html.es2018-enabled .browser-advice {
   display: none;
 }
-html.es6-modules-enabled .content {
+html.es2018-enabled .content {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -761,12 +761,12 @@ html.es6-modules-enabled .content {
   left: 0;
   width: 100%;
 }
-html.es6-modules-enabled .content__slider {
+html.es2018-enabled .content__slider {
   opacity: 0;
   transform: translateY(5rem);
   transition: opacity 0.5s, transform 0.5s;
 }
-html.es6-modules-enabled .content__slid {
+html.es2018-enabled .content__slid {
   opacity: 1;
   transform: translateY(0);
 }

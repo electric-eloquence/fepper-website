@@ -41,24 +41,10 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 }
 
 describe('Fepper website', function () {
-  describe('init', function () {
-    let htmlClassesBefore;
+  let htmlClassesBefore;
 
-    // Prep.
-    before(function () {
-      htmlClassesBefore = $orgs['#html'].getState().attribs.class;
-
-      app.behaviors.init();
-    });
-
-    it('adds .es6-modules-enabled class to #html', function () {
-      // Get results.
-      const htmlClassesAfter = $orgs['#html'].getState().attribs.class;
-
-      // Assert.
-      expect(htmlClassesBefore).to.not.include('es6-modules-enabled');
-      expect(htmlClassesAfter).to.include('es6-modules-enabled');
-    });
+  before(function () {
+    htmlClassesBefore = $orgs['#html'].getState().attribs.class;
   });
 
   describe('bgColorReveal', function () {
@@ -507,8 +493,7 @@ describe('Fepper website', function () {
       '07': new Image(),
       '08': new Image()
     };
-    const videoImgsOrg = $orgs['.video__img'];
-    const videoPlay = app.behaviors.videoGenerate(logicalImages, videoImgsOrg, 0);
+    const videoPlay = app.behaviors.videoGenerate(logicalImages, $orgs, 0);
 
     function imageHideClosure(j) {
       return function () {
@@ -569,6 +554,15 @@ describe('Fepper website', function () {
       // Prep.
       before(async function () {
         return await videoPlay.next();
+      });
+
+      it('adds .es2018-enabled class to #html', function () {
+        // Get results.
+        const htmlClassesAfter = $orgs['#html'].getState().attribs.class;
+
+        // Assert.
+        expect(htmlClassesBefore).to.not.include('es2018-enabled');
+        expect(htmlClassesAfter).to.include('es2018-enabled');
       });
 
       it('videoImgsOrg member 3 has src === logicalImages[\'03\'].src', function () {

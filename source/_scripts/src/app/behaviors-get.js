@@ -27,12 +27,6 @@ export default (app, root) => {
   const $orgs = app.$orgs;
 
   return {
-    init: () => {
-      // If this init function can run, we know that ES6 Modules are enabled and that the requisite styles can therefore
-      // be applied.
-      $orgs['#html'].dispatchAction('addClass', 'es6-modules-enabled');
-    },
-
     bgColorReveal: () => {
       if (bgColorRevealFrameId) {
         return;
@@ -377,8 +371,7 @@ export default (app, root) => {
     videoGenerate,
 
     videoRender: async (logicalImages) => {
-      const videoImgsOrg = $orgs['.video__img'];
-      const videoPlay = videoGenerate(logicalImages, videoImgsOrg, 13000);
+      const videoPlay = videoGenerate(logicalImages, $orgs, 13000);
       let i;
 
       // eslint-disable-next-line no-cond-assign

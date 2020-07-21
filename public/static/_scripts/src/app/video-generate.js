@@ -4,7 +4,9 @@ if (typeof window === 'object') {
   isClient = true;
 }
 
-export default async function*(logicalImages, videoImgsOrg, timeout) {
+export default async function*(logicalImages, $orgs, timeout) {
+  const videoImgsOrg = $orgs['.video__img'];
+
   function dispatch(indices) {
     videoImgsOrg.dispatchAction('css', {display: 'none'}, indices[0]);
     videoImgsOrg.dispatchAction('css', {display: 'none'}, indices[1]);
@@ -42,6 +44,9 @@ export default async function*(logicalImages, videoImgsOrg, timeout) {
       videoImgsOrg.dispatchAction('attr', {src: logicalImages['04'].src}, 4);
       videoImgsOrg.dispatchAction('attr', {src: logicalImages['05'].src}, 5);
     }
+
+    // If the browser supports async generators, add the class to hide the browser advice to use an up-to-date browser.
+    $orgs['#html'].dispatchAction('addClass', 'es2018-enabled');
 
     logicalImages['03'].src = '../../_assets/src/video-03.gif';
     logicalImages['04'].src = '../../_assets/src/video-04.gif';

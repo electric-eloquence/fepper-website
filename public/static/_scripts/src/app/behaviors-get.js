@@ -249,6 +249,7 @@ export default (app, root) => {
       const slidersOrg = $orgs['.content__slider'];
       const slidersState = slidersOrg.getState();
 
+      // This > 1 (instead of > 0) tweak helps in Firefox.
       if (Math.floor(brandingState.boundingClientRect.top) > 1) {
         if (scrollButtonState.style.display !== 'none') {
           scrollButtonOrg.dispatchAction('css', {display: 'none'});
@@ -288,7 +289,8 @@ export default (app, root) => {
         const paneState = panesOrg.getState(i);
         const distanceTop = paneState.boundingClientRect.top;
 
-        if (Math.floor(distanceTop) > brandingState.innerHeight) {
+        // This + 1 tweak helps in Firefox.
+        if (Math.floor(distanceTop) > brandingState.innerHeight + 1) {
           if (i === 0) {
             htmlOrg.animate({scrollTop: videoState.innerHeight});
             bodyOrg.animate({scrollTop: videoState.innerHeight});

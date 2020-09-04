@@ -749,10 +749,10 @@ p {
   width: 100%;
   z-index: 3;
 }
-html.es2018-enabled .browser-advice {
+.es2018 .browser-advice {
   display: none;
 }
-html.es2018-enabled .content {
+.es2018 .content {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -761,12 +761,12 @@ html.es2018-enabled .content {
   left: 0;
   width: 100%;
 }
-html.es2018-enabled .content__slider {
+.es2018 .content__slider {
   opacity: 0;
   transform: translateY(5rem);
   transition: opacity 0.5s, transform 0.5s;
 }
-html.es2018-enabled .content__slid {
+.es2018 .content__slid {
   opacity: 1;
   transform: translateY(0);
 }

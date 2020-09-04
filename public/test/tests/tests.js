@@ -556,13 +556,13 @@ describe('Fepper website', function () {
         return await videoPlay.next();
       });
 
-      it('adds .es2018-enabled class to #html', function () {
+      it('adds .es2018 class to #html', function () {
         // Get results.
         const htmlClassesAfter = $orgs['#html'].getState().attribs.class;
 
         // Assert.
-        expect(htmlClassesBefore).to.not.include('es2018-enabled');
-        expect(htmlClassesAfter).to.include('es2018-enabled');
+        expect(htmlClassesBefore).to.not.include('es2018');
+        expect(htmlClassesAfter).to.include('es2018');
       });
 
       it('videoImgsOrg member 3 has src === logicalImages[\'03\'].src', function () {

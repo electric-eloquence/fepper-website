@@ -46,7 +46,7 @@ export default async function*(logicalImages, $orgs, timeout) {
     }
 
     // If the browser supports async generators, add the class to hide the browser advice to use an up-to-date browser.
-    $orgs['#html'].dispatchAction('addClass', 'es2018-enabled');
+    $orgs['#html'].dispatchAction('addClass', 'es2018');
 
     logicalImages['03'].src = '../../_assets/src/video-03.gif';
     logicalImages['04'].src = '../../_assets/src/video-04.gif';

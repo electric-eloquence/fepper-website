@@ -700,9 +700,13 @@ p {
   display: none;
   top: 1.5rem;
 }
-.scroll-button:hover,
 .scroll-button:active {
   color: #999;
+}
+@media (hover: hover) {
+  .scroll-button:hover {
+    color: #999;
+  }
 }
 .link-github {
   display: flex;
@@ -712,14 +716,16 @@ p {
 .link-github__anchor {
   display: block;
 }
-.link-github__anchor:hover + .link-github__anchor--arrow,
-.link-github__anchor--arrow:hover {
-  font-size: 2.2rem;
-}
 .link-github__anchor--arrow {
   font-size: 2rem;
   padding-left: 1rem;
   width: 3.2rem;
+}
+@media (hover: hover) {
+  .link-github__anchor:hover + .link-github__anchor--arrow,
+  .link-github__anchor--arrow:hover {
+    font-size: 2.2rem;
+  }
 }
 .hider {
   background: #fff;

@@ -487,22 +487,25 @@ p
   &--up
     display: none
     top: 1.5rem
-  &:hover,
   &:active
     color: #999
+  @media (hover: hover)
+    &:hover
+      color: #999
 .link-github
   display: flex
   justify-content: center
   line-height: 2.8rem
   &__anchor
     display: block
-    &:hover + .link-github__anchor--arrow,
-    &--arrow:hover
-      font-size: 2.2rem
     &--arrow
       font-size: 2rem
       padding-left: 1rem
       width: 3.2rem
+    @media (hover: hover)
+      &:hover + .link-github__anchor--arrow,
+      &--arrow:hover
+        font-size: 2.2rem
 .hider
   background: white
   opacity: 1

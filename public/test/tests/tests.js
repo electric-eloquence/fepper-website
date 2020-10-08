@@ -18,7 +18,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
   });
 
   it('updates the height of pane 0 to the sum of the innerHeights of block 0 and block 1', function () {
-    const paneHeight = $orgs['.content__pane'].getState(0).style.height;
+    const paneHeight = $orgs['.content__pane'].getState(0).css.height;
 
     expect(paneHeight).to.equal(`${blockHeight * 2 / 10}rem`);
 
@@ -29,7 +29,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
 
   for (let i = 1; i < panesCount; i++) {
     it(`updates the height of pane ${i} to the innerHeight of block ${i + 1}`, function () {
-      const paneHeight = $orgs['.content__pane'].getState(i).style.height;
+      const paneHeight = $orgs['.content__pane'].getState(i).css.height;
 
       expect(paneHeight).to.equal(`${blockHeight / 10}rem`);
 
@@ -59,7 +59,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(1);
 
           // Assert.
-          expect(contentPaneState.style['background-color']).to.include('rgba(2, 125, 21');
+          expect(contentPaneState.css['background-color']).to.include('rgba(2, 125, 21');
 
           done();
         });
@@ -75,7 +75,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(3);
 
           // Assert.
-          expect(contentPaneState.style['background-color']).to.include('rgba(240, 192, 0');
+          expect(contentPaneState.css['background-color']).to.include('rgba(240, 192, 0');
 
           done();
         });
@@ -91,7 +91,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(5);
 
           // Assert.
-          expect(contentPaneState.style['background-color']).to.include('rgba(208, 0, 0');
+          expect(contentPaneState.css['background-color']).to.include('rgba(208, 0, 0');
 
           done();
         });
@@ -109,7 +109,7 @@ describe('Fepper website', function () {
         const contentPaneState = panesOrg.getState(1);
 
         // Assert.
-        expect(contentPaneState.style['background-color']).to.equal('transparent');
+        expect(contentPaneState.css['background-color']).to.equal('transparent');
       });
 
       it('from .content__pane[3] when it is scrolled beyond viewport', function () {
@@ -117,7 +117,7 @@ describe('Fepper website', function () {
         const contentPaneState = panesOrg.getState(3);
 
         // Assert.
-        expect(contentPaneState.style['background-color']).to.equal('transparent');
+        expect(contentPaneState.css['background-color']).to.equal('transparent');
       });
 
       it('from .content__pane[5] when it is scrolled beyond viewport', function () {
@@ -125,7 +125,7 @@ describe('Fepper website', function () {
         const contentPaneState = panesOrg.getState(5);
 
         // Assert.
-        expect(contentPaneState.style['background-color']).to.equal('transparent');
+        expect(contentPaneState.css['background-color']).to.equal('transparent');
       });
     });
   });
@@ -217,7 +217,7 @@ describe('Fepper website', function () {
 
     it('moves #logoBg between 0 and -90% right when window is scrolled', function () {
       // Get results.
-      const logoBgRight = $orgs['#logoBg'].getState().style.transform;
+      const logoBgRight = $orgs['#logoBg'].getState().css.transform;
       const percentage = parseFloat(logoBgRight.replace('translateX(', '').slice(0, -2));
 
       // Assert.
@@ -321,7 +321,7 @@ describe('Fepper website', function () {
 
       const scrollButtonState = scrollButtonOrg.getState();
 
-      expect(scrollButtonState.style.display).to.equal('none');
+      expect(scrollButtonState.css.display).to.equal('none');
     });
 
     it('shows when the top of #branding is at the top of window', function () {
@@ -343,7 +343,7 @@ describe('Fepper website', function () {
 
       const scrollButtonState = scrollButtonOrg.getState();
 
-      expect(scrollButtonState.style.display).to.equal('block');
+      expect(scrollButtonState.css.display).to.equal('block');
     });
   });
 
@@ -476,7 +476,7 @@ describe('Fepper website', function () {
 
       for (let i = 0; i < panesCount; i++) {
         it(`updates pane ${i} with a height different from its original height`, function () {
-          const paneHeightAfter = $orgs['.content__pane'].getState(i).style.height;
+          const paneHeightAfter = $orgs['.content__pane'].getState(i).css.height;
 
           expect(paneHeightAfter).to.not.equal(paneHeightsBefore[i]);
         });
@@ -498,7 +498,7 @@ describe('Fepper website', function () {
     function imageHideClosure(j) {
       return function () {
         // Get results.
-        const videoImgDisplay = $orgs['.video__img'].getState(j).style.display;
+        const videoImgDisplay = $orgs['.video__img'].getState(j).css.display;
 
         // Assert.
         expect(videoImgDisplay).to.equal('none');

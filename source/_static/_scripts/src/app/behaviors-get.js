@@ -107,7 +107,7 @@ export default (app, root) => {
 
         // Only need this else case for testing. The pane should be out of view.
         else if (paneState.boundingClientRect.top >= windowState.height) {
-          if (paneState.style['background-color'] !== 'transparent') {
+          if (paneState.css['background-color'] !== 'transparent') {
             $orgs['.content__pane'].dispatchAction('css', {'background-color': 'transparent'}, i);
           }
         }
@@ -251,12 +251,12 @@ export default (app, root) => {
 
       // This > 1 (instead of > 0) tweak helps in Firefox.
       if (Math.floor(brandingState.boundingClientRect.top) > 1) {
-        if (scrollButtonState.style.display !== 'none') {
+        if (scrollButtonState.css.display !== 'none') {
           scrollButtonOrg.dispatchAction('css', {display: 'none'});
         }
       }
       else {
-        if (scrollButtonState.style.display !== 'block') {
+        if (scrollButtonState.css.display !== 'block') {
           scrollButtonOrg.dispatchAction('css', {display: 'block'});
         }
       }

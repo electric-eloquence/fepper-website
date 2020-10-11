@@ -4,7 +4,7 @@
  * @returns {object} Keyed by organism ID.
  */
 export default {
-  'window': null,
+  window: null,
   '#html': null,
   '#body': null,
   '.scroll-button--up': null,

@@ -258,8 +258,8 @@ Set one or more CSS properties for all matches.
             else if (typeof window === 'object') { // jQuery
               // If the property was not picked up thus far, check if it is a property of the element's .style object.
               if ($orgOrMember[0] && $orgOrMember[0].style && property in $orgOrMember[0].style) {
-                // The element's .style property is a real-time computed value. It might not equal the value submitted
-                // as an arg or written to the HTML style attribute.
+                // Be aware that the element's .style property might not equal the value submitted as an arg or written
+                // to the HTML style attribute.
                 state.css[property] = $orgOrMember[0].style[property];
               }
             }

@@ -17,10 +17,10 @@ function setMeasurement($org, measurement, distance_, idx) {
     let distance;
 
     if (typeof distance_ === 'function') {
-      distance = parseInt(distance_.call($org[i], i, $org.$members[i]['_' + measurement]), 10);
+      distance = parseFloat(distance_.call($org[i], i, $org.$members[i]['_' + measurement]));
     }
     else {
-      distance = parseInt(distance_, 10);
+      distance = parseFloat(distance_);
     }
 
     $org.$members[i]['_' + measurement] = distance;

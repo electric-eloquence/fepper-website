@@ -419,7 +419,7 @@ p
   &--linked
     display: block
   &__bg
-    background: linear-gradient(to right, $green, $green 10%, rgb(200,181,17.5) 32.5%, $yellow 42.5%, $yellow 57.5%, rgb(255,160,17.5) 65%, $red 92.5%, $red);
+    background: linear-gradient(to right, $green, $green 10%, rgb(200,181,17.5) 32.5%, $yellow 42.5%, $yellow 57.5%, rgb(255,160,17.5) 65%, $red 92.5%, $red)
     position: absolute
     bottom: 0.1rem
     transform: translateX(0%)
@@ -447,7 +447,11 @@ p
   position: relative
   text-align: center
 .browser-advice
-  opacity: 0
+  color: white
+  font-size: 1.87rem
+  font-weight: bold
+  position: relative
+  z-index: 1
 .content
   &__center
     margin: 0 auto
@@ -540,7 +544,7 @@ p
     left: 0
     width: 100%
     &__slider
-      opacity: 0;
+      opacity: 0
       transform: 'translateY(%srem)' % main_content_translate_y
       transition: opacity 0.5s, transform 0.5s
     &__slid

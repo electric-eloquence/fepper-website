@@ -1,10 +1,17 @@
 <div id="hider" class="hider fade hidden"></div>
 <script>
+  // Adding browser advice via JavaScript so it isn't picked up by web crawlers without some serious effort.
+  const browserAdvice = document.createElement('div');
+  browserAdvice.id = 'browser-advice';
+  browserAdvice.className = 'browser-advice';
+  browserAdvice.innerHTML =
+    '<!--googleoff: index-->This website is best viewed on up-to-date browsers.<!--googleon: index-->';
   document.getElementById('hider').className = 'hider fade';
+
+  document.body.insertBefore(browserAdvice, document.querySelector('.scroll-button'));
   document.addEventListener(
     'DOMContentLoaded',
     function () {
-      document.getElementById('browser-advice').className += ' fade--in';
       document.getElementById('hider').className += ' fade--out';
 
       // Scroll to top of page on page load.

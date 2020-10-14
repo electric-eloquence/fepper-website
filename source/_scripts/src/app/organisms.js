@@ -14,6 +14,7 @@ export default {
   '#branding': null,
   '.logo--linked': null,
   '#logoBg': null,
+  '#browser-advice': null,
   '.content__pane': null,
   '.content__block': null,
   '.content__slider': null,

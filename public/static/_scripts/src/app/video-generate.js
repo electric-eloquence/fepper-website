@@ -46,6 +46,7 @@ export default async function*(logicalImages, $orgs, timeout) {
     }
 
     // If the browser supports async generators, add the class to hide the browser advice to use an up-to-date browser.
+    // Do this in conjunction with fully removing it.
     $orgs['#html'].dispatchAction('addClass', 'es2018');
 
     logicalImages['03'].src = '../../_assets/src/video-03.gif';
@@ -58,6 +59,9 @@ export default async function*(logicalImages, $orgs, timeout) {
           loadDeferredImages();
           resolve();
         }
+
+        // Remove browser advice here, after all content has loaded, since browser advice was added by JavaScript.
+        $orgs['#browser-advice'].remove();
       };
 
       logicalImages['04'].onload = () => {

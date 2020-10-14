@@ -644,7 +644,11 @@ p {
   text-align: center;
 }
 .browser-advice {
-  opacity: 0;
+  color: #fff;
+  font-size: 1.87rem;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
 }
 .content__center {
   margin: 0 auto;

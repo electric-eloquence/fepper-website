@@ -28,11 +28,11 @@ export default (app) => {
 
   $orgs.window.scroll(debounce(behaviors.scrollButtonDisplay, 33));
 
-  $orgs['.scroll-button--down'].on('click', function () {
+  $orgs['.button--scroll--down'].on('click', function () {
     behaviors.scrollButtonDown();
   });
 
-  $orgs['.scroll-button--up'].on('click', function () {
+  $orgs['.button--scroll--up'].on('click', function () {
     behaviors.scrollButtonUp();
   });
 };

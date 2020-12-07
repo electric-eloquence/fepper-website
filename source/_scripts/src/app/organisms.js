@@ -7,8 +7,8 @@ export default {
   window: null,
   '#html': null,
   '#body': null,
-  '.scroll-button--up': null,
-  '.scroll-button--down': null,
+  '.button--scroll--up': null,
+  '.button--scroll--down': null,
   '.video': null,
   '.video__img': null,
   '#branding': null,
@@ -18,6 +18,6 @@ export default {
   '.content__pane': null,
   '.content__block': null,
   '.content__slider': null,
-  '.link-github__anchor--download': null,
-  '.link-github__anchor--readme': null
+  '.link--github__anchor--download': null,
+  '.link--github__anchor--readme': null
 };

@@ -128,8 +128,8 @@ export default (app, root) => {
           hrefReadme += `-${project}%23readme`;
 
           $orgs['.logo--linked'].dispatchAction('attr', {href: hrefHome});
-          $orgs['.link-github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
-          $orgs['.link-github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
+          $orgs['.link--github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
+          $orgs['.link--github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
       }
     },
 
@@ -244,7 +244,7 @@ export default (app, root) => {
     scrollButtonDisplay: () => {
       const brandingOrg = $orgs['#branding'];
       const brandingState = brandingOrg.getState();
-      const scrollButtonOrg = $orgs['.scroll-button--up'];
+      const scrollButtonOrg = $orgs['.button--scroll--up'];
       const scrollButtonState = scrollButtonOrg.getState();
       const slidersOrg = $orgs['.content__slider'];
       const slidersState = slidersOrg.getState();

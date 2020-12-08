@@ -1,0 +1,23 @@
+<section id="branding" class="branding">
+  <a class="logo logo--linked"
+    {{# branding_default? }}
+      href="{{ link.pages-index }}"
+      title="Documentation"
+    {{/ branding_default? }}
+    {{# branding_documentation? }}
+      href="{{ link.pages-homepage }}"
+      title="Homepage"
+    {{/ branding_documentation? }}
+  >
+    <div id="logoBg" class="logo__bg">
+      <h1>{{ heading_h1 }}</h1>
+    </div>
+    {{# branding_default? }}
+      {{> 01-elements/images/logo }}
+    {{/ branding_default? }}
+    {{# branding_documentation? }}
+      {{> 01-elements/images/logo-documentation }}
+    {{/ branding_documentation? }}
+    <div class="logo__border"></div>{{! This border hides an errant border when zooming. }}
+  </a>
+</section>

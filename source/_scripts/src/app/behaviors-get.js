@@ -241,6 +241,20 @@ export default (app, root) => {
       }
     },
 
+    navSlide: () => {
+      $orgs['.nav--main'].dispatchAction('addClass', 'slide');
+    },
+
+    navSlideIn: () => {
+      $orgs['.nav--main'].dispatchAction('removeClass', 'out');
+      $orgs['.nav--main'].dispatchAction('addClass', 'in');
+    },
+
+    navSlideOut: () => {
+      $orgs['.nav--main'].dispatchAction('removeClass', 'in');
+      $orgs['.nav--main'].dispatchAction('addClass', 'out');
+    },
+
     scrollButtonDisplay: () => {
       const brandingOrg = $orgs['#branding'];
       const brandingState = brandingOrg.getState();

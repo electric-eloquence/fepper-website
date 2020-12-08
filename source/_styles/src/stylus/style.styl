@@ -465,6 +465,7 @@ p
     padding: '%srem 0' % main_content_translate_y
   &__fixed + .content__slider
     padding: '0 0 %srem' % (main_content_translate_y - 1)
+.button--nav,
 .button--scroll
   background-color: transparent
   border: 0
@@ -474,9 +475,6 @@ p
   line-height: 1
   outline: 0
   padding: 0
-  position: fixed
-  right: 1.5rem
-  z-index: 2
   @media all and (max-width: $bp-md-max)
     font-size: 4rem
   @media all and (max-width: $bp-xs-max)
@@ -485,6 +483,45 @@ p
   // No focus border in Linux Firefox.
   &::-moz-focus-inner
     border: 0
+.nav--main
+  bottom: 0
+  height: 100%
+  overflow: hidden
+  position: fixed
+  &.in
+    width: 14rem
+  &.out
+    width: 4rem
+  &.slide
+    z-index: 2
+  &__slider
+    background-color: white
+    bottom: 0
+    left: 0
+    position: absolute
+    width: 28rem
+    .out &
+      transform: translateX(-13rem)
+    .slide &
+      transition: transform 0.25s
+  &__li
+    font-weight: 500
+    padding: 1rem 0 0 1.4rem
+  &__buttons
+    padding-bottom: 1.5rem
+.button--nav
+  display: inline
+.button--nav--left
+  margin: 0 8rem 0 1.5rem
+  transform: rotate(270deg)
+.button--nav--right
+  transform: rotate(90deg)
+  .in &
+    opacity: 0
+.button--scroll
+  position: fixed
+  right: 1.5rem
+  z-index: 2
   &--down
     bottom: 1.5rem
     transform: rotate(180deg)

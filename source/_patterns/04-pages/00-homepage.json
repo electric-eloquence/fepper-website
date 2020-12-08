@@ -1,4 +1,4 @@
 {
-  "branding_default": true,
+  "branding_default?": true,
   "heading_h1": "Fepper: Frontend Hotness!"
 }

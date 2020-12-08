@@ -35,4 +35,12 @@ export default (app) => {
   $orgs['.button--scroll--up'].on('click', function () {
     behaviors.scrollButtonUp();
   });
+
+  $orgs['.button--nav--left'].on('click', function () {
+    behaviors.navSlideOut();
+  });
+
+  $orgs['.button--nav--right'].on('click', function () {
+    behaviors.navSlideIn();
+  });
 };

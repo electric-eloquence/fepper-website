@@ -669,6 +669,7 @@ p {
 .content__fixed + .content__slider {
   padding: 0 0 4rem;
 }
+.button--nav,
 .button--scroll {
   background-color: transparent;
   border: 0;
@@ -678,23 +679,76 @@ p {
   line-height: 1;
   outline: 0;
   padding: 0;
-  position: fixed;
-  right: 1.5rem;
-  z-index: 2;
 }
 @media all and (max-width: 1024px) {
+  .button--nav,
   .button--scroll {
     font-size: 4rem;
   }
 }
 @media all and (max-width: 480px) {
+  .button--nav,
   .button--scroll {
     font-size: 3rem;
     right: 0.5rem;
   }
 }
+.button--nav::-moz-focus-inner,
 .button--scroll::-moz-focus-inner {
   border: 0;
+}
+.nav--main {
+  bottom: 0;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+}
+.nav--main.in {
+  width: 14rem;
+}
+.nav--main.out {
+  width: 4rem;
+}
+.nav--main.slide {
+  z-index: 2;
+}
+.nav--main__slider {
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 28rem;
+}
+.out .nav--main__slider {
+  transform: translateX(-13rem);
+}
+.slide .nav--main__slider {
+  transition: transform 0.25s;
+}
+.nav--main__li {
+  font-weight: 500;
+  padding: 1rem 0 0 1.4rem;
+}
+.nav--main__buttons {
+  padding-bottom: 1.5rem;
+}
+.button--nav {
+  display: inline;
+}
+.button--nav--left {
+  margin: 0 8rem 0 1.5rem;
+  transform: rotate(270deg);
+}
+.button--nav--right {
+  transform: rotate(90deg);
+}
+.in .button--nav--right {
+  opacity: 0;
+}
+.button--scroll {
+  position: fixed;
+  right: 1.5rem;
+  z-index: 2;
 }
 .button--scroll--down {
   bottom: 1.5rem;

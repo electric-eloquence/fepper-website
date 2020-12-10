@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,800">
   {{/ offline }}
   {{# offline }}
-    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css{{ cacheBuster }}" media="all">
+    <link rel="stylesheet" href="../../_styles/bld/fonts-offline.css{{ cacheBuster }}">
   {{/ offline }}
-  <link rel="stylesheet" href="../../_styles/bld/style.css{{ cacheBuster }}">
+  <link rel="stylesheet" href="../../_styles/bld/{{ style_file }}{{ cacheBuster }}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     window.jQuery || document.write('<script src="../../node_modules/jquery/dist/jquery.min.js"><\/script>');

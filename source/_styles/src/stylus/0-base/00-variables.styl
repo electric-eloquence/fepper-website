@@ -7,16 +7,6 @@ $yellow = rgb(fepper_yellow_r, fepper_yellow_g, fepper_yellow_b)
 // Typography
 $font = "Fira Sans", sans-serif
 
-// Spacing
-$space = 1.6rem                // - 16px
-$space-and-half = $space * 1.5 // - 24px
-$space-double = $space * 2     // - 32px
-$space-triple = $space * 3     // - 48px
-$space-quad = $space * 4       // - 64px
-$space-sext = $space * 6       // - 96px
-$space-half = $space / 2       // - 8px
-$space-quarter = $space / 4    // - 4px
-
 // Breakpoints
 $bp-xx-max = unit(bp_xx_max, px) // From source/_scripts/src/variables.styl - 320px
 $bp-xs-max = unit(bp_xs_max, px) // From source/_scripts/src/variables.styl - 480px
@@ -27,4 +17,9 @@ $bp-md-max = unit(bp_md_max, px) // From source/_scripts/src/variables.styl - 10
 
 // Misc
 $bp-sm-ratio = 0.75
+$branding-pad = unit(branding_pad, 'rem')
 $h1-font-size = 1em
+$item-last-offset = unit(item_last_offset, 'rem')
+$logo-bg-width = unit(logo_width, 'rem')
+$logo-width = unit(logo_width, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$logo-height = unit(logo_height, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.

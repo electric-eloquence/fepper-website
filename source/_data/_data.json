@@ -1,5 +1,6 @@
 {
   "homepage": "04-pages-00-homepage",
   "title": "Front End Prototyper | Fepper",
-  "offline": false
+  "offline": false,
+  "style_file": "style.css"
 }

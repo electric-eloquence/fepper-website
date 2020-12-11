@@ -1,0 +1,24 @@
+@import 'style'
+
+.webkit .docpage .foundation
+  color: #f00
+.overlay
+  pointer-events: none
+  position: fixed
+  width: 100%
+.overlay--top,
+.overlay--bottom
+  height: 6rem
+.overlay--top
+  top: $branding-height
+.overlay--middle
+  backdrop-filter: contrast(1.5) saturate(0)
+  -webkit-backdrop-filter: contrast(1.5) saturate(0)
+  height: 'calc(100vh - %s - 12rem)' % $branding-height
+  top: $branding-height + 6rem
+.overlay--bottom
+  bottom: 0
+.ol
+  font-size: 0.1rem
+.olo
+  background-color: #fff

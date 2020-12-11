@@ -127,7 +127,6 @@ export default (app, root) => {
           hrefDownload += `-${project}/releases/latest`;
           hrefReadme += `-${project}%23readme`;
 
-          $orgs['.logo--linked'].dispatchAction('attr', {href: hrefHome});
           $orgs['.link--github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
           $orgs['.link--github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
       }

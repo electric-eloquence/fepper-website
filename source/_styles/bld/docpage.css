@@ -324,3 +324,33 @@ p {
   width: 100%;
   z-index: 3;
 }
+.webkit .docpage .foundation {
+  color: #f00;
+}
+.overlay {
+  pointer-events: none;
+  position: fixed;
+  width: 100%;
+}
+.overlay--top,
+.overlay--bottom {
+  height: 6rem;
+}
+.overlay--top {
+  top: 22rem;
+}
+.overlay--middle {
+  backdrop-filter: contrast(1.5) saturate(0);
+  -webkit-backdrop-filter: contrast(1.5) saturate(0);
+  height: calc(100vh - 22rem - 12rem);
+  top: 28rem;
+}
+.overlay--bottom {
+  bottom: 0;
+}
+.ol {
+  font-size: 0.1rem;
+}
+.olo {
+  background-color: #fff;
+}

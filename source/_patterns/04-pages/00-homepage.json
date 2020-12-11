@@ -1,5 +1,6 @@
 {
-  "style_file": "homepage.css",
+  "stylesheet": "homepage.css",
+  "body_class": "homepage",
   "branding_default?": true,
   "heading_h1": "Fepper: Frontend Hotness!"
 }

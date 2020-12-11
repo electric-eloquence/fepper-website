@@ -15,7 +15,6 @@ export default {
   '.video': null,
   '.video__img': null,
   '#branding': null,
-  '.logo--linked': null,
   '#logoBg': null,
   '#browser-advice': null,
   '.content__pane': null,

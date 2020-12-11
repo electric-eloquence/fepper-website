@@ -140,7 +140,7 @@ p {
   padding: 0 0 2rem;
   position: -webkit-sticky;
   position: sticky;
-  top: -0.1rem;
+  top: 0;
   width: 100%;
   z-index: 1;
 }

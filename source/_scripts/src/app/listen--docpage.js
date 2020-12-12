@@ -13,4 +13,12 @@ export default (app) => {
       behaviors.hiderHide();
     }
   });
+
+  $orgs['.button--nav--left'].on('click', function () {
+    behaviors.navSlideOut();
+  });
+
+  $orgs['.button--nav--right'].on('click', function () {
+    behaviors.navSlideIn();
+  });
 };

@@ -17,7 +17,7 @@ body
 p
   margin-bottom: 1.6rem;
 .branding
-  background: white
+  background-color: white
   padding: 0 0 $branding-pad
   position: -webkit-sticky
   position: sticky
@@ -136,12 +136,17 @@ p
   @media (hover: hover)
     &:hover
       color: #999
+.hider
+  background-color: white
+  opacity: 1
+  position: fixed
+  width: 100%
+  z-index: 1
 .bottom
-  background: white
-  padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
+  background-color: white
   position: relative
 .footer
-  background: black
+  background-color: black
   color: white
   padding: 3rem 0
   position: relative

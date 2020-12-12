@@ -57,8 +57,11 @@ body {
   min-height: 100vh;
   position: relative;
 }
+h3 {
+  font-size: 1.5em;
+}
 h4 {
-  font-size: 1.1em;
+  font-size: 1.17em;
 }
 h5 {
   font-size: 1.0625em;
@@ -87,17 +90,17 @@ ul {
   list-style-type: none;
 }
 .bg--black-less-contrast {
-  background: #363636;
+  background-color: #363636;
   color: #fff;
 }
 .bg--green-fepper {
-  background: #027d15;
+  background-color: #027d15;
 }
 .bg--red-fepper {
-  background: #d00000;
+  background-color: #d00000;
 }
 .bg--yellow-fepper {
-  background: #f0c000;
+  background-color: #f0c000;
 }
 .fade {
   transition: opacity 1s ease-in 1s;
@@ -136,7 +139,7 @@ p {
   margin-bottom: 1.6rem;
 }
 .branding {
-  background: #fff;
+  background-color: #fff;
   padding: 0 0 2rem;
   position: -webkit-sticky;
   position: sticky;
@@ -310,13 +313,19 @@ p {
     color: #999;
   }
 }
+.hider {
+  background-color: #fff;
+  opacity: 1;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
 .bottom {
-  background: #fff;
-  padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
+  background-color: #fff;
   position: relative;
 }
 .footer {
-  background: #000;
+  background-color: #000;
   color: #fff;
   padding: 3rem 0;
   position: relative;

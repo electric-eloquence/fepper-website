@@ -27,7 +27,7 @@ export default (app, root) => {
   const $orgs = app.$orgs;
 
   return {
-    bgColorReveal: () => {
+    bgColorReveal: (windowState) => {
       if (bgColorRevealFrameId) {
         return;
       }
@@ -35,7 +35,6 @@ export default (app, root) => {
       const brandingState = $orgs['#branding'].getState();
       const panesOrg = $orgs['.content__pane'];
       const panesLength = panesOrg.getState().$members.length;
-      const windowState = $orgs.window.getState();
       let paneState;
 
       for (let i = 1; i < panesLength; i += 2) {
@@ -132,14 +131,17 @@ export default (app, root) => {
       }
     },
 
-    logoRipen: () => {
+    hiderHide: () => {
+      $orgs['.hider'].dispatchAction('addClass', 'fade--out');
+    },
+
+    logoRipen: (windowState) => {
       if (logoRipenFrameId) {
         return;
       }
 
       const MAX_PERCENTAGE = 90;
       const htmlState = $orgs['#html'].getState();
-      const windowState = $orgs.window.getState();
       const windowHeight = windowState.height;
       let percentage;
       percentage = Math.round(100 * windowState.scrollTop / (htmlState.height - windowHeight));

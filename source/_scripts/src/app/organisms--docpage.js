@@ -11,5 +11,6 @@ export default {
   '.button--nav--left': null,
   '.button--nav--right': null,
   '#branding': null,
-  '#logoBg': null
+  '#logoBg': null,
+  '.hider': null
 };

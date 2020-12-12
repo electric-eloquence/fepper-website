@@ -20,8 +20,10 @@ export default (app) => {
   $orgs.window.resize(debounce(behaviors.updateDims));
 
   $orgs.window.scroll(function () {
-    behaviors.bgColorReveal();
-    behaviors.logoRipen();
+    const windowState = $orgs.window.getState();
+
+    behaviors.bgColorReveal(windowState);
+    behaviors.logoRipen(windowState);
     behaviors.mainContentSlideIn();
     behaviors.mainContentSlideOut();
   });

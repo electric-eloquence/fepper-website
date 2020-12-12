@@ -21,6 +21,7 @@ gulp.task('custom:syncback', [
 ]);
 
 gulp.task('custom:tcp-ip', [
+  'fetch-docpage-content'
 ]);
 
 gulp.task('custom:template', [

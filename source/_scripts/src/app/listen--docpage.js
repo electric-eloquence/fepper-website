@@ -5,6 +5,12 @@ export default (app) => {
   const $orgs = app.$orgs;
 
   $orgs.window.scroll(function () {
-    behaviors.logoRipen();
+    const windowState = $orgs.window.getState();
+
+    behaviors.logoRipen(windowState);
+
+    if (windowState.scrollTop) {
+      behaviors.hiderHide();
+    }
   });
 };

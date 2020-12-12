@@ -1,10 +1,13 @@
 {{> components-branding }}
-<main class="main">
+{{# docpage_install? }}
   {{> components-foundation-docpage }}
-</main>
+{{/ docpage_install? }}
 {{> components-overlay-filter-top }}
 {{> components-overlay-filter-middle }}
 {{> components-overlay-filter-bottom }}
 {{> components-overlay-opacity-top }}
 {{> components-overlay-opacity-bottom }}
+{{> components-nav-main }}
+{{> components-hider }}
+{{> components-bottom }}
 <script src="../../_scripts/src/docpage.js" type="module"></script>

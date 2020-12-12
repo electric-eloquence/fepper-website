@@ -1,9 +1,16 @@
 @import 'style'
 
-.main
-  position: relative
-.webkit .docpage .foundation
-  color: #f00
+.fade
+  transition: opacity 1s
+.foundation
+  display: flex
+  padding-top: 5rem
+  .webkit &
+    color: #f00
+.content
+  width: calc(100vw - 30rem)
+.nav--docpage
+  width: 30rem
 .overlay
   pointer-events: none
   position: fixed
@@ -22,5 +29,11 @@
   bottom: 0
 .ol
   font-size: 0.1rem
+  line-height: 1
 .olo
-  background-color: #fff
+  background-color: white
+.hider
+  bottom: 0
+  height: 5rem
+.bottom
+  padding-top: 2.4rem

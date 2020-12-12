@@ -1,7 +1,7 @@
 {
   "stylesheet": "docpage.css",
-  "body_class": "docpage docpage--install",
+  "body_class": "docpage docpage--index",
   "branding_docpage?": true,
   "heading_h1": "Fepper Documentation",
-  "docpage_install?": true
+  "docpage_index?": true
 }

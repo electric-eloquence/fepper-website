@@ -1,8 +1,10 @@
 <main class="foundation">
+  {{^ docpage_index? }}
   <article class="content">
     {{# docpage_install? }}
       {{> components-content-docpage-install }}
     {{/ docpage_install? }}
   </article>
+  {{/ docpage_index? }}
   {{> components-nav-docpage }}
 </main>

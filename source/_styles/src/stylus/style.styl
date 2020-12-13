@@ -62,17 +62,26 @@ p
 .button--scroll
   background-color: transparent
   border: 0
-  color: #bbb
   cursor: pointer
-  font-size: 5rem
   line-height: 1
   outline: 0
   padding: 0
-  @media all and (max-width: $bp-md-max)
-    font-size: 4rem
-  @media all and (max-width: $bp-xs-max)
-    font-size: 3rem
-    right: 0.5rem
+  svg
+    display: block
+    fill: #bbb
+    width: 6rem
+    height: 6rem
+    @media all and (max-width: $bp-md-max)
+      width: 5rem
+      height: 5rem
+    @media all and (max-width: $bp-xs-max)
+      width: 4rem
+      height: 4rem
+  &:active svg
+    fill: #999
+  @media (hover: hover)
+    &:hover svg
+      fill: #999
   // No focus border in Linux Firefox.
   &::-moz-focus-inner
     border: 0
@@ -105,37 +114,36 @@ p
       transition: transform 0.25s
   &__li
     font-weight: 500
-    padding-left: 1.4rem
+    padding-left: 1.8rem
+    @media all and (max-width: $bp-md-max)
+      padding-left: 1.4rem
+    @media all and (max-width: $bp-xs-max)
+      padding-left: 1rem
   &__buttons
-    padding-bottom: 1.5rem
+    padding-bottom: 0
 .button--nav
   display: inline
 .button--nav--left
-  margin: 0 7rem 0 1.5rem
-  transform: rotate(270deg)
+  margin: 0 6.5rem 0 0
   @media all and (max-width: $bp-md-max)
     margin-right: 7.5rem
   @media all and (max-width: $bp-xs-max)
     margin-right: 8.5rem
+    margin-left: -0.4rem
 .button--nav--right
-  transform: rotate(90deg)
   .in &
     opacity: 0
 .button--scroll
   position: fixed
-  right: 1.5rem
+  right: 0
   z-index: 2
   &--down
-    bottom: 1.5rem
-    transform: rotate(180deg)
+    bottom: 0
   &--up
     display: none
-    top: 1.5rem
-  &:active
-    color: #999
-  @media (hover: hover)
-    &:hover
-      color: #999
+    top: 0
+  @media all and (max-width: $bp-xs-max)
+    right: -0.4rem
 .hider
   background-color: white
   opacity: 1

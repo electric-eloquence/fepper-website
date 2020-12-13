@@ -18,7 +18,6 @@ p
   margin-bottom: 1.6rem;
 .branding
   background-color: white
-  padding: 0 0 $branding-pad
   position: -webkit-sticky
   position: sticky
   top: 0
@@ -32,8 +31,8 @@ p
   width: $logo-width
   height: $logo-height
   @media all and (max-width: $bp-sm-max)
-    height: $logo-height * $bp-sm-ratio
-    width: $logo-width * $bp-sm-ratio
+    height: $logo-height-small
+    width: $logo-width-small
   &__bg
     background: linear-gradient(to right, $green, $green 10%, rgb(200,181,17.5) 32.5%, $yellow 42.5%, $yellow 57.5%, rgb(255,160,17.5) 65%, $red 92.5%, $red)
     position: absolute
@@ -46,10 +45,10 @@ p
   &__img
     position: relative
     top: 0
-    right: 0.002rem
+    //right: 0.002rem // Was probably added to hide an errant border when zooming. Check and see if this is still necessary.
     @media all and (max-width: $bp-sm-max)
-      width: ($logo-width * $bp-sm-ratio) + 0.3rem
-      height: ($logo-height * $bp-sm-ratio) + 0.2rem
+      width: $logo-width-small + 0.3rem
+      height: $logo-height-small
   // This border hides an errant border when zooming in Firefox.
   &__border
     border: 0.05rem solid white

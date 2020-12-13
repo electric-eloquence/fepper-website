@@ -169,6 +169,9 @@ function scrapeAndWriteContent(sectionHeadingText) {
 
 gulp.task('fetch-docpage-content', function (cb) {
   scrapeAndWriteContent('Install');
+  scrapeAndWriteContent('Configure');
+  scrapeAndWriteContent('Use');
+  scrapeAndWriteContent('Update');
 
   cb();
 });

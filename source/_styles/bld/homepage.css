@@ -140,7 +140,6 @@ p {
 }
 .branding {
   background-color: #fff;
-  padding: 0 0 2rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -177,12 +176,11 @@ p {
 .logo__img {
   position: relative;
   top: 0;
-  right: 0.002rem;
 }
 @media all and (max-width: 767px) {
   .logo__img {
     width: 225.3px;
-    height: 150.2px;
+    height: 150px;
   }
 }
 .logo__border {
@@ -351,6 +349,9 @@ p {
   text-align: center;
   width: 100%;
   z-index: 3;
+}
+.branding {
+  padding-bottom: $branding-bottom;
 }
 .video {
   overflow: hidden;

@@ -1,10 +1,14 @@
 @import 'style'
 
 $fade-height = 6rem
+$fade-height-small = $fade-height * $bp-sm-ratio
 $fade-offset = 5rem
+$fade-offset-small = $fade-offset * $bp-sm-ratio
 
 .fade
   transition: opacity 1s
+.octicon
+  display: none
 .foundation
   display: flex
   padding-top: $fade-offset
@@ -15,20 +19,32 @@ $fade-offset = 5rem
     a
       color: #f00
 .content
+  padding-left: 4.5rem
   width: calc(100vw - 30rem)
   .docpage--index &
     width: 100%
 .nav--docpage
   width: 30rem
   .docpage--index &
+    padding-right: 1.6rem
     width: 100%
+    @media all and (max-width: $bp-md-max)
+      padding-right: 0.8rem
   &__sections
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
       grid-template-rows: auto
+      @media all and (max-width: $bp-xs-max)
+        display: block
       .nav--docpage__section
         padding: 0 0 2.4rem 33%
+        @media all and (max-width: $bp-md-max)
+          padding-left: 20%
+        @media all and (max-width: $bp-sm-max)
+          padding-left: 5rem
+        @media all and (max-width: $bp-xs-max)
+          padding-left: 3rem
 .overlay
   pointer-events: none
   position: fixed
@@ -37,12 +53,17 @@ $fade-offset = 5rem
 .overlay--bottom
   height: $fade-height
 .overlay--top
-  top: $branding-height
+  top: $logo-height
+  @media all and (max-width: $bp-sm-max)
+    top: $logo-height-small
 .overlay--middle
   backdrop-filter: contrast(1.5) saturate(0)
   -webkit-backdrop-filter: contrast(1.5) saturate(0)
-  height: 'calc(100vh - %s - 12rem)' % $branding-height
-  top: $branding-height + $fade-height
+  height: 'calc(100vh - %s - %s)' % ($logo-height ($fade-height * 2))
+  top: unit($logo-height / 10, 'rem') + $fade-height
+  @media all and (max-width: $bp-sm-max)
+    height: 'calc(100vh - %s - %s)' % ($logo-height-small ($fade-height * 2))
+    top: unit($logo-height-small / 10, 'rem') + $fade-height
 .overlay--bottom
   bottom: 0
 .ol

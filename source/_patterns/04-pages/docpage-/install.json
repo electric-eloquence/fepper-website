@@ -3,5 +3,6 @@
   "body_class": "docpage docpage--install",
   "branding_docpage?": true,
   "heading_h1": "Fepper Documentation",
-  "docpage_install?": true
+  "docpage_install?": true,
+  "article_class": "content--docpage--install"
 }

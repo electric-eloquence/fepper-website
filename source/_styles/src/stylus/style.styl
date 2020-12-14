@@ -11,11 +11,6 @@
 @import '0-base/02-helpers'
 @import '0-base/03-global'
 
-body
-  color: $black-less-contrast
-  position: relative
-p
-  margin-bottom: 1.6rem;
 .branding
   background-color: white
   position: -webkit-sticky
@@ -90,48 +85,51 @@ p
   overflow: hidden
   position: fixed
   &.in
-    width: 14rem
+    width: 18rem
   &.out
     width: 5rem
     @media all and (max-width: $bp-md-max)
       width: 4.5rem
     @media all and (max-width: $bp-xs-max)
       width: 3.7rem
-  &.slide
-    z-index: 2
   &__slider
     bottom: 0
     left: 0
+    overflow: hidden
     padding-top: 1rem
     position: absolute
-    width: 28rem
+    width: 18rem
     .in &
       background-color: white
+      box-shadow: 0.5rem 0.5rem 1rem #ccc
+      width: 14rem
     .out &
       transform: translateX(-13rem)
-    .slide &
-      transition: transform 0.25s
-  &__li
-    font-weight: 500
-    padding-left: 1.8rem
-    @media all and (max-width: $bp-md-max)
-      padding-left: 1.4rem
-    @media all and (max-width: $bp-xs-max)
-      padding-left: 1rem
-  &__buttons
-    padding-bottom: 0
-.button--nav
-  display: inline
-.button--nav--left
-  margin: 0 6.5rem 0 0
+      @media all and (max-width: $bp-xs-max)
+        transform: translateX(-14rem)
+.navlist__item
+  font-weight: 500
+  padding-left: 1.8rem
   @media all and (max-width: $bp-md-max)
-    margin-right: 7.5rem
+    padding-left: 1.4rem
   @media all and (max-width: $bp-xs-max)
-    margin-right: 8.5rem
-    margin-left: -0.4rem
-.button--nav--right
-  .in &
-    opacity: 0
+    padding-left: 1rem
+.nav--main,
+.nav--docpage
+  &__buttons
+    display: flex
+    padding-bottom: 0
+    .button--nav--right
+      .in &
+        opacity: 0
+.nav--main
+  .button--nav--left
+    margin: 0 7rem 0 0
+    @media all and (max-width: $bp-md-max)
+      margin-right: 8rem
+    @media all and (max-width: $bp-xs-max)
+      margin-right: 10rem
+      margin-left: -0.5rem
 .button--scroll
   position: fixed
   right: 0
@@ -152,6 +150,7 @@ p
 .bottom
   background-color: white
   position: relative
+  z-index: 4
 .footer
   background-color: black
   color: white

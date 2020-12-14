@@ -3,10 +3,12 @@ import behaviorsGet from './behaviors-get.js';
 export default (app) => {
   const behaviors = behaviorsGet(app, window);
 
-  behaviors.navSlideOut();
+  behaviors.navDocpageSlideOut();
+  behaviors.navMainSlideOut();
 
   // So it doesn't slide when the page loads.
   setTimeout(() => {
-    behaviors.navSlide();
+    behaviors.navDocpageSlide();
+    behaviors.navMainSlide();
   }, 0);
 };

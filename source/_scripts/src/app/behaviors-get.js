@@ -242,16 +242,30 @@ export default (app, root) => {
       }
     },
 
-    navSlide: () => {
+    navDocpageSlide: () => {
+      $orgs['.nav--docpage'].dispatchAction('addClass', 'slide');
+    },
+
+    navDocpageSlideIn: () => {
+      $orgs['.nav--docpage'].dispatchAction('removeClass', 'out');
+      $orgs['.nav--docpage'].dispatchAction('addClass', 'in');
+    },
+
+    navDocpageSlideOut: () => {
+      $orgs['.nav--docpage'].dispatchAction('removeClass', 'in');
+      $orgs['.nav--docpage'].dispatchAction('addClass', 'out');
+    },
+
+    navMainSlide: () => {
       $orgs['.nav--main'].dispatchAction('addClass', 'slide');
     },
 
-    navSlideIn: () => {
+    navMainSlideIn: () => {
       $orgs['.nav--main'].dispatchAction('removeClass', 'out');
       $orgs['.nav--main'].dispatchAction('addClass', 'in');
     },
 
-    navSlideOut: () => {
+    navMainSlideOut: () => {
       $orgs['.nav--main'].dispatchAction('removeClass', 'in');
       $orgs['.nav--main'].dispatchAction('addClass', 'out');
     },

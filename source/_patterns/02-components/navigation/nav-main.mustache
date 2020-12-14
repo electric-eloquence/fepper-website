@@ -1,13 +1,13 @@
 <nav class="nav--main">
-  <div class="nav--main__slider">
-    <ul class="nav--main__ul">
-      <li class="nav--main__li"><a href="{{ link.pages-homepage }}">Homepage</a></li>
-      <li class="nav--main__li"><a href="{{ link.pages-index }}">Documentation</a></li>
-      <li class="nav--main__li"><a href="https://github.com/electric-eloquence/fepper/discussions">Discussion</a></li>
+  <div class="nav--main__slider slider">
+    <ul class="navlist">
+      <li class="navlist__item"><a href="{{ link.pages-homepage }}">Homepage</a></li>
+      <li class="navlist__item"><a href="{{ link.pages-index }}">Documentation</a></li>
+      <li class="navlist__item"><a href="https://github.com/electric-eloquence/fepper/discussions">Discussion</a></li>
     </ul>
     <div class="nav--main__buttons">
-      {{> 01-elements/buttons/button-left }}
-      {{> 01-elements/buttons/button-right }}
+      {{> 01-elements/buttons/button-left(button_class: 'nav--main__button-left') }}
+      {{> 01-elements/buttons/button-right(button_class: 'nav--main__button-right') }}
     </div>
   </div>
 </nav>

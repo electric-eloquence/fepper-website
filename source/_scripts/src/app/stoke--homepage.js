@@ -28,11 +28,11 @@ export default (app) => {
   catch (err) {}
 
   behaviors.updateDims();
-  behaviors.navSlideOut();
+  behaviors.navMainSlideOut();
 
   // So it doesn't slide when the page loads.
   setTimeout(() => {
-    behaviors.navSlide();
+    behaviors.navMainSlide();
   }, 0);
 
   let project = '';

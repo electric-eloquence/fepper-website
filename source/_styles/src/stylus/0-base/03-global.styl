@@ -2,6 +2,7 @@
 html
   font-size: 10px
 body
+  color: $black-less-contrast
   font: 1.6em/1.5 $font
   min-width: $bp-xx-max
   min-height: 100vh
@@ -23,7 +24,11 @@ h1
 a
   color: $black-less-contrast
   text-decoration: none
+code
+  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace
+  font-size: 0.875em
 p
+  margin-bottom: 1.6rem;
   a
     text-decoration: underline
 ol, ul
@@ -48,6 +53,10 @@ ol, ul
 .hidden
   display: none !important
   visibility: hidden !important
+.slide
+  z-index: 4
+  .slider
+    transition: transform 0.25s, width 0.25s
 /* Completely remove from the flow but leave available to screen readers. */
 .visually-hidden
   position: absolute !important

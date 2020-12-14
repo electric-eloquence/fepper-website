@@ -1,58 +1,64 @@
 <nav class="nav--docpage">
-  <ul class="nav--docpage__sections">
-    <li class="nav--docpage__section">
-      <h4 class="nav--docpage__heading">{{ nav__docpage__heading }}</h4>
-      <ul class="doclist">
-        <li class="doclist__item"><a class="doclist__link" href="{{ link.pages-install }}">{{ doclist__link_1 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="{{ link.pages-configure }}">{{ doclist__link_2 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/viewing-patterns.html">{{ doclist__link_3 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/editing-source-files.html">{{ doclist__link_4 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/command-line.html">{{ doclist__link_5 }}</a></li>
-      </ul>
-    </li>
-    <li class="nav--docpage__section">
-      <h4 class="nav--docpage__heading">{{ nav__docpage__heading_1 }}</h4>
-      <ul class="doclist">
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-organization.html">{{ doclist__link_8 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-add-new.html">{{ doclist__link_9 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-reorganizing.html">{{ doclist__link_10 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-including.html">{{ doclist__link_11 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/data-link-variable.html">{{ doclist__link_12 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-documenting.html">{{ doclist__link_13 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-managing-assets.html">{{ doclist__link_14 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-header-footer.html">{{ doclist__link_15 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-pseudo-patterns.html">{{ doclist__link_16 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-parameters.html">{{ doclist__link_17 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-states.html">{{ doclist__link_18 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-stylemodifier.html">{{ doclist__link_19 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-hiding.html">{{ doclist__link_20 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-adding-annotations.html">{{ doclist__link_21 }}</a></li>
-      </ul>
-    </li>
-    <li class="nav--docpage__section">
-      <h4 class="nav--docpage__heading">{{ nav__docpage__heading_2 }}</h4>
-      <ul class="doclist">
-        <li class="doclist__item"><a class="doclist__link" href="/docs/data-overview.html">{{ doclist__link_22 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/data-json-mustache.html">{{ doclist__link_23 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/data-pattern-specific.html">{{ doclist__link_24 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/data-listitems.html">{{ doclist__link_25 }}</a></li>
-      </ul>
-    </li>
-    <li class="nav--docpage__section">
-      <h4 class="nav--docpage__heading">{{ nav__docpage__heading_3 }}</h4>
-      <ul class="doclist">
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-ecosystem-overview.html">{{ doclist__link_26 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-starterkits.html">{{ doclist__link_27 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-reload-browser.html">{{ doclist__link_28 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-exporting-patterns.html">{{ doclist__link_29 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-keyboard-shortcuts.html">{{ doclist__link_30 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-integration-with-grunt.html">{{ doclist__link_31 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-pattern-lab-nav.html">{{ doclist__link_32 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-linking.html">{{ doclist__link_33 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-page-follow.html">{{ doclist__link_34 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-clean-public.html">{{ doclist__link_35 }}</a></li>
-        <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-auto-regenerate.html">{{ doclist__link_36 }}</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div class="nav--docpage__slider slider">
+    <ul class="nav--docpage__sections">
+      <li class="nav--docpage__section">
+        <h4 class="nav--docpage__heading">{{ nav__docpage__heading }}</h4>
+        <ul class="doclist">
+          <li class="doclist__item"><a class="doclist__link" href="{{ link.pages-install }}">{{ doclist__link_1 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="{{ link.pages-configure }}">{{ doclist__link_2 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/viewing-patterns.html">{{ doclist__link_3 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/editing-source-files.html">{{ doclist__link_4 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/command-line.html">{{ doclist__link_5 }}</a></li>
+        </ul>
+      </li>
+      <li class="nav--docpage__section">
+        <h4 class="nav--docpage__heading">{{ nav__docpage__heading_1 }}</h4>
+        <ul class="doclist">
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-organization.html">{{ doclist__link_8 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-add-new.html">{{ doclist__link_9 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-reorganizing.html">{{ doclist__link_10 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-including.html">{{ doclist__link_11 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/data-link-variable.html">{{ doclist__link_12 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-documenting.html">{{ doclist__link_13 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-managing-assets.html">{{ doclist__link_14 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-header-footer.html">{{ doclist__link_15 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-pseudo-patterns.html">{{ doclist__link_16 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-parameters.html">{{ doclist__link_17 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-states.html">{{ doclist__link_18 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-stylemodifier.html">{{ doclist__link_19 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-hiding.html">{{ doclist__link_20 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-adding-annotations.html">{{ doclist__link_21 }}</a></li>
+        </ul>
+      </li>
+      <li class="nav--docpage__section">
+        <h4 class="nav--docpage__heading">{{ nav__docpage__heading_2 }}</h4>
+        <ul class="doclist">
+          <li class="doclist__item"><a class="doclist__link" href="/docs/data-overview.html">{{ doclist__link_22 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/data-json-mustache.html">{{ doclist__link_23 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/data-pattern-specific.html">{{ doclist__link_24 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/data-listitems.html">{{ doclist__link_25 }}</a></li>
+        </ul>
+      </li>
+      <li class="nav--docpage__section">
+        <h4 class="nav--docpage__heading">{{ nav__docpage__heading_3 }}</h4>
+        <ul class="doclist">
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-ecosystem-overview.html">{{ doclist__link_26 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-starterkits.html">{{ doclist__link_27 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-reload-browser.html">{{ doclist__link_28 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-exporting-patterns.html">{{ doclist__link_29 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-keyboard-shortcuts.html">{{ doclist__link_30 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-integration-with-grunt.html">{{ doclist__link_31 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-pattern-lab-nav.html">{{ doclist__link_32 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/pattern-linking.html">{{ doclist__link_33 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-page-follow.html">{{ doclist__link_34 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-clean-public.html">{{ doclist__link_35 }}</a></li>
+          <li class="doclist__item"><a class="doclist__link" href="/docs/advanced-auto-regenerate.html">{{ doclist__link_36 }}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="nav--docpage__buttons">
+    {{> 01-elements/buttons/button-left(button_class: 'nav--docpage__button-left') }}
+    {{> 01-elements/buttons/button-right(button_class: 'nav--docpage__button-right') }}
+  </div>
 </nav>

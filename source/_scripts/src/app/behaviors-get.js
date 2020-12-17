@@ -1,4 +1,5 @@
 import videoGenerate from './video-generate.js';
+import colorGradient from './color-gradient.js';
 
 let bgColorRevealFrameId = null;
 let bgColorRevealRedLast = 255;
@@ -161,6 +162,7 @@ export default (app, root) => {
 
       logoRipenTranslateXLast = translateX;
       logoRipenFrameId = requestAnimationFrame(() => {
+        $orgs['#logoBg'].dispatchAction('data', {gradientPosition: percentage});
         $orgs['#logoBg'].dispatchAction('css', {transform: `translateX(${translateX})`});
 
         logoRipenFrameId = null;
@@ -249,6 +251,22 @@ export default (app, root) => {
     navDocpageSlideIn: () => {
       $orgs['.nav--docpage'].dispatchAction('removeClass', 'out');
       $orgs['.nav--docpage'].dispatchAction('addClass', 'in');
+
+      const gradientPosition = $orgs['#logoBg'].getState().data.gradientPosition || 0;
+      console.warn(gradientPosition);
+      console.warn(colorGradient[gradientPosition]);
+      $orgs['.nav--docpage__sections'].dispatchAction(
+        'css',
+        {
+          backgroundColor: 'rgba(' +
+            colorGradient[gradientPosition][0] + ',' +
+            colorGradient[gradientPosition][1] + ',' +
+            colorGradient[gradientPosition][2] + ',' +
+            '0.05'
+        }
+      );
+      $orgs['.nav--docpage__slider'].dispatchAction('addClass', 'z-index-max');
+      $orgs['.nav--docpage__buttons'].dispatchAction('addClass', 'z-index-max');
     },
 
     navDocpageSlideOut: () => {

@@ -63,11 +63,8 @@
   svg
     display: block
     fill: #bbb
-    width: 6rem
-    height: 6rem
-    @media all and (max-width: $bp-md-max)
-      width: 5rem
-      height: 5rem
+    width: 5rem
+    height: 5rem
     @media all and (max-width: $bp-xs-max)
       width: 4rem
       height: 4rem
@@ -85,11 +82,9 @@
   overflow: hidden
   position: fixed
   &.in
-    width: 18rem
+    width: $nav-main-width-full
   &.out
-    width: 5rem
-    @media all and (max-width: $bp-md-max)
-      width: 4.5rem
+    width: 4.5rem
     @media all and (max-width: $bp-xs-max)
       width: 3.7rem
   &__slider
@@ -98,15 +93,15 @@
     overflow: hidden
     padding-top: 1rem
     position: absolute
-    width: 18rem
+    width: $nav-main-width-full
     .in &
       background-color: white
-      box-shadow: 0.5rem 0.5rem 1rem #ccc
-      width: 14rem
+      box-shadow: 0.3rem 0.3rem 1rem rgb(153, 136, 102)
+      width: $nav-main-width-shown
     .out &
       transform: translateX(-13rem)
       @media all and (max-width: $bp-xs-max)
-        transform: translateX(-14rem)
+        transform: translateX(-($nav-main-width-shown))
 .navlist__item
   font-weight: 500
   padding-left: 1.8rem
@@ -119,17 +114,16 @@
   &__buttons
     display: flex
     padding-bottom: 0
-    .button--nav--right
-      .in &
-        opacity: 0
 .nav--main
+  z-index: 5
   .button--nav--left
-    margin: 0 7rem 0 0
-    @media all and (max-width: $bp-md-max)
-      margin-right: 8rem
+    margin: 0 8rem 0 0
     @media all and (max-width: $bp-xs-max)
       margin-right: 10rem
       margin-left: -0.5rem
+  .button--nav--right
+    .in &
+      opacity: 0
 .button--scroll
   position: fixed
   right: 0
@@ -150,7 +144,6 @@
 .bottom
   background-color: white
   position: relative
-  z-index: 4
 .footer
   background-color: black
   color: white
@@ -158,4 +151,4 @@
   position: relative
   text-align: center
   width: 100%
-  z-index: 3
+  z-index: 5

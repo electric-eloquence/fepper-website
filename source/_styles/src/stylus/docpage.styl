@@ -15,7 +15,7 @@ h4
   display: none
 .foundation
   display: flex
-  padding-top: $fade-offset
+  padding-top: 3rem
   position: relative
   margin: 0 auto
   max-width: $max-width
@@ -25,36 +25,41 @@ h4
     color: #f00
     a
       color: #f00
+.z-index-max.z-index-max
+  color: #363636
+  z-index: 2147483647
+  a
+    color: #363636
 .content
-  padding-left: 5rem
+  padding: 0 1.5rem 0 4.5rem
   width: calc(100vw - 30rem)
-  @media all and (max-width: $bp-md-max)
-    padding-left: 4.5rem
   @media all and (max-width: $bp-sm-max)
     min-height: $nav-docpage-height
-    padding-right: 4.5rem
     width: 100%
   @media all and (max-width: $bp-xs-max)
     padding: 0 3rem
+  h3:first-child
+    margin-top: 2rem
   .docpage--index &
     width: 100%
 .nav--docpage
-  width: 30rem
+  @media all and (min-width: $bp-sm-max + 1px)
+    width: 30rem
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
-    @media all and (max-width: $bp-md-max)
-      right: -($nav-docpage-width-small)
   &.in
-    .nav--docpage__slider
+    .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
       @media all and (max-width: $bp-sm-max)
-        transform: translateX(-($nav-docpage-width-small))
+        transform: translateX(0)
+    .button--nav--left
+      opacity: 0
+      pointer-events: none
   &__slider
     @media all and (max-width: $bp-sm-max)
       background-color: white
   &__sections
-    @media all and (max-width: $bp-sm-max)
-      padding: 0 0.8rem 0 4.5rem
+    padding: 0 0.8rem 0 3rem
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
@@ -70,31 +75,38 @@ h4
         @media all and (max-width: $bp-xs-max)
           padding-left: 3rem
   &__buttons
+    z-index: 5
     @media all and (max-width: $bp-sm-max)
       @extend .slide .slider
       position: fixed
       bottom: 0
-      right: -($nav-docpage-width-small - 5rem)
-      width: $nav-docpage-width-small
+      width: 10rem
+      right: -5rem
       .in &
-        transform: translateX(-($nav-docpage-width-small - 5rem))
-  &__button-left
-    @media all and (max-width: $bp-sm-max)
-      margin-right: $nav-docpage-width-small - 10rem
-:not(.docpage--index) > .foundation > .nav--docpage
+        transform: translateX(-5rem)
+    @media all and (max-width: $bp-xs-max)
+      width: 8rem
+      right: -4rem
+      .in &
+        transform: translateX(-4rem)
+    @media all and (min-width: $bp-sm-max + 1px)
+      display: none
+:not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider
+  position: relative
   @media all and (max-width: $bp-sm-max)
     height: $nav-docpage-height
     position: absolute
     top: $fade-offset
-    right: -($nav-docpage-width-small)
+    right: 0
+    transform: translateX($nav-docpage-width-small)
     width: $nav-docpage-width-small
 .nav--docpage__section:first-child .nav--docpage__heading
-  margin-top: 0
+  margin-top: 2rem
 .overlay
   pointer-events: none
   position: fixed
   width: 100%
-  z-index: 3
+  z-index: 4
 .overlay--top,
 .overlay--bottom
   height: $fade-height

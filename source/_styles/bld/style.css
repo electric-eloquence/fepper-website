@@ -123,11 +123,8 @@ ul {
   display: none !important;
   visibility: hidden !important;
 }
-.slide {
-  z-index: 4;
-}
 .slide .slider {
-  transition: transform 0.25s, width 0.25s;
+  transition: transform 0.25s;
 }
 .visually-hidden {
   position: absolute !important;
@@ -211,15 +208,8 @@ ul {
 .button--scroll svg {
   display: block;
   fill: #bbb;
-  width: 6rem;
-  height: 6rem;
-}
-@media all and (max-width: 1024px) {
-  .button--nav svg,
-  .button--scroll svg {
-    width: 5rem;
-    height: 5rem;
-  }
+  width: 5rem;
+  height: 5rem;
 }
 @media all and (max-width: 480px) {
   .button--nav svg,
@@ -252,12 +242,7 @@ ul {
   width: 18rem;
 }
 .nav--main.out {
-  width: 5rem;
-}
-@media all and (max-width: 1024px) {
-  .nav--main.out {
-    width: 4.5rem;
-  }
+  width: 4.5rem;
 }
 @media all and (max-width: 480px) {
   .nav--main.out {
@@ -274,7 +259,7 @@ ul {
 }
 .in .nav--main__slider {
   background-color: #fff;
-  box-shadow: 0.5rem 0.5rem 1rem #ccc;
+  box-shadow: 0.3rem 0.3rem 1rem #986;
   width: 14rem;
 }
 .out .nav--main__slider {
@@ -304,23 +289,20 @@ ul {
   display: flex;
   padding-bottom: 0;
 }
-.in .nav--main__buttons .button--nav--right,
-.in .nav--docpage__buttons .button--nav--right {
-  opacity: 0;
+.nav--main {
+  z-index: 5;
 }
 .nav--main .button--nav--left {
-  margin: 0 7rem 0 0;
-}
-@media all and (max-width: 1024px) {
-  .nav--main .button--nav--left {
-    margin-right: 8rem;
-  }
+  margin: 0 8rem 0 0;
 }
 @media all and (max-width: 480px) {
   .nav--main .button--nav--left {
     margin-right: 10rem;
     margin-left: -0.5rem;
   }
+}
+.in .nav--main .button--nav--right {
+  opacity: 0;
 }
 .button--scroll {
   position: fixed;
@@ -349,7 +331,6 @@ ul {
 .bottom {
   background-color: #fff;
   position: relative;
-  z-index: 4;
 }
 .footer {
   background-color: #000;
@@ -358,5 +339,5 @@ ul {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 3;
+  z-index: 5;
 }

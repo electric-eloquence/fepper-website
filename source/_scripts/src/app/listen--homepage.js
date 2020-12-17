@@ -38,11 +38,11 @@ export default (app) => {
     behaviors.scrollButtonUp();
   });
 
-  $orgs['.nav--main__button-left'].on('click', function () {
+  $orgs['.nav--main__button--left'].on('click', function () {
     behaviors.navMainSlideOut();
   });
 
-  $orgs['.nav--main__button-right'].on('click', function () {
+  $orgs['.nav--main__button--right'].on('click', function () {
     behaviors.navMainSlideIn();
   });
 };

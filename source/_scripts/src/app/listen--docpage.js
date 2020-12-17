@@ -14,19 +14,19 @@ export default (app) => {
     }
   });
 
-  $orgs['.nav--docpage__button-left'].on('click', function () {
+  $orgs['.nav--docpage__button--left'].on('click', function () {
     behaviors.navDocpageSlideIn();
   });
 
-  $orgs['.nav--docpage__button-right'].on('click', function () {
+  $orgs['.nav--docpage__button--right'].on('click', function () {
     behaviors.navDocpageSlideOut();
   });
 
-  $orgs['.nav--main__button-left'].on('click', function () {
+  $orgs['.nav--main__button--left'].on('click', function () {
     behaviors.navMainSlideOut();
   });
 
-  $orgs['.nav--main__button-right'].on('click', function () {
+  $orgs['.nav--main__button--right'].on('click', function () {
     behaviors.navMainSlideIn();
   });
 };

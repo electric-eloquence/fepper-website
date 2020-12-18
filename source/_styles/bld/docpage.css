@@ -58,6 +58,11 @@ body {
   min-height: 100vh;
   position: relative;
 }
+@media all and (max-width: 767px) {
+  body {
+    overflow: hidden;
+  }
+}
 h3 {
   font-size: 1.5em;
 }
@@ -391,15 +396,23 @@ h4 {
     padding: 2rem 3rem 0;
   }
 }
+@media all and (min-width: 1152px) {
+  .content {
+    width: calc(1152px - 32rem);
+  }
+}
 .content a {
   text-decoration: underline;
 }
 .docpage--index .content {
   width: 100%;
 }
-@media all and (min-width: 768px) {
+.nav--docpage {
+  width: 32rem;
+}
+@media all and (max-width: 767px) {
   .nav--docpage {
-    width: 32rem;
+    width: auto;
   }
 }
 .docpage--index .nav--docpage {
@@ -450,6 +463,7 @@ h4 {
   }
 }
 .nav--docpage__buttons {
+  display: none;
   z-index: 6;
 }
 .nav--docpage__buttons.shifted {
@@ -457,8 +471,9 @@ h4 {
 }
 @media all and (max-width: 767px) {
   .nav--docpage__buttons {
-    position: fixed;
+    display: flex;
     bottom: 0;
+    position: fixed;
     width: 10rem;
     right: -5rem;
   }
@@ -473,11 +488,6 @@ h4 {
   }
   .in .nav--docpage__buttons {
     transform: translateX(-4rem);
-  }
-}
-@media all and (min-width: 768px) {
-  .nav--docpage__buttons {
-    display: none;
   }
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {

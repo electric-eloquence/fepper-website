@@ -277,7 +277,6 @@ export default class {
     const navMainButtonsState = this.$orgs['.nav--main__buttons'].getState();
     const bottomState = this.$orgs['.bottom'].getState();
 
-console.warn(bottomState.boundingClientRect)
     if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
       this.$orgs['.nav--main__slider'].addClass('shifted');
 

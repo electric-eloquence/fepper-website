@@ -33,13 +33,16 @@ h4
     width: 100%
   @media all and (max-width: $bp-xs-max)
     padding: 2rem 3rem 0
+  @media all and (min-width: $max-width)
+    width: 'calc(%s - %s)' % ($max-width $nav-docpage-width)
   a
     text-decoration: underline
   .docpage--index &
     width: 100%
 .nav--docpage
-  @media all and (min-width: $bp-sm-max + 1px)
-    width: $nav-docpage-width
+  width: $nav-docpage-width
+  @media all and (max-width: $bp-sm-max)
+    width: auto
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
@@ -69,13 +72,15 @@ h4
         @media all and (max-width: $bp-xs-max)
           padding-left: 3rem
   &__buttons
+    display: none
     z-index: 6
     &.shifted
       bottom: $bottom-height 
     @media all and (max-width: $bp-sm-max)
       @extend .slide .slider
-      position: fixed
+      display: flex
       bottom: 0
+      position: fixed
       width: 10rem
       right: -5rem
       .in &
@@ -85,8 +90,6 @@ h4
       right: -4rem
       .in &
         transform: translateX(-4rem)
-    @media all and (min-width: $bp-sm-max + 1px)
-      display: none
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider
   min-height: 100%
   position: relative

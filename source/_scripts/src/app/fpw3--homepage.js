@@ -11,6 +11,8 @@ export default class {
     const $orgs = this.requerio.$orgs;
 
     $orgs.window.resize(this.behaviors.debounce(() => {
+      const windowState = $orgs.window.getState();
+
       this.behaviors.navButtonsShift(windowState);
       this.behaviors.updateDims();
     }));

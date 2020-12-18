@@ -241,11 +241,17 @@ ul {
 .button--scroll::-moz-focus-inner {
   border: 0;
 }
+.nav--main__buttons,
+.nav--docpage__buttons {
+  display: flex;
+  padding-bottom: 0;
+}
 .nav--main {
   bottom: 0;
   height: 100%;
   overflow: hidden;
   position: fixed;
+  z-index: 8;
 }
 .nav--main.in {
   width: 18rem;
@@ -282,6 +288,18 @@ ul {
     transform: translateX(-14rem);
   }
 }
+.nav--main .button--nav--left {
+  margin: 0 8rem 0 0;
+}
+@media all and (max-width: 480px) {
+  .nav--main .button--nav--left {
+    margin-right: 10rem;
+    margin-left: -0.5rem;
+  }
+}
+.in .nav--main .button--nav--right {
+  opacity: 0;
+}
 .navlist__item {
   font-weight: 500;
   padding-left: 1.8rem;
@@ -296,30 +314,10 @@ ul {
     padding-left: 1rem;
   }
 }
-.nav--main__buttons,
-.nav--docpage__buttons {
-  display: flex;
-  padding-bottom: 0;
-}
-.nav--main {
-  z-index: 6;
-}
-.nav--main .button--nav--left {
-  margin: 0 8rem 0 0;
-}
-@media all and (max-width: 480px) {
-  .nav--main .button--nav--left {
-    margin-right: 10rem;
-    margin-left: -0.5rem;
-  }
-}
-.in .nav--main .button--nav--right {
-  opacity: 0;
-}
 .button--scroll {
   position: fixed;
   right: 0;
-  z-index: 2;
+  z-index: 7;
 }
 .button--scroll--down {
   bottom: 0;
@@ -351,5 +349,5 @@ ul {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 5;
+  z-index: 7;
 }

@@ -76,11 +76,17 @@
   // No focus border in Linux Firefox.
   &::-moz-focus-inner
     border: 0
+.nav--main,
+.nav--docpage
+  &__buttons
+    display: flex
+    padding-bottom: 0
 .nav--main
   bottom: 0
   height: 100%
   overflow: hidden
   position: fixed
+  z-index: 8
   &.in
     width: $nav-main-width-full
   &.out
@@ -104,20 +110,6 @@
       transform: translateX(-13rem)
       @media all and (max-width: $bp-xs-max)
         transform: translateX(-($nav-main-width-shown))
-.navlist__item
-  font-weight: 500
-  padding-left: 1.8rem
-  @media all and (max-width: $bp-md-max)
-    padding-left: 1.4rem
-  @media all and (max-width: $bp-xs-max)
-    padding-left: 1rem
-.nav--main,
-.nav--docpage
-  &__buttons
-    display: flex
-    padding-bottom: 0
-.nav--main
-  z-index: 6
   .button--nav--left
     margin: 0 8rem 0 0
     @media all and (max-width: $bp-xs-max)
@@ -126,10 +118,17 @@
   .button--nav--right
     .in &
       opacity: 0
+.navlist__item
+  font-weight: 500
+  padding-left: 1.8rem
+  @media all and (max-width: $bp-md-max)
+    padding-left: 1.4rem
+  @media all and (max-width: $bp-xs-max)
+    padding-left: 1rem
 .button--scroll
   position: fixed
   right: 0
-  z-index: 2
+  z-index: 7
   &--down
     bottom: 0
   &--up
@@ -153,4 +152,4 @@
   position: relative
   text-align: center
   width: 100%
-  z-index: 5
+  z-index: 7

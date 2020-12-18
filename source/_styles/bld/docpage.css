@@ -540,11 +540,11 @@ h4 {
     display: none;
   }
 }
-.ol {
+.overlay__line {
   font-size: 0.1rem;
   line-height: 1;
 }
-.olo {
+.overlay__line--opacity {
   background-color: #fff;
 }
 .hider {

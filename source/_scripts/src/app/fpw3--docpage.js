@@ -5,6 +5,7 @@ export default class {
     this.requerio = requerio;
     this.root = root;
     this.behaviors = new Behaviors(requerio, root);
+    this.bodyClasses = this.requerio.$orgs['#body'].getState().classArray;
   }
 
   listen() {
@@ -17,7 +18,10 @@ export default class {
 
       this.behaviors.logoRipen(windowState);
       this.behaviors.navButtonsShift(windowState);
-      this.behaviors.navDocpageBgColor();
+
+      if (!this.bodyClasses.includes('docpage--index')) {
+        this.behaviors.navDocpageBgColor();
+      }
 
       if (windowState.scrollTop) {
         this.behaviors.hiderHide();
@@ -42,9 +46,12 @@ export default class {
   }
 
   stoke() {
-    this.behaviors.navDocpageBgColor();
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
+
+    if (!this.bodyClasses.includes('docpage--index')) {
+      this.behaviors.navDocpageBgColor();
+    }
 
     // So it doesn't slide when the page loads.
     setTimeout(() => {

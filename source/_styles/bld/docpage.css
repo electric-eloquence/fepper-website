@@ -402,6 +402,12 @@ h4 {
   padding-right: 1.6rem;
   width: 100%;
 }
+.webkit .docpage--index .nav--docpage {
+  color: #f00;
+}
+.webkit .docpage--index .nav--docpage a {
+  color: #f00;
+}
 @media all and (max-width: 767px) {
   .nav--docpage.in .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider {
     transform: translateX(0);
@@ -531,6 +537,11 @@ h4 {
     display: none;
   }
 }
+.docpage--index > .overlay--opacity.overlay--top,
+.docpage--index > .overlay--opacity.overlay--bottom {
+  display: none;
+}
+body > .overlay--opacity.overlay--bottom,
 .overlay__line {
   font-size: 0.1rem;
   line-height: 1;

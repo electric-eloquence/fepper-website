@@ -43,6 +43,10 @@ h4
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
+    .webkit &
+      color: #f00
+      a
+        color: #f00
   &.in
     .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
       @media all and (max-width: $bp-sm-max)
@@ -126,6 +130,10 @@ body > .overlay--opacity.overlay--top,
 body > .overlay--opacity.overlay--bottom
   @media all and (max-width: $bp-sm-max)
     display: none
+.docpage--index > .overlay--opacity.overlay--top,
+.docpage--index > .overlay--opacity.overlay--bottom
+  display: none
+body > .overlay--opacity.overlay--bottom
 .overlay__line
   font-size: 0.1rem
   line-height: 1

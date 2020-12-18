@@ -415,11 +415,16 @@ $video-height-max = ($video-width-max / 3)
       &--arrow:hover
         font-size: 2.2rem
 .hider
+  background-color: white
+  opacity: 1
+  position: fixed
   top: 'calc((100vw / 3) + %s + %s + 3.5rem)' % ($logo-height $branding-pad)
+  width: 100%
   height: 100vh
+  z-index: 1
   @media all and (max-width: $bp-sm-max)
     top: 'calc((100vw / 3) + (%s * %s) + %s + 3.5rem)' % ($logo-height $bp-sm-ratio $branding-pad)
-  &.bottom-gap
+  &.gap-bottom
     height: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
     position: static
 .es2018

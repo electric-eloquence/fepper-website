@@ -332,13 +332,6 @@ ul {
     right: -0.4rem;
   }
 }
-.hider {
-  background-color: #fff;
-  opacity: 1;
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-}
 .bottom {
   background-color: #fff;
   position: relative;
@@ -544,8 +537,4 @@ h4 {
 }
 .overlay__line--opacity {
   background-color: #fff;
-}
-.hider {
-  bottom: 0;
-  height: 5rem;
 }

@@ -84,8 +84,12 @@ a {
   text-decoration: none;
 }
 code {
+  background-color: #eee;
   font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
   font-size: 0.875em;
+}
+.webkit code {
+  background-color: #fbb;
 }
 p {
   margin-bottom: 1.6rem;
@@ -148,7 +152,7 @@ ul {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 6;
 }
 .logo {
   display: block;

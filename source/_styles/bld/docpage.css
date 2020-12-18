@@ -60,7 +60,7 @@ body {
 }
 @media all and (max-width: 767px) {
   body {
-    overflow: hidden;
+    overflow-x: hidden;
   }
 }
 h3 {
@@ -407,14 +407,6 @@ h4 {
 .docpage--index .content {
   width: 100%;
 }
-.nav--docpage {
-  width: 32rem;
-}
-@media all and (max-width: 767px) {
-  .nav--docpage {
-    width: auto;
-  }
-}
 .docpage--index .nav--docpage {
   padding-right: 1.6rem;
   width: 100%;
@@ -541,6 +533,12 @@ h4 {
 }
 .overlay--bottom {
   bottom: 0;
+}
+@media all and (max-width: 767px) {
+  body > .overlay--opacity.overlay--top,
+  body > .overlay--opacity.overlay--bottom {
+    display: none;
+  }
 }
 .ol {
   font-size: 0.1rem;

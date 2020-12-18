@@ -40,9 +40,6 @@ h4
   .docpage--index &
     width: 100%
 .nav--docpage
-  width: $nav-docpage-width
-  @media all and (max-width: $bp-sm-max)
-    width: auto
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
@@ -125,6 +122,10 @@ h4
     top: unit($logo-height-small / 10, 'rem') + $fade-height
 .overlay--bottom
   bottom: 0
+body > .overlay--opacity.overlay--top,
+body > .overlay--opacity.overlay--bottom
+  @media all and (max-width: $bp-sm-max)
+    display: none
 .ol
   font-size: 0.1rem
   line-height: 1

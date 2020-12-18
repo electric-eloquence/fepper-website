@@ -60,7 +60,7 @@ body {
 }
 @media all and (max-width: 767px) {
   body {
-    overflow: hidden;
+    overflow-x: hidden;
   }
 }
 h3 {

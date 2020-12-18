@@ -58,7 +58,9 @@
     </ul>
   </div>
   <div class="nav--docpage__buttons">
-    {{> 01-elements/buttons/button-left(button_class: 'nav--docpage__button--left') }}
-    {{> 01-elements/buttons/button-right(button_class: 'nav--docpage__button--right') }}
+    {{> elements-button-left(button_class: 'nav--docpage__button--left') }}
+    {{> elements-button-right(button_class: 'nav--docpage__button--right') }}
   </div>
+  {{> components-overlay-opacity-top }}
+  {{> components-overlay-opacity-bottom }}
 </nav>

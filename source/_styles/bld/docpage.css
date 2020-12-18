@@ -295,7 +295,7 @@ ul {
   padding-bottom: 0;
 }
 .nav--main {
-  z-index: 5;
+  z-index: 6;
 }
 .nav--main .button--nav--left {
   margin: 0 8rem 0 0;
@@ -368,8 +368,8 @@ h4 {
   }
 }
 .content {
-  padding: 2rem 1.5rem 0 4.5rem;
-  width: calc(100vw - 30rem);
+  padding: 2rem 1.5rem 2.5rem 4.5rem;
+  width: calc(100vw - 32rem);
 }
 .webkit .content {
   color: #f00;
@@ -396,7 +396,7 @@ h4 {
 }
 @media all and (min-width: 768px) {
   .nav--docpage {
-    width: 30rem;
+    width: 32rem;
   }
 }
 .docpage--index .nav--docpage {
@@ -415,13 +415,8 @@ h4 {
 .nav--docpage__slider {
   z-index: 5;
 }
-@media all and (max-width: 767px) {
-  .nav--docpage__slider {
-    background-color: #fff;
-  }
-}
 .nav--docpage__sections {
-  padding: 2rem 0.8rem 0 3rem;
+  padding: 2rem 0.8rem 2.5rem 3rem;
 }
 .docpage--index .nav--docpage__sections {
   display: grid;
@@ -452,7 +447,7 @@ h4 {
   }
 }
 .nav--docpage__buttons {
-  z-index: 5;
+  z-index: 6;
 }
 @media all and (max-width: 767px) {
   .nav--docpage__buttons {
@@ -480,11 +475,11 @@ h4 {
   }
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
+  min-height: 100%;
   position: relative;
 }
 @media all and (max-width: 767px) {
   :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
-    height: 106rem;
     position: absolute;
     top: 3rem;
     right: 0;
@@ -500,6 +495,9 @@ h4 {
   position: fixed;
   width: 100%;
   z-index: 4;
+}
+.nav--docpage .overlay {
+  z-index: 5;
 }
 .overlay--top,
 .overlay--bottom {
@@ -538,7 +536,4 @@ h4 {
 .hider {
   bottom: 0;
   height: 5rem;
-}
-.bottom {
-  margin-top: 2.4rem;
 }

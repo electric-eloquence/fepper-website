@@ -246,6 +246,20 @@ export default class {
     }
   }
 
+  navDocpageBgColor() {
+    const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
+
+    this.$orgs['.nav--docpage__slider'].dispatchAction(
+      'css',
+      {
+        backgroundColor: 'rgb(' +
+          colorGradient[gradientPosition][0] + ',' +
+          colorGradient[gradientPosition][1] + ',' +
+          colorGradient[gradientPosition][2] + ')'
+      }
+    );
+  }
+
   navDocpageSlide() {
     this.$orgs['.nav--docpage'].dispatchAction('addClass', 'slide');
   }
@@ -253,19 +267,6 @@ export default class {
   navDocpageSlideIn() {
     this.$orgs['.nav--docpage'].dispatchAction('removeClass', 'out');
     this.$orgs['.nav--docpage'].dispatchAction('addClass', 'in');
-
-    const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
-
-    this.$orgs['.nav--docpage__sections'].dispatchAction(
-      'css',
-      {
-        backgroundColor: 'rgba(' +
-          colorGradient[gradientPosition][0] + ',' +
-          colorGradient[gradientPosition][1] + ',' +
-          colorGradient[gradientPosition][2] + ',' +
-          '0.075'
-      }
-    );
   }
 
   navDocpageSlideOut() {

@@ -4,7 +4,7 @@ $fade-height = 6rem
 $fade-height-small = $fade-height * $bp-sm-ratio
 $fade-offset = 5rem
 $fade-offset-small = $fade-offset * $bp-sm-ratio
-$nav-docpage-width-small = 32rem
+$nav-docpage-width = 32rem
 $nav-docpage-height = 106rem
 
 h4
@@ -22,8 +22,8 @@ h4
   @media all and (max-width: $bp-sm-max)
     display: block
 .content
-  padding: 2rem 1.5rem 0 4.5rem
-  width: calc(100vw - 30rem)
+  padding: 2rem 1.5rem 2.5rem 4.5rem
+  width: 'calc(100vw - %s)' % $nav-docpage-width
   .webkit &
     color: #f00
     a
@@ -39,7 +39,7 @@ h4
     width: 100%
 .nav--docpage
   @media all and (min-width: $bp-sm-max + 1px)
-    width: 30rem
+    width: $nav-docpage-width
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
@@ -52,10 +52,8 @@ h4
       pointer-events: none
   &__slider
     z-index: 5
-    @media all and (max-width: $bp-sm-max)
-      background-color: white
   &__sections
-    padding: 2rem 0.8rem 0 3rem
+    padding: 2rem 0.8rem 2.5rem 3rem
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
@@ -71,7 +69,7 @@ h4
         @media all and (max-width: $bp-xs-max)
           padding-left: 3rem
   &__buttons
-    z-index: 5
+    z-index: 6
     @media all and (max-width: $bp-sm-max)
       @extend .slide .slider
       position: fixed
@@ -88,14 +86,14 @@ h4
     @media all and (min-width: $bp-sm-max + 1px)
       display: none
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider
+  min-height: 100%
   position: relative
   @media all and (max-width: $bp-sm-max)
-    height: $nav-docpage-height
     position: absolute
     top: 3rem
     right: 0
-    transform: translateX($nav-docpage-width-small)
-    width: $nav-docpage-width-small
+    transform: translateX($nav-docpage-width)
+    width: $nav-docpage-width
 .nav--docpage__section:first-child .nav--docpage__heading
   margin-top: 0
 .overlay
@@ -103,6 +101,8 @@ h4
   position: fixed
   width: 100%
   z-index: 4
+  .nav--docpage &
+    z-index: 5
 .overlay--top,
 .overlay--bottom
   height: $fade-height
@@ -128,5 +128,3 @@ h4
 .hider
   bottom: 0
   height: $fade-offset
-.bottom
-  margin-top: 2.4rem

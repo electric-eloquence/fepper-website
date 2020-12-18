@@ -14,30 +14,32 @@ export default class {
       const windowState = $orgs.window.getState();
 
       this.behaviors.logoRipen(windowState);
+      this.behaviors.navDocpageBgColor();
 
       if (windowState.scrollTop) {
         this.behaviors.hiderHide();
       }
     });
 
-    $orgs['.nav--docpage__button--left'].on('click', function () {
+    $orgs['.nav--docpage__button--left'].on('click', () => {
       this.behaviors.navDocpageSlideIn();
     });
 
-    $orgs['.nav--docpage__button--right'].on('click', function () {
+    $orgs['.nav--docpage__button--right'].on('click', () => {
       this.behaviors.navDocpageSlideOut();
     });
 
-    $orgs['.nav--main__button--left'].on('click', function () {
+    $orgs['.nav--main__button--left'].on('click', () => {
       this.behaviors.navMainSlideOut();
     });
 
-    $orgs['.nav--main__button--right'].on('click', function () {
+    $orgs['.nav--main__button--right'].on('click', () => {
       this.behaviors.navMainSlideIn();
     });
   }
 
   stoke() {
+    this.behaviors.navDocpageBgColor();
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
 

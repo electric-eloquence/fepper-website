@@ -1,18 +1,5 @@
 import Behaviors from './behaviors.js';
 
-function debounce(callback, wait = 200, context = this) {
-  let timeout;
-  let callbackArgs;
-
-  const later = () => callback.apply(context, callbackArgs);
-
-  return () => {
-    callbackArgs = arguments;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
 export default class {
   constructor(requerio, root) {
     this.requerio = requerio;
@@ -23,7 +10,10 @@ export default class {
   listen() {
     const $orgs = this.requerio.$orgs;
 
-    $orgs.window.resize(debounce(this.behaviors.updateDims));
+    $orgs.window.resize(this.behaviors.debounce(() => {
+      this.behaviors.navButtonsShift(windowState);
+      this.behaviors.updateDims();
+    }));
 
     $orgs.window.scroll(() => {
       const windowState = $orgs.window.getState();
@@ -32,9 +22,10 @@ export default class {
       this.behaviors.logoRipen(windowState);
       this.behaviors.mainContentSlideIn();
       this.behaviors.mainContentSlideOut();
+      this.behaviors.navButtonsShift(windowState);
     });
 
-    $orgs.window.scroll(debounce(this.behaviors.scrollButtonDisplay, 33, this.behaviors));
+    $orgs.window.scroll(this.behaviors.debounce(this.behaviors.scrollButtonDisplay, 33, this.behaviors));
 
     $orgs['.button--scroll--down'].on('click', () => {
       this.behaviors.scrollButtonDown();

@@ -261,6 +261,9 @@ ul {
   position: absolute;
   width: 18rem;
 }
+.nav--main__slider.shifted {
+  bottom: 8.4rem;
+}
 .in .nav--main__slider {
   background-color: #fff;
   box-shadow: 0.3rem 0.3rem 1rem #986;

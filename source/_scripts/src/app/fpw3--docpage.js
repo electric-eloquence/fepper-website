@@ -10,10 +10,13 @@ export default class {
   listen() {
     const $orgs = this.requerio.$orgs;
 
+    $orgs.window.resize(this.behaviors.debounce(() => this.behaviors.navButtonsShift(windowState)));
+
     $orgs.window.scroll(() => {
       const windowState = $orgs.window.getState();
 
       this.behaviors.logoRipen(windowState);
+      this.behaviors.navButtonsShift(windowState);
       this.behaviors.navDocpageBgColor();
 
       if (windowState.scrollTop) {

@@ -261,6 +261,9 @@ ul {
   position: absolute;
   width: 18rem;
 }
+.nav--main__slider.shifted {
+  bottom: 8.4rem;
+}
 .in .nav--main__slider {
   background-color: #fff;
   box-shadow: 0.3rem 0.3rem 1rem #986;
@@ -777,6 +780,7 @@ ul {
 }
 .main {
   background-color: #fff;
+  margin-bottom: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
   position: relative;
   text-align: center;
 }
@@ -833,9 +837,6 @@ ul {
   .hider {
     top: calc((100vw / 3) + (200px * 0.75) + 2rem + 3.5rem);
   }
-}
-.bottom {
-  padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
 }
 .es2018 .browser-advice {
   display: none;

@@ -116,6 +116,19 @@ export default class {
     }
   }
 
+  debounce(callback, wait = 200, context = this) {
+    let timeout;
+    let callbackArgs;
+
+    const later = () => callback.apply(context, callbackArgs);
+
+    return () => {
+      callbackArgs = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
   gitHubHrefAdapt(project) {
     const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
     let hrefHome = hrefBase;
@@ -258,6 +271,27 @@ export default class {
           colorGradient[gradientPosition][2] + ')'
       }
     );
+  }
+
+  navButtonsShift(windowState) {
+    const navMainButtonsState = this.$orgs['.nav--main__buttons'].getState();
+    const bottomState = this.$orgs['.bottom'].getState();
+
+console.warn(bottomState.boundingClientRect)
+    if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
+      this.$orgs['.nav--main__slider'].addClass('shifted');
+
+      if (this.$orgs['.nav--docpage__buttons']) {
+        this.$orgs['.nav--docpage__buttons'].addClass('shifted');
+      }
+    }
+    else {
+      this.$orgs['.nav--main__slider'].removeClass('shifted');
+
+      if (this.$orgs['.nav--docpage__buttons']) {
+        this.$orgs['.nav--docpage__buttons'].removeClass('shifted');
+      }
+    }
   }
 
   navDocpageSlide() {

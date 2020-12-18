@@ -379,6 +379,7 @@ $video-height-max = ($video-width-max / 3)
           left: 'calc(50% + %s)' % (floor($video-width-max * 255 / 512) - 0.51px)
 .main
   background-color: white
+  margin-bottom: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
   position: relative
   text-align: center
 .browser-advice
@@ -419,8 +420,6 @@ $video-height-max = ($video-width-max / 3)
   height: 100vh
   @media all and (max-width: $bp-sm-max)
     top: 'calc((100vw / 3) + (%s * %s) + %s + 3.5rem)' % ($logo-height $bp-sm-ratio $branding-pad)
-.bottom
-  padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
 .es2018
   .browser-advice
     display: none

@@ -262,6 +262,9 @@ ul {
   position: absolute;
   width: 18rem;
 }
+.nav--main__slider.shifted {
+  bottom: 8.4rem;
+}
 .in .nav--main__slider {
   background-color: #fff;
   box-shadow: 0.3rem 0.3rem 1rem #986;
@@ -448,6 +451,9 @@ h4 {
 }
 .nav--docpage__buttons {
   z-index: 6;
+}
+.nav--docpage__buttons.shifted {
+  bottom: 8.4rem;
 }
 @media all and (max-width: 767px) {
   .nav--docpage__buttons {

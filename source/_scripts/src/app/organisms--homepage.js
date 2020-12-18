@@ -10,6 +10,8 @@ export default {
   '.button--scroll--up': null,
   '.button--scroll--down': null,
   '.nav--main': null,
+  '.nav--main__slider': null,
+  '.nav--main__buttons': null,
   '.nav--main__button--left': null,
   '.nav--main__button--right': null,
   '.video': null,
@@ -21,5 +23,6 @@ export default {
   '.content__block': null,
   '.content__slider': null,
   '.link--github__anchor--download': null,
-  '.link--github__anchor--readme': null
+  '.link--github__anchor--readme': null,
+  '.bottom': null
 };

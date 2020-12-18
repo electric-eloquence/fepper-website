@@ -8,6 +8,8 @@ export default {
   '#html': null,
   '#body': null,
   '.nav--main': null,
+  '.nav--main__slider': null,
+  '.nav--main__buttons': null,
   '.nav--main__button--left': null,
   '.nav--main__button--right': null,
   '#branding': null,
@@ -18,5 +20,6 @@ export default {
   '.nav--docpage__button--left': null,
   '.nav--docpage__button--right': null,
   '.overlay': null,
-  '.hider': null
+  '.hider': null,
+  '.bottom': null
 };

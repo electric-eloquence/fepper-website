@@ -1,0 +1,201 @@
+<h4>conf.yml</h4>
+<div class="indent">
+  <h5>express_port</h5>
+  <p>The port at which Fepper's webserver listens.</p>
+  <strong>type</strong>: <code>number</code><br>
+  <strong>default</strong>: <code>3000</code>
+
+  <h5>livereload_port</h5>
+  <p>The port at which LiveReload listens for changes to the file system.</p>
+  <strong>type</strong>: <code>number</code><br>
+  <strong>default</strong>: <code>35729</code>
+
+  <h5>kill_zombies</h5>
+  <p>If true, Fepper will kill old gulp processes lingering into a fresh launch of Fepper. However, if you wish to run multiple Fepper instances, you'll need to set this to false.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>true</code>
+
+  <h5>app_dir</h5>
+  <p>The relative path to the <a href="https://www.npmjs.com/package/fepper" target="_blank">Fepper NPM</a>.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>node_modules/fepper</code>
+
+  <h5>extend_dir</h5>
+  <p>The relative path to the Fepper extensions directory.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>extend</code>
+</div>
+
+<h4>pref.yml</h4>
+<div class="indent">
+  <h5>backend.backend_dir</h5>
+  <p>The relative path to the backend directory.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>backend</code>
+
+  <h5>backend.synced_dirs.assets_dir</h5>
+  <p>The relative path to where assets (images, videos, etc.) should be copied to in the backend.</p>
+  <strong>type</strong>: <code>string</code>
+
+  <h5>backend.synced_dirs.scripts_dir</h5>
+  <p>The relative path to where scripts (usually JavaScripts) should be copied to in the backend.</p>
+  <strong>type</strong>: <code>string</code>
+
+  <h5>backend.synced_dirs.styles_dir</h5>
+  <p>The relative path to where stylesheets should be copied to in the backend.</p>
+  <strong>type</strong>: <code>string</code>
+
+  <h5>backend.synced_dirs.templates_dir</h5>
+  <p>The relative path to where Fepper should output compiled backend templates.</p>
+  <strong>type</strong>: <code>string</code>
+
+  <h5>backend.synced_dirs.templates_ext</h5>
+  <p>The extension that should be appended to compiled backend template filenames.</p>
+  <strong>type</strong>: <code>string</code>
+
+  <h5>backend.webserved_dirs</h5>
+  <p>An array of relative paths to backend directories to be served by Fepper's webserver.</p>
+  <strong>type</strong>: <code>array</code>
+
+  <h5>templater.retain_mustache</h5>
+  <p>By default, the Templater will not retain untranslated Feplet tags when translating to the backend's template language. However, if the backend's template language happens to be Feplet or Mustache, set this value to true.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>false</code>
+
+  <h5>instance_file</h5>
+  <p>Declares the class which defines the Fepper instance for a project. If you wish to customize a subclass that inherits from the default class, put the relative path to that file here.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>node_modules/fepper/core/fepper.js</code>
+
+  <h5>lang</h5>
+  <p>Fepper's human language for end-users. Fepper will translate according to the .json file at <code>source/_ui/i18n</code> identified by this pref.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>en</code>
+</div>
+
+<h4>patternlab-config.json</h4>
+<div class="indent">
+  <h5>paths</h5>
+  <p>Relative paths to source and public directories. Edits to source files will be built to the public directory and served from there.</p>
+  <strong>type</strong>: <code>object</code><br>
+  <strong>default</strong>:
+  <pre><code>  "paths": {
+    "source": {
+      "root": "source",
+      "annotations": "source/_annotations",
+      "css": "source/_styles",
+      "cssSrc": "source/_styles/src",
+      "cssBld": "source/_styles/bld",
+      "fonts": "source/_styles/bld/fonts",
+      "data": "source/_data",
+      "images": "source/_assets",
+      "imagesSrc": "source/_assets/src",
+      "imagesBld": "source/_assets/bld",
+      "js": "source/_scripts",
+      "jsSrc": "source/_scripts/src",
+      "jsBld": "source/_scripts/bld",
+      "meta": "source/_meta",
+      "patterns": "source/_patterns",
+      "templates": "source/_patterns/03-templates",
+      "pages": "source/_patterns/04-pages",
+      "scrape": "source/_patterns/98-scrape",
+      "static": "source/_static",
+      "ui": "source/_ui"
+    },
+    "public": {
+      "root": "public",
+      "annotations": "public/annotations",
+      "css": "public/_styles",
+      "cssBld": "public/_styles/bld",
+      "fonts": "public/_styles/bld/fonts",
+      "images": "public/_assets",
+      "js": "public/_scripts",
+      "patterns": "public/patterns",
+      "static": "public/static"
+    }
+  }</code></pre>
+
+  <h5>cacheBust</h5>
+  <p>Whether or not to append a unique query string to cacheable assets, e.g. JS, CSS. If true, the browser will pick up recent changes and not retrieve from cache.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>true</code>
+
+  <h5>cleanPublic</h5>
+  <p>Whether or not to delete the files in `public/patterns/` on each build.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>true</code>
+
+  <h5>debug</h5>
+  <p>Whether or not to output all debugging messages in the console.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>false</code>
+
+  <h5>defaultPatttern</h5>
+  <p>The pattern that the browser will display on launch.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>pages-homepage</code>
+
+  <h5>defaultShowPatternInfo</h5>
+  <p>Whether or not to launch with the code viewer open.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>false</code>
+
+  <h5>frontMatterExtension</h5>
+  <p>The file extension for annotation files, whose rules are a superset of Front Matter, a superset comprising YAML and Markdown.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>.md</code>
+
+  <h5>hashPatterns</h5>
+  <p>Whether or not to hash patterns per build. Setting this to true will improve build performance by skipping unchanged patterns.</p>
+  <strong>type</strong>: <code>boolean</code><br>
+  <strong>default</strong>: <code>true</code>
+
+  <h5>ishControlsHide</h5>
+  <p>Whether or not to hide UI toolbar items.</p>
+  <strong>type</strong>: <code>object</code><br>
+  <strong>default</strong>:
+  <pre><code>  "ishControlsHide": {
+    "disco": true,
+    "find": false,
+    "grow": false,
+    "random": true,
+    "views-all": false,
+    "views-annotations": false,
+    "views-code": false,
+    "views-new": false,
+    "tools-all": false,
+    "tools-fpdocs": false,
+    "tools-docs": false,
+    "tools-shortcuts": false
+  }</code></pre>
+
+  <h5>ishMinimum</h5>
+  <p>The minimum viewport width the UI will render.</p>
+  <strong>type</strong>: <code>number</code><br>
+  <strong>default</strong>: <code>240</code>
+
+  <h5>ishMaximum</h5>
+  <p>The maximum viewport width the UI will render.</p>
+  <strong>type</strong>: <code>number</code><br>
+  <strong>default</strong>: <code>2600</code>
+
+  <h5>patternExportDirectory</h5>
+  <p>The relative path to the directory that patterns will be exported to if <code>patternExportPatternPartials</code> has items.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>pattern_exports</code>
+
+  <h5>patternExportPatternPartials</h5>
+  <p>Patterns to be exported per build. The exported patterns will include their partials and their data. They will be snippets of HTML, not full HTML pages.</p>
+  <strong>type</strong>: <code>array</code><br>
+  <strong>default</strong>: <code>[]</code>
+
+  <h5>patternExtension</h5>
+  <p>The file extension for patterns. Fepper uses <a href="https://www.npmjs.com/package/feplet" target="_blank">Feplet</a>, a superset of Mustache. While it is debatable whether this is still truly Mustache, the naming convention persists.</p>
+  <strong>type</strong>: <code>string</code><br>
+  <strong>default</strong>: <code>.mustache</code>
+
+  <h5>styleGuideExcludes</h5>
+  <p>Sets which patterns will be excluded from the "All" patterns page. These template and page patterns would still be accessible via navigation.</p>
+  <strong>type</strong>: <code>array</code><br>
+  <strong>default</strong>: <code>[]</code>
+</div>

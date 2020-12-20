@@ -88,23 +88,15 @@ a {
   color: #363636;
   text-decoration: none;
 }
-code {
-  background-color: #eee;
-  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
-  font-size: 0.875em;
-}
-.webkit code {
-  background-color: #fbb;
+ol,
+ul {
+  list-style-type: none;
 }
 p {
   margin-bottom: 1.6rem;
 }
-p a {
-  text-decoration: underline;
-}
-ol,
-ul {
-  list-style-type: none;
+strong {
+  font-weight: 500;
 }
 .bg--black-less-contrast {
   background-color: #363636;

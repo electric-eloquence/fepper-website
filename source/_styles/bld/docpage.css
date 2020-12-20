@@ -88,23 +88,15 @@ a {
   color: #363636;
   text-decoration: none;
 }
-code {
-  background-color: #eee;
-  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
-  font-size: 0.875em;
-}
-.webkit code {
-  background-color: #fbb;
+ol,
+ul {
+  list-style-type: none;
 }
 p {
   margin-bottom: 1.6rem;
 }
-p a {
-  text-decoration: underline;
-}
-ol,
-ul {
-  list-style-type: none;
+strong {
+  font-weight: 500;
 }
 .bg--black-less-contrast {
   background-color: #363636;
@@ -348,6 +340,22 @@ ul {
 h4 {
   margin: 1.6rem 0 0;
 }
+code {
+  background-color: #eee;
+  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
+  font-size: 0.875em;
+}
+.webkit code {
+  background-color: #fbb;
+}
+pre {
+  margin-top: 0;
+  min-width: 44rem;
+}
+pre > code {
+  display: block;
+  padding: 0.8rem 0;
+}
 .fade {
   transition: opacity 1s;
 }
@@ -367,7 +375,7 @@ h4 {
   }
 }
 .content {
-  padding: 2rem 1.5rem 2.5rem 4.5rem;
+  padding: 2rem 1.5rem 4rem 4.5rem;
   width: calc(100vw - 32rem);
 }
 .webkit .content {
@@ -395,6 +403,19 @@ h4 {
 .content a {
   text-decoration: underline;
 }
+.content ul {
+  list-style-type: disc;
+  margin-left: 1.2em;
+}
+.content ul > li > ul {
+  list-style-type: circle;
+}
+.content ul > li > ul > li > ul {
+  list-style-type: square;
+}
+.content ul > li > ul > li > ul ul {
+  list-style-type: disc;
+}
 .docpage--index .content {
   width: 100%;
 }
@@ -421,7 +442,7 @@ h4 {
   z-index: 5;
 }
 .nav--docpage__sections {
-  padding: 2rem 0.8rem 2.5rem 3rem;
+  padding: 2rem 0.8rem 4rem 3rem;
 }
 .docpage--index .nav--docpage__sections {
   display: grid;
@@ -479,6 +500,10 @@ h4 {
     transform: translateX(-4rem);
   }
 }
+.content,
+.nav--docpage__sections {
+  padding-bottom: 4rem;
+}
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
   min-height: 100%;
   position: relative;
@@ -492,7 +517,7 @@ h4 {
     width: 32rem;
   }
 }
-.nav--docpage__section:first-child .nav--docpage__heading {
+:not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {
   margin-top: 0;
 }
 .overlay {
@@ -548,4 +573,23 @@ body > .overlay--opacity.overlay--bottom,
 }
 .overlay__line--opacity {
   background-color: #fff;
+}
+.content--docpage--configure h5 {
+  margin-top: 2.4rem;
+}
+.content--docpage--configure p {
+  margin-bottom: 0.8rem;
+}
+.content--docpage--configure p + p {
+  padding-top: 0.8rem;
+}
+.content--docpage--configure ul + p {
+  margin-top: 1.6rem;
+}
+.content--docpage--configure .indent {
+  margin-left: 1.2em;
+  overflow-x: auto;
+}
+.content--docpage--configure .indent h5:first-child {
+  margin-top: 1.2rem;
 }

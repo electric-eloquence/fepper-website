@@ -8,8 +8,11 @@
       {{> components-content-docpage-configure }}
     {{/ docpage_configure? }}
     {{# docpage_configure_1? }}
-      {{> components-content-docpage-configure_1 }}
+      {{> components-content-docpage-configure-1 }}
     {{/ docpage_configure_1? }}
+    {{# docpage_run? }}
+      {{> components-content-docpage-run }}
+    {{/ docpage_run? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

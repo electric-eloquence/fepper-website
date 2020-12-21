@@ -30,7 +30,7 @@ export default class {
     this.root = root;
   }
 
-  bgColorReveal(windowState) {
+  bgColorReveal() {
     if (bgColorRevealFrameId) {
       return;
     }
@@ -38,6 +38,7 @@ export default class {
     const brandingState = this.$orgs['#branding'].getState();
     const panesOrg = this.$orgs['.content__pane'];
     const panesLength = panesOrg.getState().$members.length;
+    const windowState = this.$orgs.window.getState();
     let paneState;
 
     for (let i = 1; i < panesLength; i += 2) {
@@ -151,13 +152,14 @@ export default class {
     this.$orgs['.hider'].dispatchAction('addClass', 'fade--out');
   }
 
-  logoRipen(windowState) {
+  logoRipen() {
     if (logoRipenFrameId) {
       return;
     }
 
     const MAX_PERCENTAGE = 90;
     const htmlState = this.$orgs['#html'].getState();
+    const windowState = this.$orgs.window.getState();
     const windowHeight = windowState.height;
     let percentage;
     percentage = Math.round(100 * windowState.scrollTop / (htmlState.height - windowHeight));
@@ -259,23 +261,10 @@ export default class {
     }
   }
 
-  navDocpageBgColor() {
-    const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
-
-    this.$orgs['.nav--docpage__slider'].dispatchAction(
-      'css',
-      {
-        backgroundColor: 'rgb(' +
-          colorGradient[gradientPosition][0] + ',' +
-          colorGradient[gradientPosition][1] + ',' +
-          colorGradient[gradientPosition][2] + ')'
-      }
-    );
-  }
-
-  navButtonsShift(windowState) {
-    const navMainButtonsState = this.$orgs['.nav--main__buttons'].getState();
+  navButtonsShift() {
     const bottomState = this.$orgs['.bottom'].getState();
+    const navMainButtonsState = this.$orgs['.nav--main__buttons'].getState();
+    const windowState = this.$orgs.window.getState();
 
     if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
       this.$orgs['.nav--main__slider'].addClass('shifted');
@@ -291,6 +280,33 @@ export default class {
         this.$orgs['.nav--docpage__buttons'].removeClass('shifted');
       }
     }
+  }
+
+  navDocpageBgColor() {
+    const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
+
+    this.$orgs['.nav--docpage__slider'].dispatchAction(
+      'css',
+      {
+        backgroundColor: 'rgb(' +
+          colorGradient[gradientPosition][0] + ',' +
+          colorGradient[gradientPosition][1] + ',' +
+          colorGradient[gradientPosition][2] + ')'
+      }
+    );
+  }
+
+  navDocpageButtonScrollUpHide() {
+    this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'opaque');
+  }
+
+  navDocpageButtonScrollUpShow() {
+    this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'opaque');
+  }
+
+  navDocpageScrollUp() {
+    this.$orgs['#html'].animate({scrollTop: 0});
+    this.$orgs['#body'].animate({scrollTop: 0});
   }
 
   navDocpageSlide() {

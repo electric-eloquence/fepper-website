@@ -16,6 +16,8 @@ export default {
   '#logoBg': null,
   '.nav--docpage': null,
   '.nav--docpage__slider': null,
+  '.nav--docpage__sections': null,
+  '.button--scroll--up': null,
   '.nav--docpage__buttons': null,
   '.nav--docpage__button--left': null,
   '.nav--docpage__button--right': null,

@@ -88,12 +88,25 @@ a {
   color: #363636;
   text-decoration: none;
 }
+code {
+  background-color: #eee;
+  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
+  font-size: 0.875em;
+}
 ol,
 ul {
   list-style-type: none;
 }
 p {
   margin-bottom: 1.6rem;
+}
+pre {
+  margin-top: 0;
+  min-width: 44rem;
+}
+pre > code {
+  display: block;
+  padding: 0.8rem 0;
 }
 strong {
   font-weight: 500;
@@ -340,21 +353,8 @@ strong {
 h4 {
   margin: 1.6rem 0 0;
 }
-code {
-  background-color: #eee;
-  font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
-  font-size: 0.875em;
-}
 .webkit code {
   background-color: #fbb;
-}
-pre {
-  margin-top: 0;
-  min-width: 44rem;
-}
-pre > code {
-  display: block;
-  padding: 0.8rem 0;
 }
 .fade {
   transition: opacity 1s;
@@ -503,6 +503,28 @@ pre > code {
 .content,
 .nav--docpage__sections {
   padding-bottom: 4rem;
+}
+.button--scroll--up {
+  display: block;
+  opacity: 0;
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 5rem;
+  transition: opacity 0.25s;
+  width: 5rem;
+  height: 5rem;
+  z-index: 5;
+}
+@media all and (max-width: 480px) {
+  .button--scroll--up {
+    bottom: 4rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+.in .button--scroll--up.opaque {
+  opacity: 1;
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
   min-height: 100%;

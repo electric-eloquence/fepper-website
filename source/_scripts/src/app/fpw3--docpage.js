@@ -11,13 +11,14 @@ export default class {
   listen() {
     const $orgs = this.requerio.$orgs;
 
-    $orgs.window.resize(this.behaviors.debounce(() => this.behaviors.navButtonsShift(windowState)));
+    $orgs.window.resize(this.behaviors.debounce(() => this.behaviors.navButtonsShift()));
 
     $orgs.window.scroll(() => {
+      const sectionsState = $orgs['.nav--docpage__sections'].getState();
       const windowState = $orgs.window.getState();
 
-      this.behaviors.logoRipen(windowState);
-      this.behaviors.navButtonsShift(windowState);
+      this.behaviors.logoRipen();
+      this.behaviors.navButtonsShift();
 
       if (!this.bodyClasses.includes('docpage--index')) {
         this.behaviors.navDocpageBgColor();
@@ -26,6 +27,17 @@ export default class {
       if (windowState.scrollTop) {
         this.behaviors.hiderHide();
       }
+
+      if (windowState.scrollTop > sectionsState.innerHeight) {
+        this.behaviors.navDocpageButtonScrollUpShow();
+      }
+      else {
+        this.behaviors.navDocpageButtonScrollUpHide();
+      }
+    });
+
+    $orgs['.button--scroll--up'].on('click', () => {
+      this.behaviors.navDocpageScrollUp();
     });
 
     $orgs['.nav--docpage__button--left'].on('click', () => {
@@ -46,17 +58,19 @@ export default class {
   }
 
   stoke() {
+    this.behaviors.logoRipen();
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
 
-    if (!this.bodyClasses.includes('docpage--index')) {
-      this.behaviors.navDocpageBgColor();
-    }
-
-    // So it doesn't slide when the page loads.
     setTimeout(() => {
+      // So it doesn't slide when the page loads.
       this.behaviors.navDocpageSlide();
       this.behaviors.navMainSlide();
+
+      // To give time to save gradient position.
+      if (!this.bodyClasses.includes('docpage--index')) {
+        this.behaviors.navDocpageBgColor();
+      }
     }, 0);
   }
 }

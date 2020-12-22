@@ -13,6 +13,12 @@
     {{# docpage_run? }}
       {{> components-content-docpage-run }}
     {{/ docpage_run? }}
+    {{# docpage_edit? }}
+      {{> components-content-docpage-edit }}
+    {{/ docpage_edit? }}
+    {{# docpage_update? }}
+      {{> components-content-docpage-update }}
+    {{/ docpage_update? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

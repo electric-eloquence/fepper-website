@@ -11,14 +11,18 @@ export default class {
   listen() {
     const $orgs = this.requerio.$orgs;
 
-    $orgs.window.resize(this.behaviors.debounce(() => this.behaviors.navButtonsShift()));
+    $orgs.window.resize(this.behaviors.debounce(() => {
+      const windowState = $orgs.window.getState();
+
+      this.behaviors.navButtonsShift(windowState)
+    }));
 
     $orgs.window.scroll(() => {
       const sectionsState = $orgs['.nav--docpage__sections'].getState();
       const windowState = $orgs.window.getState();
 
-      this.behaviors.logoRipen();
-      this.behaviors.navButtonsShift();
+      this.behaviors.logoRipen(windowState);
+      this.behaviors.navButtonsShift(windowState);
 
       if (!this.bodyClasses.includes('docpage--index')) {
         this.behaviors.navDocpageBgColor();
@@ -58,7 +62,9 @@ export default class {
   }
 
   stoke() {
-    this.behaviors.logoRipen();
+    const windowState = this.requerio.$orgs.window.getState();
+
+    this.behaviors.logoRipen(windowState);
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
 

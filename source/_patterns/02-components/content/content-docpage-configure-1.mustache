@@ -1,4 +1,4 @@
-<h4>conf.yml</h4>
+<h4 class="sticky">conf.yml</h4>
 <div class="indent">
   <h5>express_port</h5>
   <p>The port at which Fepper's webserver listens.</p>
@@ -26,7 +26,7 @@
   <strong>default</strong>: <code>extend</code>
 </div>
 
-<h4>pref.yml</h4>
+<h4 class="sticky">pref.yml</h4>
 <div class="indent">
   <h5>backend.backend_dir</h5>
   <p>The relative path to the backend directory.</p>
@@ -73,7 +73,7 @@
   <strong>default</strong>: <code>en</code>
 </div>
 
-<h4>patternlab-config.json</h4>
+<h4 class="sticky">patternlab-config.json</h4>
 <div class="indent">
   <h5>paths</h5>
   <p>Relative paths to source and public directories. Edits to source files will be built to the public directory and served from there.</p>
@@ -121,7 +121,7 @@
   <strong>default</strong>: <code>true</code>
 
   <h5>cleanPublic</h5>
-  <p>Whether or not to delete the files in `public/patterns/` on each build.</p>
+  <p>Whether or not to delete the files in `public/patterns` on each build.</p>
   <strong>type</strong>: <code>boolean</code><br>
   <strong>default</strong>: <code>true</code>
 
@@ -131,7 +131,7 @@
   <strong>default</strong>: <code>false</code>
 
   <h5>defaultPatttern</h5>
-  <p>The pattern that the browser will display on launch.</p>
+  <p>The pattern that will be displayed on launch.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>pages-homepage</code>
 
@@ -141,7 +141,7 @@
   <strong>default</strong>: <code>false</code>
 
   <h5>frontMatterExtension</h5>
-  <p>The file extension for annotation files, whose rules are a superset of Front Matter, a superset comprising YAML and Markdown.</p>
+  <p>The file extension for annotation files, syntaxed in a superset of Front Matter, a superset comprising YAML and Markdown.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>.md</code>
 
@@ -185,7 +185,7 @@
   <strong>default</strong>: <code>pattern_exports</code>
 
   <h5>patternExportPatternPartials</h5>
-  <p>Patterns to be exported per build. The exported patterns will include their partials and their data. They will be snippets of HTML, not full HTML pages.</p>
+  <p>Patterns to be exported per build. The exported patterns will include their built partials and their data. They will be snippets of HTML, not full HTML pages.</p>
   <strong>type</strong>: <code>array</code><br>
   <strong>default</strong>: <code>[]</code>
 

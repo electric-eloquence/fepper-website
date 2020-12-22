@@ -11,16 +11,20 @@ export default class {
     const $orgs = this.requerio.$orgs;
 
     $orgs.window.resize(this.behaviors.debounce(() => {
-      this.behaviors.navButtonsShift();
+      const windowState = $orgs.window.getState();
+
+      this.behaviors.navButtonsShift(windowState);
       this.behaviors.updateDims();
     }));
 
     $orgs.window.scroll(() => {
-      this.behaviors.bgColorReveal();
-      this.behaviors.logoRipen();
-      this.behaviors.mainContentSlideIn();
-      this.behaviors.mainContentSlideOut();
-      this.behaviors.navButtonsShift();
+      const windowState = $orgs.window.getState();
+
+      this.behaviors.bgColorReveal(windowState);
+      this.behaviors.logoRipen(windowState);
+      this.behaviors.mainContentSlideIn(windowState);
+      this.behaviors.mainContentSlideOut(windowState);
+      this.behaviors.navButtonsShift(windowState);
     });
 
     $orgs.window.scroll(this.behaviors.debounce(this.behaviors.scrollButtonDisplay, 33, this.behaviors));

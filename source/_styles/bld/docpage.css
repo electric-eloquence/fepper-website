@@ -58,11 +58,6 @@ body {
   min-height: 100vh;
   position: relative;
 }
-@media all and (max-width: 767px) {
-  body {
-    overflow-x: hidden;
-  }
-}
 h3 {
   font-size: 1.5em;
 }
@@ -350,6 +345,11 @@ strong {
   width: 100%;
   z-index: 7;
 }
+@media all and (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+}
 h4 {
   margin: 1.6rem 0 0;
 }
@@ -372,6 +372,9 @@ h4 {
 @media all and (max-width: 767px) {
   .foundation {
     display: block;
+  }
+  .safari .foundation {
+    overflow-x: hidden;
   }
 }
 .content {
@@ -578,17 +581,16 @@ h4 {
 .overlay--bottom {
   bottom: 0;
 }
+.docpage--index > .overlay--opacity.overlay--top,
+.docpage--index > .overlay--opacity.overlay--bottom {
+  display: none;
+}
 @media all and (max-width: 767px) {
   body > .overlay--opacity.overlay--top,
   body > .overlay--opacity.overlay--bottom {
     display: none;
   }
 }
-.docpage--index > .overlay--opacity.overlay--top,
-.docpage--index > .overlay--opacity.overlay--bottom {
-  display: none;
-}
-body > .overlay--opacity.overlay--bottom,
 .overlay__line {
   font-size: 0.1rem;
   line-height: 1;
@@ -608,10 +610,27 @@ body > .overlay--opacity.overlay--bottom,
 .content--docpage--configure ul + p {
   margin-top: 1.6rem;
 }
-.content--docpage--configure .indent {
+.content--docpage--configure p:last-of-type {
+  margin-bottom: 0;
+}
+.indent {
   margin-left: 1.2em;
   overflow-x: auto;
 }
-.content--docpage--configure .indent h5:first-child {
-  margin-top: 1.2rem;
+.indent h5:first-child {
+  margin-top: 0.8rem;
+}
+.sticky {
+  background-color: #fff;
+  margin-top: 0;
+  padding-top: 4rem;
+  padding-bottom: 0.4rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 200px;
+}
+@media all and (max-width: 767px) {
+  .sticky {
+    top: 150px;
+  }
 }

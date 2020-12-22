@@ -14,6 +14,7 @@ export default {
   '.nav--main__button--right': null,
   '#branding': null,
   '#logoBg': null,
+  '.fixable': null,
   '.nav--docpage': null,
   '.nav--docpage__slider': null,
   '.nav--docpage__sections': null,

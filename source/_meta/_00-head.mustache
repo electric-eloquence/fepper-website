@@ -29,6 +29,10 @@
   <script>
     if (window.navigator.userAgent.includes('Safari')) {
       document.documentElement.classList.add('webkit');
+
+      if (!window.navigator.userAgent.includes('Chrom')) {
+        document.documentElement.classList.add('safari');
+      }
     }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

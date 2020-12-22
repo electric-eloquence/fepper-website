@@ -30,7 +30,7 @@ export default class {
     this.root = root;
   }
 
-  bgColorReveal() {
+  bgColorReveal(windowState) {
     if (bgColorRevealFrameId) {
       return;
     }
@@ -38,7 +38,6 @@ export default class {
     const brandingState = this.$orgs['#branding'].getState();
     const panesOrg = this.$orgs['.content__pane'];
     const panesLength = panesOrg.getState().$members.length;
-    const windowState = this.$orgs.window.getState();
     let paneState;
 
     for (let i = 1; i < panesLength; i += 2) {
@@ -152,14 +151,13 @@ export default class {
     this.$orgs['.hider'].dispatchAction('addClass', 'fade--out');
   }
 
-  logoRipen() {
+  logoRipen(windowState) {
     if (logoRipenFrameId) {
       return;
     }
 
     const MAX_PERCENTAGE = 90;
     const htmlState = this.$orgs['#html'].getState();
-    const windowState = this.$orgs.window.getState();
     const windowHeight = windowState.height;
     let percentage;
     percentage = Math.round(100 * windowState.scrollTop / (htmlState.height - windowHeight));
@@ -186,7 +184,7 @@ export default class {
     });
   }
 
-  mainContentSlideIn() {
+  mainContentSlideIn(windowState) {
     if (mainContentSlideInFrameId) {
       return;
     }
@@ -202,7 +200,6 @@ export default class {
       }
 
       const paneState = panesOrg.getState(i);
-      const windowState = this.$orgs.window.getState();
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
       if (paneDistanceToBottomLast === paneDistanceToBottom) {
@@ -224,7 +221,7 @@ export default class {
     }
   }
 
-  mainContentSlideOut() {
+  mainContentSlideOut(windowState) {
     if (mainContentSlideOutFrameId) {
       return;
     }
@@ -239,7 +236,6 @@ export default class {
       }
 
       const paneState = panesOrg.getState(i);
-      const windowState = this.$orgs.window.getState();
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
       if (paneDistanceToBottomLast === paneDistanceToBottom) {
@@ -261,10 +257,8 @@ export default class {
     }
   }
 
-  navButtonsShift() {
+  navButtonsShift(windowState) {
     const bottomState = this.$orgs['.bottom'].getState();
-    const navMainButtonsState = this.$orgs['.nav--main__buttons'].getState();
-    const windowState = this.$orgs.window.getState();
 
     if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
       this.$orgs['.nav--main__slider'].addClass('shifted');
@@ -447,8 +441,6 @@ export default class {
   }
 
   updateDims() {
-    this.$orgs.window.getState();
-
     const blocksOrg = this.$orgs['.content__block'];
     const panesOrg = this.$orgs['.content__pane'];
     const panesCount = panesOrg.getState().$members.length;

@@ -1,0 +1,8 @@
+{
+  "stylesheet": "docpage.css",
+  "body_class": "docpage docpage--pattern-parameters",
+  "branding_docpage?": true,
+  "heading_h1": "Fepper Documentation",
+  "docpage_pattern_parameters?": true,
+  "article_class": "content--docpage--pattern-parameters"
+}

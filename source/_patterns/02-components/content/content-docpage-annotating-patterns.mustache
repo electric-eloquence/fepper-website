@@ -1,20 +1,21 @@
 <h3>Annotating Patterns</h3>
-<p>Pattern annotation gives designers and developers the ability to provide context for their patterns. It should follow the Front Matter (YAML + Markdown) format:</p>
+<p>Fepper uses Front Matter (YAML + Markdown) syntax for annotating patterns:</p>
 <pre><code>  ---
   el: #title
+  state: inprogress
   title: Title for my pattern
   ---
   This is a *Markdown* description of my pattern.
 </code></pre>
 <p>
-<code>el</code> must be a CSS selector identifying the element to annotate. A tooltip will appear above the element, and the annotation's title and description will be rendered in the Annotation Viewer.
+<code>el</code> must be a CSS selector identifying the element to annotate. When the Annotation Viewer is opened, a tooltip will appear above the element, and the annotation's title and description will be rendered in the viewer. The state (not really an annotation) will be rendered as a colored dot denoting the pattern's progress in the UI menu.
 </p>
 <p>
-An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to document the following pattern:
+An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to annotate the following pattern:
 </p>
 <pre><code>  00-elements/images/landscape-16x9.mustache</code></pre>
 <p>
-We'd name our annotation file:
+Name your annotation file:
 </p>
 <pre><code>  00-elements/images/landscape-16x9.md
 </code></pre>
@@ -24,12 +25,12 @@ We'd name our annotation file:
 To annotate pseudo-patterns, replace the tilde sign (<code>~</code>) with a hyphen (<code>-</code>) when naming your annotation file.
 </p>
 <p>
-For example, to document the following pseudo-pattern:
+For example, to annotate the following pseudo-pattern:
 </p>
 <pre><code>  00-elements/button/button~red.json
 </code></pre>
 <p>
-We'd name our documentation file:
+Name your annotatation file:
 </p>
 <pre><code>  00-elements/button/button-red.md
 </code></pre>
@@ -60,4 +61,4 @@ We'd name our documentation file:
   ---
   More sandwiches.
 </code></pre>
-<p>Located at <code>source/_annotations</code>, it must be named with the <code>.md</code> extenstion, or whatever is configured as the <code>frontMatterExtension</code>. It can consist of any number of annotations, each separated by <code>~*~</code>. The pattern-specific annotation files can consist of multiple annotations as well, delimited the same way.</p>
+<p>Located at <code>source/_annotations</code>, it must be named with the <code>.md</code> extenstion, or whatever is configured as the <code>frontMatterExtension</code>. It can consist of any number of annotations, each separated by <code>~*~</code>. Pattern-specific annotation files can consist of multiple annotations as well, delimited the same way.</p>

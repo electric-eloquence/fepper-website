@@ -1,0 +1,34 @@
+<h3>Pattern Parameters</h3>
+<p>Pattern parameters are a means to hydrate data in an included pattern, but <strong>not further downstream</strong>. They are yet another option for hydrating patterns with varying degrees of granularity.</p>
+<p>Parameters are a <a href="https://www.npmjs.com/package/feplet" target="_blank">Feplet</a> feature. Parameters are an <em>add-on</em> to a mostly standards-adherent implementation of Mustache. The only <em>divergence</em> from the Mustache standard is Feplet's forbidding of spaces between opening braces <code>&lcub;&lcub;</code> and any control character, e.g. <code>#</code>, <code>/</code>, <code>&gt;</code>, etc.</p>
+<h4>Pattern Parameter Syntax</h4>
+<p>The keys listed in the pattern parameters need to match variable names in the included pattern. The values listed for each key will replace the variables. For example:</p>
+<h6>components-top-level:</h6>
+<pre><code>  &lcub;&lcub;> compounds-mid-level(content: 'Mid-level only') }}  
+</code></pre>
+<h6>compounds-mid-level:</h6>
+<pre><code>  &lt;p>&lcub;&lcub; content }}&lt;/p>
+  &lcub;&lcub;> elements-bottom-level }}
+</code></pre>
+<h6>elements-bottom-level:</h6>
+<pre><code>  &lt;p>&lcub;&lcub; content }}&lt;/p>
+</code></pre>
+<h6>Rendered as:</h6>
+<pre><code>  &lt;p>Mid-level only&lt;/p>
+  &lt;p>&lt;/p>
+</code></pre>
+<h4>Advanced Syntax</h4>
+<p>Parameters can be any valid <a href="http://json5.org" target="_blank">JSON5</a>, minus the exterior curly braces:</p>
+<pre><code>  &lcub;&lcub;> patternType-patternName(
+    bool: false,
+    num: 0,
+    str: 'string',
+    'str w spaces': "string with 'single quotes'",
+    "str-w_special~char?": true
+  ) }}
+</code></pre>
+<p>You can even submit objects as values, but be sure to space curly braces so they are not mistaken for closing tags <code>}}</code></p>
+<pre><code>  &lcub;&lcub;> patternType-patternName(
+    obj: { deeperObj: { "valid?": true } }
+  ) }}
+</code></pre>

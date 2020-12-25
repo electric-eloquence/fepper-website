@@ -34,6 +34,15 @@
     {{# docpage_global_head_and_foot? }}
       {{> components-content-docpage-global-head-and-foot }}
     {{/ docpage_global_head_and_foot? }}
+    {{# docpage_pseudo_patterns? }}
+      {{> components-content-docpage-pseudo-patterns }}
+    {{/ docpage_pseudo_patterns? }}
+    {{# docpage_pattern_parameters? }}
+      {{> components-content-docpage-pattern-parameters }}
+    {{/ docpage_pattern_parameters? }}
+    {{# docpage_pattern_states? }}
+      {{> components-content-docpage-pattern-states }}
+    {{/ docpage_pattern_states? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

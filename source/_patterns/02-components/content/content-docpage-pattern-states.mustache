@@ -1,0 +1,36 @@
+<h3>Pattern States</h3>
+<p>
+Pattern states provide your team and client a simple visual of the current state of patterns in Fepper. Pattern states can track progress of a pattern from development, through client review, to completion. They can also be customized to refer to additional states. They are denoted by colored dots in the UI menu and Code Viewer.
+</p>
+<h4>Default Pattern States</h4>
+<p></p>
+<ul>
+  <li><code>inprogress</code>: the pattern is in development, denoted by a red dot.</li>
+  <li><code>inreview</code>: the pattern is being reviewed for acceptance, denoted by a yellow dot.</li>
+  <li><code>complete</code>: the pattern is ready for production, denoted by a green dot.</li>
+</ul>
+<h4>Giving Patterns a State</h4>
+<p>
+Giving patterns a state is accomplished by setting the <code>state</code> key on a pattern's <code>.md</code> file. Consider this pattern:
+</p>
+<pre><code>  source/_patterns/compounds/blocks/media-block.mustache  
+</pre></code>
+<p>
+Create or edit a file in the same location named <code>media-block.md</code>:
+</p>
+<pre><code>  ---
+  state: inreview
+  ---
+  This is a block of media.
+</code></pre>
+<h4>Adding Customized States</h4>
+<p>
+The three default states might not be enough for everyone. To add customized states, modify <code>source/_styles/pattern-scaffolding.css</code>, a Fepper-specific stylesheet that is editable by end-users. You can use the following as your CSS template for new pattern states:
+</p>
+<pre><code>  .newpatternstate:before {
+    color: #998866 !important;
+  }
+</code></pre>
+<p>
+Then add <code>state: newpatternstate</code> to your pattern's <code>.md</code> file to have the new pattern state show in the UI menu and Code Viewer.
+</p>

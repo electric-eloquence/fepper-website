@@ -360,6 +360,12 @@ h4 {
 pre {
   overflow-x: auto;
 }
+.webkit pre {
+  background-color: #fbb;
+}
+.webkit pre > code {
+  background-color: transparent;
+}
 ul + p {
   margin-top: 1.6rem;
 }
@@ -484,7 +490,7 @@ ul + p {
 }
 .nav--docpage__buttons {
   display: none;
-  z-index: 6;
+  z-index: 8;
 }
 .nav--docpage__buttons.shifted {
   bottom: 8.4rem;

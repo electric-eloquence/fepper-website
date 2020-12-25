@@ -17,6 +17,10 @@ code
     background-color: #fbb
 pre
   overflow-x: auto
+  .webkit &
+    background-color: #fbb
+    > code
+      background-color: transparent
 ul + p
   margin-top: 1.6rem
 .fade
@@ -95,7 +99,7 @@ ul + p
           padding-left: 3rem
   &__buttons
     display: none
-    z-index: 6
+    z-index: 8
     &.shifted
       bottom: $bottom-height 
     @media all and (max-width: $bp-sm-max)

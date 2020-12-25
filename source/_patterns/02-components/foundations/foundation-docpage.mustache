@@ -28,6 +28,12 @@
     {{# docpage_linking_patterns? }}
       {{> components-content-docpage-linking-patterns }}
     {{/ docpage_linking_patterns? }}
+    {{# docpage_annotating_patterns? }}
+      {{> components-content-docpage-annotating-patterns }}
+    {{/ docpage_annotating_patterns? }}
+    {{# docpage_global_head_and_foot? }}
+      {{> components-content-docpage-global-head-and-foot }}
+    {{/ docpage_global_head_and_foot? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

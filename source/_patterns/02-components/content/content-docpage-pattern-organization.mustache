@@ -1,0 +1,23 @@
+<h3>Pattern Organization</h4>
+<p>Patterns are organized in a nested folder structure under <code>source/_patterns</code> as follows:</p>
+<pre><code>  [patternType]/[patternSubtype]/[patternName].[patternExtension]  
+</code></pre>
+<p>
+These are the parts:
+</p>
+<ul>
+  <li><code>patternType</code> - the overall pattern type. The default pattern types "elements", "compounds", and "components" can be renamed or even removed without further configuration.</li>
+  <li><code>patternSubType</code> - the subtype of a pattern. Pattern subtypes are <em>optional</em>.</li>
+  <li><code>patternName</code> - the name of a pattern as written to the file system.</li>
+  <li><code>patternExtension</code> - the file extension a pattern.</li>
+</ul>
+<p>For display in UI menus, hyphens (<code>-</code>) in your pattern types, pattern subtypes, and pattern names will be replaced with spaces, and first letters of words will be capitalized. For example, if you want a pattern to be displayed in the menu as "Hamburger Navigation", you should name it <code>hamburger-navigation.mustache</code>. Numeric prefixes will also be stripped, so you can also name it <code>00-hamburger-navigation.mustache</code> if you want it listed before pattern names that start with a letter. It will still appear in the menu as "Hamburger Navigation".</p>
+<h4>Deeper Nesting</h4>
+<p>Fepper allows for even deeper nesting of folders. For example:</p>
+<pre><code>  - compounds/
+    - blocks/
+      - media-blocks/
+        - image-block.mustache
+        - video-block.mustache
+</code></pre>
+<p>In this example, <code>media-blocks</code> will act as the pattern subtype when it comes to navigation in the UI. The shorthand partial name for <code>image-block.mustache</code> will be <code>compounds-image-block</code>.</p>

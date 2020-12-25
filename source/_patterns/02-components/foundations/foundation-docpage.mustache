@@ -19,6 +19,15 @@
     {{# docpage_update? }}
       {{> components-content-docpage-update }}
     {{/ docpage_update? }}
+    {{# docpage_pattern_organization? }}
+      {{> components-content-docpage-pattern-organization }}
+    {{/ docpage_pattern_organization? }}
+    {{# docpage_including_pattern_partials? }}
+      {{> components-content-docpage-including-pattern-partials }}
+    {{/ docpage_including_pattern_partials? }}
+    {{# docpage_linking_patterns? }}
+      {{> components-content-docpage-linking-patterns }}
+    {{/ docpage_linking_patterns? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

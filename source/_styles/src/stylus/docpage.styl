@@ -5,7 +5,7 @@ $fade-height-small = $fade-height * $bp-sm-ratio
 $fade-offset = 5rem
 $fade-offset-small = $fade-offset * $bp-sm-ratio
 $nav-docpage-width = 32rem
-$nav-docpage-height = 106rem
+$nav-docpage-height = 105rem
 
 body
   @media all and (max-width: $bp-sm-max)
@@ -15,6 +15,10 @@ h4
 code
   .webkit &
     background-color: #fbb
+pre
+  overflow-x: auto
+ul + p
+  margin-top: 1.6rem
 .fade
   transition: opacity 1s
 .octicon
@@ -139,7 +143,7 @@ code
     transform: translateX($nav-docpage-width)
     width: $nav-docpage-width
   > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading
-    margin-top: 0
+    margin-top: 0.8rem
 .overlay
   pointer-events: none
   position: fixed
@@ -184,10 +188,10 @@ body > .overlay--opacity.overlay--bottom
     margin-bottom: 0.8rem
   p + p
     padding-top: 0.8rem
-  ul + p
-    margin-top: 1.6rem
   p:last-of-type
     margin-bottom: 0
+  pre
+    min-width: 44rem
 .indent
   margin-left: 1.2em
   overflow-x: auto

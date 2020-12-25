@@ -96,12 +96,13 @@ p {
   margin-bottom: 1.6rem;
 }
 pre {
+  background-color: #eee;
   margin-top: 0;
-  min-width: 44rem;
+  padding: 0.8rem 0;
 }
 pre > code {
+  background-color: transparent;
   display: block;
-  padding: 0.8rem 0;
 }
 strong {
   font-weight: 500;
@@ -356,6 +357,12 @@ h4 {
 .webkit code {
   background-color: #fbb;
 }
+pre {
+  overflow-x: auto;
+}
+ul + p {
+  margin-top: 1.6rem;
+}
 .fade {
   transition: opacity 1s;
 }
@@ -389,7 +396,7 @@ h4 {
 }
 @media all and (max-width: 767px) {
   .content {
-    min-height: 106rem;
+    min-height: 105rem;
     width: 100%;
   }
 }
@@ -543,7 +550,7 @@ h4 {
   }
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {
-  margin-top: 0;
+  margin-top: 0.8rem;
 }
 .overlay {
   pointer-events: none;
@@ -607,11 +614,11 @@ h4 {
 .content--docpage--configure p + p {
   padding-top: 0.8rem;
 }
-.content--docpage--configure ul + p {
-  margin-top: 1.6rem;
-}
 .content--docpage--configure p:last-of-type {
   margin-bottom: 0;
+}
+.content--docpage--configure pre {
+  min-width: 44rem;
 }
 .indent {
   margin-left: 1.2em;

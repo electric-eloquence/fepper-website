@@ -19,6 +19,9 @@
     {{# docpage_update? }}
       {{> components-content-docpage-update }}
     {{/ docpage_update? }}
+    {{# docpage_data_json_mustache? }}
+      {{> components-content-docpage-data-json-mustache }}
+    {{/ docpage_data_json_mustache? }}
     {{# docpage_pattern_organization? }}
       {{> components-content-docpage-pattern-organization }}
     {{/ docpage_pattern_organization? }}
@@ -46,9 +49,12 @@
     {{# docpage_pattern_states? }}
       {{> components-content-docpage-pattern-states }}
     {{/ docpage_pattern_states? }}
-    {{# docpage_data_json_mustache? }}
-      {{> components-content-docpage-data-json-mustache }}
-    {{/ docpage_data_json_mustache? }}
+    {{# docpage_live_reload_changes? }}
+      {{> components-content-docpage-live-reload-changes }}
+    {{/ docpage_live_reload_changes? }}
+    {{# docpage_query_string_variables? }}
+      {{> components-content-docpage-query-string-variables }}
+    {{/ docpage_query_string_variables? }}
   </article>
   {{/ docpage_index? }}
   {{> components-nav-docpage }}

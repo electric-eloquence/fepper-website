@@ -1,76 +1,56 @@
 <h3>Introduction to JSON and Mustache</h3>
 <p>At its core, <a href="https://www.json.org/json-en.html" target="_blank">JSON</a> is just a key-value store. This means that any datum in JSON has a key and a value. The key is the name of the datum, and the value is what is stored at that reference. Here's a simple example:</p>
-<pre><code>  {
-    "answer": 42
-  }
-</code></pre>
+<pre><code>{
+  "answer": 42
+}</code></pre>
 <p>In this case, the key is <code>answer</code> and the value is <code>42</code>. Let's look at how we might reference this datum in a pattern.</p>
 <p><a href="https://mustache.github.io/mustache.5.html" target="_blank">Mustache</a> is a language for so-called "logic-less templates." Variables in Mustache are denoted by double curly braces. For example:</p>
-<pre><code>  &lt;h1>I am &lcub;&lcub; answer }}&lt;/h1>  
-</code></pre>
-<p>
-The Mustache variable is <code>&lcub;&lcub; answer }}</code>. Note that <code>answer</code> matches the name of the key in our JSON example. When Fepper builds this pattern, the result will be:
-</p>
-<pre><code>  &lt;h1>I am 42&lt;/h1>  
-</code></pre>
-<p>
-Note that <code>&lcub;&lcub; answer }}</code> was replaced by the value for <code>answer</code> found in our JSON example.
-</p>
+<pre><code>&lt;h1>I am &lcub;&lcub; answer }}&lt;/h1></code></pre>
+<p>The Mustache variable is <code>&lcub;&lcub; answer }}</code>. Note that <code>answer</code> matches the name of the key in our JSON example. When Fepper builds this pattern, the result will be:</p>
+<pre><code>&lt;h1>I am 42&lt;/h1></code></pre>
+<p>Note that <code>&lcub;&lcub; answer }}</code> was replaced by the value for <code>answer</code> found in our JSON example.</p>
 <h4>Nested Variables</h4>
 <p>We may want our JSON data to adapt to the needs of a more complex site. We can create nested hierarchies like so:</p>
-<pre><code>  "life": {
-    "answer": 7
-  },
-  "universe": {
-    "answer": 14
-  },
-  "everything": {
-    "answer": 21
-  }
-</code></pre>
-<p>
-Note how the data are nested within separate keys. We can use the data thusly:
-</p>
-<pre><code>  &lcub;&lcub;# life }}
-    &lt;span>I was &lcub;&lcub; answer }} &lt;/span>
-  &lcub;&lcub;/ life }}
-  &lcub;&lcub;# universe }}
-    &lt;span>in &lcub;&lcub; answer }} universes &lt;/span>
-  &lcub;&lcub;/ universe }}
-  &lcub;&lcub;# everything }}
-    &lt;span>&lcub;&lcub; answer }} times &lt;/span>
-  &lcub;&lcub;/ everything }}
-</code></pre>
+<pre><code>"life": {
+  "answer": 7
+},
+"universe": {
+  "answer": 14
+},
+"everything": {
+  "answer": 21
+}</code></pre>
+<p>Note how the data are nested within separate keys. We can use the data thusly:</p>
+<pre><code>&lcub;&lcub;# life }}
+  &lt;span>I was &lcub;&lcub; answer }} &lt;/span>
+&lcub;&lcub;/ life }}
+&lcub;&lcub;# universe }}
+  &lt;span>in &lcub;&lcub; answer }} universes &lt;/span>
+&lcub;&lcub;/ universe }}
+&lcub;&lcub;# everything }}
+  &lt;span>&lcub;&lcub; answer }} times &lt;/span>
+&lcub;&lcub;/ everything }}</code></pre>
 <p>We can also write the variables as dot-delimited object properties:</p>
-<pre><code>  &lt;span>I was &lcub;&lcub; life.answer }} &lt;/span>
-  &lt;span>in &lcub;&lcub; universe.answer }} universes &lt;/span>
-  &lt;span>&lcub;&lcub; everything.answer }} times &lt;/span>
-</code></pre>
-<p>
-Either of these would be built as:
-<pre><code>  &lt;span>I was 7 &lt;/span>
-  &lt;span>in 14 universes &lt;/span>
-  &lt;span>21 times &lt;/span>
-</code></pre>
+<pre><code>&lt;span>I was &lcub;&lcub; life.answer }} &lt;/span>
+&lt;span>in &lcub;&lcub; universe.answer }} universes &lt;/span>
+&lt;span>&lcub;&lcub; everything.answer }} times &lt;/span></code></pre>
+<p>Either of these would be built as:</p>
+<pre><code>&lt;span>I was 7 &lt;/span>
+&lt;span>in 14 universes &lt;/span>
+&lt;span>21 times &lt;/span></code></pre>
 <h4>Rendering HTML in Variables</h4>
 <p>You may want to include HTML in your variables. By default, Mustache will convert special characters into HTML entities. For example, for this JSON:</p>
-
-<pre><code>  {
-    "answer": "&lt;span>42&lt;/span>"
-  }
-</code></pre>
+<pre><code>{
+  "answer": "&lt;span>42&lt;/span>"
+}</code></pre>
 <p>If you wrote your template like:</p>
-<pre><code>  &lt;h1>I am &lcub;&lcub; answer }}&lt;/h1>  
-</code></pre>
+<pre><code>&lt;h1>I am &lcub;&lcub; answer }}&lt;/h1></code></pre>
 <p>It would be built as:</p>
-<pre><code>  &lt;h1>I am &amp;lt;span&amp;&gt;42&amp;lt;/span&amp;gt;&lt;/h1>
-</code></pre>
+<pre><code>&lt;h1>I am &amp;lt;span&amp;&gt;42&amp;lt;/span&amp;gt;&lt;/h1></code></pre>
 <p>In order to ensure that markup doesn't get converted, use <em>triple</em> curly braces:</p>
-<pre><code>  &lt;h1>I am &lcub;&lcub;&lcub; answer }}}&lt;/h1>  
-</code></pre>
+<pre><code>&lt;h1>I am &lcub;&lcub;&lcub; answer }}}&lt;/h1></code></pre>
 <p>Then it builds correctly:</p>
-<pre><code>  &lt;h1>I am &lt;span&gt;42&lt;/span&gt;&lt;/h1>
-</code></pre>
+<pre><code>&lt;h1>I am &lt;span&gt;42&lt;/span&gt;&lt;/h1></code></pre>
 <h4>For Further Reference</h4>
 <ul>
   <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank">JSON as JavaScript Object Notation</a></li>

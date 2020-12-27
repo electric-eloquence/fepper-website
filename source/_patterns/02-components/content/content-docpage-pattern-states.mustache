@@ -13,24 +13,21 @@ Pattern states provide your team and client a simple visual of the current state
 <p>
 Giving patterns a state is accomplished by setting the <code>state</code> key on a pattern's <code>.md</code> file. Consider this pattern:
 </p>
-<pre><code>  source/_patterns/compounds/blocks/media-block.mustache  
-</pre></code>
+<pre><code>source/_patterns/compounds/blocks/media-block.mustache</code></pre>
 <p>
 Create or edit a file in the same location named <code>media-block.md</code>:
 </p>
-<pre><code>  ---
-  state: inreview
-  ---
-  This is a block of media.
-</code></pre>
+<pre><code>---
+state: inreview
+---
+This is a block of media.</code></pre>
 <h4>Adding Customized States</h4>
 <p>
 The three default states might not be enough for everyone. To add customized states, modify <code>source/_styles/pattern-scaffolding.css</code>, a Fepper-specific stylesheet that is editable by end-users. You can use the following as your CSS template for new pattern states:
 </p>
-<pre><code>  .newpatternstate:before {
-    color: #998866 !important;
-  }
-</code></pre>
+<pre><code>.newpatternstate:before {
+  color: #998866 !important;
+}</code></pre>
 <p>
 Then add <code>state: newpatternstate</code> to your pattern's <code>.md</code> file to have the new pattern state show in the UI menu and Code Viewer.
 </p>

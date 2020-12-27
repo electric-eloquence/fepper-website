@@ -1,80 +1,60 @@
 <h3>Pattern Data</h3>
-<p>
-At some point, you'll probably want to override global and partial data for specific patterns. This is done by creating a JSON file with the same name as the pattern and putting it in the same directory. For example, if you wanted to provide pattern data for the <code>article</code> page, your <code>pages</code> directory would look like this:
-
-<pre><code>  article.mustache
-  article.json
-</code></pre>
-
+<p>At some point, you'll probably want to override global and partial data for specific patterns. This is done by creating a JSON file with the same name as the pattern and putting it in the same directory. For example, if you wanted to provide pattern data for the <code>article</code> page, your <code>pages</code> directory would look like this:</p>
+<pre><code>article.mustache
+article.json</code></pre>
 <h4>Overriding the Default Variables</h4>
-    <p>
-    To override global data using pattern data, make sure the latter has the same key name as the former. For example, the global data may look like this:
-    </p>
+<p>To override global data using pattern data, make sure the latter has the same key name as the former. For example, the global data may look like this:</p>
 <h6>source/_data/_data.json:</h6>
-<pre><code>  {
-  "landscape": {
-      "src": "../../_assets/src/fpo-landscape-4x3.jpg",
-      "alt": "Landscape 4x3 Image"
-    }
+<pre><code>{
+"landscape": {
+    "src": "../../_assets/src/fpo-landscape-4x3.jpg",
+    "alt": "Landscape 4x3 Image"
   }
-</code></pre>
-<p>
-In the pattern data file <code>article.json</code>, copy that structure and provide pattern-specific information:
-</p>
+}</code></pre>
+<p>In the pattern data file <code>article.json</code>, copy that structure and provide pattern-specific information:</p>
 <h6>source/_patterns/04-pages/article.json:</h6>
-<pre><code>  {
-    "landscape": {
-      "src": "../../_assets/src/hero-image.jpg"
-    }
+<pre><code>{
+  "landscape": {
+    "src": "../../_assets/src/hero-image.jpg"
   }
-</code></pre>
-<p>
-The article pattern will now display a more specific image. All other patterns using <code>&lcub;&lcub; landscape.src }}</code> will display the fpo (for placement only) image by default. Also note that we <em>didn't</em> override <code>landscape.alt</code>. The article pattern continues to use the global value "Landscape 4x3 Image".
-</p>
+}</code></pre>
+<p>The article pattern will now display a more specific image. All other patterns using <code>&lcub;&lcub; landscape.src }}</code> will display the fpo (for placement only) image by default. Also note that we <em>didn't</em> override <code>landscape.alt</code>. The article pattern continues to use the global value "Landscape 4x3 Image".</p>
 <p>Not only can we selectively exclude what we override, we can also add data unique to the pattern, and not a part of global or partial data.</p>
 <h6>source/_patterns/04-pages/article.json:</h6>
-<pre><code>  {
-    "landscape": {
-        "src": "../../_assets/src/hero-image.jpg"
-      },
-      "sub": {
-        "src": "../../_assets/src/sub-image.jpg"
-      },
-      "hoagie": {
-        "src": "../../_assets/src/hoagie-image.jpg"
-      }
+<pre><code>{
+  "landscape": {
+      "src": "../../_assets/src/hero-image.jpg"
+    },
+    "sub": {
+      "src": "../../_assets/src/sub-image.jpg"
+    },
+    "hoagie": {
+      "src": "../../_assets/src/hoagie-image.jpg"
     }
   }
-</code></pre>
+}</code></pre>
 <h4>Working with Includes</h4>
-<p>
-A pattern will use its own pattern data, but not the pattern data for any included pattern. For example, the <code>article</code> page might include the <code>block-hero</code> compound. <code>block-hero</code> may have its own pattern data file <code>block-hero.json</code>, but the <code>article</code> page will not consult it. However, <code>article.json</code> <em>can</em> contain data to hydrate variables in <code>block-hero.mustache</code>.</p>
+<p>A pattern will use its own pattern data, but not the pattern data for any included pattern. For example, the <code>article</code> page might include the <code>block-hero</code> compound. <code>block-hero</code> may have its own pattern data file <code>block-hero.json</code>, but the <code>article</code> page will not consult it. However, <code>article.json</code> <em>can</em> contain data to hydrate variables in <code>block-hero.mustache</code>.</p>
 <p>For example, the following <code>source</code> files:</p>
 <h6>source/_patterns/04-pages/article.json:</h6>
-<pre><code>  {
-    "landscape": {
-      "src": "../../_assets/src/hero-image.jpg"
-    }
+<pre><code>{
+  "landscape": {
+    "src": "../../_assets/src/hero-image.jpg"
   }
-</code></pre>
+}</code></pre>
 <h6>source/_patterns/04-pages/article.mustache:</h6>
-<pre><code>  &lcub;&lcub;> compounds-block-hero }}
-</code></pre>
+<pre><code>&lcub;&lcub;> compounds-block-hero }}</code></pre>
 <h6>source/_patterns/01-compounds/block-hero.json:</h6>
-<pre><code>  {
-    "landscape": {
-      "src": "../../_assets/src/dagwood.jpg"
-      "alt": "Dagwood"
-    }
+<pre><code>{
+  "landscape": {
+    "src": "../../_assets/src/dagwood.jpg"
+    "alt": "Dagwood"
   }
-</code></pre>
+}</code></pre>
 <h6>source/_patterns/01-compounds/block-hero.mustache:</h6>
-<pre><code>  &lt;img src="&lcub;&lcub; landscape.src }}" alt="&lcub;&lcub; landscape.alt }}">
-</code></pre>
+<pre><code>&lt;img src="&lcub;&lcub; landscape.src }}" alt="&lcub;&lcub; landscape.alt }}"></code></pre>
 <p>Would render:</p>
 <h6>URL /?p=pages-article</h6>
-<pre><code>  &lt;img src="../../_assets/src/hero-image.jpg" alt="">
-</code></pre>
+<pre><code>&lt;img src="../../_assets/src/hero-image.jpg" alt=""></code></pre>
 <h6>URL /?p=compounds-block-hero</h6>
-<pre><code>  &lt;img src="../../_assets/src/dagwood.jpg" alt="Dagwood">
-</code></pre>
+<pre><code>&lt;img src="../../_assets/src/dagwood.jpg" alt="Dagwood"></code></pre>

@@ -7,20 +7,15 @@
 </ul>
 <h4>Shorthand Include Syntax</h4>
 <p>The shorthand include syntax uses the following format:</p>
-<pre><code>  [patternType]-[patternName]
-</code></pre>
+<pre><code>[patternType]-[patternName]</code></pre>
 <p>For example, the shorthand include syntax for:</p>
-<pre><code>  00-elements/01-images/02-landscape.mustache  
-</pre></code>
+<pre><code>00-elements/01-images/02-landscape.mustache</code></pre>
 <p>would be:</p>
-<pre><code>  &lcub;&lcub;> atoms-landscape }}  
-</code></pre>
+<pre><code>&lcub;&lcub;> atoms-landscape }}</code></pre>
 <p>The pattern type matches <code>elements</code> from the top-level folder. The pattern name matches <code>landscape</code> from the filename. Any digits used for ordering are <em>dropped</em> from both the pattern type and pattern name. Pattern subtypes are <em>never</em> part of the shorthand include syntax. This way, patterns can be reorganized within a pattern type and/or by using digits without needing to change your include statements.</p>
 <h4>Full Relative Path</h4>
 <p>If you need specificity when including patterns, use the full relative path from just below <code>source/_patterns</code>:</p>
-<pre><code>  &lcub;&lcub;> 00-elements/01-images/02-landscape.mustache }}  
-</code></pre>
+<pre><code>&lcub;&lcub;> 00-elements/01-images/02-landscape.mustache }}</code></pre>
 <h4>Relative Path Minus Pattern Extension</h4>
 <p>Leaving out the pattern extension from the full relative path also works:</p>
-<pre><code>  &lcub;&lcub;> 00-elements/01-images/02-landscape }}  
-</code></pre>
+<pre><code>&lcub;&lcub;> 00-elements/01-images/02-landscape }}</code></pre>

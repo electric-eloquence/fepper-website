@@ -1,24 +1,19 @@
 <h3>Hidden Patterns</h3>
 <p>To remove a pattern from the UI menu and "View All" pages, add an underscore (<code>_</code>) to the beginning of the pattern name. For example, consider a sound file that we don't want playing unexpectedly:</p>
-<pre><code>  compounds/media/_sound-file.mustache
-</code></pre>
+<pre><code>compounds/media/_sound-file.mustache</code></pre>
 <p>This pattern can be included normally as part of any pattern. However, it will not be navigable as a stand-alone pattern.</p>
 <p>Another use-case is for multiple pseudo-patterns without a primary non-variant pattern.</p>
 <h6>_primary-color.mustache</h6>
-<pre><code>  &lt;div style="background-color: &lcub;&lcub; color }};"> </div>  
-</code></pre>
+<pre><code>&lt;div style="background-color: &lcub;&lcub; color }};"> &lt;/div></code></pre>
 <h6>primary-color~red.json</h6>
-<pre><code>  &lcub;
-    "color": #f00;
-  }
-</code></pre>
+<pre><code>{
+  "color": #f00;
+}</code></pre>
 <h6>primary-color~green.json</h6>
-<pre><code>  &lcub;
-    "color": #0f0;
-  }
-</code></pre>
+<pre><code>{
+  "color": #0f0;
+}</code></pre>
 <h6>primary-color~blue.json</h6>
-<pre><code>  &lcub;
-    "color": #00f;
-  }
-</code></pre>
+<pre><code>{
+  "color": #00f;
+}</code></pre>

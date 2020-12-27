@@ -1,64 +1,45 @@
 <h3>Annotating Patterns</h3>
 <p>Fepper uses Front Matter (YAML + Markdown) syntax for annotating patterns:</p>
-<pre><code>  ---
-  el: #title
-  state: inprogress
-  title: Title for my pattern
-  ---
-  This is a *Markdown* description of my pattern.
-</code></pre>
-<p>
-<code>el</code> must be a CSS selector identifying the element to annotate. When the Annotation Viewer is opened, a tooltip will appear above the element, and the annotation's title and description will be rendered in the viewer. The state (not really an annotation) will be rendered as a colored dot denoting the pattern's progress in the UI menu.
-</p>
-<p>
-An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to annotate the following pattern:
-</p>
-<pre><code>  00-elements/images/landscape-16x9.mustache</code></pre>
-<p>
-Name your annotation file:
-</p>
-<pre><code>  00-elements/images/landscape-16x9.md
-</code></pre>
-
+<pre><code>---
+el: #title
+state: inprogress
+title: Title for my pattern
+---
+This is a *Markdown* description of my pattern.</code></pre>
+<p><code>el</code> must be a CSS selector identifying the element to annotate. When the Annotation Viewer is opened, a tooltip will appear above the element, and the annotation's title and description will be rendered in the viewer. The state (not really an annotation) will be rendered as a colored dot denoting the pattern's progress in the UI menu.</p>
+<p>An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to annotate the following pattern:</p>
+<pre><code>00-elements/images/landscape-16x9.mustache</code></pre>
+<p>Name your annotation file:</p>
+<pre><code>00-elements/images/landscape-16x9.md</code></pre>
 <h4>Annotating Pseudo-Patterns</h4>
-<p>
-To annotate pseudo-patterns, replace the tilde sign (<code>~</code>) with a hyphen (<code>-</code>) when naming your annotation file.
-</p>
-<p>
-For example, to annotate the following pseudo-pattern:
-</p>
-<pre><code>  00-elements/button/button~red.json
-</code></pre>
-<p>
-Name your annotatation file:
-</p>
-<pre><code>  00-elements/button/button-red.md
-</code></pre>
-
+<p>To annotate pseudo-patterns, replace the tilde sign (<code>~</code>) with a hyphen (<code>-</code>) when naming your annotation file.</p>
+<p>For example, to annotate the following pseudo-pattern:</p>
+<pre><code>00-elements/button/button~red.json</code></pre>
+<p>Name your annotatation file:</p>
+<pre><code>00-elements/button/button-red.md</code></pre>
 <h4>Global Annotation File</h4>
 <p>Example:</p>
-<pre><code>  ---
-  el: .hamburger-navigation
-  title: Hamburger Navigation
-  ---
-  Ich bin ein Hamburger.
-  ~*~
-  ---
-  el: .hero
-  title: Hero Image
-  ---
-  Large image front, top, center.
-  ~*~
-  ---
-  el: .sub
-  title: Subs
-  ---
-  Image links to content below Hero.
-  ~*~
-  ---
-  el: .hoagie
-  title: Hoagies
-  ---
-  More sandwiches.
-</code></pre>
+<pre><code>---
+el: .hamburger
+title: Hamburger
+---
+Ich bin ein Hamburger.
+~*~
+---
+el: .hero
+title: Hero
+---
+Up front, on top, centered.
+~*~
+---
+el: .sub
+title: Sub
+---
+Below hero.
+~*~
+---
+el: .hoagie
+title: Hoagie
+---
+Sandwiched.</code></pre>
 <p>Located at <code>source/_annotations</code>, it must be named with the <code>.md</code> extenstion, or whatever is configured as the <code>frontMatterExtension</code>. It can consist of any number of annotations, each separated by <code>~*~</code>. Pattern-specific annotation files can consist of multiple annotations as well, delimited the same way.</p>

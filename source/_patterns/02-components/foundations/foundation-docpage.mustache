@@ -19,9 +19,18 @@
     {{# docpage_update? }}
       {{> components-content-docpage-update }}
     {{/ docpage_update? }}
-    {{# docpage_data_json_mustache? }}
-      {{> components-content-docpage-data-json-mustache }}
-    {{/ docpage_data_json_mustache? }}
+    {{# docpage_intro_to_json_mustache? }}
+      {{> components-content-docpage-intro-to-json-mustache }}
+    {{/ docpage_intro_to_json_mustache? }}
+    {{# docpage_global_data? }}
+      {{> components-content-docpage-global-data }}
+    {{/ docpage_global_data? }}
+    {{# docpage_partial_data? }}
+      {{> components-content-docpage-partial-data }}
+    {{/ docpage_partial_data? }}
+    {{# docpage_pattern_data? }}
+      {{> components-content-docpage-pattern-data }}
+    {{/ docpage_pattern_data? }}
     {{# docpage_pattern_organization? }}
       {{> components-content-docpage-pattern-organization }}
     {{/ docpage_pattern_organization? }}
@@ -34,9 +43,9 @@
     {{# docpage_pseudo_patterns? }}
       {{> components-content-docpage-pseudo-patterns }}
     {{/ docpage_pseudo_patterns? }}
-    {{# docpage_hiding_patterns? }}
-      {{> components-content-docpage-hiding-patterns }}
-    {{/ docpage_hiding_patterns? }}
+    {{# docpage_hidden_patterns? }}
+      {{> components-content-docpage-hidden-patterns }}
+    {{/ docpage_hidden_patterns? }}
     {{# docpage_global_head_and_foot? }}
       {{> components-content-docpage-global-head-and-foot }}
     {{/ docpage_global_head_and_foot? }}
@@ -49,9 +58,9 @@
     {{# docpage_pattern_states? }}
       {{> components-content-docpage-pattern-states }}
     {{/ docpage_pattern_states? }}
-    {{# docpage_live_reload_changes? }}
-      {{> components-content-docpage-live-reload-changes }}
-    {{/ docpage_live_reload_changes? }}
+    {{# docpage_live_reload? }}
+      {{> components-content-docpage-live-reload }}
+    {{/ docpage_live_reload? }}
     {{# docpage_query_string_variables? }}
       {{> components-content-docpage-query-string-variables }}
     {{/ docpage_query_string_variables? }}

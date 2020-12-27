@@ -392,7 +392,7 @@ ul + p {
 }
 .content {
   padding: 2rem 1.5rem 4rem 4.5rem;
-  width: calc(100vw - 32rem);
+  width: calc(100vw - 28.8rem);
 }
 .webkit .content {
   color: #f00;
@@ -400,20 +400,27 @@ ul + p {
 .webkit .content a {
   color: #f00;
 }
+@media all and (max-width: 1024px) {
+  .content {
+    width: calc(100vw - 25rem);
+  }
+}
 @media all and (max-width: 767px) {
   .content {
     min-height: 105rem;
+    padding: 2rem 4rem 0;
     width: 100%;
   }
 }
 @media all and (max-width: 480px) {
   .content {
-    padding: 2rem 3rem 0;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 }
 @media all and (min-width: 1152px) {
   .content {
-    width: calc(1152px - 32rem);
+    width: calc(1152px - 28.8rem);
   }
 }
 .content a {
@@ -434,6 +441,19 @@ ul + p {
 }
 .docpage--index .content {
   width: 100%;
+}
+.nav--docpage {
+  width: 28.8rem;
+}
+@media all and (max-width: 1024px) {
+  .nav--docpage {
+    width: 25rem;
+  }
+}
+@media all and (max-width: 767px) {
+  .nav--docpage {
+    width: auto;
+  }
 }
 .docpage--index .nav--docpage {
   padding-right: 1.6rem;
@@ -551,8 +571,8 @@ ul + p {
     position: absolute;
     top: 3rem;
     right: 0;
-    transform: translateX(32rem);
-    width: 32rem;
+    transform: translateX(25rem);
+    width: 25rem;
   }
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {

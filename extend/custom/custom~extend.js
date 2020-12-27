@@ -172,6 +172,8 @@ gulp.task('fetch-docpage-content', function (cb) {
   scrapeAndWriteContent('Configure');
   scrapeAndWriteContent('Run');
   scrapeAndWriteContent('Update');
+  scrapeAndWriteContent('Global Data');
+  scrapeAndWriteContent('Partial Data');
 
   cb();
 });

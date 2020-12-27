@@ -1,0 +1,8 @@
+{
+  "stylesheet": "docpage.css",
+  "body_class": "docpage docpage--intro-to-json-mustache",
+  "branding_docpage?": true,
+  "heading_h1": "Fepper Documentation",
+  "docpage_intro_to_json_mustache?": true,
+  "article_class": "content--docpage--intro-to-json-mustache"
+}

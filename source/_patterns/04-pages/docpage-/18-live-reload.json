@@ -1,0 +1,8 @@
+{
+  "stylesheet": "docpage.css",
+  "body_class": "docpage docpage--live-reload",
+  "branding_docpage?": true,
+  "heading_h1": "Fepper Documentation",
+  "docpage_live_reload?": true,
+  "article_class": "content--docpage--live-reload"
+}

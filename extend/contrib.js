@@ -13,6 +13,7 @@ gulp.task('contrib:frontend-copy', [
 ]);
 
 gulp.task('contrib:once', [
+  'htmllint',
   'stylus:no-comment'
 ]);
 

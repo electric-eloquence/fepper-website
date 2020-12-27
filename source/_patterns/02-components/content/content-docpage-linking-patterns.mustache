@@ -1,10 +1,10 @@
 <h3>Linking to Patterns with the <code>link</code> Variable</h3>
 <p>Pattern pages can link to one another as though on a real website. This is especially useful when generating a static site, as relative linking from one page to another will be preserved. The basic format is:</p>
-<pre><code> &lcub;&lcub; link.[patternType]-[patternName] }}</code></pre>
+<pre><code> &lcub;&lcub; link.[patternType]-[patternName] &rcub;&rcub;</code></pre>
 <p>For example, say you wanted to link an article page to your homepage. If the article were at <code>04-pages/articles-/00-top-story.mustache</code>, you could write:</p>
-<pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story }}">Article Headline&lt;/a></code></pre>
+<pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;</code></pre>
 <p>In Fepper <code>public/patterns</code> directory, this would built as:</p>
-<pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html">Article Headline&lt;/a></code></pre>
+<pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>
 <p>Fepper's static site generator would output this as:</p>
-<pre><code>&lt;a href="articles--top-story.html">Article Headline&lt;/a></code></pre>
+<pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>
 <p>The static site would be generated from patterns within the <code>pages</code> directory. The homepage as designated within <code>source/_data/_data.json</code> would be renamed <code>index.html</code>. Numeric prefixes to filenames and sub-directories would be dropped. Lastly, nested source directories would be flattened and all static HTML files would be siblings. The pathing of nested folders would be retained in the filenames, so the organizational benefits of folder nesting would be retained.</p>

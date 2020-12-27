@@ -1,6 +1,7 @@
 {
   "description": "Fepper extensions",
   "devDependencies": {
+    "fp-htmllint": "^0.2.4",
     "fp-stylus": "^1.2.13"
   }
 }

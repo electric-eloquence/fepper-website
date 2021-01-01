@@ -11,11 +11,11 @@
 <p>For example, the shorthand include syntax for:</p>
 <pre><code>00-elements/01-images/02-landscape.mustache</code></pre>
 <p>would be:</p>
-<pre><code>&lcub;&lcub;> atoms-landscape }}</code></pre>
+<pre><code>&lcub;&lcub;&gt; atoms-landscape &rcub;&rcub;</code></pre>
 <p>The pattern type matches <code>elements</code>. The pattern name matches <code>landscape</code> from the filename. Any digits used for ordering are <em>dropped</em> from both the pattern type and pattern name. Pattern subtypes are <em>never</em> part of the shorthand include syntax. This way, patterns can be reorganized within a pattern type and/or by using digits without needing to change your include statements.</p>
 <h4>Full Relative Path</h4>
 <p>If you need specificity (or just like knowing the path) when including partials, you can use the full relative path from just below <code>source/_patterns</code>:</p>
-<pre><code>&lcub;&lcub;> 00-elements/01-images/02-landscape.mustache }}</code></pre>
+<pre><code>&lcub;&lcub;&gt; 00-elements/01-images/02-landscape.mustache &rcub;&rcub;</code></pre>
 <h4>Relative Path Minus Pattern Extension</h4>
 <p>Leaving out the pattern extension from the relative path also works:</p>
-<pre><code>&lcub;&lcub;> 00-elements/01-images/02-landscape }}</code></pre>
+<pre><code>&lcub;&lcub;&gt; 00-elements/01-images/02-landscape &rcub;&rcub;</code></pre>

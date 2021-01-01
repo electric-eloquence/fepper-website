@@ -71,3 +71,6 @@ templater:
 instance_file: node_modules/fepper/core/fepper.js
 
 lang: en
+
+htmllint:
+  failOnError: true

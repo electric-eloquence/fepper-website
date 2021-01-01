@@ -18,7 +18,7 @@ article.json</code></pre>
     "src": "../../_assets/src/hero-image.jpg"
   }
 }</code></pre>
-<p>The article pattern will now display a more specific image. All other patterns using <code>&lcub;&lcub; landscape.src }}</code> will display the fpo (for placement only) image by default. Also note that we <em>didn't</em> override <code>landscape.alt</code>. The article pattern continues to use the global value "Landscape 4x3 Image".</p>
+<p>The article pattern will now display a more specific image. All other patterns using <code>&lcub;&lcub; landscape.src &rcub;&rcub;</code> will display the fpo (for placement only) image by default. Also note that we <em>didn't</em> override <code>landscape.alt</code>. The article pattern continues to use the global value "Landscape 4x3 Image".</p>
 <p>Not only can we selectively exclude what we override, we can also add data unique to the pattern, and not a part of global or partial data.</p>
 <h6>source/_patterns/04-pages/article.json:</h6>
 <pre><code>{
@@ -43,7 +43,7 @@ article.json</code></pre>
   }
 }</code></pre>
 <h6>source/_patterns/04-pages/article.mustache:</h6>
-<pre><code>&lcub;&lcub;> compounds-block-hero }}</code></pre>
+<pre><code>&lcub;&lcub;&gt; compounds-block-hero &rcub;&rcub;</code></pre>
 <h6>source/_patterns/01-compounds/block-hero.json:</h6>
 <pre><code>{
   "landscape": {
@@ -52,9 +52,9 @@ article.json</code></pre>
   }
 }</code></pre>
 <h6>source/_patterns/01-compounds/block-hero.mustache:</h6>
-<pre><code>&lt;img src="&lcub;&lcub; landscape.src }}" alt="&lcub;&lcub; landscape.alt }}"></code></pre>
+<pre><code>&lt;img src="&lcub;&lcub; landscape.src &rcub;&rcub;" alt="&lcub;&lcub; landscape.alt &rcub;&rcub;"&gt;</code></pre>
 <p>Would render:</p>
 <h6>URL /?p=pages-article</h6>
-<pre><code>&lt;img src="../../_assets/src/hero-image.jpg" alt=""></code></pre>
+<pre><code>&lt;img src="../../_assets/src/hero-image.jpg" alt=""&gt;</code></pre>
 <h6>URL /?p=compounds-block-hero</h6>
-<pre><code>&lt;img src="../../_assets/src/dagwood.jpg" alt="Dagwood"></code></pre>
+<pre><code>&lt;img src="../../_assets/src/dagwood.jpg" alt="Dagwood"&gt;</code></pre>

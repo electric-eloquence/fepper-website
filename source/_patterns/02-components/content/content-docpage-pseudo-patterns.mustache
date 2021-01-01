@@ -10,11 +10,11 @@
 blog.mustache
 homepage.mustache</code></pre>
 <p>Our <code>homepage.mustache</code> template might look like this:</p>
-<pre><code>&lt;div id="main-container">
-  &lcub;&lcub;# emergency }}
-    &lt;div class="emergency">Oh Noes! Emergency!&lt;/div>
-  &lcub;&lcub;/ emergency }}
-&lt;/div></code></pre>
+<pre><code>&lt;div id="main-container"&gt;
+  &lcub;&lcub;# emergency &rcub;&rcub;
+    &lt;div class="emergency"&gt;Oh Noes! Emergency!&lt;/div&gt;
+  &lcub;&lcub;/ emergency &rcub;&rcub;
+&lt;/div&gt;</code></pre>
 <p>If there is no JSON data file giving a value for <code>emergency</code>, that section will never show when <code>homepage.mustache</code> gets rendered. We want to show <em>both</em> the regular and emergency states of the homepage, but we don't want to duplicate the entire <code>homepage.mustache</code> template. Duplicate changes nearly <em>always</em> get forgotten in future maintenance. So let's DRY things up and add our pseudo-pattern:</p>
 <pre><code>article.mustache
 blog.mustache

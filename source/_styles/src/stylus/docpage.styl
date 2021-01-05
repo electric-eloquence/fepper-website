@@ -34,8 +34,10 @@ ul + p
   position: relative
   margin: 0 auto
   max-width: $max-width
+  min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
   @media all and (max-width: $bp-sm-max)
     display: block // Necessary for overlay--opacity to work.
+    min-height: 'calc(100vh - %s - %s)' % ($logo-height-small $bottom-height)
     .safari &
       overflow-x: hidden
 .content

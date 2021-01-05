@@ -390,10 +390,12 @@ ul + p {
   position: relative;
   margin: 0 auto;
   max-width: 1152px;
+  min-height: calc(100vh - 200px - 8.4rem);
 }
 @media all and (max-width: 767px) {
   .foundation {
     display: block;
+    min-height: calc(100vh - 150px - 8.4rem);
   }
   .safari .foundation {
     overflow-x: hidden;

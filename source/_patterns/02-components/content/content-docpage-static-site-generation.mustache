@@ -4,4 +4,13 @@
 <code>04-pages-00-homepage</code>, or whatever is declared as the homepage in <code>_data.json</code>.
 If links to other pages in the <code>04-pages</code> directory work correctly in the Fepper
 UI, they will work correctly in the static site, even if the <code>public/static</code>
-directory is copied and renamed.</p>
+directory is copied and renamed.</p><p>For example, assume an article is at
+<code>source/_patterns/04-pages/articles-/00-top-story.mustache</code>. Create the link as
+follows:</p><pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;
+</code></pre><p>This would built to the public directory as:</p><pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;
+</code></pre><p>The Static Site Generator would output this as:</p><pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;
+</code></pre><p>Numeric prefixes to filenames and sub-directories would be dropped. Nested
+source directories would be flattened and all static HTML files would be
+siblings. The pathing of nested folders would be retained in the filenames, so
+the organizational benefits of nesting folders would be retained.</p><p>Additional files can be put in <code>source/_static</code>
+so long as they do not get overwritten by the Static Site Generator.</p>

@@ -3,8 +3,8 @@
 <pre><code>[patternType]/[patternSubtype]/[patternName].[patternExtension]</code></pre>
 <p>These are the parts:</p>
 <ul>
-  <li><code>patternType</code> - the overall pattern type. The default pattern types "elements", "compounds", and "components" can be renamed or even removed without further configuration.</li>
-  <li><code>patternSubType</code> - the subtype of a pattern. Pattern subtypes are <em>optional</em>.</li>
+  <li><code>patternType</code> - the most general of pattern categories. The default pattern types "elements", "compounds", and "components" can be renamed or even removed without further configuration.</li>
+  <li><code>patternSubType</code> - more specific pattern categories. Pattern subtypes are <em>optional</em>.</li>
   <li><code>patternName</code> - the name of a pattern as written to the file system.</li>
   <li><code>patternExtension</code> - the file extension of a pattern.</li>
 </ul>
@@ -16,4 +16,4 @@
     - media-blocks/
       - image-block.mustache
       - video-block.mustache</code></pre>
-<p>In this example, <code>media-blocks</code> will act as the pattern subtype when it comes to navigation in the UI. The shorthand partial name for <code>image-block.mustache</code> will be <code>compounds-image-block</code>.</p>
+<p>In this example, <code>media-blocks</code> will act as the pattern subtype when it comes to navigation in the UI. <a href="{{ link.pages-pattern-partials }}">The shorthand partial name</a> for <code>image-block.mustache</code> will be <code>compounds-image-block</code>.</p>

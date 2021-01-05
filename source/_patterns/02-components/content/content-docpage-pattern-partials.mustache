@@ -1,7 +1,7 @@
 <h3>Pattern Partials</h3>
-<p>A partial is a pattern included within another pattern. To include a partial within your pattern, you can use:</p>
+<p>A partial is a pattern included within another pattern. To do this, you can use:</p>
 <ul>
-  <li>a shorthand include syntax</li>
+  <li>the shorthand include syntax</li>
   <li>the relative path to the partial</li>
   <li>the relative path minus the pattern extension</li>
 </ul>
@@ -14,7 +14,7 @@
 <pre><code>&lcub;&lcub;&gt; atoms-landscape &rcub;&rcub;</code></pre>
 <p>The pattern type matches <code>elements</code>. The pattern name matches <code>landscape</code> from the filename. Any digits used for ordering are <em>dropped</em> from both the pattern type and pattern name. Pattern subtypes are <em>never</em> part of the shorthand include syntax. This way, patterns can be reorganized within a pattern type and/or by using digits without needing to change your include statements.</p>
 <h4>Full Relative Path</h4>
-<p>If you need specificity (or just like knowing the path) when including partials, you can use the full relative path from just below <code>source/_patterns</code>:</p>
+<p>If you want specificity (<a href="{{ link.pages-templater }}">or need to trigger specialized Templater behavior</a>) when including partials, you can use the full relative path from just below <code>source/_patterns</code>:</p>
 <pre><code>&lcub;&lcub;&gt; 00-elements/01-images/02-landscape.mustache &rcub;&rcub;</code></pre>
 <h4>Relative Path Minus Pattern Extension</h4>
 <p>Leaving out the pattern extension from the relative path also works:</p>

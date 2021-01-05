@@ -1,27 +1,27 @@
 <h4 class="sticky">conf.yml</h4>
 <div class="indent">
   <h5>express_port</h5>
-  <p>The port at which Fepper's webserver listens.</p>
+  <p>The port at which <a href="{{ link.pages-express-app }}">Fepper's webserver</a> listens.</p>
   <strong>type</strong>: <code>number</code><br>
   <strong>default</strong>: <code>3000</code>
 
   <h5>livereload_port</h5>
-  <p>The port at which LiveReload listens for changes to the file system.</p>
+  <p>The port at which <a href="{{ link.pages-live-reload }}">LiveReload</a> listens for changes to the file system.</p>
   <strong>type</strong>: <code>number</code><br>
   <strong>default</strong>: <code>35729</code>
 
   <h5>kill_zombies</h5>
-  <p>If true, Fepper will kill old gulp processes lingering into a fresh launch of Fepper. However, if you wish to run multiple Fepper instances, you'll need to set this to false.</p>
+  <p>If true, this will ensure only one Fepper instance is running. Stale instances lingering into a fresh launch will be killed. However, if you wish to run multiple Fepper instances, you'll need to set this to false.</p>
   <strong>type</strong>: <code>boolean</code><br>
   <strong>default</strong>: <code>true</code>
 
   <h5>app_dir</h5>
-  <p>The relative path to the <a href="https://www.npmjs.com/package/fepper" target="_blank">Fepper NPM</a>.</p>
+  <p>The relative path to <a href="https://www.npmjs.com/package/fepper" target="_blank">the Fepper NPM</a>.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>node_modules/fepper</code>
 
   <h5>extend_dir</h5>
-  <p>The relative path to the Fepper extensions directory.</p>
+  <p>The relative path to <a href="{{ link.pages-extensions }}">the extensions</a> directory.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>extend</code>
 </div>
@@ -29,7 +29,7 @@
 <h4 class="sticky">pref.yml</h4>
 <div class="indent">
   <h5>backend.backend_dir</h5>
-  <p>The relative path to the backend directory.</p>
+  <p>The relative path to <a href="{{ link.pages-the-backend }}">the backend</a> directory.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>backend</code>
 
@@ -46,29 +46,29 @@
   <strong>type</strong>: <code>string</code>
 
   <h5>backend.synced_dirs.templates_dir</h5>
-  <p>The relative path to where Fepper should output compiled backend templates.</p>
+  <p>The relative path to where Fepper should output <a href="{{ link.pages-templater }}">compiled backend templates</a>.</p>
   <strong>type</strong>: <code>string</code>
 
   <h5>backend.synced_dirs.templates_ext</h5>
-  <p>The extension that should be appended to compiled backend template filenames.</p>
+  <p>The extension that should be appended to <a href="{{ link.pages-templater }}">compiled backend template</a> filenames.</p>
   <strong>type</strong>: <code>string</code>
 
   <h5>backend.webserved_dirs</h5>
-  <p>An array of relative paths to backend directories to be served by Fepper's webserver.</p>
+  <p>An array of relative paths to backend directories to be served by <a href="{{ link.pages-express-app }}">Fepper's webserver</a>.</p>
   <strong>type</strong>: <code>array</code>
 
   <h5>templater.retain_mustache</h5>
-  <p>By default, the Templater will not retain untranslated Feplet tags when translating to the backend's template language. However, if the backend's template language happens to be Feplet or Mustache, set this value to true.</p>
+  <p>By default, <a href="{{ link.pages-templater }}">the Templater</a> will not retain untranslated Feplet tags when translating to the backend's template language. However, if the backend's template language happens to be Feplet or Mustache, set this value to true.</p>
   <strong>type</strong>: <code>boolean</code><br>
   <strong>default</strong>: <code>false</code>
 
   <h5>instance_file</h5>
-  <p>Declares the class which defines the Fepper instance for a project. If you wish to customize a subclass that inherits from the default class, put the relative path to that file here.</p>
+  <p>Declares the class which defines the Fepper instance for a project. If you wish to <a href="{{ link.pages-extensions }}">customize a subclass that inherits from the default class</a>, put the relative path to that file here.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>node_modules/fepper/core/fepper.js</code>
 
   <h5>lang</h5>
-  <p>Fepper's human language for end-users. Fepper will translate according to the .json file at <code>source/_ui/i18n</code> identified by this pref.</p>
+  <p>Fepper's human language for end-users. Fepper will <a href="{{ link.pages-i18n }}">translate according to the .json file at <code>source/_ui/i18n</code></a> identified by this pref.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>en</code>
 </div>
@@ -76,7 +76,7 @@
 <h4 class="sticky">patternlab-config.json</h4>
 <div class="indent">
   <h5>paths</h5>
-  <p>Relative paths to source and public directories. Edits to source files will be built to the public directory and served from there.</p>
+  <p>Relative paths to source and public directories. <a href="{{ link.pages-edit }}">Edits to source files</a> will be built to the public directory and served from there.</p>
   <strong>type</strong>: <code>object</code><br>
   <strong>default</strong>:
   <pre><code>"paths": {
@@ -121,7 +121,7 @@
   <strong>default</strong>: <code>true</code>
 
   <h5>cleanPublic</h5>
-  <p>Whether or not to delete the files in `public/patterns` on each build.</p>
+  <p>Whether or not to delete the files in <code>public/patterns</code> on each build.</p>
   <strong>type</strong>: <code>boolean</code><br>
   <strong>default</strong>: <code>true</code>
 
@@ -136,12 +136,12 @@
   <strong>default</strong>: <code>pages-homepage</code>
 
   <h5>defaultShowPatternInfo</h5>
-  <p>Whether or not to launch with the Code Viewer open.</p>
+  <p>Whether or not to launch with <a href="{{ link.pages-mustache-browser }}">the Code Viewer</a> open.</p>
   <strong>type</strong>: <code>boolean</code><br>
   <strong>default</strong>: <code>false</code>
 
   <h5>frontMatterExtension</h5>
-  <p>The file extension for annotation files, syntaxed in a superset of Front Matter, a superset comprising YAML and Markdown.</p>
+  <p>The file extension for <a href="{{ link.pages-annotating-patterns }}">annotation files</a>, syntaxed in a superset of Front Matter, a superset comprising YAML and Markdown.</p>
   <strong>type</strong>: <code>string</code><br>
   <strong>default</strong>: <code>.md</code>
 

@@ -1,6 +1,6 @@
 <h3>Pattern Parameters</h3>
 <p>Pattern parameters are a means to hydrate data in an included pattern, but <strong>not further downstream</strong>. They are yet another option for hydrating patterns with varying degrees of granularity.</p>
-<p>Parameters are a <a href="https://www.npmjs.com/package/feplet" target="_blank">Feplet</a> feature. Parameters are an <em>add-on</em> to a mostly standards-adherent implementation of Mustache. The only <em>divergence</em> from the Mustache standard is Feplet's forbidding of spaces between opening braces <code>&lcub;&lcub;</code> and any control character, e.g. <code>#</code>, <code>/</code>, <code>&gt;</code>, etc.</p>
+<p>Pattern parameters are a <a href="https://www.npmjs.com/package/feplet" target="_blank">Feplet</a> feature. They are an <em>add-on</em> to <a href="https://github.com/mustache/spec" target="_blank">the Mustache spec</a>. Feplet is otherwise fully compliant with the Mustache spec, as per the original Ruby implementation.</p>
 <h4>Pattern Parameter Syntax</h4>
 <p>The keys listed in the pattern parameters need to match variable names in the included pattern. The values listed for each key will replace the variables. For example:</p>
 <h6>components-top-level:</h6>

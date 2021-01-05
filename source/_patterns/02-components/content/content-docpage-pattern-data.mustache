@@ -34,7 +34,7 @@ article.json</code></pre>
   }
 }</code></pre>
 <h4>Working with Includes</h4>
-<p>A pattern will use its own pattern data, but not the pattern data for any included pattern. For example, the <code>article</code> page might include the <code>block-hero</code> compound. <code>block-hero</code> may have its own pattern data file <code>block-hero.json</code>, but the <code>article</code> page will not consult it. However, <code>article.json</code> <em>can</em> contain data to hydrate variables in <code>block-hero.mustache</code>.</p>
+<p>A pattern will use its own pattern data, but not the pattern data for any included pattern. For example, the <code>article</code> page might include the <code>block-hero</code> compound. <code>block-hero</code> may have its own pattern data file <code>block-hero.json</code>, but the <code>article</code> page will not consult it. However, <code>article.json</code> <em>can</em> contain data to hydrate variables in <code>block-hero.mustache</code>, but only when viewed as part of the article.</p>
 <p>For example, the following <code>source</code> files:</p>
 <h6>source/_patterns/04-pages/article.json:</h6>
 <pre><code>{

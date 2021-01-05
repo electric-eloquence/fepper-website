@@ -60,7 +60,7 @@ export default async function*(logicalImages, $orgs, timeout) {
           resolve();
         }
 
-        // Remove browser advice here, after all content has loaded, since browser advice was added by JavaScript.
+        // Remove browser advice here, well after all content has loaded, since browser advice was added by JavaScript.
         $orgs['#browser-advice'].remove();
       };
 

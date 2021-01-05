@@ -1,0 +1,13 @@
+.colors {
+  display: table;
+}
+.colors__row {
+  display: table-row;
+}
+.colors__cell {
+  display: table-cell;
+  padding: 0 0.3rem
+}
+.colors__cell:last-child {
+  width: 5rem;
+}

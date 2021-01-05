@@ -83,6 +83,12 @@ a {
   color: #363636;
   text-decoration: none;
 }
+blockquote {
+  border-left-width: 1px;
+  border-left-style: solid;
+  font-style: italic;
+  padding-left: 1.6rem;
+}
 code {
   background-color: #eee;
   font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
@@ -92,17 +98,20 @@ ol,
 ul {
   list-style-type: none;
 }
+ol,
 p {
   margin-bottom: 1.6rem;
 }
 pre {
   background-color: #eee;
+  font-size: 0.875em;
   margin-top: 0;
   padding: 0.8rem 1.6rem;
 }
 pre > code {
   background-color: transparent;
   display: block;
+  font-size: 1em;
 }
 strong {
   font-weight: 500;

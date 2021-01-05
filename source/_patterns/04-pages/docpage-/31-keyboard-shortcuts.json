@@ -1,0 +1,8 @@
+{
+  "stylesheet": "docpage.css",
+  "body_class": "docpage docpage--keyboard-shortcuts",
+  "branding_docpage?": true,
+  "heading_h1": "Fepper Documentation",
+  "docpage_keyboard_shortcuts?": true,
+  "article_class": "content--docpage--keyboard-shortcuts"
+}

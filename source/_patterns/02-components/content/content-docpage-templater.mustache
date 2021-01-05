@@ -1,0 +1,35 @@
+<h3><a id="user-content-templater" class="anchor" aria-hidden="true" href="#templater"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a id="user-content-templater"></a>Templater</h3><p>Fepper's <a href="https://www.npmjs.com/package/feplet" rel="nofollow">Feplet</a>
+(.mustache) templates can be translated into templates compatible with your
+backend. Feplet tags just need to be replaced with tags the backend can use.
+Put these translations into YAML files named similarly to the .mustache files in
+<code>source/_patterns/03-templates</code>. Follow
+<a href="https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_patterns/03-templates/page.yml">
+this example</a> for the correct YAML syntax.</p><p>Follow these rules for setting up keys and values:</p><ul>
+<li>Delete the Feplet curly braces for keys.</li>
+<li>Trim any exterior whitespace.</li>
+<li>Leave other control structures and spaces within the key, e.g. !#/&gt;^</li>
+<li>Escape parentheses, carets, and question marks with backslashes.</li>
+<li>Wrap the key in single quotes.</li>
+<li>Follow the closing quote with a colon, space, pipe, the numeral 2, and a
+newline <code>: |2</code></li>
+<li>Indent each line of the value by at least two spaces.</li>
+<li>When translating to a language with double-curly braces for tags (as per the
+example), the double-curly braces must be escaped with a backslash per curly
+brace.</li>
+</ul><p>Run <code>fp syncback</code> or <code>fp template</code>.</p><ul>
+<li>Be sure that <code>backend.synced_dirs.templates_dir</code> and
+<code>backend.synced_dirs.templates_ext</code> are set in <code>pref.yml</code>.</li>
+<li>The default <code>templates_dir</code> and <code>templates_ext</code> settings in <code>pref.yml</code> can be
+overridden by similarly named settings in the template-specific YAML files.</li>
+<li>Templates prefixed by "__" will be ignored by the Templater as will files in
+the <code>_nosync</code> directory.</li>
+<li>The Templater will recurse through nested Feplet templates if the tags are
+written in the full relative path syntax and have the <code>.mustache</code> extension,
+e.g. <code>&lcub;&lcub;&gt; 02-components/00-global/00-header.mustache &rcub;&rcub;</code></li>
+<li>However, the more common inclusion use-case is to leave off the extension, and
+not recurse.</li>
+</ul><p><a href="https://github.com/electric-eloquence/fepper-drupal">
+Fepper for Drupal</a> and 
+<a href="https://github.com/electric-eloquence/fepper-wordpress">
+Fepper for WordPress</a> have working examples of templates compatible with the 
+Templater.</p>

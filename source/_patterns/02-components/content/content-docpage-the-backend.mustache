@@ -1,0 +1,25 @@
+<h3><a id="user-content-the-backend" class="anchor" aria-hidden="true" href="#the-backend"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a id="user-content-the-backend"></a>The Backend</h3><p>Fepper can very easily work with a CMS backend such as Drupal or WordPress,
+while not requiring Apache, MySQL, or PHP. Put the actual backend codebase or
+even just a symbolic link to the codebase into the <code>backend</code> directory. Then,
+enter the relative paths to the appropriate backend directories in <code>pref.yml</code>.
+(Do not include "backend" or a leading slash.) You will then be able to run
+<code>fp syncback</code> or <code>fp frontend-copy</code> to export your frontend data into your
+backend web application.</p><ul>
+<li>Be sure that <code>backend.synced_dirs.assets_dir</code>,
+<code>backend.synced_dirs.scripts_dir</code>, and <code>backend.synced_dirs.styles_dir</code> are
+set in <code>pref.yml</code>.</li>
+<li>The above values set in <code>pref.yml</code> can be overridden on a per-file basis by
+similarly named YAML files with similarly named settings.
+<ul>
+<li>These YAML files must match the source file's name with the exception of the
+extension.</li>
+<li>The extension must be <code>.yml</code></li>
+<li>The overriding property must only contain the lowest level key:value, not
+the entire hierarchy, e.g. only <code>assets_dir</code>, not
+<code>backend.synced_dirs.assets_dir</code>.</li>
+</ul>
+</li>
+<li>Asset, script, and style files prefixed by "__" will be ignored by
+<code>fp syncback</code> and <code>fp frontend-copy</code> as will files in the <code>_nosync</code>
+directory at the root of the source directories.</li>
+</ul>

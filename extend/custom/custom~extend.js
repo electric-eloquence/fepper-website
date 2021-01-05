@@ -151,8 +151,10 @@ function scrapeAndWriteContent(sectionHeadingText) {
       const html2jsonObj = html2json(output);
       const markdownBodyObj = markdownBodySelect(html2jsonObj);
       const sectionObj = sectionSelect(sectionHeadingText, markdownBodyObj);
-      const html4file = json2html(sectionObj);
-      const filenameSuffix = sectionHeadingText.replace(/ /g, '-').toLowerCase();
+      const filenameSuffix = sectionHeadingText.replace(/[ \.]/g, '-').toLowerCase();
+      const html4file = json2html(sectionObj)
+        .replace(/\{\{/g, '&lcub;&lcub;')
+        .replace(/\}\}/g, '&rcub;&rcub;');
 
       fs.outputFileSync(
         `${conf.ui.paths.source.patterns}/02-components/content/content-docpage-${filenameSuffix}.mustache`, html4file);
@@ -174,6 +176,19 @@ gulp.task('fetch-docpage-content', function (cb) {
   scrapeAndWriteContent('Update');
   scrapeAndWriteContent('Global Data');
   scrapeAndWriteContent('Partial Data');
+  scrapeAndWriteContent('Static Site Generation');
+  scrapeAndWriteContent('The Backend');
+  scrapeAndWriteContent('Templater');
+  scrapeAndWriteContent('Webserved Directories');
+  scrapeAndWriteContent('Mustache Browser');
+  scrapeAndWriteContent('HTML Scraper');
+  scrapeAndWriteContent('variables.styl');
+  scrapeAndWriteContent('UI Customization');
+  scrapeAndWriteContent('Extensions');
+  scrapeAndWriteContent('Express App');
+  scrapeAndWriteContent('Mobile Devices');
+  scrapeAndWriteContent('I18N');
+  scrapeAndWriteContent('Keyboard Shortcuts');
 
   cb();
 });

@@ -1,0 +1,8 @@
+{
+  "stylesheet": "docpage.css",
+  "body_class": "docpage docpage--webserved-directories",
+  "branding_docpage?": true,
+  "heading_h1": "Fepper Documentation",
+  "docpage_webserved_directories?": true,
+  "article_class": "content--docpage--webserved-directories"
+}

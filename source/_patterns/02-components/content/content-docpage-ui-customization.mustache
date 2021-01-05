@@ -1,0 +1,52 @@
+<h3><a id="user-content-ui-customization" class="anchor" aria-hidden="true" href="#ui-customization"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a id="user-content-ui-customization"></a>UI Customization</h3><p>All aspects of the UI are available for customization. For example, the toolbar
+can accept additions, modifications, and deletions per the needs of end-users.
+The UI markup is compiled by recursive, functional React calls. The recursion
+tree is reflected by the directory structure containing the modules which
+compose the UI. To override any given module, copy the directory structure
+leading to the module from
+<a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html">
+https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html</a>
+to <code>source/_ui/index/html</code>, respective to your implementation. Modifications to
+modules in that directory will override the corresponding modules in core.
+Additions (so long as they are correctly nested) will also be recognized.</p><p>A working example of UI customization can be found at
+<a href="https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_ui/index/html/00-head/head.component.js">
+https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_ui/index/html/00-head/head.component.js</a>.
+The Fepper for Drupal project overrides its HTML title to read "Fepper D8"
+instead of "Fepper". In order to do so, it has the <code>head.component.js</code> module
+nested in directories that correspond to the tags that nest the <code>head</code> HTML
+element. Both <code>head.component.js</code> and its nesting directories must be named
+similarly their corresponding elements. <code>.component.js</code> indicates that the file
+is a module to be rendered by React.
+<a href="https://reactjs.org/docs/dom-elements.html" rel="nofollow">
+It must export properties that <code>React.createElement()</code> understands</a>.
+The numeric prefix to <code>00-head</code> orders it to precede <code>01-foot</code>, even though
+"foot" precedes "head" alphabetically.</p><p>In this example, by allowing customizations in the <code>00-head</code> directory separate
+from the core components, core updates will be respected for all components
+except for the HTML head.</p><p>Browser JavaScript and CSS customizations can (and should) be componentized
+this way as well. While a head element is unlikely to have associated scripts or
+styles, the UI's main element does have its scripts and styles componentized as
+<a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html/01-body/40-main">
+<code>main.js</code> and <code>main.css</code> in <code>index/html/01-body/40-main</code></a>. A big advantage
+for this type of componentization comes when elements are renamed or deleted.
+When you rename or delete the element, are you <em>absolutely</em> sure you'll rename
+or delete accordingly in some far-flung, monolithic script or style file?</p><p>Alas, no one should be <em>forced</em> to componentize this way. Generic modifications
+to UI scripts can be added to <code>source/_scripts/ui-extender.js</code>.</p><p>Similarly, generic modifications to UI styles can be added to
+<code>source/_styles/pattern-scaffolding.css</code>. (The file is named this way to adhere
+to <a href="https://patternlab.io/docs/pattern-states.html" rel="nofollow">
+the Pattern Lab documentation on pattern states</a>. It should not be relied on
+for pattern scaffolding.)</p><p>View All markup can also be overridden by copying the .mustache files in
+<a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall">
+https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall</a>
+and pasting them to <code>source/_ui/viewall</code> (nested correctly). Modifications will
+then be recognized and displayed in the UI. (No additions are allowed.) Custom
+View All styles can be added to <code>source/_styles/pattern-scaffolding.css</code>.</p><p>You will need to compile the UI in order for the browser to pick up custom
+changes to the UI:</p><div class="highlight highlight-source-shell"><pre>fp ui:compile</pre></div><p>New UI customizations will not be picked up simply by restarting Fepper.</p><p>The UI exposes these tasks for extension purposes:</p><ul>
+<li><code>fp ui:build</code> - Build the patterns and output them to the public directory</li>
+<li><code>fp ui:clean</code> - Delete all patterns in the public directory</li>
+<li><code>fp ui:compile</code> - Compile the Fepper User Interface from its components</li>
+<li><code>fp ui:copy</code> - Copy frontend files (_assets, _scripts, _styles) to the
+public directory</li>
+<li><code>fp ui:copy-styles</code> - Copy _styles to the public directory (for injection
+into the browser without a refresh)</li>
+<li><code>fp ui:help</code> - Get more information about Fepper UI CLI commands</li>
+</ul>

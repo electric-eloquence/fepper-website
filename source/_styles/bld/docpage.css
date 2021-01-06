@@ -566,6 +566,9 @@ ul + p {
   height: 5rem;
   z-index: 5;
 }
+.button--scroll--up.shifted {
+  bottom: 12.4rem;
+}
 @media all and (max-width: 480px) {
   .button--scroll--up {
     bottom: 4rem;

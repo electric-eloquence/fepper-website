@@ -261,17 +261,25 @@ export default class {
     const bottomState = this.$orgs['.bottom'].getState();
 
     if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
-      this.$orgs['.nav--main__slider'].addClass('shifted');
+      this.$orgs['.nav--main__slider'].dispatchAction('addClass', 'shifted');
+
+      if (this.$orgs['.button--scroll--up']) {
+        this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'shifted');
+      }
 
       if (this.$orgs['.nav--docpage__buttons']) {
-        this.$orgs['.nav--docpage__buttons'].addClass('shifted');
+        this.$orgs['.nav--docpage__buttons'].dispatchAction('addClass', 'shifted');
       }
     }
     else {
-      this.$orgs['.nav--main__slider'].removeClass('shifted');
+      this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'shifted');
+
+      if (this.$orgs['.button--scroll--up']) {
+        this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'shifted');
+      }
 
       if (this.$orgs['.nav--docpage__buttons']) {
-        this.$orgs['.nav--docpage__buttons'].removeClass('shifted');
+        this.$orgs['.nav--docpage__buttons'].dispatchAction('removeClass', 'shifted');
       }
     }
   }

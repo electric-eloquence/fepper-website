@@ -477,6 +477,11 @@ ul + p {
   color: #f00;
 }
 @media all and (max-width: 767px) {
+  .docpage--index .nav--docpage {
+    padding-right: 0.8rem;
+  }
+}
+@media all and (max-width: 767px) {
   .nav--docpage.in .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider {
     transform: translateX(0);
   }
@@ -490,6 +495,11 @@ ul + p {
 }
 .nav--docpage__sections {
   padding: 2rem 0.8rem 4rem 3rem;
+}
+@media all and (max-width: 767px) {
+  .nav--docpage__sections {
+    padding-left: 2rem;
+  }
 }
 .docpage--index .nav--docpage__sections {
   display: grid;
@@ -510,11 +520,6 @@ ul + p {
   }
 }
 @media all and (max-width: 767px) {
-  .docpage--index .nav--docpage__sections .nav--docpage__section {
-    padding-left: 5rem;
-  }
-}
-@media all and (max-width: 480px) {
   .docpage--index .nav--docpage__sections .nav--docpage__section {
     padding-left: 3rem;
   }

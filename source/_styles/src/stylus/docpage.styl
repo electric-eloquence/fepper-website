@@ -84,6 +84,8 @@ ul + p
       color: #f00
       a
         color: #f00
+    @media all and (max-width: $bp-sm-max)
+      padding-right: 0.8rem
   &.in
     .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
       @media all and (max-width: $bp-sm-max)
@@ -95,6 +97,8 @@ ul + p
     z-index: 5
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
+    @media all and (max-width: $bp-sm-max)
+      padding-left: 2rem
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
@@ -106,8 +110,6 @@ ul + p
         @media all and (max-width: $bp-md-max)
           padding-left: 20%
         @media all and (max-width: $bp-sm-max)
-          padding-left: 5rem
-        @media all and (max-width: $bp-xs-max)
           padding-left: 3rem
   &__buttons
     display: none

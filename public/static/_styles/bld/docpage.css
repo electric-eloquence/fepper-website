@@ -537,6 +537,9 @@ ul + p {
   .in .nav--docpage__buttons {
     transform: translateX(-5rem);
   }
+  .docpage--index .nav--docpage__buttons {
+    display: none;
+  }
 }
 @media all and (max-width: 480px) {
   .nav--docpage__buttons {

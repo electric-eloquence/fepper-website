@@ -1,9 +1,9 @@
 <h3>Edit</h3>
-<p>When editing files, be sure to only edit files in the <code>source</code> directory. This includes static files like JavaScript, CSS, and images. Your patterns will be built to, and static files copied to, the <code>public</code> directory. Because of this, you <strong>should not edit</strong> files in the <code>public</code> directory.</p>
+<p>When editing files, be sure to only edit files in the <code>source</code> directory. Your patterns will be built to, and static files copied to, the <code>public</code> directory. Because of this, you <strong>should not edit</strong> files in the <code>public</code> directory.</p>
 <h4>Source Directories</h4>
 <p>Declared in <code>patternlab-config.json</code>. You can change the names therein, but the functionality will remain as follows:</p>
 <ul>
-  <li><code>_annotations</code> - global <a href="{{ link.pages-annotating-patterns }}">annotations</a> go here.</li>
+  <li><code>_annotations</code> - global <a href="{{ link.pages-annotating-patterns }}">annotations to patterns</a>.</li>
   <li><code>_styles/src</code> - CSS preprocessor, e.g. Stylus, Sass, Less.</li>
   <li><code>_styles/bld</code> - CSS goes here (or gets built here).</li>
   <li><code>_styles/bld/fonts</code> - fonts beyond the usual system fonts.</li>
@@ -20,4 +20,18 @@
   <li><code>_ui</code> - <a href="{{ link.pages-ui-customization }}">custom UI components</a>.</li>
 </ul>
 <h4>Watching for Source File Changes</h4>
-<p>Manually building Fepper and refreshing the browser after each change can be cumbersome. The <a href="{{ link.pages-run }}"><code>fp</code></a> and <a href="{{ link.pages-run }}"><code>fp restart</code></a> tasks will launch Fepper with <a href="{{ link.pages-live-reload }}">LiveReload</a> to automatically detect file changes and render those changes in the browser.</p>
+<p>Manually building Fepper and refreshing the browser after each change can be cumbersome. The <a href="{{ link.pages-run }}"><code>fp</code></a> and <a href="{{ link.pages-run }}"><code>fp restart</code></a> tasks will launch Fepper with <a href="https://www.npmjs.com/package/livereload-js" target="_blank">LiveReload</a> to automatically detect file changes and render those changes in the browser.</p>
+<p>LiveReload watches for changes in these directories:</p>
+<ul>
+  <li><code>source/_annotations</code></li>
+  <li><code>source/_data</code></li>
+  <li><code>source/_patterns</code></li>
+  <li><code>source/_scripts</code></li>
+  <li><code>source/_styles</code></li>
+</ul>
+<p>In macOS, Linux, and other Unix-like operating systems:</p>
+<ul>
+  <li><code>source/_assets</code></li>
+</ul>
+<h4>How to Stop the Server</h4>
+<p>To stop serving and watching files, press ctrl+c on the command line where Fepper is running.</p>

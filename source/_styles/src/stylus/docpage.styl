@@ -228,3 +228,7 @@ body > .overlay--opacity.overlay--bottom
   top: $logo-height
   @media all and (max-width: $bp-sm-max)
     top: $logo-height-small
+// Very brittle way of hiding the instruction to consult the Fepper website when this IS the Fepper website.
+// Continuously check that this is in fact the element to be hidden.
+.content--docpage--run > ul > li:nth-of-type(4)
+  display: none

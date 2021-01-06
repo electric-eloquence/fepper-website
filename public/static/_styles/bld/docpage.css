@@ -684,3 +684,6 @@ ul + p {
     top: 150px;
   }
 }
+.content--docpage--run > ul > li:nth-of-type(4) {
+  display: none;
+}

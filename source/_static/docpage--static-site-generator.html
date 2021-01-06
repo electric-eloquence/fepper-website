@@ -33,7 +33,7 @@
     </script>
     <script src="_scripts/src/variables.styl" type="text/javascript"></script>
   </head>
-  <body id="body" class="docpage docpage--pattern-parameters">
+  <body id="body" class="docpage docpage--static-site-generator">
     <nav class="nav--main">
       <div class="nav--main__slider slider">
         <ul class="navlist">
@@ -65,35 +65,39 @@
         <div class="logo__border"></div>
       </a> </section>
     <main class="foundation">
-      <article class="content content--docpage--pattern-parameters">
-        <h3>Pattern Parameters</h3>
-        <p>Pattern parameters are a means to hydrate data in an included pattern, but <strong>not further downstream</strong>. They are yet another option for hydrating patterns with varying degrees of granularity.</p>
-        <p>Pattern parameters are a <a href="https://www.npmjs.com/package/feplet" target="_blank">Feplet</a> feature. They are an <em>add-on</em> to <a href="https://github.com/mustache/spec" target="_blank">the Mustache spec</a>. Feplet is otherwise fully compliant with the Mustache spec, as per the original Ruby implementation.</p>
-        <h4>Pattern Parameter Syntax</h4>
-        <p>The keys listed in the pattern parameters need to match variable names in the included pattern. The values listed for each key will replace the variables. For example:</p>
-        <h6>components-top-level:</h6>
-        <pre><code>&lcub;&lcub;&gt; compounds-mid-level(content: 'Mid-level only') &rcub;&rcub;</code></pre>
-        <h6>compounds-mid-level:</h6>
-        <pre><code>&lt;p&gt;&lcub;&lcub; content &rcub;&rcub;&lt;/p&gt;
-&lcub;&lcub;&gt; elements-bottom-level &rcub;&rcub;</code></pre>
-        <h6>elements-bottom-level:</h6>
-        <pre><code>&lt;p&gt;&lcub;&lcub; content &rcub;&rcub;&lt;/p&gt;</code></pre>
-        <h6>Rendered as:</h6>
-        <pre><code>&lt;p&gt;Mid-level only&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;</code></pre>
-        <h4>Advanced Syntax</h4>
-        <p>Parameters can be any valid <a href="http://json5.org" target="_blank">JSON5</a>, minus the exterior curly braces:</p>
-        <pre><code>&lcub;&lcub;&gt; patternType-patternName(
-  bool: false,
-  num: 0,
-  str: 'string',
-  'str w spaces': "string with 'single quotes'",
-  "str-w_special~char?": true
-) &rcub;&rcub;</code></pre>
-        <p>You can even submit objects as values, but be sure to space curly braces so they are not mistaken for closing tags <code>&rcub;&rcub;</code></p>
-        <pre><code>&lcub;&lcub;&gt; patternType-patternName(
-  obj: { deeperObj: { "valid?": true } }
-) &rcub;&rcub;</code></pre>
+      <article class="content content--docpage--static-site-generator">
+        <h3><a id="user-content-static-site-generator" class="anchor" aria-hidden="true" href="#static-site-generator"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
+            </svg></a><a id="user-content-static-site-generator"></a>Static Site Generator</h3>
+        <p>Running <code>fp static</code> will generate a complete static site based on the files in
+          <code>source/_patterns/04-pages</code>. The site will be viewable at
+          <a href="http://localhost:3000/static/" rel="nofollow">http://localhost:3000/static/</a>. An <code>index.html</code> will be generated based on
+          <code>04-pages-00-homepage</code>, or whatever is declared as the homepage in <code>_data.json</code>.
+          If links to other pages in the <code>04-pages</code> directory work correctly in the Fepper
+          UI, they will work correctly in the static site, even if the <code>public/static</code>
+          directory is copied and renamed.
+        </p>
+        <p>For example, assume an article is at
+          <code>source/_patterns/04-pages/articles-/00-top-story.mustache</code>. Create the link as
+          follows:
+        </p>
+        <pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;
+</code></pre>
+        <p>This would built to the public directory as:</p>
+        <pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;
+</code></pre>
+        <p>The Static Site Generator would output this as:</p>
+        <pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;
+</code></pre>
+        <p>Numeric prefixes to filenames and sub-directories would be dropped. Nested
+          source directories would be flattened and all static HTML files would be
+          siblings. The pathing of nested folders would be retained in the filenames, so
+          the organizational benefits of nesting folders would be retained.</p>
+        <p>Appending a hyphen (<code>-</code>) to the "articles" directory is just a suggestion. While
+          the Static Site Generator flattens nested source directories, the additional
+          hyphen suggests that "articles" categorizes the more specific parts that follow.</p>
+        <p>Additional files can be put in <code>source/_static</code> so long as they do not get
+          overwritten by the Static Site Generator.</p>
       </article>
       <nav class="nav--docpage">
         <div class="nav--docpage__slider slider">

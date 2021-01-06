@@ -1,5 +1,5 @@
-import videoGenerate from './video-generate.js';
 import colorGradient from './color-gradient.js';
+import videoGenerate from './video-generate.js';
 
 let bgColorRevealFrameId = null;
 let bgColorRevealRedLast = 255;

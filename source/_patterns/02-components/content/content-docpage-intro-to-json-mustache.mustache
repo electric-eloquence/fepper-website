@@ -22,22 +22,22 @@
 }</code></pre>
 <p>Note how the data are nested within separate keys. We can use the data thusly:</p>
 <pre><code>&lcub;&lcub;# life &rcub;&rcub;
-  &lt;span&gt;I was &lcub;&lcub; answer &rcub;&rcub; &lt;/span&gt;
+  &lt;span&gt;I was &lcub;&lcub; answer &rcub;&rcub;&lt;/span&gt;
 &lcub;&lcub;/ life &rcub;&rcub;
 &lcub;&lcub;# universe &rcub;&rcub;
-  &lt;span&gt;in &lcub;&lcub; answer &rcub;&rcub; universes &lt;/span&gt;
+  &lt;span&gt;in &lcub;&lcub; answer &rcub;&rcub; universes&lt;/span&gt;
 &lcub;&lcub;/ universe &rcub;&rcub;
 &lcub;&lcub;# everything &rcub;&rcub;
-  &lt;span&gt;&lcub;&lcub; answer &rcub;&rcub; times &lt;/span&gt;
+  &lt;span&gt;&lcub;&lcub; answer &rcub;&rcub; times&lt;/span&gt;
 &lcub;&lcub;/ everything &rcub;&rcub;</code></pre>
 <p>We can also write the variables as dot-delimited object properties:</p>
-<pre><code>&lt;span&gt;I was &lcub;&lcub; life.answer &rcub;&rcub; &lt;/span&gt;
-&lt;span&gt;in &lcub;&lcub; universe.answer &rcub;&rcub; universes &lt;/span&gt;
-&lt;span&gt;&lcub;&lcub; everything.answer &rcub;&rcub; times &lt;/span&gt;</code></pre>
+<pre><code>&lt;span&gt;I was &lcub;&lcub; life.answer &rcub;&rcub;&lt;/span&gt;
+&lt;span&gt;in &lcub;&lcub; universe.answer &rcub;&rcub; universes&lt;/span&gt;
+&lt;span&gt;&lcub;&lcub; everything.answer &rcub;&rcub; times&lt;/span&gt;</code></pre>
 <p>Either of these would be built as:</p>
-<pre><code>&lt;span&gt;I was 7 &lt;/span&gt;
-&lt;span&gt;in 14 universes &lt;/span&gt;
-&lt;span&gt;21 times &lt;/span&gt;</code></pre>
+<pre><code>&lt;span&gt;I was 7&lt;/span&gt;
+&lt;span&gt;in 14 universes&lt;/span&gt;
+&lt;span&gt;21 times&lt;/span&gt;</code></pre>
 <h4>Rendering HTML in Variables</h4>
 <p>You may want to include HTML in your variables. By default, Mustache will convert special characters into HTML entities. For example, for this JSON:</p>
 <pre><code>{

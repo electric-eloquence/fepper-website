@@ -87,12 +87,11 @@
   bool: false,
   num: 0,
   str: 'string',
-  'str w spaces': "string with 'single quotes'",
-  "str-w_special~char?": true
+  'str w spaces': "string with 'single quotes'"
 ) &rcub;&rcub;</code></pre>
         <p>You can even submit objects as values, but be sure to space curly braces so they are not mistaken for closing tags <code>&rcub;&rcub;</code></p>
         <pre><code>&lcub;&lcub;&gt; patternType-patternName(
-  obj: { deeperObj: { "valid?": true } }
+  obj: { deeperObj: { valid?: true } }
 ) &rcub;&rcub;</code></pre>
       </article>
       <nav class="nav--docpage">

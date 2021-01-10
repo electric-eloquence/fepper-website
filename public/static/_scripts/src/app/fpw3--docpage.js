@@ -1,4 +1,4 @@
-import Behaviors from './behaviors.js';
+import Behaviors from './behaviors--docpage.js';
 
 export default class {
   constructor(requerio, root) {
@@ -14,7 +14,7 @@ export default class {
     $orgs.window.resize(this.behaviors.debounce(() => {
       const windowState = $orgs.window.getState();
 
-      this.behaviors.navButtonsShift(windowState)
+      this.behaviors.navButtonsShift(windowState);
     }));
 
     $orgs.window.scroll(() => {

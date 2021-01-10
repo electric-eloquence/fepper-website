@@ -1,3 +1,4 @@
+/* eslint-disable comma-spacing */
 export default [
   [230,242,232],
   [230,242,232],
@@ -90,4 +91,4 @@ export default [
   [250,230,230],
   [250,230,230],
   [250,230,230]
-]
+];

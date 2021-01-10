@@ -1,3 +1,4 @@
+/* eslint-disable comma-spacing */
 export default [
   [2,125,21],
   [2,125,21],

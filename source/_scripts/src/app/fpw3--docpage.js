@@ -1,4 +1,4 @@
-import Behaviors from './behaviors.js';
+import Behaviors from './behaviors--docpage.js';
 
 export default class {
   constructor(requerio, root) {

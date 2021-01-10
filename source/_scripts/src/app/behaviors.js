@@ -131,14 +131,12 @@ export default class {
 
   gitHubHrefAdapt(project) {
     const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
-    let hrefHome = hrefBase;
     let hrefDownload = hrefBase;
     let hrefReadme = hrefBase;
 
     switch (project) {
       case 'drupal':
       case 'wordpress':
-        hrefHome += `-${project}`;
         hrefDownload += `-${project}/releases/latest`;
         hrefReadme += `-${project}%23readme`;
 

@@ -14,7 +14,7 @@ export default class {
     $orgs.window.resize(this.behaviors.debounce(() => {
       const windowState = $orgs.window.getState();
 
-      this.behaviors.navButtonsShift(windowState)
+      this.behaviors.navButtonsShift(windowState);
     }));
 
     $orgs.window.scroll(() => {

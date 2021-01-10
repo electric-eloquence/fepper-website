@@ -151,6 +151,7 @@ function scrapeAndWriteContent(sectionHeadingText) {
       const html2jsonObj = html2json(output);
       const markdownBodyObj = markdownBodySelect(html2jsonObj);
       const sectionObj = sectionSelect(sectionHeadingText, markdownBodyObj);
+      // eslint-disable-next-line no-useless-escape
       const filenameSuffix = sectionHeadingText.replace(/[ \.]/g, '-').toLowerCase();
       const html4file = json2html(sectionObj)
         .replace(/\{\{/g, '&lcub;&lcub;')

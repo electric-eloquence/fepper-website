@@ -55,14 +55,14 @@ export default class {
       };
     }
 
-    // Create and load non-rendered DOM Images for video generation.
+    // Create and load non-rendered Images for video generation.
     const logicalImages = {
-      '03': new Image(),
-      '04': new Image(),
-      '05': new Image(),
-      '06': new Image(),
-      '07': new Image(),
-      '08': new Image()
+      '03': new window.Image(),
+      '04': new window.Image(),
+      '05': new window.Image(),
+      '06': new window.Image(),
+      '07': new window.Image(),
+      '08': new window.Image()
     };
 
     // Try videoRender() first to see if the browser supports async generators.
@@ -82,7 +82,7 @@ export default class {
     let project = '';
 
     if (typeof URLSearchParams === 'function') {
-      const searchParams = new URLSearchParams(location.search);
+      const searchParams = new URLSearchParams(window.location.search);
 
       project = searchParams.get('project');
     }

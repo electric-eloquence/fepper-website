@@ -94,7 +94,6 @@ function stateBuild($orgOrMember, state, action) {
     if ($orgOrMember[0] && $orgOrMember[0].attribs) { // Cheerio
       state.attribs = JSON.parse(JSON.stringify($orgOrMember[0].attribs));
     }
-
     else if ($orgOrMember[0] && $orgOrMember[0].attributes && $orgOrMember[0].attributes.length) { // jQuery
       for (let i = 0; i < $orgOrMember[0].attributes.length; i++) {
         const attr = $orgOrMember[0].attributes[i];

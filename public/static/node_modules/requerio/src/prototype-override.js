@@ -284,7 +284,14 @@ function getMeasurementSwitch($org, method, computedStyle = {}, elem) {
 
     case 'scrollLeft':
       if ($org.selector === 'window') {
-        return elem.pageXOffset;
+        /* istanbul ignore else */
+        // If using JSDOM.
+        if (typeof window === 'object' && typeof global === 'object') {
+          return $org.$members[0]._scrollLeft;
+        }
+        else {
+          return elem.pageXOffset;
+        }
       }
       else if ($org.selector === 'document') {
         return elem.documentElement.scrollLeft;
@@ -295,7 +302,14 @@ function getMeasurementSwitch($org, method, computedStyle = {}, elem) {
 
     case 'scrollTop':
       if ($org.selector === 'window') {
-        return elem.pageYOffset;
+        /* istanbul ignore else */
+        // If using JSDOM.
+        if (typeof window === 'object' && typeof global === 'object') {
+          return $org.$members[0]._scrollTop;
+        }
+        else {
+          return elem.pageYOffset;
+        }
       }
       else if ($org.selector === 'document') {
         return elem.documentElement.scrollTop;

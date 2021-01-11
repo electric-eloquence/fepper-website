@@ -73,9 +73,9 @@
         <h4>The Pseudo-Pattern File Naming Convention</h4>
         <p></p>
         <pre><code>[patternName]~[variantName].json</code></pre>
-        <p>The tilde (<code>~</code>) and <code>.json</code> file extension are the hints that Fepper uses to determine that this is a pseudo-pattern. The <code>patternName</code> tells Fepper which existing pattern it should use when rendering the pseudo-pattern. The JSON file itself works exactly like a pattern-specific JSON file. It has the added benefit that the pseudo-pattern will also inherit any values from the existing pattern's JSON data.</p>
+        <p>The tilde (<code>~</code>) and <code>.json</code> file extension are the hints that Fepper uses to determine that this is a pseudo-pattern. The <code>patternName</code> tells Fepper which existing pattern it should use when rendering the pseudo-pattern. The JSON file itself works exactly like a <a href="docpage--pattern-data.html">pattern-specific JSON</a> file. It has the added benefit that the pseudo-pattern will also inherit values from the existing pattern's JSON data. (Data specific to the <a href="docpage--global-head-and-foot.html">global head or foot</a> will <em>not</em> be inherited and must be copied to the pseudo-pattern.)</p>
         <h4>Adding Pseudo-Patterns to Your Project</h4>
-        <p>Adding a pseudo-pattern is as simple as naming it correctly and following the pattern-specific JSON file instructions for organizing its content. Let's look at a simple example where we want to show an emergency notification on our homepage. Our <code>templates</code> directory might look like this:</p>
+        <p>Adding a pseudo-pattern is as simple as naming it correctly and following the <a href="docpage--pattern-data.html">pattern-specific JSON file instructions</a> for organizing its content. Let's look at a simple example where we want to show an emergency notification on our homepage. Our <code>templates</code> directory might look like this:</p>
         <pre><code>article.mustache
 blog.mustache
 homepage.mustache</code></pre>
@@ -94,7 +94,7 @@ homepage~emergency.json</code></pre>
         <pre><code>{
   "emergency": true
 }</code></pre>
-        <p>Now when we build Fepper, we'll have our homepage template rendered twice: once as the regular template, and once as a pseudo-pattern showing the emergency section. Note that the pseudo-pattern will show up in our navigation as "Homepage Emergency".</p>
+        <p>Now when we build Fepper, we'll have our homepage template rendered twice: once as the regular template, and once as a pseudo-pattern showing the emergency section. Note that the pseudo-pattern will show up in the UI menu as "Homepage Emergency".</p>
         <h4><s>Using Pseudo-Patterns as Pattern Includes</s></h4>
         <p>Pseudo-patterns <strong>cannot</strong> be used as pattern includes. They are just logical extensions of variant JSON data, not actual patterns.</p>
         <h4>Annotating Pseudo-Patterns</h4>

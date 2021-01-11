@@ -59,7 +59,7 @@
     "i"
   ],
   "tag-close": true,
-  "tag-name-lowercase": true,
+  "tag-name-lowercase": false,
   "tag-name-match": true,
   "tag-req-attr": false,
   "tag-self-close": false,

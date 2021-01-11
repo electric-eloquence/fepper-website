@@ -1,15 +1,21 @@
 'use strict';
 
+import Behaviors from '../_scripts/src/app/behaviors--homepage';
+import $organisms from '../_scripts/src/app/organisms--homepage.js';
+
 const fs = require('fs');
 const path = require('path');
 
-const cheerio = require('cheerio');
 const Fepper = require('fepper');
+const {JSDOM} = require('jsdom');
 const Redux = global.Redux = require('redux');
 
 const cwd = process.cwd();
 const fepper = new Fepper(`${cwd}/..`);
+const indexSrc = path.resolve(__dirname, '..', 'static', 'index.html');
+const indexDest = path.resolve(__dirname, 'fixtures', 'index.html');
 
+fs.copyFileSync(indexSrc, indexDest);
 fepper.ui.copyScripts();
 
 /* eslint-disable no-console */
@@ -17,17 +23,12 @@ console.log('Copied scripts to public directory.');
 console.log('Running tests...');
 /* eslint-enable no-console */
 
-const html = fs.readFileSync(path.resolve(__dirname, 'fixtures', 'index.html'), 'utf8');
-const $ = global.$ = cheerio.load(html);
-
-global.Image = class {
-  constructor() {
-    this.src = null;
-  }
-};
+const html = fs.readFileSync(indexDest, 'utf8');
+const {window} = new JSDOM(html);
+global.window = window;
+global.document = window.document;
+const $ = global.$ = require('jquery');
 global.requestAnimationFrame = fn => setImmediate(() => fn());
-
-import $organisms from '../_scripts/src/app/organisms.js';
 
 // Read variables.style for global defs for testing.
 require('../_scripts/src/variables.styl');
@@ -37,8 +38,7 @@ const requerio = new Requerio($, Redux, $organisms);
 
 requerio.init();
 
-import behaviorsGet from '../_scripts/src/app/behaviors-get.js';
-const behaviors = behaviorsGet(requerio, global);
+const behaviors = new Behaviors(requerio, global);
 
 // Prep for $window.scrollTop override
 const panesOrg = requerio.$orgs['.content__pane'];
@@ -47,7 +47,6 @@ const panesCount = panesOrg.getState().$members.length;
 const beforePanesHeight = 600;
 const paneHeight = 200;
 const windowWidth = 1000;
-const windowHeight = 800;
 
 let paneTopDistance = beforePanesHeight;
 let paneBottomDistance = paneTopDistance;
@@ -105,31 +104,6 @@ $window.scrollTop = (...args) => {
 
   return retVal;
 };
-
-$window.getState = () => {
-  let scrollTop;
-
-  if (typeof $window.$members[0]._scrollTop !== 'undefined') {
-    scrollTop = $window.$members[0]._scrollTop;
-  }
-  else {
-    scrollTop = 0;
-  }
-
-  return {
-    scrollTop: scrollTop,
-    width: windowWidth,
-    height: windowHeight
-  };
-};
-
-// Create mock Cheerio .animate() method.
-requerio.$orgs['#html'].animate = function () {
-  const {scrollTop} = arguments[0];
-
-  $window.scrollTop(scrollTop);
-};
-requerio.$orgs['#body'].animate = () => {};
 
 // More setup.
 requerio.behaviors = behaviors;

@@ -52,7 +52,7 @@ describe('Fepper website', function () {
       it('to .content__pane[1] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(500);
-        app.behaviors.bgColorReveal();
+        app.behaviors.bgColorReveal($orgs.window.getState());
 
         setImmediate(() => {
           // Get Results.
@@ -68,7 +68,7 @@ describe('Fepper website', function () {
       it('to .content__pane[3] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(900);
-        app.behaviors.bgColorReveal();
+        app.behaviors.bgColorReveal($orgs.window.getState());
 
         setImmediate(() => {
           // Get Results.
@@ -84,7 +84,7 @@ describe('Fepper website', function () {
       it('to .content__pane[5] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(1300);
-        app.behaviors.bgColorReveal();
+        app.behaviors.bgColorReveal($orgs.window.getState());
 
         setImmediate(() => {
           // Get Results.
@@ -101,7 +101,7 @@ describe('Fepper website', function () {
     describe('removes background-color', function () {
       before(function () {
         $orgs.window.scrollTop(0);
-        app.behaviors.bgColorReveal();
+        app.behaviors.bgColorReveal($orgs.window.getState());
       });
 
       it('from .content__pane[1] when it is scrolled beyond viewport', function () {
@@ -131,28 +131,15 @@ describe('Fepper website', function () {
   });
 
   describe('gitHubHrefAdapt', function () {
-    const gitHubHomeHrefBefore = $orgs['.logo--linked'].getState().attribs.href;
-    const gitHubDownloadHrefBefore = $orgs['.link-github__anchor--download'].getState().attribs.href;
-    const gitHubReadmeHrefBefore = $orgs['.link-github__anchor--readme'].getState().attribs.href;
-
-    it('adapts GitHub Project Home href to Drupal project when provided project=drupal search param', function () {
-      // Act.
-      app.behaviors.gitHubHrefAdapt('drupal');
-
-      // Get results.
-      const gitHubHomeHrefAfter = $orgs['.logo--linked'].getState().attribs.href;
-
-      // Assert.
-      expect(gitHubHomeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal');
-      expect(gitHubHomeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal');
-    });
+    const gitHubDownloadHrefBefore = $orgs['.link--github__anchor--download'].getState().attribs.href;
+    const gitHubReadmeHrefBefore = $orgs['.link--github__anchor--readme'].getState().attribs.href;
 
     it('adapts GitHub Download href to Drupal project when provided project=drupal search param', function () {
       // Act.
       app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link-github__anchor--download'].getState().attribs.href;
+      const gitHubDownloadHrefAfter = $orgs['.link--github__anchor--download'].getState().attribs.href;
 
       // Assert.
       expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
@@ -164,23 +151,11 @@ describe('Fepper website', function () {
       app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
-      const gitHubReadmeHrefAfter = $orgs['.link-github__anchor--readme'].getState().attribs.href;
+      const gitHubReadmeHrefAfter = $orgs['.link--github__anchor--readme'].getState().attribs.href;
 
       // Assert.
       expect(gitHubReadmeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal%23readme');
       expect(gitHubReadmeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal%23readme');
-    });
-
-    it('adapts GitHub Project Home href to WordPress project when provided project=wordpress search param', function () {
-      // Act.
-      app.behaviors.gitHubHrefAdapt('wordpress');
-
-      // Get results.
-      const gitHubHomeHrefAfter = $orgs['.logo--linked'].getState().attribs.href;
-
-      // Assert.
-      expect(gitHubHomeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress');
-      expect(gitHubHomeHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress');
     });
 
     it('adapts GitHub Download href to WordPress project when provided project=wordpress search param', function () {
@@ -188,7 +163,7 @@ describe('Fepper website', function () {
       app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link-github__anchor--download'].getState().attribs.href;
+      const gitHubDownloadHrefAfter = $orgs['.link--github__anchor--download'].getState().attribs.href;
 
       // Assert.
       expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
@@ -200,7 +175,7 @@ describe('Fepper website', function () {
       app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
-      const gitHubReadmeHrefAfter = $orgs['.link-github__anchor--readme'].getState().attribs.href;
+      const gitHubReadmeHrefAfter = $orgs['.link--github__anchor--readme'].getState().attribs.href;
 
       // Assert.
       expect(gitHubReadmeHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress%23readme');
@@ -211,8 +186,10 @@ describe('Fepper website', function () {
   describe('logoRipen', function () {
     // Prep.
     before(function () {
-      $orgs.window.scrollTop((1 - Math.random()) * 1200);
-      app.behaviors.logoRipen();
+      const rn1To1200 = (1 - Math.random()) * 1200;
+
+      $orgs.window.scrollTop(rn1To1200);
+      app.behaviors.logoRipen($orgs.window.getState());
     });
 
     it('moves #logoBg between 0 and -90% right when window is scrolled', function () {
@@ -231,7 +208,7 @@ describe('Fepper website', function () {
       return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.behaviors.mainContentSlideIn();
+        app.behaviors.mainContentSlideIn($orgs.window.getState());
 
         setImmediate(() => {
           // Get results.
@@ -269,7 +246,7 @@ describe('Fepper website', function () {
       return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.behaviors.mainContentSlideOut();
+        app.behaviors.mainContentSlideOut($orgs.window.getState());
 
         setImmediate(() => {
           // Get results.
@@ -299,7 +276,7 @@ describe('Fepper website', function () {
   describe('scrollButtonDisplay', function () {
     const brandingOrg = $orgs['#branding'];
     const brandingState = brandingOrg.getState();
-    const scrollButtonOrg = $orgs['.scroll-button--up'];
+    const scrollButtonOrg = $orgs['.button--scroll--up'];
     const windowState = $orgs.window.getState();
 
     it('hides when the top of #branding is below the top of window', function () {
@@ -349,16 +326,14 @@ describe('Fepper website', function () {
 
   describe('scrollButtonDown', function () {
     const panesOrg = $orgs['.content__pane'];
-    const expectedTopVal = 200;
-    const expectedBottomVal = 400;
 
     it('scrolls 1st content pane into view on 1st click', function () {
       app.behaviors.scrollButtonDown();
 
       const paneState = panesOrg.getState(0);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(600);
+      expect(paneState.boundingClientRect.bottom).to.equal(800);
     });
 
     it('scrolls 2nd content pane into view on 2nd click', function () {
@@ -366,8 +341,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(1);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(800);
+      expect(paneState.boundingClientRect.bottom).to.equal(1000);
     });
 
     it('scrolls 3rd content pane into view on 3rd click', function () {
@@ -375,8 +350,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(2);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1000);
+      expect(paneState.boundingClientRect.bottom).to.equal(1200);
     });
 
     it('scrolls 4th content pane into view on 4th click', function () {
@@ -384,8 +359,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(3);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1200);
+      expect(paneState.boundingClientRect.bottom).to.equal(1400);
     });
 
     it('scrolls 5th content pane into view on 5th click', function () {
@@ -393,8 +368,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(4);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1400);
+      expect(paneState.boundingClientRect.bottom).to.equal(1600);
     });
 
     it('scrolls footer into view on 6th click', function () {
@@ -402,23 +377,21 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(5);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1600);
+      expect(paneState.boundingClientRect.bottom).to.equal(1800);
     });
   });
 
   describe('scrollButtonUp', function () {
     const panesOrg = $orgs['.content__pane'];
-    const expectedTopVal = 200;
-    const expectedBottomVal = 400;
 
     it('scrolls 5th content pane into view on 1st click', function () {
       app.behaviors.scrollButtonUp();
 
       const paneState = panesOrg.getState(4);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1400);
+      expect(paneState.boundingClientRect.bottom).to.equal(1600);
     });
 
     it('scrolls 4th content pane into view on 2nd click', function () {
@@ -426,8 +399,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(3);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1200);
+      expect(paneState.boundingClientRect.bottom).to.equal(1400);
     });
 
     it('scrolls 3rd content pane into view on 3rd click', function () {
@@ -435,8 +408,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(2);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(1000);
+      expect(paneState.boundingClientRect.bottom).to.equal(1200);
     });
 
     it('scrolls 2nd content pane into view on 4th click', function () {
@@ -444,8 +417,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(1);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(800);
+      expect(paneState.boundingClientRect.bottom).to.equal(1000);
     });
 
     it('scrolls 1st content pane into view on 5th click', function () {
@@ -453,8 +426,8 @@ describe('Fepper website', function () {
 
       const paneState = panesOrg.getState(0);
 
-      expect(paneState.boundingClientRect.top).to.equal(expectedTopVal);
-      expect(paneState.boundingClientRect.bottom).to.equal(expectedBottomVal);
+      expect(paneState.boundingClientRect.top).to.equal(600);
+      expect(paneState.boundingClientRect.bottom).to.equal(800);
     });
   });
 
@@ -486,12 +459,12 @@ describe('Fepper website', function () {
 
   describe('videoRender', function () {
     const logicalImages = {
-      '03': new Image(),
-      '04': new Image(),
-      '05': new Image(),
-      '06': new Image(),
-      '07': new Image(),
-      '08': new Image()
+      '03': new window.Image(),
+      '04': new window.Image(),
+      '05': new window.Image(),
+      '06': new window.Image(),
+      '07': new window.Image(),
+      '08': new window.Image()
     };
     const videoPlay = app.behaviors.videoGenerate(logicalImages, $orgs, 0);
 
@@ -502,16 +475,6 @@ describe('Fepper website', function () {
 
         // Assert.
         expect(videoImgDisplay).to.equal('none');
-      };
-    }
-
-    function imageKillClosure(j) {
-      return function () {
-        // Get results.
-        const videoImgSrc = $orgs['.video__img'].getState(j).attribs.src;
-
-        // Assert.
-        expect(videoImgSrc).to.equal('#');
       };
     }
 
@@ -535,10 +498,6 @@ describe('Fepper website', function () {
 
         for (let j = ix6 - 3; j < ix6; j++) {
           it(`videoImgsOrg member ${j} has display === "none"`, imageHideClosure(j));
-        }
-
-        for (let j = ix6 - 3; j < ix6; j++) {
-          it(`videoImgsOrg member ${j} has src === "#"`, imageKillClosure(j));
         }
 
         imageSourceTest(ix6, '06');

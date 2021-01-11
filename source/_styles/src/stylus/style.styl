@@ -18,6 +18,14 @@
   top: 0
   width: 100%
   z-index: 6
+  &__inactive
+    bottom: 0
+    left: 0
+    height: 3.2rem;
+    position: absolute
+    width: 100%
+    @media all and (max-width: $bp-sm-max)
+      height: 2.4rem;
 .logo
   display: block
   margin: 0 auto

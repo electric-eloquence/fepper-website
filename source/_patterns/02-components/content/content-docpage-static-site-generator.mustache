@@ -9,10 +9,10 @@ directory is copied and renamed.</p><p>For example, assume an article is at
 follows:</p><pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;
 </code></pre><p>This would built to the public directory as:</p><pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;
 </code></pre><p>The Static Site Generator would output this as:</p><pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;
-</code></pre><p>Numeric prefixes to filenames and sub-directories would be dropped. Nested
-source directories would be flattened and all static HTML files would be
+</code></pre><p>Numeric prefixes to filenames and sub-directories will be dropped. Nested
+source directories will be flattened and all static HTML files would become
 siblings. The pathing of nested folders would be retained in the filenames, so
-the organizational benefits of nesting folders would be retained.</p><p>Appending a hyphen (<code>-</code>) to the "articles" directory is just a suggestion. While
+the organizational benefits of nesting folders will be retained.</p><p>Appending a hyphen (<code>-</code>) to the "articles" directory is just a suggestion. While
 the Static Site Generator flattens nested source directories, the additional
 hyphen suggests that "articles" categorizes the more specific parts that follow.</p><p>Additional files can be put in <code>source/_static</code> so long as they do not get
 overwritten by the Static Site Generator.</p>

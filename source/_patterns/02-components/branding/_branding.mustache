@@ -12,12 +12,7 @@
     <div id="logoBg" class="logo__bg">
       <h1>{{ heading_h1 }}</h1>
     </div>
-    {{# branding_default? }}
-      {{> 01-elements/images/logo-homepage }}
-    {{/ branding_default? }}
-    {{# branding_docpage? }}
-      {{> 01-elements/images/logo-docpage }}
-    {{/ branding_docpage? }}
+    {{> elements-logo }}
     <div class="logo__border"></div>{{! This border hides an errant border when zooming. }}
   </a>
   <div class="branding__inactive"></div>

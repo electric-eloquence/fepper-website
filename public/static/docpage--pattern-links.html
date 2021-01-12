@@ -33,7 +33,7 @@
     </script>
     <script src="_scripts/src/variables.styl" type="text/javascript"></script>
   </head>
-  <body id="body" class="docpage docpage--annotate-patterns">
+  <body id="body" class="docpage docpage--pattern-links">
     <nav class="nav--main">
       <div class="nav--main__slider slider">
         <ul class="navlist">
@@ -84,52 +84,16 @@
       <div class="branding__inactive"></div>
     </section>
     <main class="foundation">
-      <article class="content content--docpage--annotate-patterns">
-        <h3>Annotate Patterns</h3>
-        <p>Fepper uses Front Matter (YAML + Markdown) syntax for annotating patterns:</p>
-        <pre><code>---
-el: #title
-state: inprogress
-title: Title for my pattern
----
-This is a *Markdown* description of my pattern.</code></pre>
-        <p><code>el</code> must be a CSS selector identifying the element to annotate. When the Annotation Viewer is opened, a tooltip will appear above the element, and the annotation's title and description will be rendered in the viewer. The state (not really an annotation) will be rendered as a colored dot denoting the pattern's progress in the UI menu.</p>
-        <p>An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to annotate the following pattern:</p>
-        <pre><code>00-elements/images/landscape-16x9.mustache</code></pre>
-        <p>Name your annotation file:</p>
-        <pre><code>00-elements/images/landscape-16x9.md</code></pre>
-        <h4>Annotating Pseudo-Patterns</h4>
-        <p>To annotate <a href="docpage--pseudo-patterns.html">pseudo-patterns</a>, replace the tilde sign (<code>~</code>) with a hyphen (<code>-</code>) when naming your annotation file.</p>
-        <p>For example, to annotate the following pseudo-pattern:</p>
-        <pre><code>00-elements/button/button~red.json</code></pre>
-        <p>Name your annotatation file:</p>
-        <pre><code>00-elements/button/button-red.md</code></pre>
-        <h4>Global Annotation File</h4>
-        <p>Example:</p>
-        <pre><code>---
-el: .hamburger
-title: Hamburger
----
-Ich bin ein Hamburger.
-~*~
----
-el: .hero
-title: Hero
----
-Up front, on top, centered.
-~*~
----
-el: .sub
-title: Sub
----
-Below hero.
-~*~
----
-el: .dagwood
-title: Dagwood
----
-Sandwich of sandwiches.</code></pre>
-        <p>Located at <code>source/_annotations</code>, the global annotation file must be named with the <code>.md</code> extenstion, or whatever is configured as the <code>frontMatterExtension</code>. It can consist of any number of annotations, each separated by <code>~*~</code>. Pattern-specific annotation files can consist of multiple annotations as well, delimited the same way.</p>
+      <article class="content content--docpage--pattern-links">
+        <h3>Pattern Links</h3>
+        <p>Pattern pages can link to one another as though on a real website. This is especially useful when <a href="">generating a static site</a>, as relative linking from one page to another will be preserved. The basic format is:</p>
+        <pre><code> &lcub;&lcub; link.[patternType]-[patternName] &rcub;&rcub;</code></pre>
+        <p>For example, say you wanted to link an article page to your homepage. If the article were at <code>04-pages/articles-/00-top-story.mustache</code>, you could write:</p>
+        <pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;</code></pre>
+        <p>In Fepper <code>public/patterns</code> directory, this would built as:</p>
+        <pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>
+        <p>Appending a hyphen (<code>-</code>) to the "articles" directory is just a suggestion for generating a static site. The Static Site Generator flattens nested source directories, but the additional hyphen suggests that "articles" categorizes the more specific parts that follow. The final output of the link would be:</p>
+        <pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>
       </article>
       <nav class="nav--docpage">
         <div class="nav--docpage__slider slider">
@@ -162,8 +126,8 @@ Sandwich of sandwiches.</code></pre>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--link-patterns.html">Link Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--annotate-patterns.html">Annotate Patterns</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-annotations.html">Pattern Annotations</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-states.html">Pattern States</a></li>
               </ul>
             </li>

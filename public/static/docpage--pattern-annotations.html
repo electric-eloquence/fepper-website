@@ -33,7 +33,7 @@
     </script>
     <script src="_scripts/src/variables.styl" type="text/javascript"></script>
   </head>
-  <body id="body" class="docpage docpage--pseudo-patterns">
+  <body id="body" class="docpage docpage--pattern-annotations">
     <nav class="nav--main">
       <div class="nav--main__slider slider">
         <ul class="navlist">
@@ -84,38 +84,52 @@
       <div class="branding__inactive"></div>
     </section>
     <main class="foundation">
-      <article class="content content--docpage--pseudo-patterns">
-        <h3>Pseudo-Patterns</h3>
-        <p>Pseudo-patterns give the ability to quickly build multiple variants of an existing pattern.</p>
-        <h4>The Pseudo-Pattern File Naming Convention</h4>
-        <p></p>
-        <pre><code>[patternName]~[variantName].json</code></pre>
-        <p>The tilde (<code>~</code>) and <code>.json</code> file extension are the hints that Fepper uses to determine that this is a pseudo-pattern. The <code>patternName</code> tells Fepper which existing pattern it should use when rendering the pseudo-pattern. The JSON file itself works exactly like a <a href="docpage--pattern-data.html">pattern-specific JSON</a> file. It has the added benefit that the pseudo-pattern will also inherit values from the existing pattern's JSON data. (Data specific to the <a href="docpage--global-head-and-foot.html">global head or foot</a> will <em>not</em> be inherited and must be copied to the pseudo-pattern.)</p>
-        <h4>Adding Pseudo-Patterns to Your Project</h4>
-        <p>Adding a pseudo-pattern is as simple as naming it correctly and following the <a href="docpage--pattern-data.html">pattern-specific JSON file instructions</a> for organizing its content. Let's look at a simple example where we want to show an emergency notification on our homepage. Our <code>templates</code> directory might look like this:</p>
-        <pre><code>article.mustache
-blog.mustache
-homepage.mustache</code></pre>
-        <p>Our <code>homepage.mustache</code> template might look like this:</p>
-        <pre><code>&lt;div id="main-container"&gt;
-  &lcub;&lcub;# emergency &rcub;&rcub;
-    &lt;div class="emergency"&gt;Emergency!&lt;/div&gt;
-  &lcub;&lcub;/ emergency &rcub;&rcub;
-&lt;/div&gt;</code></pre>
-        <p>If there is no JSON data file giving a value for <code>emergency</code>, that section will never show when <code>homepage.mustache</code> gets rendered. We want to show <em>both</em> the regular and emergency states of the homepage, but we don't want to duplicate the entire <code>homepage.mustache</code> template. Duplicate changes nearly <em>always</em> get forgotten in future maintenance. So let's DRY (Don't Repeat Yourself) things up and add our pseudo-pattern:</p>
-        <pre><code>article.mustache
-blog.mustache
-homepage.mustache
-homepage~emergency.json</code></pre>
-        <p>In our pseudo-pattern <code>homepage~emergency.json</code>, we add our <code>emergency</code> boolean:</p>
-        <pre><code>{
-  "emergency": true
-}</code></pre>
-        <p>Now when we build Fepper, we'll have our homepage template rendered twice: once as the regular pattern, and once as a pseudo-pattern showing the emergency section. Note that the pseudo-pattern will show up in the UI menu as "Homepage Emergency".</p>
-        <h4><s>Using Pseudo-Patterns as Pattern Includes</s></h4>
-        <p>Pseudo-patterns <strong>cannot</strong> be used as pattern includes. They are just logical extensions of variant JSON data, not actual patterns.</p>
+      <article class="content content--docpage--pattern-annotations">
+        <h3>Pattern Annotations</h3>
+        <p>Fepper uses Front Matter (YAML + Markdown) for pattern annotations:</p>
+        <pre><code>---
+el: #title
+state: inprogress
+title: Title for my pattern
+---
+This is a *Markdown* description of my pattern.</code></pre>
+        <p><code>el</code> must be a CSS selector identifying the element to annotate. When the Annotation Viewer is opened, a tooltip will appear above the element, and the annotation's title and description will be rendered in the viewer. The state (not really an annotation) will be rendered as a colored dot denoting the pattern's progress in the UI menu.</p>
+        <p>An annotation file normally has a <code>.md</code> file extension, although this can be configured in <code>patternlab-config.json</code> under <code>frontMatterExtension</code>. The rest of the name must match the name of the pattern it's documenting. For example, to annotate the following pattern:</p>
+        <pre><code>00-elements/images/landscape-16x9.mustache</code></pre>
+        <p>Name your annotation file:</p>
+        <pre><code>00-elements/images/landscape-16x9.md</code></pre>
         <h4>Annotating Pseudo-Patterns</h4>
-        <p>Pseudo-patterns <em>can</em>, however, be annotated. Check the documentation on <a href="">annotating patterns</a> to learn more.</p>
+        <p>To annotate <a href="docpage--pseudo-patterns.html">pseudo-patterns</a>, replace the tilde sign (<code>~</code>) with a hyphen (<code>-</code>) when naming your annotation file.</p>
+        <p>For example, to annotate the following pseudo-pattern:</p>
+        <pre><code>00-elements/button/button~red.json</code></pre>
+        <p>Name your annotatation file:</p>
+        <pre><code>00-elements/button/button-red.md</code></pre>
+        <h4>Global Annotation File</h4>
+        <p>Example:</p>
+        <pre><code>---
+el: .hamburger
+title: Hamburger
+---
+Ich bin ein Hamburger.
+~*~
+---
+el: .hero
+title: Hero
+---
+Up front, on top, centered.
+~*~
+---
+el: .sub
+title: Sub
+---
+Below hero.
+~*~
+---
+el: .dagwood
+title: Dagwood
+---
+Sandwich of sandwiches.</code></pre>
+        <p>Located at <code>source/_annotations</code>, the global annotation file must be named with the <code>.md</code> extenstion, or whatever is configured as the <code>frontMatterExtension</code>. It can consist of any number of annotations, each separated by <code>~*~</code>. Pattern-specific annotation files can consist of multiple annotations as well, delimited the same way.</p>
       </article>
       <nav class="nav--docpage">
         <div class="nav--docpage__slider slider">

@@ -4,7 +4,7 @@ $video-width-max = 1728px
 $video-height-max = ($video-width-max / 3)
 
 .branding
-  padding-bottom: $branding-bottom
+  padding-bottom: $branding-pad
 .video
   overflow: hidden
   padding-bottom: (100% / 3)
@@ -417,16 +417,17 @@ $video-height-max = ($video-width-max / 3)
 .hider
   background-color: white
   position: fixed
-  top: 'calc((100vw / 3) + %s + %s)' % ($logo-height $heading-height)
+  top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height $branding-pad $heading-height)
   transition: height 0.5s linear 0.5s
   width: 100%
-  height: 'calc(100vh - (100vw / 3) - %s - %s)' % ($logo-height $heading-height)
+  height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height $branding-pad $heading-height)
+  z-index: 1
   @media all and (max-width: $bp-sm-max)
-    top: 'calc((100vw / 3) + %s + %s)' % ($logo-height-small $heading-height)
-    height: 'calc(100vh - (100vw / 3) - %s - %s)' % ($logo-height-small $heading-height)
-  &.hide--out
+    top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-pad $heading-height)
+    height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-pad $heading-height)
+  &.hider--out
     animation-duration: 1s
-    animation-name: hideOut
+    animation-name: hiderOut
     height: 0
 .es2018
   .browser-advice

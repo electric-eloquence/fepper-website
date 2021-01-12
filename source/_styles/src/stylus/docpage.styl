@@ -47,17 +47,6 @@ ul + p
     color: #f00
     a
       color: #f00
-  @media all and (max-width: $bp-md-max)
-    width: 'calc(100vw - %s)' % $nav-docpage-width-small
-  @media all and (max-width: $bp-sm-max)
-    min-height: $nav-docpage-height
-    padding: 2rem 4rem 0
-    width: 100%
-  @media all and (max-width: $bp-xs-max)
-    padding-right: 3rem
-    padding-left: 3rem
-  @media all and (min-width: $max-width)
-    width: 'calc(%s - %s)' % ($max-width $nav-docpage-width)
   a
     text-decoration: underline
   ul
@@ -69,10 +58,28 @@ ul + p
         list-style-type: square
         ul
           list-style-type: disc
+  @media all and (max-width: $bp-md-max)
+    width: 'calc(100vw - %s)' % $nav-docpage-width-small
+  @media all and (max-width: $bp-sm-max)
+    min-height: $nav-docpage-height
+    padding: 2rem 4rem 0
+    width: 100%
+  @media all and (max-width: $bp-xs-max)
+    padding-right: 3rem
+    padding-left: 3rem
+  @media all and (min-width: $max-width)
+    width: 'calc(%s - %s)' % ($max-width $nav-docpage-width)
   .docpage--index &
     width: 100%
 .nav--docpage
   width: $nav-docpage-width
+  &.in
+    .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
+      @media all and (max-width: $bp-sm-max)
+        transform: translateX(0)
+    .button--nav--left
+      opacity: 0
+      pointer-events: none
   @media all and (max-width: $bp-md-max)
     width: $nav-docpage-width-small
   @media all and (max-width: $bp-sm-max)
@@ -86,18 +93,9 @@ ul + p
         color: #f00
     @media all and (max-width: $bp-sm-max)
       padding-right: 0.8rem
-  &.in
-    .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
-      @media all and (max-width: $bp-sm-max)
-        transform: translateX(0)
-    .button--nav--left
-      opacity: 0
-      pointer-events: none
   &__slider
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
-    @media all and (max-width: $bp-sm-max)
-      padding-left: 2rem
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
@@ -110,8 +108,11 @@ ul + p
           padding-left: 20%
         @media all and (max-width: $bp-sm-max)
           padding-left: 3rem
+    @media all and (max-width: $bp-sm-max)
+      padding-left: 2rem
   &__buttons
     display: none
+    z-index: 1
     &.shifted
       bottom: $bottom-height 
     @media all and (max-width: $bp-sm-max)
@@ -143,31 +144,30 @@ ul + p
   transition: opacity 0.25s
   width: $button-width
   height: $button-width
+  &.opaque
+    .in &
+      opacity: 1
   &.shifted
     bottom: $button-width-small + $bottom-height 
   @media all and (max-width: $bp-xs-max)
     bottom: $button-width-small
     width: $button-width-small
     height: $button-width-small
-  &.opaque
-    .in &
-      opacity: 1
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider
   min-height: 100%
   position: relative
+  > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading
+    margin-top: 0.8rem
   @media all and (max-width: $bp-sm-max)
     position: absolute
     top: 3rem
     right: 0
     transform: translateX($nav-docpage-width-small)
     width: $nav-docpage-width-small
-  > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading
-    margin-top: 0.8rem
 .overlay
   pointer-events: none
   position: fixed
   width: 100%
-  .nav--docpage &
 .overlay--top,
 .overlay--bottom
   height: $fade-height

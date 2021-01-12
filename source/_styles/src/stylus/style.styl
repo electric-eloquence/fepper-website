@@ -76,14 +76,14 @@
     @media all and (max-width: $bp-xs-max)
       width: $button-width-small
       height: $button-width-small
+  // No focus border in Linux Firefox.
+  &::-moz-focus-inner
+    border: 0
   &:active svg
     fill: #999
   @media (hover: hover)
     &:hover svg
       fill: #999
-  // No focus border in Linux Firefox.
-  &::-moz-focus-inner
-    border: 0
 .nav--main,
 .nav--docpage
   &__buttons
@@ -135,13 +135,13 @@
 .button--scroll
   position: fixed
   right: 0
+  @media all and (max-width: $bp-xs-max)
+    right: -0.4rem
   &--down
     bottom: 0
   &--up
     display: none
     top: 0
-  @media all and (max-width: $bp-xs-max)
-    right: -0.4rem
 .bottom
   background-color: white
   position: relative

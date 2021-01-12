@@ -48,7 +48,7 @@ figure {
 .cf::after {
   clear: both;
 }
-@-moz-keyframes hideOut {
+@-moz-keyframes hiderOut {
   from {
     opacity: 1;
   }
@@ -59,7 +59,7 @@ figure {
     opacity: 0;
   }
 }
-@-webkit-keyframes hideOut {
+@-webkit-keyframes hiderOut {
   from {
     opacity: 1;
   }
@@ -70,7 +70,7 @@ figure {
     opacity: 0;
   }
 }
-@-o-keyframes hideOut {
+@-o-keyframes hiderOut {
   from {
     opacity: 1;
   }
@@ -81,7 +81,7 @@ figure {
     opacity: 0;
   }
 }
-@keyframes hideOut {
+@keyframes hiderOut {
   from {
     opacity: 1;
   }
@@ -284,6 +284,10 @@ strong {
     height: 4rem;
   }
 }
+.button--nav::-moz-focus-inner,
+.button--scroll::-moz-focus-inner {
+  border: 0;
+}
 .button--nav:active svg,
 .button--scroll:active svg {
   fill: #999;
@@ -293,10 +297,6 @@ strong {
   .button--scroll:hover svg {
     fill: #999;
   }
-}
-.button--nav::-moz-focus-inner,
-.button--scroll::-moz-focus-inner {
-  border: 0;
 }
 .nav--main__buttons,
 .nav--docpage__buttons {
@@ -374,17 +374,17 @@ strong {
   position: fixed;
   right: 0;
 }
+@media all and (max-width: 480px) {
+  .button--scroll {
+    right: -0.4rem;
+  }
+}
 .button--scroll--down {
   bottom: 0;
 }
 .button--scroll--up {
   display: none;
   top: 0;
-}
-@media all and (max-width: 480px) {
-  .button--scroll {
-    right: -0.4rem;
-  }
 }
 .bottom {
   background-color: #fff;
@@ -399,7 +399,7 @@ strong {
   width: 100%;
 }
 .branding {
-  padding-bottom: $branding-bottom;
+  padding-bottom: 2rem;
 }
 .video {
   overflow: hidden;
@@ -881,20 +881,21 @@ strong {
 .hider {
   background-color: #fff;
   position: fixed;
-  top: calc((100vw / 3) + 200px + 3.8rem);
+  top: calc((100vw / 3) + 200px + 2rem + 3.8rem);
   transition: height 0.5s linear 0.5s;
   width: 100%;
-  height: calc(100vh - (100vw / 3) - 200px - 3.8rem);
+  height: calc(100vh - (100vw / 3) - 200px - 2rem - 3.8rem);
+  z-index: 1;
 }
 @media all and (max-width: 767px) {
   .hider {
-    top: calc((100vw / 3) + 150px + 3.8rem);
-    height: calc(100vh - (100vw / 3) - 150px - 3.8rem);
+    top: calc((100vw / 3) + 150px + 2rem + 3.8rem);
+    height: calc(100vh - (100vw / 3) - 150px - 2rem - 3.8rem);
   }
 }
-.hider.hide--out {
+.hider.hider--out {
   animation-duration: 1s;
-  animation-name: hideOut;
+  animation-name: hiderOut;
   height: 0;
 }
 .es2018 .browser-advice {

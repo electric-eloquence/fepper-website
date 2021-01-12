@@ -137,11 +137,10 @@ export default class extends Behaviors {
     const panesOrg = this.$orgs['.content__pane'];
     const slidersOrg = this.$orgs['.content__slider'];
     const panesCount = panesOrg.getState().$members.length;
-    let i = panesCount;
 
-    while (i--) {
+    for (let i = 0; i < panesCount; i++) {
       if (slidersOrg.$members[i].hasClass('content__slid')) {
-        break;
+        continue;
       }
 
       const paneState = panesOrg.getState(i);

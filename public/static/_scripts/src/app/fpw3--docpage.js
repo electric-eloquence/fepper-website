@@ -28,10 +28,6 @@ export default class {
         this.behaviors.navDocpageBgColor();
       }
 
-      if (windowState.scrollTop) {
-        this.behaviors.hiderHide();
-      }
-
       if (windowState.scrollTop > sectionsState.innerHeight) {
         this.behaviors.navDocpageButtonScrollUpShow();
       }

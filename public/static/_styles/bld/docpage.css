@@ -48,6 +48,50 @@ figure {
 .cf::after {
   clear: both;
 }
+@-moz-keyframes hiderOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes hiderOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-o-keyframes hiderOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes hiderOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 html {
   font-size: 10px;
 }
@@ -129,15 +173,6 @@ strong {
 .bg--yellow-fepper {
   background-color: #f0c000;
 }
-.fade {
-  transition: opacity 1s ease-in 1s;
-}
-.fade--in.fade--in {
-  opacity: 1;
-}
-.fade--out.fade--out {
-  opacity: 0;
-}
 .hidden {
   display: none !important;
   visibility: hidden !important;
@@ -168,7 +203,7 @@ strong {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 6;
+  z-index: 1;
 }
 .branding__inactive {
   bottom: 0;
@@ -250,6 +285,10 @@ strong {
     height: 4rem;
   }
 }
+.button--nav::-moz-focus-inner,
+.button--scroll::-moz-focus-inner {
+  border: 0;
+}
 .button--nav:active svg,
 .button--scroll:active svg {
   fill: #999;
@@ -259,10 +298,6 @@ strong {
   .button--scroll:hover svg {
     fill: #999;
   }
-}
-.button--nav::-moz-focus-inner,
-.button--scroll::-moz-focus-inner {
-  border: 0;
 }
 .nav--main__buttons,
 .nav--docpage__buttons {
@@ -274,7 +309,6 @@ strong {
   height: 100%;
   overflow: hidden;
   position: fixed;
-  z-index: 8;
 }
 .nav--main.in {
   width: 18rem;
@@ -340,7 +374,11 @@ strong {
 .button--scroll {
   position: fixed;
   right: 0;
-  z-index: 7;
+}
+@media all and (max-width: 480px) {
+  .button--scroll {
+    right: -0.4rem;
+  }
 }
 .button--scroll--down {
   bottom: 0;
@@ -348,11 +386,6 @@ strong {
 .button--scroll--up {
   display: none;
   top: 0;
-}
-@media all and (max-width: 480px) {
-  .button--scroll {
-    right: -0.4rem;
-  }
 }
 .bottom {
   background-color: #fff;
@@ -365,7 +398,6 @@ strong {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 7;
 }
 @media all and (max-width: 767px) {
   body {
@@ -423,6 +455,22 @@ ul + p {
 .webkit .content a {
   color: #f00;
 }
+.content a {
+  text-decoration: underline;
+}
+.content ul {
+  list-style-type: disc;
+  margin-left: 1.2em;
+}
+.content ul > li > ul {
+  list-style-type: circle;
+}
+.content ul > li > ul > li > ul {
+  list-style-type: square;
+}
+.content ul > li > ul > li > ul ul {
+  list-style-type: disc;
+}
 @media all and (max-width: 1024px) {
   .content {
     width: calc(100vw - 25rem);
@@ -446,27 +494,20 @@ ul + p {
     width: calc(1152px - 28.8rem);
   }
 }
-.content a {
-  text-decoration: underline;
-}
-.content ul {
-  list-style-type: disc;
-  margin-left: 1.2em;
-}
-.content ul > li > ul {
-  list-style-type: circle;
-}
-.content ul > li > ul > li > ul {
-  list-style-type: square;
-}
-.content ul > li > ul > li > ul ul {
-  list-style-type: disc;
-}
 .docpage--index .content {
   width: 100%;
 }
 .nav--docpage {
   width: 28.8rem;
+}
+@media all and (max-width: 767px) {
+  .nav--docpage.in .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider {
+    transform: translateX(0);
+  }
+}
+.nav--docpage.in .button--nav--left {
+  opacity: 0;
+  pointer-events: none;
 }
 @media all and (max-width: 1024px) {
   .nav--docpage {
@@ -493,25 +534,8 @@ ul + p {
     padding-right: 0.8rem;
   }
 }
-@media all and (max-width: 767px) {
-  .nav--docpage.in .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider {
-    transform: translateX(0);
-  }
-}
-.nav--docpage.in .button--nav--left {
-  opacity: 0;
-  pointer-events: none;
-}
-.nav--docpage__slider {
-  z-index: 5;
-}
 .nav--docpage__sections {
   padding: 2rem 0.8rem 4rem 3rem;
-}
-@media all and (max-width: 767px) {
-  .nav--docpage__sections {
-    padding-left: 2rem;
-  }
 }
 .docpage--index .nav--docpage__sections {
   display: grid;
@@ -536,9 +560,14 @@ ul + p {
     padding-left: 3rem;
   }
 }
+@media all and (max-width: 767px) {
+  .nav--docpage__sections {
+    padding-left: 2rem;
+  }
+}
 .nav--docpage__buttons {
   display: none;
-  z-index: 8;
+  z-index: 1;
 }
 .nav--docpage__buttons.shifted {
   bottom: 8.4rem;
@@ -581,7 +610,9 @@ ul + p {
   transition: opacity 0.25s;
   width: 5rem;
   height: 5rem;
-  z-index: 5;
+}
+.in .button--scroll--up.opaque {
+  opacity: 1;
 }
 .button--scroll--up.shifted {
   bottom: 12.4rem;
@@ -593,12 +624,12 @@ ul + p {
     height: 4rem;
   }
 }
-.in .button--scroll--up.opaque {
-  opacity: 1;
-}
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
   min-height: 100%;
   position: relative;
+}
+:not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {
+  margin-top: 0.8rem;
 }
 @media all and (max-width: 767px) {
   :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
@@ -609,17 +640,10 @@ ul + p {
     width: 25rem;
   }
 }
-:not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {
-  margin-top: 0.8rem;
-}
 .overlay {
   pointer-events: none;
   position: fixed;
   width: 100%;
-  z-index: 4;
-}
-.nav--docpage .overlay {
-  z-index: 5;
 }
 .overlay--top,
 .overlay--bottom {

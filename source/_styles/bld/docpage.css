@@ -534,40 +534,33 @@ ul + p {
     padding-right: 0.8rem;
   }
 }
-.nav--docpage__slider,
 .nav--docpage__sections {
   padding: 2rem 0.8rem 4rem 3rem;
 }
-.docpage--index .nav--docpage__slider,
 .docpage--index .nav--docpage__sections {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
 }
 @media all and (max-width: 480px) {
-  .docpage--index .nav--docpage__slider,
   .docpage--index .nav--docpage__sections {
     display: block;
   }
 }
-.docpage--index .nav--docpage__slider .nav--docpage__section,
 .docpage--index .nav--docpage__sections .nav--docpage__section {
   padding: 0 0 2.4rem 33%;
 }
 @media all and (max-width: 1024px) {
-  .docpage--index .nav--docpage__slider .nav--docpage__section,
   .docpage--index .nav--docpage__sections .nav--docpage__section {
     padding-left: 20%;
   }
 }
 @media all and (max-width: 767px) {
-  .docpage--index .nav--docpage__slider .nav--docpage__section,
   .docpage--index .nav--docpage__sections .nav--docpage__section {
     padding-left: 3rem;
   }
 }
 @media all and (max-width: 767px) {
-  .nav--docpage__slider,
   .nav--docpage__sections {
     padding-left: 2rem;
   }

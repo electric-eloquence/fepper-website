@@ -94,7 +94,6 @@ ul + p
       opacity: 0
       pointer-events: none
   &__slider
-    z-index: 5
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
     @media all and (max-width: $bp-sm-max)
@@ -113,7 +112,6 @@ ul + p
           padding-left: 3rem
   &__buttons
     display: none
-    z-index: 8
     &.shifted
       bottom: $bottom-height 
     @media all and (max-width: $bp-sm-max)
@@ -145,7 +143,6 @@ ul + p
   transition: opacity 0.25s
   width: $button-width
   height: $button-width
-  z-index: 5
   &.shifted
     bottom: $button-width-small + $bottom-height 
   @media all and (max-width: $bp-xs-max)
@@ -170,9 +167,7 @@ ul + p
   pointer-events: none
   position: fixed
   width: 100%
-  z-index: 4
   .nav--docpage &
-    z-index: 5
 .overlay--top,
 .overlay--bottom
   height: $fade-height

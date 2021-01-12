@@ -9,7 +9,7 @@ document.body.insertBefore(browserAdvice, document.querySelector('.nav--main'));
 document.addEventListener(
   'DOMContentLoaded',
   function () {
-    document.getElementById('hider').className += ' gap-bottom';
+    document.getElementById('hider').className += ' hide--out';
 
     // Scroll to top of page on page load.
     // window.scrollTo() does not work onbeforeunload for Safari so need to invoke it here.

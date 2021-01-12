@@ -48,6 +48,50 @@ figure {
 .cf::after {
   clear: both;
 }
+@-moz-keyframes hideOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes hideOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-o-keyframes hideOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes hideOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 html {
   font-size: 10px;
 }
@@ -129,15 +173,6 @@ strong {
 .bg--yellow-fepper {
   background-color: #f0c000;
 }
-.fade {
-  transition: opacity 1s ease-in 1s;
-}
-.fade--in.fade--in {
-  opacity: 1;
-}
-.fade--out.fade--out {
-  opacity: 0;
-}
 .hidden {
   display: none !important;
   visibility: hidden !important;
@@ -167,7 +202,7 @@ strong {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 6;
+  z-index: 1;
 }
 .branding__inactive {
   bottom: 0;
@@ -273,7 +308,6 @@ strong {
   height: 100%;
   overflow: hidden;
   position: fixed;
-  z-index: 8;
 }
 .nav--main.in {
   width: 18rem;
@@ -339,7 +373,6 @@ strong {
 .button--scroll {
   position: fixed;
   right: 0;
-  z-index: 7;
 }
 .button--scroll--down {
   bottom: 0;
@@ -364,7 +397,6 @@ strong {
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 7;
 }
 .branding {
   padding-bottom: $branding-bottom;
@@ -848,21 +880,22 @@ strong {
 }
 .hider {
   background-color: #fff;
-  opacity: 1;
   position: fixed;
-  top: calc((100vw / 3) + 200px + 2rem + 3.5rem);
+  top: calc((100vw / 3) + 200px + 3.8rem);
+  transition: height 0.5s linear 0.5s;
   width: 100%;
-  height: 100vh;
-  z-index: 1;
+  height: calc(100vh - (100vw / 3) - 200px - 3.8rem);
 }
 @media all and (max-width: 767px) {
   .hider {
-    top: calc((100vw / 3) + (200px * 0.75) + 2rem + 3.5rem);
+    top: calc((100vw / 3) + 150px + 3.8rem);
+    height: calc(100vh - (100vw / 3) - 150px - 3.8rem);
   }
 }
-.hider.gap-bottom {
-  height: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
-  position: static;
+.hider.hide--out {
+  animation-duration: 1s;
+  animation-name: hideOut;
+  height: 0;
 }
 .es2018 .browser-advice {
   display: none;

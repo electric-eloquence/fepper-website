@@ -416,17 +416,18 @@ $video-height-max = ($video-width-max / 3)
         font-size: 2.2rem
 .hider
   background-color: white
-  opacity: 1
   position: fixed
-  top: 'calc((100vw / 3) + %s + %s + 3.5rem)' % ($logo-height $branding-pad)
+  top: 'calc((100vw / 3) + %s + %s)' % ($logo-height $heading-height)
+  transition: height 0.5s linear 0.5s
   width: 100%
-  height: 100vh
-  z-index: 1
+  height: 'calc(100vh - (100vw / 3) - %s - %s)' % ($logo-height $heading-height)
   @media all and (max-width: $bp-sm-max)
-    top: 'calc((100vw / 3) + (%s * %s) + %s + 3.5rem)' % ($logo-height $bp-sm-ratio $branding-pad)
-  &.gap-bottom
-    height: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
-    position: static
+    top: 'calc((100vw / 3) + %s + %s)' % ($logo-height-small $heading-height)
+    height: 'calc(100vh - (100vw / 3) - %s - %s)' % ($logo-height-small $heading-height)
+  &.hide--out
+    animation-duration: 1s
+    animation-name: hideOut
+    height: 0
 .es2018
   .browser-advice
     display: none

@@ -6,10 +6,6 @@ export default class extends Behaviors {
     super(requerio, root);
   }
 
-  hiderHide() {
-    this.$orgs['.hider'].dispatchAction('addClass', 'fade--out');
-  }
-
   navDocpageBgColor() {
     const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
 

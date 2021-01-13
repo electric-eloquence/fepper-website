@@ -49,11 +49,9 @@ const paneHeight = 200;
 const windowWidth = 1000;
 
 let paneTopDistance = beforePanesHeight;
-let paneBottomDistance = paneTopDistance;
+let paneBottomDistance = paneTopDistance + paneHeight;
 
 for (let i = 0; i < panesCount; i++) {
-  paneBottomDistance += paneHeight;
-
   panesOrg.dispatchAction('innerHeight', paneHeight, i);
   panesOrg.dispatchAction(
     'setBoundingClientRect',
@@ -69,6 +67,7 @@ for (let i = 0; i < panesCount; i++) {
   );
 
   paneTopDistance += paneHeight;
+  paneBottomDistance += paneHeight;
 }
 
 // $window method overrides for testing.
@@ -80,11 +79,9 @@ $window.scrollTop = (...args) => {
 
   if (typeof args[0] === 'number') {
     paneTopDistance = beforePanesHeight - args[0];
-    paneBottomDistance = paneTopDistance;
+    paneBottomDistance = paneTopDistance + paneHeight;
 
     for (let i = 0; i < panesCount; i++) {
-      paneBottomDistance += paneHeight;
-
       panesOrg.dispatchAction(
         'setBoundingClientRect',
         {
@@ -99,6 +96,7 @@ $window.scrollTop = (...args) => {
       );
 
       paneTopDistance += paneHeight;
+      paneBottomDistance += paneHeight;
     }
   }
 

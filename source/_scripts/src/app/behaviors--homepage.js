@@ -9,7 +9,6 @@ let bgColorRevealAlphaLast = 0;
 let mainContentSlideInFrameId = null;
 let mainContentSlideOutFrameId = null;
 let mainContentTranslateY = 150;
-let paneDistanceToBottomLast = null;
 
 if (typeof window === 'object') {
   // main_content_translate_y is the rem distance the sliding pane is supposed to move.
@@ -146,12 +145,6 @@ export default class extends Behaviors {
       const paneState = panesOrg.getState(i);
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
-      if (paneDistanceToBottomLast === paneDistanceToBottom) {
-        return;
-      }
-
-      paneDistanceToBottomLast = paneDistanceToBottom;
-
       if (paneDistanceToBottom > mainContentTranslateY) {
         // eslint-disable-next-line no-loop-func
         mainContentSlideInFrameId = requestAnimationFrame(() => {
@@ -181,12 +174,6 @@ export default class extends Behaviors {
 
       const paneState = panesOrg.getState(i);
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
-
-      if (paneDistanceToBottomLast === paneDistanceToBottom) {
-        return;
-      }
-
-      paneDistanceToBottomLast = paneDistanceToBottom;
 
       if (paneDistanceToBottom <= mainContentTranslateY) {
         // eslint-disable-next-line no-loop-func

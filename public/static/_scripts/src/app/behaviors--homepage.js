@@ -119,16 +119,13 @@ export default class extends Behaviors {
   gitHubHrefAdapt(project) {
     const hrefBase = 'redirect.html?url=https://github.com/electric-eloquence/fepper';
     let hrefDownload = hrefBase;
-    let hrefReadme = hrefBase;
 
     switch (project) {
       case 'drupal':
       case 'wordpress':
         hrefDownload += `-${project}/releases/latest`;
-        hrefReadme += `-${project}%23readme`;
 
         this.$orgs['.link--github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
-        this.$orgs['.link--github__anchor--readme'].dispatchAction('attr', {href: hrefReadme});
     }
   }
 

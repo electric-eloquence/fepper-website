@@ -23,6 +23,5 @@ export default {
   '.content__block': null,
   '.content__slider': null,
   '.link--github__anchor--download': null,
-  '.link--github__anchor--readme': null,
   '.footer': null
 };

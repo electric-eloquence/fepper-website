@@ -402,6 +402,7 @@ $video-height-max = ($video-width-max / 3)
     padding: '%srem 0' % main_content_translate_y
   &__fixed + .content__slider
     padding: '0 0 %srem' % (main_content_translate_y - 1)
+.link--fepper,
 .link--github
   display: flex
   justify-content: center
@@ -413,6 +414,7 @@ $video-height-max = ($video-width-max / 3)
       padding-left: 1rem
       width: 3.2rem
     @media (hover: hover)
+      &:hover + .link--fepper__anchor--arrow,
       &:hover + .link--github__anchor--arrow,
       &--arrow:hover
         font-size: 2.2rem

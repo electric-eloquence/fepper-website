@@ -1,13 +1,7 @@
 import Behaviors from './behaviors.js';
 import videoGenerate from './video-generate.js';
 
-let bgColorRevealFrameId = null;
-let bgColorRevealRedLast = 255;
-let bgColorRevealGreenLast = 255;
-let bgColorRevealBlueLast = 255;
-let bgColorRevealAlphaLast = 0;
-let mainContentSlideInFrameId = null;
-let mainContentSlideOutFrameId = null;
+// Declare with let outside the constructor because at this point during server-side tests, window is still undefined.
 let mainContentTranslateY = 150;
 
 if (typeof window === 'object') {
@@ -24,10 +18,18 @@ function intToRem(distance) {
 export default class extends Behaviors {
   constructor(requerio, root) {
     super(requerio, root);
+
+    this.bgColorRevealFrameId = null;
+    this.bgColorRevealRedLast = 255;
+    this.bgColorRevealGreenLast = 255;
+    this.bgColorRevealBlueLast = 255;
+    this.bgColorRevealAlphaLast = 0;
+    this.mainContentSlideInFrameId = null;
+    this.mainContentSlideOutFrameId = null;
   }
 
   bgColorReveal(windowState) {
-    if (bgColorRevealFrameId) {
+    if (this.bgColorRevealFrameId) {
       return;
     }
 
@@ -80,24 +82,24 @@ export default class extends Behaviors {
         alpha = (alpha * alpha) / 10;
 
         if (
-          bgColorRevealRedLast === red &&
-          bgColorRevealGreenLast === green &&
-          bgColorRevealBlueLast === blue &&
-          bgColorRevealAlphaLast === alpha
+          this.bgColorRevealRedLast === red &&
+          this.bgColorRevealGreenLast === green &&
+          this.bgColorRevealBlueLast === blue &&
+          this.bgColorRevealAlphaLast === alpha
         ) {
           return;
         }
 
-        bgColorRevealRedLast = red;
-        bgColorRevealGreenLast = green;
-        bgColorRevealBlueLast = blue;
-        bgColorRevealAlphaLast = alpha;
+        this.bgColorRevealRedLast = red;
+        this.bgColorRevealGreenLast = green;
+        this.bgColorRevealBlueLast = blue;
+        this.bgColorRevealAlphaLast = alpha;
         // eslint-disable-next-line no-loop-func
-        bgColorRevealFrameId = requestAnimationFrame(() => {
+        this.bgColorRevealFrameId = requestAnimationFrame(() => {
           this.$orgs['.content__pane']
             .dispatchAction('css', {'background-color': `rgba(${red}, ${green}, ${blue}, ${alpha})`}, i);
 
-          bgColorRevealFrameId = null;
+          this.bgColorRevealFrameId = null;
         });
 
         break;
@@ -129,7 +131,7 @@ export default class extends Behaviors {
   }
 
   mainContentSlideIn(windowState) {
-    if (mainContentSlideInFrameId) {
+    if (this.mainContentSlideInFrameId) {
       return;
     }
 
@@ -147,10 +149,10 @@ export default class extends Behaviors {
 
       if (paneDistanceToBottom > mainContentTranslateY) {
         // eslint-disable-next-line no-loop-func
-        mainContentSlideInFrameId = requestAnimationFrame(() => {
+        this.mainContentSlideInFrameId = requestAnimationFrame(() => {
           slidersOrg.dispatchAction('addClass', 'content__slid', i);
 
-          mainContentSlideInFrameId = null;
+          this.mainContentSlideInFrameId = null;
         });
 
         break;
@@ -159,7 +161,7 @@ export default class extends Behaviors {
   }
 
   mainContentSlideOut(windowState) {
-    if (mainContentSlideOutFrameId) {
+    if (this.mainContentSlideOutFrameId) {
       return;
     }
 
@@ -177,10 +179,10 @@ export default class extends Behaviors {
 
       if (paneDistanceToBottom <= mainContentTranslateY) {
         // eslint-disable-next-line no-loop-func
-        mainContentSlideOutFrameId = requestAnimationFrame(() => {
+        this.mainContentSlideOutFrameId = requestAnimationFrame(() => {
           slidersOrg.dispatchAction('removeClass', 'content__slid', i);
 
-          mainContentSlideOutFrameId = null;
+          this.mainContentSlideOutFrameId = null;
         });
 
         break;

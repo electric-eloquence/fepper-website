@@ -1,10 +1,9 @@
-let logoRipenFrameId = null;
-let logoRipenTranslateXLast = '0%';
-
 export default class {
   constructor(requerio, root) {
     this.$orgs = requerio.$orgs;
     this.root = root;
+    this.logoRipenFrameId = null;
+    this.logoRipenTranslateXLast = '0%';
   }
 
   debounce(callback, wait = 200, context = this) {
@@ -21,7 +20,7 @@ export default class {
   }
 
   logoRipen(windowState) {
-    if (logoRipenFrameId) {
+    if (this.logoRipenFrameId) {
       return;
     }
 
@@ -40,16 +39,16 @@ export default class {
 
     const translateX = `-${percentage}%`;
 
-    if (logoRipenTranslateXLast === translateX) {
+    if (this.logoRipenTranslateXLast === translateX) {
       return;
     }
 
-    logoRipenTranslateXLast = translateX;
-    logoRipenFrameId = requestAnimationFrame(() => {
+    this.logoRipenTranslateXLast = translateX;
+    this.logoRipenFrameId = requestAnimationFrame(() => {
       this.$orgs['#logoBg'].dispatchAction('data', {gradientPosition: percentage});
       this.$orgs['#logoBg'].dispatchAction('css', {transform: `translateX(${translateX})`});
 
-      logoRipenFrameId = null;
+      this.logoRipenFrameId = null;
     });
   }
 

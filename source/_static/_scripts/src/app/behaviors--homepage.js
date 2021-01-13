@@ -2,6 +2,8 @@ import Behaviors from './behaviors.js';
 import videoGenerate from './video-generate.js';
 
 // Declare with let outside the constructor because at this point during server-side tests, window is still undefined.
+// Not feasible to declare within constructor for server-side tests because window.main_content_translate_y would be
+// undefined.
 let mainContentTranslateY = 150;
 
 if (typeof window === 'object') {

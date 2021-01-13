@@ -204,15 +204,15 @@ strong {
   width: 100%;
   z-index: 1;
 }
-.branding__inactive {
-  bottom: 0;
+.branding__link-inactive {
+  bottom: 2rem;
   left: 0;
   height: 3.2rem;
   position: absolute;
   width: 100%;
 }
 @media all and (max-width: 767px) {
-  .branding__inactive {
+  .branding__link-inactive {
     height: 2.4rem;
   }
 }
@@ -308,6 +308,7 @@ strong {
   height: 100%;
   overflow: hidden;
   position: fixed;
+  z-index: 1;
 }
 .nav--main.in {
   width: 18rem;
@@ -373,6 +374,7 @@ strong {
 .button--scroll {
   position: fixed;
   right: 0;
+  z-index: 1;
 }
 @media all and (max-width: 480px) {
   .button--scroll {

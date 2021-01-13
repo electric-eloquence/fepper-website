@@ -18,8 +18,8 @@
   top: 0
   width: 100%
   z-index: 1
-  &__inactive
-    bottom: 0
+  &__link-inactive
+    bottom: $branding-pad
     left: 0
     height: 3.2rem;
     position: absolute
@@ -94,6 +94,7 @@
   height: 100%
   overflow: hidden
   position: fixed
+  z-index: 1
   &.in
     width: $nav-main-width-full
   &.out
@@ -135,6 +136,7 @@
 .button--scroll
   position: fixed
   right: 0
+  z-index: 1
   @media all and (max-width: $bp-xs-max)
     right: -0.4rem
   &--down

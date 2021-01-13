@@ -43,10 +43,6 @@ ul + p
 .content
   padding: 2rem 1.5rem 4rem 4.5rem
   width: 'calc(100vw - %s)' % $nav-docpage-width
-  .webkit &
-    color: #f00
-    a
-      color: #f00
   a
     text-decoration: underline
   ul
@@ -71,6 +67,10 @@ ul + p
     width: 'calc(%s - %s)' % ($max-width $nav-docpage-width)
   .docpage--index &
     width: 100%
+  .webkit &
+    color: #f00
+    a
+      color: #f00
 .nav--docpage
   width: $nav-docpage-width
   &.in
@@ -87,28 +87,28 @@ ul + p
   .docpage--index &
     padding-right: 1.6rem
     width: 100%
+    @media all and (max-width: $bp-sm-max)
+      padding-right: 0.8rem
     .webkit &
       color: #f00
       a
         color: #f00
-    @media all and (max-width: $bp-sm-max)
-      padding-right: 0.8rem
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
+    @media all and (max-width: $bp-sm-max)
+      padding-left: 2rem
     .docpage--index &
       display: grid
       grid-template-columns: 50% 50%
       grid-template-rows: auto
-      @media all and (max-width: $bp-xs-max)
-        display: block
       .nav--docpage__section
         padding: 0 0 2.4rem 33%
         @media all and (max-width: $bp-md-max)
           padding-left: 20%
         @media all and (max-width: $bp-sm-max)
           padding-left: 3rem
-    @media all and (max-width: $bp-sm-max)
-      padding-left: 2rem
+      @media all and (max-width: $bp-xs-max)
+        display: block
   &__buttons
     display: none
     z-index: 2

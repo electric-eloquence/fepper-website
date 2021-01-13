@@ -53,9 +53,9 @@ export default class {
   }
 
   navButtonsShift(windowState) {
-    const bottomState = this.$orgs['.bottom'].getState();
+    const footerState = this.$orgs['.footer'].getState();
 
-    if (bottomState.boundingClientRect.top < windowState.innerHeight - 66) {
+    if (footerState.boundingClientRect.top < windowState.innerHeight - 50) {
       this.$orgs['.nav--main__slider'].dispatchAction('addClass', 'shifted');
 
       if (this.$orgs['.button--scroll--up']) {

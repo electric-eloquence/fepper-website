@@ -23,5 +23,5 @@ export default {
   '.nav--docpage__button--left': null,
   '.nav--docpage__button--right': null,
   '.overlay': null,
-  '.bottom': null
+  '.footer': null
 };

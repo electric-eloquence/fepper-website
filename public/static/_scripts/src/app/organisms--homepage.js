@@ -24,5 +24,5 @@ export default {
   '.content__slider': null,
   '.link--github__anchor--download': null,
   '.link--github__anchor--readme': null,
-  '.bottom': null
+  '.footer': null
 };

@@ -4,7 +4,9 @@ $video-width-max = 1728px
 $video-height-max = ($video-width-max / 3)
 
 .branding
-  padding-bottom: $branding-pad
+  padding-bottom: $branding-space-bottom
+  &__link-inactive
+    bottom: $branding-space-bottom
 .video
   overflow: hidden
   padding-bottom: (100% / 3)
@@ -417,23 +419,23 @@ $video-height-max = ($video-width-max / 3)
 .hider
   background-color: white
   position: fixed
-  top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height $branding-pad $heading-height)
+  top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height $branding-space-bottom $heading-height)
   transition: height 0.5s linear 0.5s
   width: 100%
-  height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height $branding-pad $heading-height)
+  height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height $branding-space-bottom $heading-height)
   z-index: 1
   @media all and (max-width: $bp-sm-max)
-    top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-pad $heading-height)
-    height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-pad $heading-height)
+    top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-space-bottom $heading-height)
+    height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-space-bottom $heading-height)
   @media all and (min-width: $video-width-max)
-    top: 'calc((%s / 3) + %s + %s + %s)' % ($video-width-max $logo-height $branding-pad $heading-height)
-    height: 'calc(100vh - (%s / 3) - %s - %s - %s)' % ($video-width-max $logo-height $branding-pad $heading-height)
+    top: 'calc((%s / 3) + %s + %s + %s)' % ($video-width-max $logo-height $branding-space-bottom $heading-height)
+    height: 'calc(100vh - (%s / 3) - %s - %s - %s)' % ($video-width-max $logo-height $branding-space-bottom $heading-height)
   &.hider--out
     animation-duration: 1s
     animation-name: hiderOut
     height: 0
 .bottom
-  padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-pad)
+  margin-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-space-bottom)
 .es2018
   .browser-advice
     display: none

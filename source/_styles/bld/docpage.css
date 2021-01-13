@@ -206,7 +206,7 @@ strong {
   z-index: 1;
 }
 .branding__link-inactive {
-  bottom: 2rem;
+  bottom: 0;
   left: 0;
   height: 3.2rem;
   position: absolute;
@@ -570,7 +570,7 @@ ul + p {
 }
 .nav--docpage__buttons {
   display: none;
-  z-index: 1;
+  z-index: 2;
 }
 .nav--docpage__buttons.shifted {
   bottom: 8.4rem;

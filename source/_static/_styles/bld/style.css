@@ -205,7 +205,7 @@ strong {
   z-index: 1;
 }
 .branding__link-inactive {
-  bottom: 2rem;
+  bottom: 0;
   left: 0;
   height: 3.2rem;
   position: absolute;

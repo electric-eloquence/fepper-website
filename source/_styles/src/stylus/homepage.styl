@@ -425,6 +425,9 @@ $video-height-max = ($video-width-max / 3)
   @media all and (max-width: $bp-sm-max)
     top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-pad $heading-height)
     height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-pad $heading-height)
+  @media all and (min-width: $video-width-max)
+    top: 'calc((%s / 3) + %s + %s + %s)' % ($video-width-max $logo-height $branding-pad $heading-height)
+    height: 'calc(100vh - (%s / 3) - %s - %s - %s)' % ($video-width-max $logo-height $branding-pad $heading-height)
   &.hider--out
     animation-duration: 1s
     animation-name: hiderOut

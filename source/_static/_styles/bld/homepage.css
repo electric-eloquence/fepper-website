@@ -893,6 +893,12 @@ strong {
     height: calc(100vh - (100vw / 3) - 150px - 2rem - 3.8rem);
   }
 }
+@media all and (min-width: 1728px) {
+  .hider {
+    top: calc((1728px / 3) + 200px + 2rem + 3.8rem);
+    height: calc(100vh - (1728px / 3) - 200px - 2rem - 3.8rem);
+  }
+}
 .hider.hider--out {
   animation-duration: 1s;
   animation-name: hiderOut;

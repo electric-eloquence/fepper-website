@@ -400,6 +400,7 @@ strong {
   position: relative;
   text-align: center;
   width: 100%;
+  z-index: 1;
 }
 @media all and (max-width: 767px) {
   body {

@@ -399,6 +399,7 @@ strong {
   position: relative;
   text-align: center;
   width: 100%;
+  z-index: 1;
 }
 .branding {
   padding-bottom: 2rem;

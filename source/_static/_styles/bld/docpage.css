@@ -630,6 +630,7 @@ ul + p {
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
   min-height: 100%;
   position: relative;
+  z-index: 1;
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider > .nav--docpage__sections > .nav--docpage__section:first-child > .nav--docpage__heading {
   margin-top: 0.8rem;

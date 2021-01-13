@@ -911,7 +911,7 @@ strong {
   height: 0;
 }
 .bottom {
-  margin-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
+  padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
 }
 .es2018 .browser-advice {
   display: none;

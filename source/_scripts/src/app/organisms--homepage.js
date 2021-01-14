@@ -22,6 +22,6 @@ export default {
   '.content__pane': null,
   '.content__block': null,
   '.content__slider': null,
-  '.link--github__anchor--download': null,
+  '.link--resource__anchor--download': null,
   '.footer': null
 };

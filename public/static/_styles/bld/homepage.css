@@ -865,29 +865,22 @@ strong {
 .content__fixed + .content__slider {
   padding: 0 0 4rem;
 }
-.link--fepper,
-.link--github {
+.link--resource {
   display: flex;
   justify-content: center;
   line-height: 2.8rem;
 }
-.link--fepper__anchor,
-.link--github__anchor {
+.link--resource__anchor {
   display: block;
 }
-.link--fepper__anchor--arrow,
-.link--github__anchor--arrow {
+.link--resource__anchor--arrow {
   font-size: 2rem;
   padding-left: 1rem;
   width: 3.2rem;
 }
 @media (hover: hover) {
-  .link--fepper__anchor:hover + .link--fepper__anchor--arrow,
-  .link--github__anchor:hover + .link--fepper__anchor--arrow,
-  .link--fepper__anchor:hover + .link--github__anchor--arrow,
-  .link--github__anchor:hover + .link--github__anchor--arrow,
-  .link--fepper__anchor--arrow:hover,
-  .link--github__anchor--arrow:hover {
+  .link--resource__anchor:hover + .link--resource__anchor--arrow,
+  .link--resource__anchor--arrow:hover {
     font-size: 2.2rem;
   }
 }

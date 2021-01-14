@@ -125,7 +125,7 @@ export default class extends Behaviors {
       case 'wordpress':
         hrefDownload += `-${project}/releases/latest`;
 
-        this.$orgs['.link--github__anchor--download'].dispatchAction('attr', {href: hrefDownload});
+        this.$orgs['.link--resource__anchor--download'].dispatchAction('attr', {href: hrefDownload});
     }
   }
 

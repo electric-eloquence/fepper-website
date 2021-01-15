@@ -30,18 +30,17 @@ export default class extends Behaviors {
     this.mainContentSlideOutFrameId = null;
   }
 
-  bgColorReveal(windowState) {
+  bgColorReveal(windowState, panesLength, paneStatesArr) {
     if (this.bgColorRevealFrameId) {
       return;
     }
 
     const brandingState = this.$orgs['#branding'].getState();
     const panesOrg = this.$orgs['.content__pane'];
-    const panesLength = panesOrg.getState().$members.length;
     let paneState;
 
-    for (let i = 1; i < panesLength; i += 2) {
-      paneState = panesOrg.getState(i);
+    for (let i = 1; i < paneStatesArr.length; i += 2) {
+      paneState = paneStatesArr[i];
 
       if (
         paneState.boundingClientRect.top < windowState.height &&
@@ -129,21 +128,23 @@ export default class extends Behaviors {
     }
   }
 
-  mainContentSlideIn(windowState) {
+  hiderOut() {
+    this.$orgs['#hider'].addClass('hider--out');
+  }
+
+  mainContentSlideIn(windowState, panesLength, paneStatesArr) {
     if (this.mainContentSlideInFrameId) {
       return;
     }
 
-    const panesOrg = this.$orgs['.content__pane'];
     const slidersOrg = this.$orgs['.content__slider'];
-    const panesCount = panesOrg.getState().$members.length;
 
-    for (let i = 0; i < panesCount; i++) {
+    for (let i = 0; i < panesLength; i++) {
       if (slidersOrg.$members[i].hasClass('content__slid')) {
         continue;
       }
 
-      const paneState = panesOrg.getState(i);
+      const paneState = paneStatesArr[i];
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
       if (paneDistanceToBottom > mainContentTranslateY) {
@@ -159,21 +160,19 @@ export default class extends Behaviors {
     }
   }
 
-  mainContentSlideOut(windowState) {
+  mainContentSlideOut(windowState, panesLength, paneStatesArr) {
     if (this.mainContentSlideOutFrameId) {
       return;
     }
 
-    const panesOrg = this.$orgs['.content__pane'];
     const slidersOrg = this.$orgs['.content__slider'];
-    const panesCount = panesOrg.getState().$members.length;
 
-    for (let i = 0; i < panesCount; i++) {
+    for (let i = 0; i < panesLength; i++) {
       if (!slidersOrg.$members[i].hasClass('content__slid')) {
         break;
       }
 
-      const paneState = panesOrg.getState(i);
+      const paneState = paneStatesArr[i];
       const paneDistanceToBottom = windowState.height - paneState.boundingClientRect.top;
 
       if (paneDistanceToBottom <= mainContentTranslateY) {

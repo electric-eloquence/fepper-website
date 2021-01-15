@@ -23,5 +23,6 @@ export default {
   '.content__block': null,
   '.content__slider': null,
   '.link--resource__anchor--download': null,
+  '#hider': null,
   '.footer': null
 };

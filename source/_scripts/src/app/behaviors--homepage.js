@@ -36,11 +36,9 @@ export default class extends Behaviors {
     }
 
     const brandingState = this.$orgs['#branding'].getState();
-    const panesOrg = this.$orgs['.content__pane'];
-    let paneState;
 
     for (let i = 1; i < paneStatesArr.length; i += 2) {
-      paneState = paneStatesArr[i];
+      const paneState = paneStatesArr[i];
 
       if (
         paneState.boundingClientRect.top < windowState.height &&

@@ -5,14 +5,11 @@ browserAdvice.className = 'browser-advice';
 browserAdvice.innerHTML =
   '<!--googleoff: index-->This website is best viewed on up-to-date browsers.<!--googleon: index-->';
 
-document.body.insertBefore(browserAdvice, document.querySelector('.nav--main'));
+document.body.insertBefore(browserAdvice, document.getElementsByClassName('nav--main')[0]);
 document.addEventListener(
   'DOMContentLoaded',
   function () {
-    document.getElementById('hider').className += ' hider--out';
-
-    // Scroll to top of page on page load.
-    // window.scrollTo() does not work onbeforeunload for Safari so need to invoke it here.
+    // window.scrollTo() does not work onbeforeunload for Safari so need to invoke it here
     if (window.pageYOffset > 0) {
       window.scrollTo(0, 0);
     }

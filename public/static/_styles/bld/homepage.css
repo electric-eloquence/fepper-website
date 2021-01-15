@@ -891,7 +891,7 @@ strong {
   transition: height 0.5s linear 0.5s;
   width: 100%;
   height: calc(100vh - (100vw / 3) - 200px - 2rem - 3.8rem);
-  z-index: 1;
+  z-index: 2;
 }
 @media all and (max-width: 767px) {
   .hider {

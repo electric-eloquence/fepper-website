@@ -18,12 +18,19 @@ export default class {
     }));
 
     $orgs.window.scroll(() => {
+      const panesOrg = $orgs['.content__pane'];
+      const panesLength = panesOrg.getState().$members.length;
+      const paneStatesArr = [];
       const windowState = $orgs.window.getState();
 
-      this.behaviors.bgColorReveal(windowState);
+      for (let i = 0; i < panesLength; i++) {
+        paneStatesArr.push(panesOrg.getState(i));
+      }
+
+      this.behaviors.bgColorReveal(windowState, panesLength, paneStatesArr);
       this.behaviors.logoRipen(windowState);
-      this.behaviors.mainContentSlideIn(windowState);
-      this.behaviors.mainContentSlideOut(windowState);
+      this.behaviors.mainContentSlideIn(windowState, panesLength, paneStatesArr);
+      this.behaviors.mainContentSlideOut(windowState, panesLength, paneStatesArr);
       this.behaviors.navButtonsShift(windowState);
     });
 
@@ -47,11 +54,21 @@ export default class {
   }
 
   stoke() {
-    // Scroll to top of page on page load.
-    // Works in all browsers except Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded.
+    // Scroll to top of page on beforeunload. This is so refreshing loads the page scrolled to the top.
+    // Does not work in Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded in browser-advice.js.
     if (typeof window === 'object') {
       this.root.onbeforeunload = () => {
-        this.root.scrollTo(0, 0);
+        const htmlState = this.requerio.$orgs['#html'].getState();
+
+        if (htmlState.scrollTop > 0) {
+          // First hide the body so the video and branding don't suddenly appear if navigating away from page.
+          // Need to exclude Safari. It doesn't clear visibility hidden if navigating back.
+          if (!htmlState.classArray.includes('safari')) {
+            this.requerio.$orgs['#body'].dispatchAction('css', {visibility: 'hidden'});
+          }
+
+          this.requerio.$orgs['#html'].dispatchAction('scrollTop', 0);
+        }
       };
     }
 
@@ -71,6 +88,7 @@ export default class {
     }
     catch (err) {}
 
+    this.behaviors.hiderOut();
     this.behaviors.updateDims();
     this.behaviors.navMainSlideOut();
 

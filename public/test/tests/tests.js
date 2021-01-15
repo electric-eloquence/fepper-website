@@ -5,10 +5,10 @@ const expect = require('chai').expect;
 const app = require('../init.js');
 const $orgs = app.$orgs;
 const panesOrg = $orgs['.content__pane'];
-const panesCount = panesOrg.getState().$members.length;
+const panesLength = panesOrg.getState().$members.length;
 const slidersOrg = $orgs['.content__slider'];
 
-function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHeightsBefore) {
+function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesLength, paneHeightsBefore) {
   before(function () {
     for (let i = 0; i < blocksCount; i++) {
       blocksOrg.dispatchAction('innerHeight', blockHeight, i);
@@ -27,7 +27,7 @@ function updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHei
     }
   });
 
-  for (let i = 1; i < panesCount; i++) {
+  for (let i = 1; i < panesLength; i++) {
     it(`updates the height of pane ${i} to the innerHeight of block ${i + 1}`, function () {
       const paneHeight = $orgs['.content__pane'].getState(i).css.height;
 
@@ -52,8 +52,14 @@ describe('Fepper website', function () {
       it('to .content__pane[1] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(500);
-        app.behaviors.bgColorReveal($orgs.window.getState());
 
+        const paneStatesArr = [];
+
+        for (let i = 0; i < panesLength; i++) {
+          paneStatesArr.push(panesOrg.getState(i));
+        }
+
+        app.behaviors.bgColorReveal($orgs.window.getState(), panesLength, paneStatesArr);
         setImmediate(() => {
           // Get Results.
           const contentPaneState = panesOrg.getState(1);
@@ -68,8 +74,14 @@ describe('Fepper website', function () {
       it('to .content__pane[3] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(900);
-        app.behaviors.bgColorReveal($orgs.window.getState());
 
+        const paneStatesArr = [];
+
+        for (let j = 0; j < panesLength; j++) {
+          paneStatesArr.push(panesOrg.getState(j));
+        }
+
+        app.behaviors.bgColorReveal($orgs.window.getState(), panesLength, paneStatesArr);
         setImmediate(() => {
           // Get Results.
           const contentPaneState = panesOrg.getState(3);
@@ -84,8 +96,14 @@ describe('Fepper website', function () {
       it('to .content__pane[5] when it is scrolled within viewport', function (done) {
         // Act.
         $orgs.window.scrollTop(1300);
-        app.behaviors.bgColorReveal($orgs.window.getState());
 
+        const paneStatesArr = [];
+
+        for (let j = 0; j < panesLength; j++) {
+          paneStatesArr.push(panesOrg.getState(j));
+        }
+
+        app.behaviors.bgColorReveal($orgs.window.getState(), panesLength, paneStatesArr);
         setImmediate(() => {
           // Get Results.
           const contentPaneState = panesOrg.getState(5);
@@ -101,7 +119,14 @@ describe('Fepper website', function () {
     describe('removes background-color', function () {
       before(function () {
         $orgs.window.scrollTop(0);
-        app.behaviors.bgColorReveal($orgs.window.getState());
+
+        const paneStatesArr = [];
+
+        for (let j = 0; j < panesLength; j++) {
+          paneStatesArr.push(panesOrg.getState(j));
+        }
+
+        app.behaviors.bgColorReveal($orgs.window.getState(), panesLength, paneStatesArr);
       });
 
       it('from .content__pane[1] when it is scrolled beyond viewport', function () {
@@ -130,15 +155,31 @@ describe('Fepper website', function () {
     });
   });
 
+  describe('hiderOut', function () {
+    it('adds the hider--out class', function () {
+      const hiderClassesBefore = $orgs['#hider'].getState().classArray;
+
+      // Act.
+      app.behaviors.hiderOut();
+
+      // Get results.
+      const hiderClassesAfter = $orgs['#hider'].getState().classArray;
+
+      // Assert.
+      expect(hiderClassesBefore).to.not.include('hider--out');
+      expect(hiderClassesAfter).to.include('hider--out');
+    });
+  });
+
   describe('gitHubHrefAdapt', function () {
-    const gitHubDownloadHrefBefore = $orgs['.link--github__anchor--download'].getState().attribs.href;
+    const gitHubDownloadHrefBefore = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
     it('adapts GitHub Download href to Drupal project when provided project=drupal search param', function () {
       // Act.
       app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link--github__anchor--download'].getState().attribs.href;
+      const gitHubDownloadHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
       // Assert.
       expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
@@ -150,7 +191,7 @@ describe('Fepper website', function () {
       app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link--github__anchor--download'].getState().attribs.href;
+      const gitHubDownloadHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
       // Assert.
       expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
@@ -183,8 +224,14 @@ describe('Fepper website', function () {
       return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.behaviors.mainContentSlideIn($orgs.window.getState());
 
+        const paneStatesArr = [];
+
+        for (let j = 0; j < panesLength; j++) {
+          paneStatesArr.push(panesOrg.getState(j));
+        }
+
+        app.behaviors.mainContentSlideIn($orgs.window.getState(), panesLength, paneStatesArr);
         setImmediate(() => {
           // Get results.
           const sliderClasses = slidersOrg.getState(i).classArray;
@@ -200,7 +247,7 @@ describe('Fepper website', function () {
     let scrollDistance = 0;
     let i;
 
-    for (i = 0; i < panesCount - 1; i++) {
+    for (i = 0; i < panesLength - 1; i++) {
       it(
         `.content__slider[${i}] has class "content__slid" when window is scrolled ${scrollDistance}`,
         mainContentSlideInClosure(i, scrollDistance)
@@ -221,8 +268,14 @@ describe('Fepper website', function () {
       return function (done) {
         // Act.
         $orgs.window.scrollTop(scrollDistance);
-        app.behaviors.mainContentSlideOut($orgs.window.getState());
 
+        const paneStatesArr = [];
+
+        for (let j = 0; j < panesLength; j++) {
+          paneStatesArr.push(panesOrg.getState(j));
+        }
+
+        app.behaviors.mainContentSlideOut($orgs.window.getState(), panesLength, paneStatesArr);
         setImmediate(() => {
           // Get results.
           const sliderClasses = slidersOrg.getState(i).classArray;
@@ -237,7 +290,7 @@ describe('Fepper website', function () {
 
     let scrollDistance = 800;
 
-    for (let i = panesCount - 1; i >= 1; i--) {
+    for (let i = panesLength - 1; i >= 1; i--) {
       it(
         // eslint-disable-next-line max-len
         `.content__slider[${i}] does not have class "content__slid" when window is scrolled ${scrollDistance}`,
@@ -414,15 +467,15 @@ describe('Fepper website', function () {
     describe('on init', function () {
       const blockHeight = 200;
 
-      updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount, paneHeightsBefore);
+      updateDimsTest(blocksCount, blocksOrg, blockHeight, panesLength, paneHeightsBefore);
     });
 
     describe('on update', function () {
       const blockHeight = 300;
 
-      updateDimsTest(blocksCount, blocksOrg, blockHeight, panesCount);
+      updateDimsTest(blocksCount, blocksOrg, blockHeight, panesLength);
 
-      for (let i = 0; i < panesCount; i++) {
+      for (let i = 0; i < panesLength; i++) {
         it(`updates pane ${i} with a height different from its original height`, function () {
           const paneHeightAfter = $orgs['.content__pane'].getState(i).css.height;
 

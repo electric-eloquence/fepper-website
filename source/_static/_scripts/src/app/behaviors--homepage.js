@@ -226,11 +226,11 @@ export default class extends Behaviors {
     const bodyOrg = this.$orgs['#body'];
     const htmlOrg = this.$orgs['#html'];
     const panesOrg = this.$orgs['.content__pane'];
-    const panesCount = panesOrg.$members.length;
+    const panesLength = panesOrg.$members.length;
     const videoState = this.$orgs['.video'].getState();
     let distancePanes = 0;
 
-    for (let i = 0; i < panesCount; i++) {
+    for (let i = 0; i < panesLength; i++) {
       const paneState = panesOrg.getState(i);
       const distanceTop = paneState.boundingClientRect.top;
 
@@ -257,13 +257,13 @@ export default class extends Behaviors {
     const bodyOrg = this.$orgs['#body'];
     const htmlOrg = this.$orgs['#html'];
     const panesOrg = this.$orgs['.content__pane'];
-    const panesCount = panesOrg.$members.length;
+    const panesLength = panesOrg.$members.length;
     const videoState = this.$orgs['.video'].getState();
     let i;
     let distancePanes = 0;
     let scrolled = false;
 
-    for (i = 0; i < panesCount; i++) {
+    for (i = 0; i < panesLength; i++) {
       const paneState = panesOrg.getState(i);
       distancePanes += paneState.innerHeight;
     }
@@ -273,7 +273,7 @@ export default class extends Behaviors {
       const distanceTop = paneState.boundingClientRect.top;
       distancePanes -= paneState.innerHeight;
 
-      if (i === panesCount - 1) {
+      if (i === panesLength - 1) {
         continue;
       }
 
@@ -298,9 +298,9 @@ export default class extends Behaviors {
   updateDims() {
     const blocksOrg = this.$orgs['.content__block'];
     const panesOrg = this.$orgs['.content__pane'];
-    const panesCount = panesOrg.getState().$members.length;
+    const panesLength = panesOrg.getState().$members.length;
 
-    for (let i = 0; i < panesCount; i++) {
+    for (let i = 0; i < panesLength; i++) {
       let height = 0;
 
       if (i === 0) {

@@ -3,12 +3,9 @@
   <head>
     <meta charset="utf-8">
     <script>
-      // Not using URLSearchParams because a) not necessary, b) might want to support ancient browsers.
-      var url = window.location.search.slice(5);
-
-      if (url.slice(0, 4) === 'http') {
-        window.location = decodeURIComponent(url);
-      }
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = searchParams.get('url');
+      window.location = decodeURIComponent(url);
     </script>
   </head>
   <body>

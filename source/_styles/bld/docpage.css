@@ -247,15 +247,16 @@ strong {
 .logo__img {
   position: relative;
   top: 0;
+  left: 0;
 }
 @media all and (max-width: 767px) {
   .logo__img {
-    width: 225.3px;
+    width: 225px;
     height: 150px;
   }
 }
 .logo__border {
-  border: 0.05rem solid #fff;
+  border: 0.1rem solid #fff;
   position: absolute;
   top: 0;
   right: 0;

@@ -48,13 +48,13 @@
   &__img
     position: relative
     top: 0
-    //right: 0.002rem // Was probably added to hide an errant border when zooming. Check and see if this is still necessary.
+    left: 0
     @media all and (max-width: $bp-sm-max)
-      width: $logo-width-small + 0.3rem
+      width: $logo-width-small
       height: $logo-height-small
-  // This border hides an errant border when zooming in Firefox.
+  // This border hides when the gradient background shows through behind various errant alignments.
   &__border
-    border: 0.05rem solid white
+    border: 0.1rem solid white
     position: absolute
     top: 0
     right: 0

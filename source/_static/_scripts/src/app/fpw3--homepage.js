@@ -55,7 +55,7 @@ export default class {
 
   stoke() {
     // Scroll to top of page on beforeunload. This is so refreshing loads the page scrolled to the top.
-    // Does not work in Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded in browser-advice.js.
+    // Does not work in Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded in vanilla.js.
     if (typeof window === 'object') {
       this.root.onbeforeunload = () => {
         const htmlState = this.requerio.$orgs['#html'].getState();

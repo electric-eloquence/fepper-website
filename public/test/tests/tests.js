@@ -172,18 +172,18 @@ describe('Fepper website', function () {
   });
 
   describe('gitHubHrefAdapt', function () {
-    const gitHubDownloadHrefBefore = $orgs['.link--resource__anchor--download'].getState().attribs.href;
+    const gitHubHrefBefore = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
     it('adapts GitHub Download href to Drupal project when provided project=drupal search param', function () {
       // Act.
       app.behaviors.gitHubHrefAdapt('drupal');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
+      const gitHubHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
       // Assert.
-      expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
-      expect(gitHubDownloadHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
+      expect(gitHubHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
+      expect(gitHubHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-drupal/releases/latest');
     });
 
     it('adapts GitHub Download href to WordPress project when provided project=wordpress search param', function () {
@@ -191,11 +191,11 @@ describe('Fepper website', function () {
       app.behaviors.gitHubHrefAdapt('wordpress');
 
       // Get results.
-      const gitHubDownloadHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
+      const gitHubHrefAfter = $orgs['.link--resource__anchor--download'].getState().attribs.href;
 
       // Assert.
-      expect(gitHubDownloadHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
-      expect(gitHubDownloadHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
+      expect(gitHubHrefBefore).to.not.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
+      expect(gitHubHrefAfter).to.equal('redirect.html?url=https://github.com/electric-eloquence/fepper-wordpress/releases/latest');
     });
   });
 

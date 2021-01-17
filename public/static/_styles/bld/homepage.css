@@ -221,13 +221,13 @@ strong {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 225px;
+  height: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .logo {
-    height: 150px;
-    width: 225px;
+    height: 200px;
+    width: 300px;
   }
 }
 .logo__bg {
@@ -235,23 +235,25 @@ strong {
   position: absolute;
   bottom: 0.1rem;
   transform: translateX(0%);
-  width: 300rem;
+  width: 225rem;
   height: calc(100% - 0.2rem);
 }
 @media all and (max-width: 767px) {
   .logo__bg {
-    width: 225rem;
+    width: 300rem;
   }
 }
 .logo__img {
   position: relative;
   top: 0;
   left: 0;
+  width: 225px;
+  height: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .logo__img {
-    width: 225px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
   }
 }
 .logo__border {
@@ -888,22 +890,22 @@ strong {
 .hider {
   background-color: #fff;
   position: fixed;
-  top: calc((100vw / 3) + 200px + 2rem + 3.8rem);
+  top: calc((100vw / 3) + 150px + 2rem + 3.8rem);
   transition: height 0.5s linear 0.5s;
   width: 100%;
-  height: calc(100vh - (100vw / 3) - 200px - 2rem - 3.8rem);
+  height: calc(100vh - (100vw / 3) - 150px - 2rem - 3.8rem);
   z-index: 2;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .hider {
-    top: calc((100vw / 3) + 150px + 2rem + 3.8rem);
-    height: calc(100vh - (100vw / 3) - 150px - 2rem - 3.8rem);
+    top: calc((100vw / 3) + 200px + 2rem + 3.8rem);
+    height: calc(100vh - (100vw / 3) - 200px - 2rem - 3.8rem);
   }
 }
 @media all and (min-width: 1728px) {
   .hider {
-    top: calc((1728px / 3) + 200px + 2rem + 3.8rem);
-    height: calc(100vh - (1728px / 3) - 200px - 2rem - 3.8rem);
+    top: calc((1728px / 3) + 150px + 2rem + 3.8rem);
+    height: calc(100vh - (1728px / 3) - 150px - 2rem - 3.8rem);
   }
 }
 .hider.hider--out {
@@ -915,11 +917,11 @@ strong {
   z-index: 2;
 }
 .bottom {
-  padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
+  padding-top: calc(100vh - 8rem - 150px - 2rem - 15.6rem);
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .bottom {
-    padding-top: calc(100vh - 8rem - 150px - 2rem - 15.6rem);
+    padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
   }
 }
 .es2018 .browser-advice {

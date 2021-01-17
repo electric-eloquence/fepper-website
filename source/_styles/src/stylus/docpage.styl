@@ -1,9 +1,6 @@
 @import 'style'
 
 $fade-height = 6rem
-$fade-height-small = $fade-height * $bp-sm-ratio
-$fade-offset = 5rem
-$fade-offset-small = $fade-offset * $bp-sm-ratio
 $nav-docpage-width = 28.8rem
 $nav-docpage-width-small = 25rem
 $nav-docpage-height = 105rem
@@ -35,12 +32,12 @@ ul + p
   margin: 0 auto
   max-width: $max-width
   min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
-  @media all and (max-width: $bp-md-max)
-    min-height: 'calc(100vh - %s - %s)' % ($logo-height-small $bottom-height)
   @media all and (max-width: $bp-sm-max)
     display: block // Necessary for overlay--opacity to work.
     .safari &
       overflow-x: hidden
+  @media all and (min-width: $bp-xl-min)
+    min-height: 'calc(100vh - %s - %s)' % ($logo-height-xl $bottom-height)
 .content
   padding: 2rem 1.5rem 4rem 4.5rem
   width: 'calc(100vw - %s)' % $nav-docpage-width
@@ -174,16 +171,16 @@ ul + p
   height: $fade-height
 .overlay--top
   top: $logo-height
-  @media all and (max-width: $bp-md-max)
-    top: $logo-height-small
+  @media all and (min-width: $bp-xl-min)
+    top: $logo-height-xl
 .overlay--middle
   backdrop-filter: contrast(1.5) saturate(0)
   -webkit-backdrop-filter: contrast(1.5) saturate(0)
   height: 'calc(100vh - %s - %s)' % ($logo-height ($fade-height * 2))
   top: unit($logo-height / 10, 'rem') + $fade-height
-  @media all and (max-width: $bp-md-max)
-    height: 'calc(100vh - %s - %s)' % ($logo-height-small ($fade-height * 2))
-    top: unit($logo-height-small / 10, 'rem') + $fade-height
+  @media all and (min-width: $bp-xl-min)
+    height: 'calc(100vh - %s - %s)' % ($logo-height-xl ($fade-height * 2))
+    top: unit($logo-height-xl / 10, 'rem') + $fade-height
 .overlay--bottom
   bottom: 0
 .docpage--index > .overlay--opacity.overlay--top,
@@ -225,8 +222,8 @@ body > .overlay--opacity.overlay--bottom
   position: -webkit-sticky
   position: sticky
   top: $logo-height
-  @media all and (max-width: $bp-md-max)
-    top: $logo-height-small
+  @media all and (min-width: $bp-xl-min)
+    top: $logo-height-xl
 // Very brittle way of hiding the instruction to consult the Fepper website when this IS the Fepper website.
 // Continuously check that this is in fact the element to be hidden.
 .content--docpage--run > ul > li:nth-of-type(4)

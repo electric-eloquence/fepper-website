@@ -222,13 +222,13 @@ strong {
   margin: 0 auto;
   overflow: hidden;
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 225px;
+  height: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .logo {
-    height: 150px;
-    width: 225px;
+    height: 200px;
+    width: 300px;
   }
 }
 .logo__bg {
@@ -236,23 +236,25 @@ strong {
   position: absolute;
   bottom: 0.1rem;
   transform: translateX(0%);
-  width: 300rem;
+  width: 225rem;
   height: calc(100% - 0.2rem);
 }
 @media all and (max-width: 767px) {
   .logo__bg {
-    width: 225rem;
+    width: 300rem;
   }
 }
 .logo__img {
   position: relative;
   top: 0;
   left: 0;
+  width: 225px;
+  height: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .logo__img {
-    width: 225px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
   }
 }
 .logo__border {
@@ -438,12 +440,7 @@ ul + p {
   position: relative;
   margin: 0 auto;
   max-width: 1152px;
-  min-height: calc(100vh - 200px - 8.4rem);
-}
-@media all and (max-width: 1024px) {
-  .foundation {
-    min-height: calc(100vh - 150px - 8.4rem);
-  }
+  min-height: calc(100vh - 150px - 8.4rem);
 }
 @media all and (max-width: 767px) {
   .foundation {
@@ -451,6 +448,11 @@ ul + p {
   }
   .safari .foundation {
     overflow-x: hidden;
+  }
+}
+@media all and (min-width: 1281px) {
+  .foundation {
+    min-height: calc(100vh - 200px - 8.4rem);
   }
 }
 .content {
@@ -659,23 +661,23 @@ ul + p {
   height: 6rem;
 }
 .overlay--top {
-  top: 200px;
+  top: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .overlay--top {
-    top: 150px;
+    top: 200px;
   }
 }
 .overlay--middle {
   backdrop-filter: contrast(1.5) saturate(0);
   -webkit-backdrop-filter: contrast(1.5) saturate(0);
-  height: calc(100vh - 200px - 12rem);
-  top: 26rem;
+  height: calc(100vh - 150px - 12rem);
+  top: 21rem;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .overlay--middle {
-    height: calc(100vh - 150px - 12rem);
-    top: 21rem;
+    height: calc(100vh - 200px - 12rem);
+    top: 26rem;
   }
 }
 .overlay--bottom {
@@ -731,11 +733,11 @@ body > .overlay--opacity.overlay--bottom {
   padding-bottom: 0.4rem;
   position: -webkit-sticky;
   position: sticky;
-  top: 200px;
+  top: 150px;
 }
-@media all and (max-width: 1024px) {
+@media all and (min-width: 1281px) {
   .sticky {
-    top: 150px;
+    top: 200px;
   }
 }
 .content--docpage--run > ul > li:nth-of-type(4) {

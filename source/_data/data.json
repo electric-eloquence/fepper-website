@@ -55,8 +55,8 @@
   "fepper_red_g": "0",
   "fepper_red_b": "0",
   "item_last_offset": "8",
-  "logo_width": "300",
-  "logo_height": "200",
-  "logo_height_small": "150",
+  "logo_width": "225",
+  "logo_height": "150",
+  "logo_height_xl": "200",
   "main_content_translate_y": "5"
 }

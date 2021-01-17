@@ -17,20 +17,20 @@ $bp-small = $bp-xs-max + 1px     //                                         - 48
 $bp-sm-max = unit(bp_sm_max, px) // From source/_scripts/src/variables.styl - 767px
 $bp-med = $bp-sm-max + 1px       //                                         - 768px
 $bp-md-max = unit(bp_md_max, px) // From source/_scripts/src/variables.styl - 1024px
+$bp-xl-min = 1281px
 
 // Measurements
 $bottom-height = 8.4rem
 $button-width = 5rem
 $button-width-small = 4rem
-$bp-sm-ratio = 0.75
+$bp-xl-ratio = 4 / 3
 $branding-space-bottom = 2rem
-$h1-font-size = 1em
 $heading-height = 3.8rem
 $item-last-offset = unit(item_last_offset, 'rem')
 $logo-bg-width = unit(logo_width, 'rem')
 $logo-width = unit(logo_width, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
-$logo-width-small = unit(logo_width * $bp-sm-ratio, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$logo-width-xl = unit(logo_width * $bp-xl-ratio, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $logo-height = unit(logo_height, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
-$logo-height-small = unit(logo_height_small, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
+$logo-height-xl = unit(logo_height_xl, 'px') // Need px measurement to work around min font-size zoom-out bug in Webkit.
 $nav-main-width-full = 18rem
 $nav-main-width-shown = 14rem

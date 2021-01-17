@@ -424,9 +424,9 @@ $video-height-max = ($video-width-max / 3)
   width: 100%
   height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height $branding-space-bottom $heading-height)
   z-index: 2
-  @media all and (max-width: $bp-md-max)
-    top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-space-bottom $heading-height)
-    height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-space-bottom $heading-height)
+  @media all and (min-width: $bp-xl-min)
+    top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-xl $branding-space-bottom $heading-height)
+    height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-xl $branding-space-bottom $heading-height)
   @media all and (min-width: $video-width-max)
     top: 'calc((%s / 3) + %s + %s + %s)' % ($video-width-max $logo-height $branding-space-bottom $heading-height)
     height: 'calc(100vh - (%s / 3) - %s - %s - %s)' % ($video-width-max $logo-height $branding-space-bottom $heading-height)
@@ -438,8 +438,8 @@ $video-height-max = ($video-width-max / 3)
   z-index: 2
 .bottom
   padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-space-bottom)
-  @media all and (max-width: $bp-md-max)
-    padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height-small $branding-space-bottom)
+  @media all and (min-width: $bp-xl-min)
+    padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height-xl $branding-space-bottom)
 .es2018
   .browser-advice
     display: none

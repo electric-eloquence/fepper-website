@@ -169,7 +169,6 @@ ul + p
   pointer-events: none
   position: fixed
   width: 100%
-  z-index: 1
 .overlay--top,
 .overlay--bottom
   height: $fade-height
@@ -192,6 +191,7 @@ ul + p
   display: none
 body > .overlay--opacity.overlay--top,
 body > .overlay--opacity.overlay--bottom
+  z-index: 1
   @media all and (max-width: $bp-sm-max)
     display: none
 .overlay__line

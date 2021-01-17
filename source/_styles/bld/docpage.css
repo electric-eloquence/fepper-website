@@ -310,7 +310,7 @@ strong {
   height: 100%;
   overflow: hidden;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
 }
 .nav--main.in {
   width: 18rem;

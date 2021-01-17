@@ -13,7 +13,7 @@ export default {
   '.nav--main__button--left': null,
   '.nav--main__button--right': null,
   '#branding': null,
-  '#logoBg': null,
+  '#logo__bg': null,
   '.fixable': null,
   '.nav--docpage': null,
   '.nav--docpage__slider': null,

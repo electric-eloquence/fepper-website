@@ -25,7 +25,9 @@ export default class {
       this.behaviors.navButtonsShift(windowState);
 
       if (!this.bodyClasses.includes('docpage--index')) {
-        this.behaviors.navDocpageBgColor();
+        requestAnimationFrame(() => {
+          this.behaviors.navDocpageBgColor();
+        });
       }
 
       if (windowState.scrollTop > sectionsState.innerHeight) {

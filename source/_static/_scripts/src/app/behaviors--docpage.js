@@ -7,7 +7,7 @@ export default class extends Behaviors {
   }
 
   navDocpageBgColor() {
-    const gradientPosition = this.$orgs['#logoBg'].getState().data.gradientPosition || 0;
+    const gradientPosition = this.$orgs['#logo__bg'].getState().data.gradientPosition || 0;
 
     this.$orgs['.nav--docpage__slider'].dispatchAction(
       'css',

@@ -45,8 +45,8 @@ export default class {
 
     this.logoRipenTranslateXLast = translateX;
     this.logoRipenFrameId = requestAnimationFrame(() => {
-      this.$orgs['#logoBg'].dispatchAction('data', {gradientPosition: percentage});
-      this.$orgs['#logoBg'].dispatchAction('css', {transform: `translateX(${translateX})`});
+      this.$orgs['#logo__bg'].dispatchAction('data', {gradientPosition: percentage});
+      this.$orgs['#logo__bg'].dispatchAction('css', {transform: `translateX(${translateX})`});
 
       this.logoRipenFrameId = null;
     });

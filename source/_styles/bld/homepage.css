@@ -911,6 +911,9 @@ strong {
   animation-name: hiderOut;
   height: 0;
 }
+.button--scroll--up {
+  z-index: 2;
+}
 .bottom {
   padding-top: calc(100vh - 8rem - 200px - 2rem - 15.6rem);
 }

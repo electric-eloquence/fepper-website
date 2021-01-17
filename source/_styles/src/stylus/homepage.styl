@@ -424,7 +424,7 @@ $video-height-max = ($video-width-max / 3)
   width: 100%
   height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height $branding-space-bottom $heading-height)
   z-index: 2
-  @media all and (max-width: $bp-sm-max)
+  @media all and (max-width: $bp-md-max)
     top: 'calc((100vw / 3) + %s + %s + %s)' % ($logo-height-small $branding-space-bottom $heading-height)
     height: 'calc(100vh - (100vw / 3) - %s - %s - %s)' % ($logo-height-small $branding-space-bottom $heading-height)
   @media all and (min-width: $video-width-max)
@@ -436,6 +436,8 @@ $video-height-max = ($video-width-max / 3)
     height: 0
 .bottom
   padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height $branding-space-bottom)
+  @media all and (max-width: $bp-md-max)
+    padding-top: 'calc(100vh - %s - %s - %s - 15.6rem)' % ($item-last-offset $logo-height-small $branding-space-bottom)
 .es2018
   .browser-advice
     display: none

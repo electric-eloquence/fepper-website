@@ -35,7 +35,7 @@ ul + p
   margin: 0 auto
   max-width: $max-width
   min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
-  @media all and (max-width: $bp-sm-max)
+  @media all and (max-width: $bp-md-max)
     display: block // Necessary for overlay--opacity to work.
     min-height: 'calc(100vh - %s - %s)' % ($logo-height-small $bottom-height)
     .safari &
@@ -173,14 +173,14 @@ ul + p
   height: $fade-height
 .overlay--top
   top: $logo-height
-  @media all and (max-width: $bp-sm-max)
+  @media all and (max-width: $bp-md-max)
     top: $logo-height-small
 .overlay--middle
   backdrop-filter: contrast(1.5) saturate(0)
   -webkit-backdrop-filter: contrast(1.5) saturate(0)
   height: 'calc(100vh - %s - %s)' % ($logo-height ($fade-height * 2))
   top: unit($logo-height / 10, 'rem') + $fade-height
-  @media all and (max-width: $bp-sm-max)
+  @media all and (max-width: $bp-md-max)
     height: 'calc(100vh - %s - %s)' % ($logo-height-small ($fade-height * 2))
     top: unit($logo-height-small / 10, 'rem') + $fade-height
 .overlay--bottom
@@ -223,7 +223,7 @@ body > .overlay--opacity.overlay--bottom
   position: -webkit-sticky
   position: sticky
   top: $logo-height
-  @media all and (max-width: $bp-sm-max)
+  @media all and (max-width: $bp-md-max)
     top: $logo-height-small
 // Very brittle way of hiding the instruction to consult the Fepper website when this IS the Fepper website.
 // Continuously check that this is in fact the element to be hidden.

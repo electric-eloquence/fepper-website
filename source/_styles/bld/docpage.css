@@ -212,7 +212,7 @@ strong {
   position: absolute;
   width: 100%;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .branding__link-inactive {
     height: 2.4rem;
   }
@@ -225,7 +225,7 @@ strong {
   width: 300px;
   height: 200px;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .logo {
     height: 150px;
     width: 225px;
@@ -249,7 +249,7 @@ strong {
   top: 0;
   left: 0;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .logo__img {
     width: 225px;
     height: 150px;
@@ -440,7 +440,7 @@ ul + p {
   max-width: 1152px;
   min-height: calc(100vh - 200px - 8.4rem);
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .foundation {
     display: block;
     min-height: calc(100vh - 150px - 8.4rem);
@@ -657,7 +657,7 @@ ul + p {
 .overlay--top {
   top: 200px;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .overlay--top {
     top: 150px;
   }
@@ -668,7 +668,7 @@ ul + p {
   height: calc(100vh - 200px - 12rem);
   top: 26rem;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .overlay--middle {
     height: calc(100vh - 150px - 12rem);
     top: 21rem;
@@ -725,7 +725,7 @@ ul + p {
   position: sticky;
   top: 200px;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 1024px) {
   .sticky {
     top: 150px;
   }

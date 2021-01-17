@@ -203,7 +203,7 @@ strong {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 .branding__link-inactive {
   bottom: 0;
@@ -442,8 +442,12 @@ ul + p {
 }
 @media all and (max-width: 1024px) {
   .foundation {
-    display: block;
     min-height: calc(100vh - 150px - 8.4rem);
+  }
+}
+@media all and (max-width: 767px) {
+  .foundation {
+    display: block;
   }
   .safari .foundation {
     overflow-x: hidden;
@@ -649,6 +653,7 @@ ul + p {
   pointer-events: none;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 .overlay--top,
 .overlay--bottom {

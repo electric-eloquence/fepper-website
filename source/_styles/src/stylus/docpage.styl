@@ -36,8 +36,9 @@ ul + p
   max-width: $max-width
   min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
   @media all and (max-width: $bp-md-max)
-    display: block // Necessary for overlay--opacity to work.
     min-height: 'calc(100vh - %s - %s)' % ($logo-height-small $bottom-height)
+  @media all and (max-width: $bp-sm-max)
+    display: block // Necessary for overlay--opacity to work.
     .safari &
       overflow-x: hidden
 .content
@@ -168,6 +169,7 @@ ul + p
   pointer-events: none
   position: fixed
   width: 100%
+  z-index: 1
 .overlay--top,
 .overlay--bottom
   height: $fade-height

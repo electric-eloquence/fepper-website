@@ -4,6 +4,7 @@ export default class {
   constructor(requerio, root) {
     this.requerio = requerio;
     this.root = root;
+    this.animationFrameId = null;
     this.behaviors = new Behaviors(requerio, root);
     this.bodyClasses = this.requerio.$orgs['#body'].getState().classArray;
   }
@@ -25,9 +26,12 @@ export default class {
       this.behaviors.navButtonsShift(windowState);
 
       if (!this.bodyClasses.includes('docpage--index')) {
-        requestAnimationFrame(() => {
-          this.behaviors.navDocpageBgColor();
-        });
+        if (!this.animationFrameId) {
+          this.animationFrameId = requestAnimationFrame(() => {
+            this.behaviors.navDocpageBgColor();
+            this.animationFrameId = null;
+          });
+        }
       }
 
       if (windowState.scrollTop > sectionsState.innerHeight) {

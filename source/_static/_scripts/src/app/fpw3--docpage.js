@@ -26,6 +26,7 @@ export default class {
       this.behaviors.navButtonsShift(windowState);
 
       if (!this.bodyClasses.includes('docpage--index')) {
+        // To give time to save gradient position.
         if (!this.animationFrameId) {
           this.animationFrameId = requestAnimationFrame(() => {
             this.behaviors.navDocpageBgColor();
@@ -75,10 +76,13 @@ export default class {
       this.behaviors.navDocpageSlide();
       this.behaviors.navMainSlide();
 
-      // To give time to save gradient position.
-      if (!this.bodyClasses.includes('docpage--index')) {
-        this.behaviors.navDocpageBgColor();
-      }
     }, 0);
+
+    if (!this.bodyClasses.includes('docpage--index')) {
+      // To give time to save gradient position.
+      requestAnimationFrame(() => {
+        this.behaviors.navDocpageBgColor();
+      });
+    }
   }
 }

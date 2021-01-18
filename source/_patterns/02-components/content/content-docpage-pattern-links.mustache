@@ -1,9 +1,9 @@
 <h3>Pattern Links</h3>
-<p>Pattern pages can link to one another as though on a real website. This is especially useful when <a href="{{ link.pages-static-site-generator }}">generating a static site</a>, as relative linking from one page to another will be preserved. The basic format is:</p>
+<p>Pattern pages can link to one another with a simplified syntax not requiring the exact path. This is especially useful when <a href="{{ link.pages-static-site-generator }}">generating a static site</a>, as this linking syntax will be translated into relative paths, and such relative linking will be preserved on the static site. The basic syntax is:</p>
 <pre><code> &lcub;&lcub; link.[patternType]-[patternName] &rcub;&rcub;</code></pre>
 <p>For example, say you wanted to link an article page to your homepage. If the article were at <code>04-pages/articles-/00-top-story.mustache</code>, you could write:</p>
 <pre><code>&lt;a href="&lcub;&lcub; link.pages-top-story &rcub;&rcub;"&gt;Article Headline&lt;/a&gt;</code></pre>
-<p>In Fepper <code>public/patterns</code> directory, this would built as:</p>
+<p>In Fepper <code>public/patterns</code> directory, this would be built as:</p>
 <pre><code>&lt;a href="../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>
 <p>Appending a hyphen (<code>-</code>) to the "articles" directory is just a suggestion for generating a static site. The Static Site Generator flattens nested source directories, but the additional hyphen suggests that "articles" categorizes the more specific parts that follow. The final output of the link would be:</p>
 <pre><code>&lt;a href="articles--top-story.html"&gt;Article Headline&lt;/a&gt;</code></pre>

@@ -43,8 +43,8 @@
     transform: translateX(0%)
     width: $logo-bg-width
     height: calc(100% - 0.2rem)
-    @media all and (max-width: $bp-sm-max)
-      width: $logo-bg-width * $bp-xl-ratio
+    @media all and (min-width: $bp-xl-min)
+      width: $logo-bg-width-xl
   &__img
     position: relative
     top: 0

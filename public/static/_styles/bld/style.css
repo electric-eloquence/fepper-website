@@ -239,7 +239,7 @@ strong {
   width: 225rem;
   height: calc(100% - 0.2rem);
 }
-@media all and (max-width: 767px) {
+@media all and (min-width: 1281px) {
   .logo__bg {
     width: 300rem;
   }

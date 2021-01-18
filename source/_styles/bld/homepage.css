@@ -147,7 +147,8 @@ p {
   margin-bottom: 1.6rem;
 }
 pre {
-  background-color: #eee;
+  background-color: #363636;
+  color: #fff;
   font-size: 0.875em;
   margin-top: 0;
   padding: 0.8rem 1.6rem;

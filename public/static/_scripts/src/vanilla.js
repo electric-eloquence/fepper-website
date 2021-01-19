@@ -46,7 +46,7 @@ if (bodyClasses.indexOf('homepage') > -1) {
   browserAdvice.innerHTML =
     '<!--googleoff: index-->This website is best viewed on up-to-date browsers.<!--googleon: index-->';
 
-  document.body.insertBefore(browserAdvice, document.getElementsByClassName('nav--main')[0]);
+  document.body.insertBefore(browserAdvice, document.getElementsByClassName('video')[0]);
 
   // Not server-side testable. It's super simple and not worth complicating. Leave as vanilla js.
   document.addEventListener(

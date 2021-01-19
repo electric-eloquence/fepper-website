@@ -210,7 +210,7 @@ describe('Fepper website', function () {
 
     it('moves #logoBg between 0 and -90% right when window is scrolled', function () {
       // Get results.
-      const logoBgRight = $orgs['#logoBg'].getState().css.transform;
+      const logoBgRight = $orgs['#logo__bg'].getState().css.transform;
       const percentage = parseFloat(logoBgRight.replace('translateX(', '').slice(0, -2));
 
       // Assert.

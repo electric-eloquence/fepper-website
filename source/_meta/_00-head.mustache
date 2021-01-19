@@ -27,11 +27,11 @@
   {{/ offline }}
   <link rel="stylesheet" href="../../_styles/bld/{{ stylesheet }}{{ cacheBuster }}">
   <script>
-    if (window.navigator.userAgent.includes('Safari')) {
-      document.documentElement.classList.add('webkit');
+    if (window.navigator.userAgent.indexOf('Safari') > -1) {
+      document.documentElement.className += ' webkit';
 
-      if (!window.navigator.userAgent.includes('Chrom')) {
-        document.documentElement.classList.add('safari');
+      if (window.navigator.userAgent.indexOf('Chrom') === -1) {
+        document.documentElement.className += 'safari';
       }
     }
   </script>

@@ -30,7 +30,7 @@ ul + p
   padding-top: 3rem
   position: relative
   margin: 0 auto
-  max-width: $max-width
+  max-width: $bp-lg-max
   min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
   @media all and (max-width: $bp-sm-max)
     display: block // Necessary for overlay--opacity to work.
@@ -61,8 +61,8 @@ ul + p
   @media all and (max-width: $bp-xs-max)
     padding-right: 3rem
     padding-left: 3rem
-  @media all and (min-width: $max-width)
-    width: 'calc(%s - %s)' % ($max-width $nav-docpage-width)
+  @media all and (min-width: $bp-xl-min)
+    width: 'calc(%s - %s)' % ($bp-lg-max $nav-docpage-width)
   .docpage--index &
     width: 100%
   .webkit &

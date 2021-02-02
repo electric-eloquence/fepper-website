@@ -16,6 +16,7 @@ export default class {
       const windowState = $orgs.window.getState();
 
       this.behaviors.navButtonsShift(windowState);
+      this.behaviors.overlayMiddleHeightAdjust(windowState);
     }));
 
     $orgs.window.scroll(() => {
@@ -65,8 +66,10 @@ export default class {
   }
 
   stoke() {
-    const windowState = this.requerio.$orgs.window.getState();
+    const windowOrg = this.requerio.$orgs.window;
+    const windowState = windowOrg.getState();
 
+    windowOrg.dispatchAction('data', {outerHeight: windowState.outerHeight});
     this.behaviors.logoRipen(windowState);
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();

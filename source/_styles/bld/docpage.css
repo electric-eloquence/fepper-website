@@ -659,7 +659,7 @@ ul + p {
 }
 .overlay--top,
 .overlay--bottom {
-  height: 6rem;
+  height: 60px;
 }
 .overlay--top {
   top: 150px;
@@ -672,13 +672,13 @@ ul + p {
 .overlay--middle {
   backdrop-filter: contrast(1.5) saturate(0);
   -webkit-backdrop-filter: contrast(1.5) saturate(0);
-  height: calc(100vh - 150px - 12rem);
-  top: 21rem;
+  height: calc(100vh - 150px - 120px);
+  top: 210px;
 }
 @media all and (min-width: 1281px) {
   .overlay--middle {
-    height: calc(100vh - 200px - 12rem);
-    top: 26rem;
+    height: calc(100vh - 200px - 120px);
+    top: 260px;
   }
 }
 .overlay--bottom {

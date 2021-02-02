@@ -46,4 +46,37 @@ export default class extends Behaviors {
     this.$orgs['.nav--docpage'].dispatchAction('removeClass', 'in');
     this.$orgs['.nav--docpage'].dispatchAction('addClass', 'out');
   }
+
+  overlayMiddleHeightAdjust(windowState) {
+    // In desktop Safari, more than one tab shrinks the viewport height. This change in viewport height is not picked
+    // up by CSS.
+    const overlayMiddle = this.$orgs['.overlay--middle'];
+    const overlayMiddleState = overlayMiddle.getState();
+    const overlayHeightActual = overlayMiddleState.height;
+    const windowOuterHeightBefore = windowState.data.outerHeight;
+    const windowOuterHeightNow = windowState.outerHeight;
+    let overlayHeightIdeal;
+
+    // This behavior is useful when adding and removing tabs, but not when physically resizing the window.
+    if (windowOuterHeightNow === windowOuterHeightBefore) {
+      if (windowState.innerWidth < window.bp_xl_min) {
+        overlayHeightIdeal = windowState.innerHeight - window.logo_height - (window.fade_height * 2);
+      }
+      else {
+        overlayHeightIdeal = windowState.innerHeight - window.logo_height_xl - (window.fade_height * 2);
+      }
+
+      if (overlayHeightActual === overlayHeightIdeal) {
+        if (overlayMiddleState.css.height) {
+          overlayMiddle.dispatchAction('css', {height: ''});
+        }
+      }
+      else {
+        overlayMiddle.dispatchAction('css', {height: overlayHeightIdeal + 'px'});
+      }
+    }
+    else if (overlayMiddleState.css.height) {
+      overlayMiddle.dispatchAction('css', {height: ''});
+    }
+  }
 }

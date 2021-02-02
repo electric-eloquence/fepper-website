@@ -1,6 +1,5 @@
 @import 'style'
 
-$fade-height = 6rem
 $nav-docpage-width = 28.8rem
 $nav-docpage-width-small = 25rem
 $nav-docpage-height = 105rem
@@ -177,10 +176,10 @@ ul + p
   backdrop-filter: contrast(1.5) saturate(0)
   -webkit-backdrop-filter: contrast(1.5) saturate(0)
   height: 'calc(100vh - %s - %s)' % ($logo-height ($fade-height * 2))
-  top: unit($logo-height / 10, 'rem') + $fade-height
+  top: unit($logo-height, 'px') + $fade-height
   @media all and (min-width: $bp-xl-min)
     height: 'calc(100vh - %s - %s)' % ($logo-height-xl ($fade-height * 2))
-    top: unit($logo-height-xl / 10, 'rem') + $fade-height
+    top: unit($logo-height-xl, 'px') + $fade-height
 .overlay--bottom
   bottom: 0
 .docpage--index > .overlay--opacity.overlay--top,

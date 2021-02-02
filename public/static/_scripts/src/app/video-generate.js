@@ -12,6 +12,11 @@ export default async function*(logicalImages, $orgs, timeout) {
     videoImgsOrg.dispatchAction('css', {display: 'none'}, indices[1]);
     videoImgsOrg.dispatchAction('css', {display: 'none'}, indices[2]);
 
+    // Necessary to unset image src so Safari doesn't load animated gifs at completion state.
+    videoImgsOrg.dispatchAction('attr', {src: '../../_assets/src/pixel.gif'}, indices[0]);
+    videoImgsOrg.dispatchAction('attr', {src: '../../_assets/src/pixel.gif'}, indices[1]);
+    videoImgsOrg.dispatchAction('attr', {src: '../../_assets/src/pixel.gif'}, indices[2]);
+
     videoImgsOrg.dispatchAction('attr', {src: logicalImages['06'].src}, indices[3]);
     videoImgsOrg.dispatchAction('attr', {src: logicalImages['07'].src}, indices[4]);
     videoImgsOrg.dispatchAction('attr', {src: logicalImages['08'].src}, indices[5]);

@@ -440,7 +440,7 @@ ul + p {
   padding-top: 3rem;
   position: relative;
   margin: 0 auto;
-  max-width: 1152px;
+  max-width: 1280px;
   min-height: calc(100vh - 150px - 8.4rem);
 }
 @media all and (max-width: 767px) {
@@ -494,9 +494,9 @@ ul + p {
     padding-left: 3rem;
   }
 }
-@media all and (min-width: 1152px) {
+@media all and (min-width: 1281px) {
   .content {
-    width: calc(1152px - 28.8rem);
+    width: calc(1280px - 28.8rem);
   }
 }
 .docpage--index .content {

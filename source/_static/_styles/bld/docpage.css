@@ -659,7 +659,13 @@ ul + p {
 }
 .overlay--top,
 .overlay--bottom {
-  height: 60px;
+  height: 30px;
+}
+@media all and (min-width: 1281px) {
+  .overlay--top,
+  .overlay--bottom {
+    height: 60px;
+  }
 }
 .overlay--top {
   top: 150px;
@@ -672,8 +678,8 @@ ul + p {
 .overlay--middle {
   backdrop-filter: contrast(1.5) saturate(0);
   -webkit-backdrop-filter: contrast(1.5) saturate(0);
-  height: calc(100vh - 150px - 120px);
-  top: 210px;
+  height: calc(100vh - 150px - 60px);
+  top: 180px;
 }
 @media all and (min-width: 1281px) {
   .overlay--middle {
@@ -704,6 +710,12 @@ body > .overlay--opacity.overlay--bottom {
 }
 .overlay__line--opacity {
   background-color: #fff;
+}
+@media all and (max-width: 1280px) {
+  .olf--odd,
+  .olo--odd {
+    display: none;
+  }
 }
 .content--docpage--configure h5 {
   margin-top: 2.4rem;

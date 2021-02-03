@@ -63,7 +63,7 @@ export default class extends Behaviors {
         overlayHeightIdeal = windowState.innerHeight - window.logo_height - (window.fade_height * 2);
       }
       else {
-        overlayHeightIdeal = windowState.innerHeight - window.logo_height_xl - (window.fade_height * 2);
+        overlayHeightIdeal = windowState.innerHeight - window.logo_height_xl - (window.fade_height_xl * 2);
       }
 
       if (overlayHeightActual === overlayHeightIdeal) {

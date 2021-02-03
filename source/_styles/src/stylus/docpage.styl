@@ -168,6 +168,8 @@ ul + p
 .overlay--top,
 .overlay--bottom
   height: $fade-height
+  @media all and (min-width: $bp-xl-min)
+    height: $fade-height-xl
 .overlay--top
   top: $logo-height
   @media all and (min-width: $bp-xl-min)
@@ -178,8 +180,8 @@ ul + p
   height: 'calc(100vh - %s - %s)' % ($logo-height ($fade-height * 2))
   top: unit($logo-height, 'px') + $fade-height
   @media all and (min-width: $bp-xl-min)
-    height: 'calc(100vh - %s - %s)' % ($logo-height-xl ($fade-height * 2))
-    top: unit($logo-height-xl, 'px') + $fade-height
+    height: 'calc(100vh - %s - %s)' % ($logo-height-xl ($fade-height-xl * 2))
+    top: unit($logo-height-xl, 'px') + $fade-height-xl
 .overlay--bottom
   bottom: 0
 .docpage--index > .overlay--opacity.overlay--top,
@@ -195,6 +197,10 @@ body > .overlay--opacity.overlay--bottom
   line-height: 1
 .overlay__line--opacity
   background-color: white
+@media all and (max-width: $bp-lg-max)
+  .olf--odd,
+  .olo--odd
+    display: none
 
 .content--docpage--configure
   h5

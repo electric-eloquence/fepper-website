@@ -1,10 +1,9 @@
 // Vanilla JavaScript not appropriate for the Requerio app.
 
-// Adding the bot=no query param to indicate human action is not server-side testable.
-function queryNoBot() {
-  var href = this.href;
+function query(element, key, value) {
+  var href = element.href;
 
-  if (href.indexOf('bot=no') === -1) {
+  if (href.indexOf(key + '=' + value) === -1) {
     if (href.indexOf('?') > -1) {
       var hrefSplit = href.split('?');
       var hrefNew = '';
@@ -13,26 +12,56 @@ function queryNoBot() {
         hrefNew += hrefPart;
 
         if (index === 0) {
-          hrefNew += '?bot=no&';
+          hrefNew += '?' + key + '=' + value + '&';
         }
         else if (index < hrefSplit.length - 1) {
           hrefNew += '?';
         }
       });
 
-      this.href = hrefNew;
+      element.href = hrefNew;
     }
     else {
-      this.href += '?bot=no';
+      element.href += '?' + key + '=' + value;
     }
   }
 }
 
 var anchors = document.getElementsByTagName('a');
+var cookieObj = {};
+
+if (typeof document.cookie === 'string') {
+  document.cookie.split('; ').forEach(function (keyVal) {
+    var keyValSplit = keyVal.split('=');
+    cookieObj[keyValSplit[0]] = keyValSplit[1];
+  });
+}
 
 for (var i = 0; i < anchors.length; i++) {
-  anchors[i].addEventListener('mouseenter', queryNoBot, false);
-  anchors[i].addEventListener('touchstart', queryNoBot, false);
+  if (!cookieObj.vw || cookieObj.vw !== window.innerWidth) {
+    query(anchors[i], 'vw', window.innerWidth);
+  }
+
+  if (!cookieObj.vh || cookieObj.vh !== window.innerHeight) {
+    query(anchors[i], 'vh', window.innerHeight);
+  }
+
+  // Add the bot=no query param to indicate human action.
+  anchors[i].addEventListener('mouseenter', function () {query(this, 'bot', 'no')}, false);
+  anchors[i].addEventListener('touchstart', function () {query(this, 'bot', 'no')}, false);
+  anchors[i].addEventListener(
+    'click',
+    function () {
+      if (!cookieObj.vw || cookieObj.vw !== window.innerWidth) {
+        document.cookie = 'vw=' + window.innerWidth + ';sameSite=strict';
+      }
+
+      if (!cookieObj.vh || cookieObj.vh !== window.innerHeight) {
+        document.cookie = 'vh=' + window.innerHeight+ ';sameSite=strict';
+      }
+    },
+    false
+  );
 }
 
 /* PAGE-SPECIFIC */

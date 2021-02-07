@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html id="html" class="">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      const searchParams = new URLSearchParams(window.location.search);
+      const url = searchParams.get('url');
+      window.location = decodeURIComponent(url);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -38,11 +38,11 @@ if (typeof document.cookie === 'string') {
 }
 
 for (var i = 0; i < anchors.length; i++) {
-  if (!cookieObj.vw || cookieObj.vw !== window.innerWidth) {
+  if (!cookieObj.vw || cookieObj.vw !== window.innerWidth.toString()) {
     query(anchors[i], 'vw', window.innerWidth);
   }
 
-  if (!cookieObj.vh || cookieObj.vh !== window.innerHeight) {
+  if (!cookieObj.vh || cookieObj.vh !== window.innerHeight.toString()) {
     query(anchors[i], 'vh', window.innerHeight);
   }
 
@@ -52,12 +52,12 @@ for (var i = 0; i < anchors.length; i++) {
   anchors[i].addEventListener(
     'click',
     function () {
-      if (!cookieObj.vw || cookieObj.vw !== window.innerWidth) {
-        document.cookie = 'vw=' + window.innerWidth + ';sameSite=strict';
+      if (!cookieObj.vw || cookieObj.vw !== window.innerWidth.toString()) {
+        document.cookie = 'vw=' + window.innerWidth + ';path=/;sameSite=strict';
       }
 
-      if (!cookieObj.vh || cookieObj.vh !== window.innerHeight) {
-        document.cookie = 'vh=' + window.innerHeight+ ';sameSite=strict';
+      if (!cookieObj.vh || cookieObj.vh !== window.innerHeight.toString()) {
+        document.cookie = 'vh=' + window.innerHeight+ ';path=/;sameSite=strict';
       }
     },
     false

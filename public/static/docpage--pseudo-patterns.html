@@ -66,7 +66,7 @@
         <h4>The Pseudo-Pattern File Naming Convention</h4>
         <p></p>
         <pre><code>[patternName]~[variantName].json</code></pre>
-        <p>The tilde (<code>~</code>) and <code>.json</code> file extension are the hints that Fepper uses to determine that this is a pseudo-pattern. The <code>patternName</code> tells Fepper which existing pattern it should use when rendering the pseudo-pattern. The JSON file itself works exactly like a <a href="docpage--pattern-data.html">pattern-specific JSON</a> file. It has the added benefit that the pseudo-pattern will also inherit values from the existing pattern's JSON data. (Data specific to the <a href="docpage--global-head-and-foot.html">global head or foot</a> will <em>not</em> be inherited and must be copied to the pseudo-pattern.)</p>
+        <p>The tilde (<code>~</code>) and <code>.json</code> file extension are the hints that Fepper uses to determine that this is a pseudo-pattern. The <code>patternName</code> tells Fepper which existing pattern it should use when rendering the pseudo-pattern. The JSON file itself works exactly like a <a href="docpage--pattern-data.html">pattern-specific JSON</a> file. It has the added benefit that the pseudo-pattern will also inherit values from the existing pattern's JSON data.</p>
         <h4>Adding Pseudo-Patterns to Your Project</h4>
         <p>Adding a pseudo-pattern is as simple as naming it correctly and following the <a href="docpage--pattern-data.html">pattern-specific JSON file instructions</a> for organizing its content. Let's look at a simple example where we want to show an emergency notification on our homepage. Our <code>templates</code> directory might look like this:</p>
         <pre><code>article.mustache
@@ -122,6 +122,7 @@ homepage~emergency.json</code></pre>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>

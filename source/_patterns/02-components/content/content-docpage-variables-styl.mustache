@@ -1,28 +1,27 @@
-<h3><a id="user-content-variablesstyl" class="anchor" aria-hidden="true" href="#variablesstyl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><a id="user-content-variables.styl"></a>variables.styl</h3><p><code>source/_scripts/src/variables.styl</code> is a file containing variables that can
-be shared across the Stylus CSS preprocessor, browser JavaScripts, and PHP
-backends (and possibly other language backends as well). It ships with these
+<h3 id="variablesstyl"><a id="variables.styl"></a>variables.styl</h3><p><code>source/_scripts/src/variables.styl</code> is a file containing variables that can 
+be shared across the Stylus CSS preprocessor, browser JavaScripts, and PHP 
+backends (and possibly other language backends as well). It ships with these 
 values:</p><pre><code>bp_lg_max = -1
 bp_md_max = 1024
 bp_sm_max = 767
 bp_xs_max = 480
 bp_xx_max = 320
-bp_xx_min = 0
-</code></pre><p>It cannot contain comments, semi-colons, curly braces, etc. It is
-straightforward to import and use these variables in Stylus and JavaScript. PHP
-must import them with <code>parse_ini_file()</code>. Fepper tries to be agnostic about CSS
-processors and tries to keep the amount of npms to download to a minimum.
-However, since Stylus allows for this easy sharing of variables, most Fepper
-distros ship with the
-<a href="https://www.npmjs.com/package/fp-stylus" rel="nofollow">fp-stylus</a>
-extension and a fully-populated <code>source/_styles/src/stylus</code> directory. The
-Stylus files are written in the terse, YAML-like, indentation-based syntax.
-However, the more verbose, CSS-like syntax (with curly braces and semi-colons)
-is perfectly valid as well.</p><p>The UI's viewport resizer buttons are dependent on the values in
-<code>variables.styl</code>. The default values will configure the XX, XS, SM, and MD
-buttons to resize the viewport to each breakpoint's assigned maximum width. The
-LG button will resize the viewport to a width that is greater than <code>bp_md_max</code>
-by the distance between <code>bp_sm_max</code> and <code>bp_md_max</code>.</p><p>Users have the ability to add, modify, or delete values in <code>variables.styl</code>. The
-UI will respect these changes; but keep in mind that additions must be prefixed
-by <code>bp_</code> and suffixed by <code>_max</code> in order for them to appear as viewport resizer
-buttons. A <code>-1</code> value translates to <code>Number.MAX_SAFE_INTEGER</code>, and effectively
+bp_xx_min = 0</code></pre><p>It cannot contain comments, semi-colons, curly braces, etc. It is 
+straightforward to import and use these variables in Stylus and JavaScript. PHP 
+must import them with <code>parse_ini_file()</code>. Fepper tries to be agnostic about CSS 
+processors and tries to keep the amount of npms to download to a minimum. 
+However, since Stylus allows for this easy sharing of variables, most Fepper 
+distros ship with the 
+<a href="https://www.npmjs.com/package/fp-stylus" target="_blank">fp-stylus</a> 
+extension and a fully-populated <code>source/_styles/src/stylus</code> directory. The 
+Stylus files are written in the terse, YAML-like, indentation-based syntax. 
+However, the more verbose, CSS-like syntax (with curly braces and semi-colons) 
+is perfectly valid as well.</p><p>The UI&#39;s viewport resizer buttons are dependent on the values in 
+<code>variables.styl</code>. The default values will configure the XX, XS, SM, and MD 
+buttons to resize the viewport to each breakpoint&#39;s assigned maximum width. The 
+LG button will resize the viewport to a width that is greater than <code>bp_md_max</code> 
+by the distance between <code>bp_sm_max</code> and <code>bp_md_max</code>.</p><p>Users have the ability to add, modify, or delete values in <code>variables.styl</code>. The 
+UI will respect these changes; but keep in mind that additions must be prefixed 
+by <code>bp_</code> and suffixed by <code>_max</code> in order for them to appear as viewport resizer 
+buttons. A <code>-1</code> value translates to <code>Number.MAX_SAFE_INTEGER</code>, and effectively 
 means infinity.</p>

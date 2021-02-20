@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const fs = require('fs-extra');
 const html2json = require('html2json').html2json;
 const json2html = require('html2json').json2html;
+const marked = require('marked');
 
 const conf = global.conf;
 const gulp = global.gulp;
@@ -18,56 +19,7 @@ class HtmlObj {
 }
 
 /**
- * Recurse through the object returned by html2json to find the markdown body converted to HTML.
- *
- * @param {object} html2jsonObj - The object returned by html2json.
- * @param {object|null} persistentObj_ - A mutating object persisting to return results. Not submitted at level 0.
- * @param {number} level - The level of recursion. Not submitted at level 0.
- * @returns {object} An html2json object containing the matched element. Only returns at level 0.
- */
-function markdownBodySelect(html2jsonObj, persistentObj_ = null, level = 0) {
-  if (!html2jsonObj || !(html2jsonObj instanceof Object) || !Array.isArray(html2jsonObj.child)) {
-    return null;
-  }
-
-  const persistentObj = persistentObj_ || new HtmlObj();
-
-  for (const child of html2jsonObj.child) {
-    if (!child || !(child instanceof Object)) {
-      continue;
-    }
-
-    if (child.node !== 'element') {
-      continue;
-    }
-
-    if (
-      utils.deepGet(child, 'tag') === 'article' &&
-      utils.deepGet(child, 'attr.class').includes('markdown-body')
-    ) {
-      if (Array.isArray(child.child) && child.child.length) {
-        persistentObj.child.push(child);
-
-        break;
-      }
-    }
-
-    if (Array.isArray(child.child) && child.child.length) {
-      markdownBodySelect(child, persistentObj, level + 1);
-    }
-
-    if (persistentObj.child.length) {
-      break;
-    }
-  }
-
-  if (level === 0) {
-    return persistentObj;
-  }
-}
-
-/**
- * Recurse through the object returned by markdownBodySelect to find the section of HTML.
+ * Recurse through an html2json object to find a section of HTML.
  *
  * @param {string} sectionHeadingText - The section must be identified by heading text. There is no CSS id or class.
  * @param {object} html2jsonObj - The object returned by html2json.
@@ -138,7 +90,9 @@ function sectionSelect(sectionHeadingText, html2jsonObj, persistentObj_ = null, 
 }
 
 function scrapeAndWriteContent(sectionHeadingText) {
-  fetch('https://github.com/electric-eloquence/fepper/blob/dev/README.md')
+  let htmlFromMd;
+
+  fetch('https://raw.githubusercontent.com/electric-eloquence/fepper/dev/README.md')
     .then((response) => {
       if (response.ok) {
         return response.text();
@@ -148,9 +102,17 @@ function scrapeAndWriteContent(sectionHeadingText) {
       }
     })
     .then((output) => {
-      const html2jsonObj = html2json(output);
-      const markdownBodyObj = markdownBodySelect(html2jsonObj);
-      const sectionObj = sectionSelect(sectionHeadingText, markdownBodyObj);
+      try {
+        htmlFromMd = marked(output);
+      }
+      catch (err) /* istanbul ignore next */ {
+        this.utils.error(err);
+
+        return Promise.reject(err);
+      }
+
+      const html2jsonObj = html2json(htmlFromMd);
+      const sectionObj = sectionSelect(sectionHeadingText, html2jsonObj);
       // eslint-disable-next-line no-useless-escape
       const filenameSuffix = sectionHeadingText.replace(/[ \.]/g, '-').toLowerCase();
       const html4file = json2html(sectionObj)

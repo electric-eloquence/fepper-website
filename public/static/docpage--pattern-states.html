@@ -62,7 +62,7 @@
     <main class="foundation">
       <article class="content content--docpage--pattern-states">
         <h3>Pattern States</h3>
-        <p>Pattern states provide your team and client a simple visual of the current state of patterns in Fepper. Pattern states can track progress of a pattern from development, through client review, to completion. They can also be customized to refer to additional states. They are denoted by colored dots in the UI menu, <a href="docpage--mustache-browser.html">Code Viewer</a>, and View Alls.</p>
+        <p>Pattern states provide your team and client a simple visual of the current state of patterns in Fepper. Pattern states can track the progress of a pattern from development, through client review, to completion. They can also be customized to refer to additional states. They are denoted by colored dots in the UI menu, <a href="docpage--mustache-browser.html">Code Viewer</a>, and View Alls.</p>
         <h4>Default Pattern States</h4>
         <p></p>
         <ul>
@@ -93,7 +93,7 @@ Content is key
         <pre><code>00-elements/button/button~red.md</code></pre>
         <h4>Adding Custom States</h4>
         <p>The three default states might not be enough for everyone. To add custom states, modify <code>source/_styles/pattern-scaffolding.css</code>, a Fepper-specific stylesheet that is editable by end-users. You can use the following as your CSS template for new pattern states:</p>
-        <pre><code>.newpatternstate:before {
+        <pre><code>.newpatternstate::before {
   color: #998866 !important;
 }</code></pre>
         <p>Add <code>state: newpatternstate</code> to your pattern's <code>.md</code> file to have the new pattern state show in the UI menu and Code Viewer.</p>

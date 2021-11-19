@@ -37,7 +37,7 @@
     "eslint": "8.x",
     "fepper": "^0.38.2",
     "fepper-utils": "^1.4.2",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^10.0.0",
     "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.16",
     "husky": "4.x",
     "jsdom": "^16.4.0",

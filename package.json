@@ -34,7 +34,7 @@
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "chai": "4.x",
-    "eslint": "7.x",
+    "eslint": "8.x",
     "fepper": "^0.38.2",
     "fepper-utils": "^1.4.2",
     "fs-extra": "^8.1.0",

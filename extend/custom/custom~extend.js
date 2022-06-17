@@ -103,10 +103,11 @@ function scrapeAndWriteContent(sectionHeadingText) {
     })
     .then((output) => {
       try {
-        htmlFromMd = marked(output);
+        htmlFromMd = marked.parse(output);
       }
       catch (err) /* istanbul ignore next */ {
-        this.utils.error(err);
+        console.warn('AUH')
+        utils.error(err);
 
         return Promise.reject(err);
       }

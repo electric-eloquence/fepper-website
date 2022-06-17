@@ -5,9 +5,7 @@ modified when updating Fepper.</p><h5 id="contributed-extensions">Contributed ex
 <li>Add the tasks to <code>extend/contrib.js</code> (and <code>extend/auxiliary/auxiliary_contrib.js</code> 
 if necessary) in order for Fepper to run them.</li>
 <li>Contributed Fepper extensions can be found at <a href="https://www.npmjs.com/search?q=fepper%20extension" target="_blank">
-https://www.npmjs.com/search?q=fepper%20extension</a>
-
-</li>
+https://www.npmjs.com/search?q=fepper%20extension</a></li>
 </ul><h5 id="custom-extensions">Custom extensions:</h5><ul>
 <li>Write custom extensions in the <code>extend/custom</code> directory.</li>
 <li>Extensions require a file ending in &quot;~extend.js&quot; in order for Fepper to 
@@ -73,13 +71,13 @@ module.exports = class Fepper extends FepperSuper {
     super(cwd);
     this.tasks = new Tasks(this.options);
   }
-}</code></pre><ol start="2">
+}
+</code></pre><ol start="2">
 <li>Declare <code>instance_file</code> in <code>pref.yml</code>.</li>
-</ol><pre><code>instance_file: extend/custom/hack-help.js</code></pre><ol start="3">
+</ol><pre><code>instance_file: extend/custom/hack-help.js
+</code></pre><ol start="3">
 <li>Run <code>fp help</code> on the command line. It should log <a href="https://www.npmjs.com/package/gulp4-run-sequence#why-the-culinary-task-names" target="_blank">
-"ASYNC ALL THE THINGS!"</a>
-
-</li>
+"ASYNC ALL THE THINGS!"</a></li>
 </ol><p>Hackers wishing to view the code for any of these classes will find that the ES6 
 syntax and object-orientation makes the code mostly self-documenting. The entry 
 point to the <code>Fepper</code> class is in 

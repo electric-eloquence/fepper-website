@@ -6,7 +6,10 @@ links to other pages in the <code>04-pages</code> directory work correctly in th
 UI, they will work correctly in the static site, even if the <code>public/static</code> 
 directory is copied and renamed.</p><p>For example, assume an article is at 
 <code>source/_patterns/04-pages/articles-/00-top-story.mustache</code>. Create the link as 
-follows:</p><pre><code>&lt;a href=&quot;&lcub;&lcub; link.pages-top-story &rcub;&rcub;&quot;&gt;Article Headline&lt;/a&gt;</code></pre><p>This would built to the public directory as:</p><pre><code>&lt;a href=&quot;../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html&quot;&gt;Article Headline&lt;/a&gt;</code></pre><p>The Static Site Generator would output this as:</p><pre><code>&lt;a href=&quot;articles--top-story.html&quot;&gt;Article Headline&lt;/a&gt;</code></pre><p>Numeric prefixes to filenames and sub-directories will be dropped. Nested 
+follows:</p><pre><code>&lt;a href=&quot;&lcub;&lcub; link.pages-top-story &rcub;&rcub;&quot;&gt;Article Headline&lt;/a&gt;
+</code></pre><p>This would built to the public directory as:</p><pre><code>&lt;a href=&quot;../04-pages-articles--00-top-story/04-pages-articles--00-top-story.html&quot;&gt;Article Headline&lt;/a&gt;
+</code></pre><p>The Static Site Generator would output this as:</p><pre><code>&lt;a href=&quot;articles--top-story.html&quot;&gt;Article Headline&lt;/a&gt;
+</code></pre><p>Numeric prefixes to filenames and sub-directories will be dropped. Nested 
 source directories will be flattened and all static HTML files would become 
 siblings. The pathing of nested folders would be retained in the filenames, so 
 the organizational benefits of nesting folders will be retained.</p><p>Appending a hyphen (<code>-</code>) to the &quot;articles&quot; directory is just a recommended 

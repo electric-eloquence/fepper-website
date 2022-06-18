@@ -23,7 +23,28 @@ can be included in a custom task.</li>
 <li>Fepper only supports 
 <a href="https://github.com/electric-eloquence/gulp#readme" target="_blank">gulp 3</a> 
 syntax.</li>
-</ul><h5 id="confs-and-prefs">Confs and prefs:</h5><p>You might need to access the values in the <code>conf.yml</code> and <code>pref.yml</code> files in 
+</ul><p>It may be helpful to write help text for a custom extension, especially when a 
+person other than the author uses it. To do this, create a custom task appended 
+by &quot;:help&quot;.  Declare and log the help text as follows, and it will be output by 
+running <code>fp extend:help</code>.</p><pre><code>&#39;use strict&#39;;
+
+const gulp = global.gulp;
+
+gulp.task(&#39;custom-task:help&#39;, function (cb) {
+  let helpText = `
+Fepper Custom Task Extension
+
+Usage:
+    &lt;task&gt; [&lt;additional args&gt;...]
+
+Task and description:
+    fp custom-task:help    Print usage and description of custom task.
+`;
+
+  console.log(helpText);
+  cb();
+});
+</code></pre><h5 id="confs-and-prefs">Confs and prefs:</h5><p>You might need to access the values in the <code>conf.yml</code> and <code>pref.yml</code> files in 
 order to write custom tasks. They are exposed through <code>global.conf</code> and 
 <code>global.pref</code> (on the <code>global</code> Node object).</p><p>The values in <code>patternlab-config.json</code> are exposed through <code>global.conf.ui</code>. 
 Please note that all paths in <code>patternlab-config.json</code> will be converted to 

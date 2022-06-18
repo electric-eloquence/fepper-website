@@ -141,11 +141,11 @@ gulp.task('fetch-docpage-content', function (cb) {
   scrapeAndWriteContent('Global Data');
   scrapeAndWriteContent('Partial Data');
   scrapeAndWriteContent('Markdown Content');
+  scrapeAndWriteContent('Code Viewer');
   scrapeAndWriteContent('Static Site Generator');
   scrapeAndWriteContent('The Backend');
   scrapeAndWriteContent('Templater');
   scrapeAndWriteContent('Webserved Directories');
-  scrapeAndWriteContent('Mustache Browser');
   scrapeAndWriteContent('HTML Scraper');
   scrapeAndWriteContent('variables.styl');
   scrapeAndWriteContent('UI Customization');

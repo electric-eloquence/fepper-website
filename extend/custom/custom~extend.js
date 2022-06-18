@@ -157,3 +157,20 @@ gulp.task('fetch-docpage-content', function (cb) {
 
   cb();
 });
+
+gulp.task('fetch-docpage-content:help', function (cb) {
+  let out = `
+Fepper Website Docpage Content Fetcher
+
+Use:
+    <task> [<additional args>...]
+
+Tasks:
+    fp fetch-docpage-content         Retrieve content for the Fepper website's documentation pages.
+                                     Fetched from README.md of Fepper's main distro as hosted on GitHub.com.
+    fp fetch-docpage-content:help    Print help text for fp fetch-docpage-content.
+`;
+
+  utils.info(out);
+  cb();
+});

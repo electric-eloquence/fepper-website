@@ -1,8 +1,8 @@
 {
   "stylesheet": "docpage.css",
-  "body_class": "docpage docpage--mustache-browser",
+  "body_class": "docpage docpage--code-viewer",
   "branding_docpage?": true,
   "heading_h1": "Fepper Documentation",
   "docpage_mustache_browser?": true,
-  "article_class": "content--docpage--mustache-browser"
+  "article_class": "content--docpage--code-viewer"
 }

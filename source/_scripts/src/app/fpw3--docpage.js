@@ -66,20 +66,20 @@ export default class {
   }
 
   stoke() {
-    const doclistLinksState = this.requerio.$orgs['.doclist__link'].getState();
+    const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
+    const pathnameSubStr = window.location.pathname.replace(/^\/[^\/]+/, '');
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
 
-    doclistLinksState.$members.forEach(($member, idx) => {
-      const doclistLinkState = this.requerio.$orgs['.doclist__link'].getState(idx);
+    for (let i = 0; i < doclistLinkMembers; i++) {
+      const doclistLinkState = this.requerio.$orgs['.doclist__link'].getState(i);
 
-      if (
-        typeof doclistLinkState.attribs.href === 'string' &&
-        window.location.href.replace(/\?.*/, '') === doclistLinkState.attribs.href.replace(/\?.*/, '')
-      ) {
-        this.requerio.$orgs['.doclist__link'].dispatchAction('css', {color: 'gray', 'pointer-events': 'none'}, idx);
+      if (typeof doclistLinkState.attribs.href === 'string' && doclistLinkState.attribs.href.includes(pathnameSubStr)) {
+        this.requerio.$orgs['.doclist__link'].dispatchAction('css', {color: 'gray', 'pointer-events': 'none'}, i);
+
+        break;
       }
-    });
+    }
 
     windowOrg.dispatchAction('data', {outerHeight: windowState.outerHeight});
     this.behaviors.logoRipen(windowState);

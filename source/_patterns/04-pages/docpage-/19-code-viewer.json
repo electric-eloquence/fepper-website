@@ -3,6 +3,6 @@
   "body_class": "docpage docpage--code-viewer",
   "branding_docpage?": true,
   "heading_h1": "Fepper Documentation",
-  "docpage_mustache_browser?": true,
+  "docpage_code_viewer?": true,
   "article_class": "content--docpage--code-viewer"
 }

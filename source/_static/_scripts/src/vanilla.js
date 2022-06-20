@@ -47,8 +47,8 @@ for (var i = 0; i < anchors.length; i++) {
   }
 
   // Add the bot=no query param to indicate human action.
-  anchors[i].addEventListener('mouseenter', function () {query(this, 'bot', 'no')}, false);
-  anchors[i].addEventListener('touchstart', function () {query(this, 'bot', 'no')}, false);
+  anchors[i].addEventListener('mouseenter', function () {query(this, 'bot', 'no');}, false);
+  anchors[i].addEventListener('touchstart', function () {query(this, 'bot', 'no');}, false);
   anchors[i].addEventListener(
     'click',
     function () {
@@ -57,7 +57,7 @@ for (var i = 0; i < anchors.length; i++) {
       }
 
       if (!cookieObj.vh || cookieObj.vh !== window.innerHeight.toString()) {
-        document.cookie = 'vh=' + window.innerHeight+ ';path=/;sameSite=strict';
+        document.cookie = 'vh=' + window.innerHeight + ';path=/;sameSite=strict';
       }
     },
     false

@@ -71,8 +71,7 @@
           <li>Add the tasks to <code>extend/contrib.js</code> (and <code>extend/auxiliary/auxiliary_contrib.js</code>
             if necessary) in order for Fepper to run them.</li>
           <li>Contributed Fepper extensions can be found at <a href="https://www.npmjs.com/search?q=fepper%20extension" target="_blank">
-              https://www.npmjs.com/search?q=fepper%20extension</a>
-          </li>
+              https://www.npmjs.com/search?q=fepper%20extension</a></li>
         </ul>
         <h5 id="custom-extensions">Custom extensions:</h5>
         <ul>
@@ -95,6 +94,24 @@
             syntax.
           </li>
         </ul>
+        <p>It may be helpful to write help text for a custom extension, especially when a
+          person other than the author uses it. To do this, create a custom task appended
+          by &quot;:help&quot;. Declare and log the help text as follows, and it will be output by
+          running <code>fp extend:help</code>.</p>
+        <pre><code>&#39;use strict&#39;;
+const gulp = global.gulp;
+gulp.task(&#39;custom-task:help&#39;, function (cb) {
+  let helpText = `
+Fepper Custom Task Extension
+Usage:
+    &lt;task&gt; [&lt;additional args&gt;...]
+Task and description:
+    fp custom-task:help    Print usage and description of custom task.
+`;
+  console.log(helpText);
+  cb();
+});
+</code></pre>
         <h5 id="confs-and-prefs">Confs and prefs:</h5>
         <p>You might need to access the values in the <code>conf.yml</code> and <code>pref.yml</code> files in
           order to write custom tasks. They are exposed through <code>global.conf</code> and
@@ -153,15 +170,16 @@ module.exports = class Fepper extends FepperSuper {
     super(cwd);
     this.tasks = new Tasks(this.options);
   }
-}</code></pre>
+}
+</code></pre>
         <ol start="2">
           <li>Declare <code>instance_file</code> in <code>pref.yml</code>.</li>
         </ol>
-        <pre><code>instance_file: extend/custom/hack-help.js</code></pre>
+        <pre><code>instance_file: extend/custom/hack-help.js
+</code></pre>
         <ol start="3">
           <li>Run <code>fp help</code> on the command line. It should log <a href="https://www.npmjs.com/package/gulp4-run-sequence#why-the-culinary-task-names" target="_blank">
-              "ASYNC ALL THE THINGS!"</a>
-          </li>
+              "ASYNC ALL THE THINGS!"</a></li>
         </ol>
         <p>Hackers wishing to view the code for any of these classes will find that the ES6
           syntax and object-orientation makes the code mostly self-documenting. The entry
@@ -195,6 +213,7 @@ module.exports = class Fepper extends FepperSuper {
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-data.html">Global Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--partial-data.html">Partial Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-data.html">Pattern Data</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
               </ul>
             </li>
             <li class="nav--docpage__section">
@@ -204,7 +223,6 @@ module.exports = class Fepper extends FepperSuper {
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
@@ -215,11 +233,11 @@ module.exports = class Fepper extends FepperSuper {
             <li class="nav--docpage__section">
               <h4 class="nav--docpage__heading">Advanced Features</h4>
               <ul class="doclist">
+                <li class="doclist__item"><a class="doclist__link" href="docpage--code-viewer.html">Code Viewer</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--static-site-generator.html">Static Site Generator</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--the-backend.html">The Backend</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--templater.html">Templater</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--webserved-directories.html">Webserved Directories</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--mustache-browser.html">Mustache Browser</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--html-scraper.html">HTML Scraper</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--variables-styl.html">variables.styl</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--ui-customization.html">UI Customization</a></li>

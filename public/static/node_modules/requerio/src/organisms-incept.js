@@ -30,10 +30,10 @@ function setMeasurement($org, measurement, distance_, idx) {
 }
 
 /**
- * Populate $orgs values with jQuery or Cheerio components.
+ * Populate $orgs values with jQuery components.
  *
  * @param {object} $orgs - Organisms keyed by selector.
- * @param {object} $ - jQuery or Cheerio.
+ * @param {object} $ - jQuery.
  */
 export default ($orgs, $) => {
   for (const i of Object.keys($orgs)) {

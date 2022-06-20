@@ -78,7 +78,7 @@
           <li>The default <code>templates_dir</code> and <code>templates_ext</code> settings in <code>pref.yml</code> can be overridden by similarly named settings in the template-specific YAML files. </li>
           <li>Templates prefixed by &quot;__&quot; will be ignored by the Templater as will files in the <code>_nosync</code> directory. </li>
           <li>The Templater will recurse through nested Feplet templates if the tags are written in the full relative path syntax and have the <code>.mustache</code> extension, e.g. <code>&lcub;&lcub;&gt; 02-components/00-global/00-header.mustache &rcub;&rcub;</code> </li>
-          <li>However, the more common inclusion use-case is to leave off the extension, and not recurse. </li>
+          <li>However, the more common inclusion use-case is to leave off the extension, and not recurse.</li>
         </ul>
         <p><a href="https://github.com/electric-eloquence/fepper-drupal" target="_blank"> Fepper for Drupal</a> and <a href="https://github.com/electric-eloquence/fepper-wordpress" target="_blank"> Fepper for WordPress</a> have working examples of templates compatible with the Templater.</p>
       </article>
@@ -102,6 +102,7 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-data.html">Global Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--partial-data.html">Partial Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-data.html">Pattern Data</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
               </ul>
             </li>
             <li class="nav--docpage__section">
@@ -111,7 +112,6 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
@@ -122,11 +122,11 @@
             <li class="nav--docpage__section">
               <h4 class="nav--docpage__heading">Advanced Features</h4>
               <ul class="doclist">
+                <li class="doclist__item"><a class="doclist__link" href="docpage--code-viewer.html">Code Viewer</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--static-site-generator.html">Static Site Generator</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--the-backend.html">The Backend</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--templater.html">Templater</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--webserved-directories.html">Webserved Directories</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--mustache-browser.html">Mustache Browser</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--html-scraper.html">HTML Scraper</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--variables-styl.html">variables.styl</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--ui-customization.html">UI Customization</a></li>

@@ -6,7 +6,7 @@ import reducerGet from './reducer-get.js';
 class Requerio {
 
   /**
-   * @param {object} $ - jQuery or Cheerio.
+   * @param {object} $ - jQuery.
    * @param {object} Redux - Redux.
    * @param {object} $organisms - Key:value pairs of selector names and null values.
    * @param {function} [customReducer] - Custom Redux reducer for extending the built-in reducer.
@@ -35,7 +35,7 @@ class Requerio {
   }
 
   /**
-   * @param {...string} selectors - jQuery/Cheerio selectors.
+   * @param {...string} selectors - jQuery selectors.
    */
   incept(...selectors) {
     const $organisms = {};

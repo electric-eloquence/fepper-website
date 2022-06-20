@@ -66,8 +66,20 @@ export default class {
   }
 
   stoke() {
+    const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
+    const pathnameSubStr = window.location.pathname.replace(/^\/[^/]+/, '');
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
+
+    for (let i = 0; i < doclistLinkMembers; i++) {
+      const doclistLinkState = this.requerio.$orgs['.doclist__link'].getState(i);
+
+      if (typeof doclistLinkState.attribs.href === 'string' && doclistLinkState.attribs.href.includes(pathnameSubStr)) {
+        this.requerio.$orgs['.doclist__link'].dispatchAction('css', {color: 'gray', 'pointer-events': 'none'}, i);
+
+        break;
+      }
+    }
 
     windowOrg.dispatchAction('data', {outerHeight: windowState.outerHeight});
     this.behaviors.logoRipen(windowState);
@@ -78,7 +90,6 @@ export default class {
       // So it doesn't slide when the page loads.
       this.behaviors.navDocpageSlide();
       this.behaviors.navMainSlide();
-
     }, 0);
 
     if (!this.bodyClasses.includes('docpage--index')) {

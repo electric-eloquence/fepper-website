@@ -62,7 +62,7 @@
     <main class="foundation">
       <article class="content content--docpage--i18n">
         <h3 id="i18n"><a id="i18n"></a>I18N</h3>
-        <p>The Elements, Compounds, and Components directories are optional and can be renamed to anything your charset and file system allow without further configuration. The Templates, Pages, and Scrape directories can be renamed, but must also be reconfigured in <code>patternlab-config.json</code>.</p>
+        <p>The Elements, Compounds, and Components directories are optional and can be renamed to anything your charset and file system allow without further configuration, so long as there are no collisions with other names. The Templates, Pages, and Scrape directories allow for similar renaming but they must be configured in <code>patternlab-config.json</code>.</p>
         <p>The text in the UI, as well as console messages, can be changed by editing <code>source/_ui/i18n/en.json</code>. Replace the blank values with alternate English values if you wish. If you want translation to another language, create a new file named by the abbreviation for the language. For example: <code>source/_ui/i18n/es.json</code> for Spanish. Then, assign that abbreviation to the <code>lang</code> key in <code>pref.yml</code>. In the .json file, assign the translated values to the English keys.</p>
         <p>Fepper follows a popular convention of naming the translation function <code>t</code>. (See <a href="https://github.com/i18next/i18next" target="_blank">i18next</a> and <a href="https://github.com/i18next/react-i18next" target="_blank">react-i18next</a> as other examples.) Be sure never to redefine the <code>global.t</code> variable.</p>
         <p>If a need arises for documentation in other languages, you are strongly encouraged to make the translations, and use the options that Open Source offers to distribute them to the rest of the world.</p>
@@ -87,6 +87,7 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-data.html">Global Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--partial-data.html">Partial Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-data.html">Pattern Data</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
               </ul>
             </li>
             <li class="nav--docpage__section">
@@ -96,7 +97,6 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
@@ -107,11 +107,11 @@
             <li class="nav--docpage__section">
               <h4 class="nav--docpage__heading">Advanced Features</h4>
               <ul class="doclist">
+                <li class="doclist__item"><a class="doclist__link" href="docpage--code-viewer.html">Code Viewer</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--static-site-generator.html">Static Site Generator</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--the-backend.html">The Backend</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--templater.html">Templater</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--webserved-directories.html">Webserved Directories</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--mustache-browser.html">Mustache Browser</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--html-scraper.html">HTML Scraper</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--variables-styl.html">variables.styl</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--ui-customization.html">UI Customization</a></li>

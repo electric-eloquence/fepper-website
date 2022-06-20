@@ -77,10 +77,10 @@
         <p>A working example of UI customization can be found at
           <a href="https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_ui/index/html/00-head/head.component.js" target="_blank">
             https&colon;//github.com/electric-eloquence/fepper-drupal/blob/dev/source/_ui/index/html/00-head/head.component.js</a>.
-          The Fepper for Drupal project overrides its HTML title to read &quot;Fepper D8&quot;
-          instead of &quot;Fepper&quot;. In order to do so, it has the <code>head.component.js</code> module
-          nested in directories that correspond to the tags that nest the <code>head</code> HTML
-          element. Both <code>head.component.js</code> and its nesting directories must be named
+          The Fepper for Drupal project overrides its HTML title to read &quot;Fepper for
+          Drupal&quot; instead of &quot;Fepper&quot;. In order to do so, it has the <code>head.component.js</code>
+          module nested in directories that correspond to the tags that nest the <code>head</code>
+          HTML element. Both <code>head.component.js</code> and its nesting directories must be named
           similarly to their corresponding elements. <code>.component.js</code> indicates that the
           file is a module to be rendered by React.
           <a href="https://reactjs.org/docs/dom-elements.html" target="_blank">
@@ -116,7 +116,8 @@
         </p>
         <p>You will need to compile the UI in order for the browser to pick up custom
           changes to the UI:</p>
-        <pre><code>fp ui:compile</code></pre>
+        <pre><code>fp ui:compile
+</code></pre>
         <p>New UI customizations will not be picked up simply by restarting Fepper.</p>
         <p>The UI exposes these additional tasks:</p>
         <ul>
@@ -150,6 +151,7 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-data.html">Global Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--partial-data.html">Partial Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-data.html">Pattern Data</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
               </ul>
             </li>
             <li class="nav--docpage__section">
@@ -159,7 +161,6 @@
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
@@ -170,11 +171,11 @@
             <li class="nav--docpage__section">
               <h4 class="nav--docpage__heading">Advanced Features</h4>
               <ul class="doclist">
+                <li class="doclist__item"><a class="doclist__link" href="docpage--code-viewer.html">Code Viewer</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--static-site-generator.html">Static Site Generator</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--the-backend.html">The Backend</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--templater.html">Templater</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--webserved-directories.html">Webserved Directories</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--mustache-browser.html">Mustache Browser</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--html-scraper.html">HTML Scraper</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--variables-styl.html">variables.styl</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--ui-customization.html">UI Customization</a></li>

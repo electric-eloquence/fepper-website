@@ -72,8 +72,9 @@
 content_key: content
 ---
 # Heading
-Body</code></pre>
-        <p>Front Matter comprises YAML between the <code>---</code> lines and Markdown below. It
+Sample body content
+</code></pre>
+        <p>Front Matter comprises YAML between the <code>---</code> lines and Markdown below them. It
           doesn&#39;t appear to have a unified spec, so searches for documentation will
           probably just list various implementations. In any case, <code>content_key</code> can be
           any valid whitespace-free string. Use it to identify its corresponding tag in
@@ -81,7 +82,11 @@ Body</code></pre>
         <h5 id="examplemustache">example.mustache:</h5>
         <pre><code>&lt;main id=&quot;content&quot;&gt;
   &lcub;&lcub;{ content &rcub;&rcub;}
-&lt;/main&gt;</code></pre>
+&lt;/main&gt;
+</code></pre>
+        <p>Once properly set up, the Markdown can be edited in the
+          <a href="https://fepper.io/docpage--code-viewer.html?bot=no%22">Code Viewer</a>.
+        </p>
         <p>When creating <code>.md</code> files for pseudo-patterns, replace the <code>.json</code> extension
           while leaving the rest of the filename intact.</p>
       </article>
@@ -105,6 +110,7 @@ Body</code></pre>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-data.html">Global Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--partial-data.html">Partial Data</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-data.html">Pattern Data</a></li>
+                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
               </ul>
             </li>
             <li class="nav--docpage__section">
@@ -114,7 +120,6 @@ Body</code></pre>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-partials.html">Pattern Partials</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-parameters.html">Pattern Parameters</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pseudo-patterns.html">Pseudo-Patterns</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--markdown-content.html">Markdown Content</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--hidden-patterns.html">Hidden Patterns</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--global-head-and-foot.html">Global Head and Foot</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--pattern-links.html">Pattern Links</a></li>
@@ -125,11 +130,11 @@ Body</code></pre>
             <li class="nav--docpage__section">
               <h4 class="nav--docpage__heading">Advanced Features</h4>
               <ul class="doclist">
+                <li class="doclist__item"><a class="doclist__link" href="docpage--code-viewer.html">Code Viewer</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--static-site-generator.html">Static Site Generator</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--the-backend.html">The Backend</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--templater.html">Templater</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--webserved-directories.html">Webserved Directories</a></li>
-                <li class="doclist__item"><a class="doclist__link" href="docpage--mustache-browser.html">Mustache Browser</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--html-scraper.html">HTML Scraper</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--variables-styl.html">variables.styl</a></li>
                 <li class="doclist__item"><a class="doclist__link" href="docpage--ui-customization.html">UI Customization</a></li>

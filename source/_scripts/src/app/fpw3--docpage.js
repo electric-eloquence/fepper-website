@@ -67,9 +67,15 @@ export default class {
 
   stoke() {
     const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
-    const pathnameSubStr = window.location.pathname.replace(/^\/[^/]+/, '');
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
+    let pathnameSubStr = window.location.pathname;
+    const pathnameMatches = pathnameSubStr.match(/\//g);
+
+    // This is necessary to work with relative links within the _patterns directory (allowing for custom dirnames).
+    if (pathnameMatches && pathnameMatches.length > 2) {
+      pathnameSubStr = pathnameSubStr.replace(/^\/[^/]*/, '');
+    }
 
     // Identify open active link by graying it out (both foreground and background).
     for (let i = 0; i < doclistLinkMembers; i++) {

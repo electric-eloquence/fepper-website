@@ -106,7 +106,6 @@ function scrapeAndWriteContent(sectionHeadingText) {
         htmlFromMd = marked.parse(output);
       }
       catch (err) /* istanbul ignore next */ {
-        console.warn('AUH')
         utils.error(err);
 
         return Promise.reject(err);

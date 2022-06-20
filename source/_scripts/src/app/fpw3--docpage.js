@@ -67,7 +67,7 @@ export default class {
 
   stoke() {
     const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
-    const pathnameSubStr = window.location.pathname.replace(/^\/[^\/]+/, '');
+    const pathnameSubStr = window.location.pathname.replace(/^\/[^/]+/, '');
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
 

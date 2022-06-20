@@ -71,11 +71,14 @@ export default class {
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
 
+    // Identify open active link by graying it out (both foreground and background).
     for (let i = 0; i < doclistLinkMembers; i++) {
       const doclistLinkState = this.requerio.$orgs['.doclist__link'].getState(i);
 
       if (typeof doclistLinkState.attribs.href === 'string' && doclistLinkState.attribs.href.includes(pathnameSubStr)) {
-        this.requerio.$orgs['.doclist__link'].dispatchAction('css', {color: 'gray', 'pointer-events': 'none'}, i);
+        this.requerio.$orgs['.doclist__link'].dispatchAction(
+          'css', {'background-color': 'rgba(255, 255, 255, 0.8)', color: 'gray', 'pointer-events': 'none'}, i
+        );
 
         break;
       }

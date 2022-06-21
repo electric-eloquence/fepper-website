@@ -417,6 +417,9 @@ h4 {
 .webkit code {
   background-color: #fbb;
 }
+.chromium code {
+  background-color: #eee;
+}
 pre {
   overflow-x: auto;
 }
@@ -425,6 +428,9 @@ pre {
 }
 .webkit pre > code {
   background-color: transparent;
+}
+.chromium pre {
+  background-color: #363636;
 }
 ul + p {
   margin-top: 1.6rem;
@@ -508,6 +514,12 @@ ul + p {
 .webkit .content a {
   color: #f00;
 }
+.chromium .content {
+  color: #363636;
+}
+.chromium .content a {
+  color: #363636;
+}
 .nav--docpage {
   width: 28.8rem;
 }
@@ -544,6 +556,12 @@ ul + p {
 }
 .webkit .docpage--index .nav--docpage a {
   color: #f00;
+}
+.chromium .docpage--index .nav--docpage {
+  color: #363636;
+}
+.chromium .docpage--index .nav--docpage a {
+  color: #363636;
 }
 .nav--docpage__sections {
   padding: 2rem 0.8rem 4rem 3rem;
@@ -754,5 +772,8 @@ body > .overlay--opacity.overlay--bottom {
   }
 }
 .content--docpage--run > ul > li:nth-of-type(4) {
+  display: none;
+}
+.chromium .overlay {
   display: none;
 }

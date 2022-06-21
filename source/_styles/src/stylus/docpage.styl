@@ -12,12 +12,16 @@ h4
 code
   .webkit &
     background-color: #fbb
+  .chromium &
+    background-color: rgb(238, 238, 238)
 pre
   overflow-x: auto
   .webkit &
     background-color: #f00
     > code
       background-color: transparent
+  .chromium &
+    background-color: rgb(54, 54, 54)
 ul + p
   margin-top: 1.6rem
 .fade
@@ -68,6 +72,10 @@ ul + p
     color: #f00
     a
       color: #f00
+  .chromium &
+    color: rgb(54, 54, 54)
+    a
+      color: rgb(54, 54, 54)
 .nav--docpage
   width: $nav-docpage-width
   &.in
@@ -90,6 +98,10 @@ ul + p
       color: #f00
       a
         color: #f00
+    .chromium &
+      color: rgb(54, 54, 54)
+      a
+        color: rgb(54, 54, 54)
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
     @media all and (max-width: $bp-sm-max)
@@ -232,4 +244,11 @@ body > .overlay--opacity.overlay--bottom
 // Very brittle way of hiding the instruction to consult the Fepper website when this IS the Fepper website.
 // Continuously check that this is in fact the element to be hidden.
 .content--docpage--run > ul > li:nth-of-type(4)
+  display: none
+// As of 2022-06-21, we cannot apply the overlay filter and opacity styles to overlays in Chromium-based browsers
+// because applying them to position:fixed elements slows the sliding of the linear gradient of the logo to the point
+// that the color change to the logo won't appear until the scroll ends.
+// The color values rgb(54, 54, 54) and rgb(238, 238, 238) are applied under the .chromium class throughout this file in
+// order to offset the non-application of said filters. The .chromium class rules override .webkit class rules.
+.chromium .overlay
   display: none

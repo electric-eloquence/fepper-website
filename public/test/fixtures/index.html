@@ -16,11 +16,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,800">
     <link rel="stylesheet" href="_styles/bld/homepage.css">
     <script>
-      if (window.navigator.userAgent.indexOf('Safari') > -1) {
+      if (window.navigator.userAgent.includes('Safari')) {
         document.documentElement.className += ' webkit';
-        if (window.navigator.userAgent.indexOf('Chrom') === -1) {
+        if (!window.navigator.userAgent.includes('Chrom')) {
           document.documentElement.className += ' safari';
         }
+      }
+      if (window.navigator.userAgent.includes('Chrom')) {
+        document.documentElement.className += ' blink chromium';
       }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

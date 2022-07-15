@@ -36,7 +36,7 @@
     </script>
     <script src="_scripts/src/variables.styl" type="text/javascript"></script>
   </head>
-  <body id="body" class="docpage docpage--mobile-devices">
+  <body id="body" class="docpage docpage--requerio-inspector">
     <section id="branding" class="branding"> <a class="logo" href="index.html" title="Homepage">
         <div id="logo__bg" class="logo__bg">
           <h1>Fepper Documentation</h1>
@@ -63,41 +63,36 @@
       <div class="branding__link-inactive"></div>
     </section>
     <main class="foundation">
-      <article class="content content--docpage--mobile-devices">
-        <h3 id="mobile-devices"><a id="mobile-devices"></a>Mobile Devices</h3>
-        <p>The best way to browse the Fepper UI on a mobile device is through the wireless connection on your development machine. These are the instructions for doing this on a Mac:</p>
-        <p>If your Mac is connected to the Internet wirelessly:</p>
+      <article class="content content--docpage--requerio-inspector">
+        <h3 id="requerio-inspector"><a id="requerio-inspector"></a>Requerio Inspector</h3>
+        <p>The Code Viewer also has a Requerio Inspector.
+          <a href="https://github.com/electric-eloquence/requerio#readme" target="_blank">
+            Requerio</a> is tool you can use to manage state of your web application. HTML
+          elements given state are refered to as &quot;organisms&quot;. In order to view their
+          states, Requerio and its organisms need to be initialized as per the
+          <a href="https://github.com/electric-eloquence/requerio#readme" target="_blank">
+            Requerio docs</a>. It is necessary to define <code>window.requerio</code> in order for the
+          Requerio Inspector to work, as per the following code example:
+        </p>
+        <pre><code>const requerio = window.requerio = new Requerio($, Redux, $organisms);
+</code></pre>
+        <p>A properly working Requerio app will then have its organisms and their states
+          show up in the Requerio Inspector like an expandable menu. The display of the
+          states will update in real-time, should there be any changes to the organisms.
+          You can even dispatch such changes (&quot;actions&quot;) on the organisms via your
+          browser&#39;s Developer Tools:</p>
         <ul>
-          <li>Open System Preferences</li>
-          <li>Click Network</li>
-          <li>In the left pane, select Wi-Fi</li>
-          <li>In the right pane, underneath Status, the IP address will be displayed</li>
-          <li>On your mobile device, connect to the same wireless network that your Mac is connected to</li>
-          <li>Browse http:&#x2F;&#x2F;[IP address]:3000</li>
-          <li>Change the port number if Fepper is listening on a different port</li>
-        </ul>
-        <p>If your Mac is connected to the Internet through a wire:</p>
-        <ul>
-          <li>In the top menu bar, turn Wi-Fi off</li>
-          <li>Open System Preferences</li>
-          <li>Click Sharing</li>
-          <li>In the left pane, select Internet Sharing</li>
-          <li>In the right pane, on &quot;Share your connection from:&quot;, select the interface which is connected to the Internet</li>
-          <li>On &quot;To computers using:&quot;, check Wi-Fi</li>
-          <li>Click &quot;Wi-Fi Options...&quot;</li>
-          <li>This will show your Mac&#39;s name as the wireless network name</li>
-          <li>Add security if you are in a public space</li>
-          <li>Click OK</li>
-          <li>Back in the System Preferences main window, in the left pane, check to activate Internet Sharing</li>
-          <li>In the dialog that appears, click &quot;Turn Wi-Fi On&quot;</li>
-          <li>In the next dialog, click Start</li>
-          <li>The Wi-Fi icon in the top menu bar should now be gray with a white up-arrow</li>
-          <li>Back in the System Preferences main window, click Network</li>
-          <li>In the left pane, select your wired connection</li>
-          <li>In the right pane, underneath Status, the IP address will be displayed</li>
-          <li>On your mobile device, connect to the wireless network that is the same name as your Mac</li>
-          <li>Browse http:&#x2F;&#x2F;[IP address]:3000</li>
-          <li>Change the port number if Fepper is listening on a different port</li>
+          <li>Use your cursor to inspect the Requerio organism you wish to dispatch actions
+            on.</li>
+          <li>This should open the Inspector or Elements tab of the Developer Tools.</li>
+          <li>Click the adjacent tab to open the Console of the Developer Tools.</li>
+          <li>Enter the following example in the Console:</li>
+          <li>requerio.$orgs[&#39;#nav&#39;].dispatchAction(&#39;css&#39;, {backgroundColor: &#39;green&#39;})</li>
+          <li>If not on the default demo site, or if the #nav element doesn&#39;t exist, replace
+            &#39;#nav&#39; with your own selector, and the arguments with your own arguments.</li>
+          <li>The state change should show up in the Requerio Inspector.</li>
+          <li><a href="https://github.com/electric-eloquence/requerio/blob/dev/docs/methods.md" target="_blank">
+              Action methods and their arguments</a>.</li>
         </ul>
       </article>
       <nav class="nav--docpage">

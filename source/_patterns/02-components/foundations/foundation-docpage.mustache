@@ -31,6 +31,9 @@
     {{# docpage_pattern_data? }}
       {{> components-content-docpage-pattern-data }}
     {{/ docpage_pattern_data? }}
+    {{# docpage_markdown_content? }}
+      {{> components-content-docpage-markdown-content }}
+    {{/ docpage_markdown_content? }}
     {{# docpage_pattern_organization? }}
       {{> components-content-docpage-pattern-organization }}
     {{/ docpage_pattern_organization? }}
@@ -43,9 +46,6 @@
     {{# docpage_pseudo_patterns? }}
       {{> components-content-docpage-pseudo-patterns }}
     {{/ docpage_pseudo_patterns? }}
-    {{# docpage_markdown_content? }}
-      {{> components-content-docpage-markdown-content }}
-    {{/ docpage_markdown_content? }}
     {{# docpage_hidden_patterns? }}
       {{> components-content-docpage-hidden-patterns }}
     {{/ docpage_hidden_patterns? }}
@@ -61,6 +61,12 @@
     {{# docpage_pattern_states? }}
       {{> components-content-docpage-pattern-states }}
     {{/ docpage_pattern_states? }}
+    {{# docpage_code_viewer? }}
+      {{> components-content-docpage-code-viewer }}
+    {{/ docpage_code_viewer? }}
+    {{# docpage_requerio_inspector? }}
+      {{> components-content-docpage-requerio-inspector }}
+    {{/ docpage_requerio_inspector? }}
     {{# docpage_static_site_generator? }}
       {{> components-content-docpage-static-site-generator }}
     {{/ docpage_static_site_generator? }}
@@ -73,9 +79,6 @@
     {{# docpage_webserved_directories? }}
       {{> components-content-docpage-webserved-directories }}
     {{/ docpage_webserved_directories? }}
-    {{# docpage_code_viewer? }}
-      {{> components-content-docpage-code-viewer }}
-    {{/ docpage_code_viewer? }}
     {{# docpage_html_scraper? }}
       {{> components-content-docpage-html-scraper }}
     {{/ docpage_html_scraper? }}

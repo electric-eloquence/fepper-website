@@ -1,0 +1,25 @@
+<h3 id="requerio-inspector"><a id="requerio-inspector"></a>Requerio Inspector</h3><p>The Code Viewer also has a Requerio Inspector. 
+<a href="https://github.com/electric-eloquence/requerio#readme" target="_blank">
+Requerio</a> is tool you can use to manage state of your web application. HTML 
+elements given state are refered to as &quot;organisms&quot;. In order to view their 
+states, Requerio and its organisms need to be initialized as per the 
+<a href="https://github.com/electric-eloquence/requerio#readme" target="_blank">
+Requerio docs</a>. It is necessary to define <code>window.requerio</code> in order for the 
+Requerio Inspector to work, as per the following code example:</p><pre><code>const requerio = window.requerio = new Requerio($, Redux, $organisms);
+</code></pre><p>A properly working Requerio app will then have its organisms and their states 
+show up in the Requerio Inspector like an expandable menu. The display of the 
+states will update in real-time, should there be any changes to the organisms. 
+You can even dispatch such changes (&quot;actions&quot;) on the organisms via your 
+browser&#39;s Developer Tools:</p><ul>
+<li>Use your cursor to inspect the Requerio organism you wish to dispatch actions 
+on.</li>
+<li>This should open the Inspector or Elements tab of the Developer Tools.</li>
+<li>Click the adjacent tab to open the Console of the Developer Tools.</li>
+<li>Enter the following example in the Console:</li>
+<li>requerio.$orgs[&#39;#nav&#39;].dispatchAction(&#39;css&#39;, {backgroundColor: &#39;green&#39;})</li>
+<li>If not on the default demo site, or if the #nav element doesn&#39;t exist, replace 
+&#39;#nav&#39; with your own selector, and the arguments with your own arguments.</li>
+<li>The state change should show up in the Requerio Inspector.</li>
+<li><a href="https://github.com/electric-eloquence/requerio/blob/dev/docs/methods.md" target="_blank">
+Action methods and their arguments</a>.</li>
+</ul>

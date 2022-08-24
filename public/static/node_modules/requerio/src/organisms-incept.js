@@ -53,7 +53,7 @@ export default ($orgs, $) => {
       if (typeof window === 'object') {
         $org = $(window);
 
-        // So tests work on server with JSDOM.
+        // So tests work on server with JSDOM or Cheerio.
         if (typeof global === 'object') {
           $org.$members = [{}];
         }
@@ -66,7 +66,7 @@ export default ($orgs, $) => {
       if (typeof document === 'object') {
         $org = $(document);
 
-        // So tests work on server with JSDOM.
+        // So tests work on server with JSDOM or Cheerio.
         if (typeof global === 'object') {
           $org.$members = [{}];
         }
@@ -182,7 +182,7 @@ export default ($orgs, $) => {
      */
     if (
       typeof $org.scrollTop === 'undefined' ||
-      (typeof global === 'object' && $org.selector === 'window')
+      (typeof global === 'object' && $org.selector === 'window') // JSDOM or Cheerio.
     ) {
       $org.scrollLeft = (distance, memberIdx) => {
         // eslint-disable-next-line eqeqeq
@@ -202,7 +202,7 @@ export default ($orgs, $) => {
      */
     if (
       typeof $org.scrollTop === 'undefined' ||
-      (typeof global === 'object' && $org.selector === 'window')
+      (typeof global === 'object' && $org.selector === 'window') // JSDOM or Cheerio.
     ) {
       $org.scrollTop = (distance, memberIdx) => {
         // eslint-disable-next-line eqeqeq

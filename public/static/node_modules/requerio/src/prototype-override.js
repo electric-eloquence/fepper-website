@@ -290,7 +290,7 @@ function getMeasurementSwitch($org, method, computedStyle = {}, elem) {
       if ($org.selector === 'window') {
         /* istanbul ignore else */
         // If using JSDOM.
-        if (typeof global === 'object' && typeof window === 'object') {
+        if (typeof global === 'object' && typeof global.window === 'object') {
           return $org.$members[0]._scrollLeft;
         }
         else {
@@ -308,7 +308,7 @@ function getMeasurementSwitch($org, method, computedStyle = {}, elem) {
       if ($org.selector === 'window') {
         /* istanbul ignore else */
         // If using JSDOM.
-        if (typeof global === 'object' && typeof window === 'object') {
+        if (typeof global === 'object' && typeof global.window === 'object') {
           return $org.$members[0]._scrollTop;
         }
         else {
@@ -1081,7 +1081,9 @@ A server-side stand-in for client-side `.focus()`.
    *
    * @param {number} [memberIdx] - The index of the organism member (if targeting a member).
    */
-  if (typeof global === 'object') {
+  // /dist/requerio.min.js for browser defines a globally-scoped "global". WTF???
+  // So it isn't enough to check for EITHER global OR window. Must check that global doesn't EQUAL window. WTF???
+  if (typeof global === 'object' && (typeof window === 'undefined' || global !== window)) {
     $.prototype.getBoundingClientRect = function (memberIdx) {
       const state = store.getState()[this.selector];
       let rectState = {};
@@ -1801,7 +1803,7 @@ testing.
 | rectObj | `object` | An object of `boundingClientRect` measurements. Does not need to include all of them. |
 | [memberIdx] | `number`\|`number[]` | The index (or array of indices) of the organism member(s) if targeting one or more members. |
 */
-  if (typeof global === 'object') {
+  if (typeof global === 'object' && global.$._root && global.$._root.attribs) { // Cheerio only.
     $.prototype.setBoundingClientRect = function (rectObj, memberIdx) {
       this.dispatchAction('setBoundingClientRect', rectObj, memberIdx);
     };

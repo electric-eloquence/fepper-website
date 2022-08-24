@@ -1,6 +1,5 @@
 'use strict';
 
-const fetch = require('node-fetch');
 const fs = require('fs-extra');
 const html2json = require('html2json').html2json;
 const json2html = require('html2json').json2html;

@@ -5,6 +5,6 @@
     "test": "npm run public:test"
   },
   "devDependencies": {
-    "fepper-ui": "^0.9.3"
+    "fepper-ui": "^0.10.1"
   }
 }

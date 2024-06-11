@@ -7,6 +7,8 @@ body
   min-width: $bp-xx-max
   min-height: 100vh
   position: relative
+  &.dark
+    color: $dark-mode-text
 /* Override user-agent heading defaults */
 h1
   font-size: 0.75em
@@ -24,6 +26,8 @@ h6
 a
   color: $black-less-contrast
   text-decoration: none
+  .dark &
+    color: $dark-mode-text
 blockquote
   border-left-width: 1px
   border-left-style: solid
@@ -47,12 +51,16 @@ pre
     background-color: transparent
     display: block
     font-size: 1em
+  .dark &
+    color: $dark-mode-text
 strong
   font-weight: 500
 .bg
   &--black-less-contrast
     background-color: $black-less-contrast
     color: white
+    .dark &
+      color: $dark-mode-text
   &--green-fepper
     background-color: $green
   &--red-fepper

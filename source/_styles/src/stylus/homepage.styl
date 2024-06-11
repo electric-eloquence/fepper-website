@@ -383,12 +383,16 @@ $video-height-max = ($video-width-max / 3)
   background-color: white
   position: relative
   text-align: center
+  .dark &
+    background-color: $dark-mode-background
 .browser-advice
   color: white
   font-size: 1.87rem
   font-weight: bold
   position: relative
   z-index: 1
+  .dark &
+    color: $dark-mode-text
 .content
   &__center
     margin: 0 auto

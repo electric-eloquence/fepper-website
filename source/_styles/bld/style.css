@@ -102,6 +102,9 @@ body {
   min-height: 100vh;
   position: relative;
 }
+body.dark {
+  color: #bbb;
+}
 h1 {
   font-size: 0.75em;
   line-height: 1;
@@ -126,6 +129,9 @@ h6 {
 a {
   color: #363636;
   text-decoration: none;
+}
+.dark a {
+  color: #bbb;
 }
 blockquote {
   border-left-width: 1px;
@@ -158,12 +164,18 @@ pre > code {
   display: block;
   font-size: 1em;
 }
+.dark pre {
+  color: #bbb;
+}
 strong {
   font-weight: 500;
 }
 .bg--black-less-contrast {
   background-color: #363636;
   color: #fff;
+}
+.dark .bg--black-less-contrast {
+  color: #bbb;
 }
 .bg--green-fepper {
   background-color: #027d15;
@@ -217,6 +229,9 @@ strong {
     height: 2.4rem;
   }
 }
+.dark .branding {
+  background-color: #000;
+}
 .logo {
   display: block;
   margin: 0 auto;
@@ -257,6 +272,14 @@ strong {
     height: 200px;
   }
 }
+.logo__img__gradient-cover--top,
+.logo__img__gradient-cover--bottom {
+  fill: #fff;
+}
+.dark .logo__img__gradient-cover--top,
+.dark .logo__img__gradient-cover--bottom {
+  fill: #000;
+}
 .logo__border {
   border: 0.1rem solid #fff;
   position: absolute;
@@ -264,6 +287,9 @@ strong {
   right: 0;
   width: 100%;
   height: 100%;
+}
+.dark .logo__border {
+  border-color: #000;
 }
 .button--nav,
 .button--scroll {
@@ -396,6 +422,9 @@ strong {
   background-color: #fff;
   position: relative;
 }
+.dark .bottom {
+  background-color: #000;
+}
 .footer {
   background-color: #000;
   color: #fff;
@@ -404,4 +433,7 @@ strong {
   text-align: center;
   width: 100%;
   z-index: 1;
+}
+.dark .footer {
+  color: #bbb;
 }

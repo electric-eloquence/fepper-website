@@ -367,6 +367,9 @@ strong {
   box-shadow: 0.3rem 0.3rem 1rem #986;
   width: 14rem;
 }
+.dark .in .nav--main__slider {
+  background-color: #000;
+}
 .out .nav--main__slider {
   transform: translateX(-13rem);
 }
@@ -951,6 +954,9 @@ strong {
   animation-duration: 1s;
   animation-name: hiderOut;
   height: 0;
+}
+.dark .hider {
+  background-color: #000;
 }
 .button--scroll--up {
   z-index: 2;

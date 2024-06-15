@@ -230,7 +230,7 @@ strong {
   }
 }
 .dark .branding {
-  background-color: #000;
+  background-color: #000200;
 }
 .logo {
   display: block;
@@ -278,7 +278,7 @@ strong {
 }
 .dark .logo__img__gradient-cover--top,
 .dark .logo__img__gradient-cover--bottom {
-  fill: #000;
+  fill: #000200;
 }
 .logo__border {
   border: 0.1rem solid #fff;
@@ -289,7 +289,7 @@ strong {
   height: 100%;
 }
 .dark .logo__border {
-  border-color: #000;
+  border-color: #000200;
 }
 .button--nav,
 .button--scroll {
@@ -368,7 +368,7 @@ strong {
   width: 14rem;
 }
 .dark .in .nav--main__slider {
-  background-color: #000;
+  background-color: #000200;
 }
 .out .nav--main__slider {
   transform: translateX(-13rem);
@@ -379,12 +379,21 @@ strong {
   }
 }
 .nav--main .button--nav--left {
-  margin: 0 8rem 0 0;
+  margin: 0 5.5rem 0 0;
 }
 @media all and (max-width: 480px) {
   .nav--main .button--nav--left {
-    margin-right: 10rem;
+    margin-right: 7.5rem;
     margin-left: -0.5rem;
+  }
+}
+.nav--main__button--settings {
+  color: #bbb;
+  font-size: 2.5rem;
+}
+@media all and (max-width: 480px) {
+  .nav--main__button--settings {
+    font-size: 2rem;
   }
 }
 .in .nav--main .button--nav--right {
@@ -426,7 +435,7 @@ strong {
   position: relative;
 }
 .dark .bottom {
-  background-color: #000;
+  background-color: #000200;
 }
 .footer {
   background-color: #000;
@@ -439,4 +448,17 @@ strong {
 }
 .dark .footer {
   color: #bbb;
+}
+.icon-cog::before {
+  content: "\e994";
+  font-family: icomoon;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -133,10 +133,15 @@
       @media all and (max-width: $bp-xs-max)
         transform: translateX(-($nav-main-width-shown))
   .button--nav--left
-    margin: 0 8rem 0 0
+    margin: 0 5.5rem 0 0
     @media all and (max-width: $bp-xs-max)
-      margin-right: 10rem
+      margin-right: 7.5rem
       margin-left: -0.5rem
+  &__button--settings
+    color: $dark-mode-text
+    font-size: 2.5rem
+    @media all and (max-width: $bp-xs-max)
+      font-size: 2rem
   .button--nav--right
     .in &
       opacity: 0
@@ -173,3 +178,16 @@
   z-index: 1
   .dark &
     color: $dark-mode-text
+.icon-cog::before {
+  content: "\e994";
+  font-family: icomoon;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -24,8 +24,6 @@ pre
     background-color: rgb(54, 54, 54)
 ul + p
   margin-top: 1.6rem
-.fade
-  transition: opacity 1s
 .octicon
   display: none
 .foundation
@@ -177,6 +175,8 @@ ul + p
   pointer-events: none
   position: fixed
   width: 100%
+  .dark &
+    display: none
 .overlay--top,
 .overlay--bottom
   height: $fade-height

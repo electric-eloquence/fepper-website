@@ -96,6 +96,18 @@
   @media (hover: hover)
     &:hover svg
       fill: #999
+.icon-cog::before
+  content: "\e994";
+  font-family: icomoon;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 .nav--main,
 .nav--docpage
   &__buttons
@@ -124,7 +136,7 @@
       bottom: $bottom-height
     .in &
       background-color: white
-      box-shadow: 0.3rem 0.3rem 1rem rgb(153, 136, 102)
+      box-shadow: -0.2rem 0.3rem 1rem rgb(153, 136, 102)
       width: $nav-main-width-shown
       .dark &
         background-color: $dark-mode-background
@@ -132,6 +144,11 @@
       transform: translateX(-13rem)
       @media all and (max-width: $bp-xs-max)
         transform: translateX(-($nav-main-width-shown))
+    &__slider
+      display: flex
+      position: relative
+      left: 0
+      width: 2 * $nav-main-width-shown
   .button--nav--left
     margin: 0 5.5rem 0 0
     @media all and (max-width: $bp-xs-max)
@@ -140,18 +157,73 @@
   &__button--settings
     color: $dark-mode-text
     font-size: 2.5rem
+    .out &
+      opacity: 0
     @media all and (max-width: $bp-xs-max)
       font-size: 2rem
-  .button--nav--right
-    .in &
-      opacity: 0
-.navlist__item
+    .settings-in &
+      color: $green
+  &__slider__slider
+    .nav--main__slider.settings-in &
+      transform: translateX(-($nav-main-width-shown))
+.button--nav--left
+  .out &
+    opacity: 0
+.button--nav--right
+  .in &
+    opacity: 0
+.button--nav--left
+.navlist,
+.settings
+  width: $nav-main-width-shown
+.navlist__item,
+.settings__item
   font-weight: 500
-  padding-left: 1.8rem
-  @media all and (max-width: $bp-md-max)
-    padding-left: 1.4rem
-  @media all and (max-width: $bp-xs-max)
-    padding-left: 1rem
+  padding-left: 1rem
+  padding-right: 1rem
+.settings
+  &__item
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__dark-mode
+    display: flex
+    position: relative
+    width: 3rem
+    height: 1.7rem
+    &__input // Hide default HTML checkbox.
+      opacity: 0
+      width: 0
+      height: 0
+    &__toggle
+      background-color: #bbb
+      border-radius: 1.7rem
+      cursor: pointer
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      transition: .4s;
+      &::before
+        background-color: white
+        border-radius: 50%
+        content: ""
+        position: absolute
+        bottom: 0.2rem
+        left: 0.2rem
+        transition: .4s;
+        width: 1.3rem
+        height: 1.3rem
+    &__input // The input state's influence on the toggle.
+      &:checked + .settings__dark-mode__toggle
+        background-color: $green
+      &:focus + .settings__dark-mode__toggle
+        box-shadow: 0 0 1px #2196F3
+      &:checked + .settings__dark-mode__toggle::before
+        transform: translateX(1.3rem)
+  .out &
+    opacity: 0
 .button--scroll
   position: fixed
   right: 0
@@ -169,7 +241,7 @@
   .dark &
     background-color: $dark-mode-background
 .footer
-  background-color: black
+  background-color: $dark-mode-background
   color: white
   padding: 3rem 1.5rem
   position: relative
@@ -178,16 +250,3 @@
   z-index: 1
   .dark &
     color: $dark-mode-text
-.icon-cog::before {
-  content: "\e994";
-  font-family: icomoon;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}

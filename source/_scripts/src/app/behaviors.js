@@ -19,6 +19,17 @@ export default class {
     };
   }
 
+  darkModeToggle(inputOrg) {
+    if (inputOrg[0].checked) {
+      inputOrg.dispatchAction('prop', {checked: true});
+      this.$orgs['#body'].addClass('dark');
+    }
+    else {
+      inputOrg.dispatchAction('prop', {checked: false});
+      this.$orgs['#body'].removeClass('dark');
+    }
+  }
+
   logoRipen(windowState) {
     if (this.logoRipenFrameId) {
       return;
@@ -77,6 +88,14 @@ export default class {
         this.$orgs['.nav--docpage__buttons'].dispatchAction('removeClass', 'shifted');
       }
     }
+  }
+
+  navMainSettingsOut() {
+    this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'settings-in');
+  }
+
+  navMainSettingsToggle() {
+    this.$orgs['.nav--main__slider'].dispatchAction('toggleClass', 'settings-in');
   }
 
   navMainSlide() {

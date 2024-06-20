@@ -50,6 +50,7 @@ export default class {
 
     $orgs['.nav--docpage__button--left'].on('click', () => {
       this.behaviors.navDocpageSlideIn();
+      this.behaviors.navMainSettingsOut();
     });
 
     $orgs['.nav--docpage__button--right'].on('click', () => {
@@ -58,6 +59,14 @@ export default class {
 
     $orgs['.nav--main__button--left'].on('click', () => {
       this.behaviors.navMainSlideOut();
+    });
+
+    $orgs['.nav--main__button--settings'].on('click', () => {
+      this.behaviors.navMainSettingsToggle();
+    });
+
+    $orgs['.settings__dark-mode__input'].on('change', () => {
+      this.behaviors.darkModeToggle($orgs['.settings__dark-mode__input']);
     });
 
     $orgs['.nav--main__button--right'].on('click', () => {

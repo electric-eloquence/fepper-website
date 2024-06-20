@@ -1,11 +1,22 @@
 <nav class="nav--main">
   <div class="nav--main__slider slider">
-    <ul class="navlist">
-      <li class="navlist__item"><a href="{{ link.pages-homepage }}">Homepage</a></li>
-      <li class="navlist__item"><a href="redirect.html?url=https://github.com/electric-eloquence/fepper/releases/latest" target="_blank">Download</a></li>
-      <li class="navlist__item"><a href="{{ link.pages-docpage }}">Documentation</a></li>
-      <li class="navlist__item"><a href="redirect.html?url=https://github.com/electric-eloquence/fepper/discussions" target="_blank">Discussion</a></li>
-    </ul>
+    <div class="nav--main__slider__slider slider">
+      <ul class="navlist">
+        <li class="navlist__item"><a href="{{ link.pages-homepage }}">Homepage</a></li>
+        <li class="navlist__item"><a href="redirect.html?url=https://github.com/electric-eloquence/fepper/releases/latest" target="_blank">Download</a></li>
+        <li class="navlist__item"><a href="{{ link.pages-docpage }}">Documentation</a></li>
+        <li class="navlist__item"><a href="redirect.html?url=https://github.com/electric-eloquence/fepper/discussions" target="_blank">Discussion</a></li>
+      </ul>
+      <ul class="settings">
+        <li class="settings__item">
+          <div>Dark Mode:</div>
+          <label class="settings__dark-mode">
+            <input class="settings__dark-mode__input" type="checkbox">
+            <span class="settings__dark-mode__toggle"></span>
+          </label>
+        </li>
+      </ul>
+    </div>
     <div class="nav--main__buttons">
       {{> 01-elements/buttons/button-left(button_class: 'nav--main__button--left') }}
       <button class="button--nav button--nav--middle nav--main__button--settings icon-cog" type="button">&nbsp;</button>

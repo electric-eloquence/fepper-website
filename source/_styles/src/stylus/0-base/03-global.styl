@@ -8,6 +8,7 @@ body
   min-height: 100vh
   position: relative
   &.dark
+    background-color: $dark-mode-background
     color: $dark-mode-text
 /* Override user-agent heading defaults */
 h1
@@ -67,6 +68,14 @@ strong
     background-color: $red
   &--yellow-fepper
     background-color: $yellow
+.fade
+  transition: opacity 1s
+  &--quick
+    transition: opacity 0.2s
+    &--in
+      opacity: 1
+    &--out
+      opacity: 0
 /* Completely remove from the flow and screen readers. */
 .hidden
   display: none !important

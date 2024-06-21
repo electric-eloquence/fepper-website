@@ -65,7 +65,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(1);
 
           // Assert.
-          expect(contentPaneState.css['background-color']).to.include('rgba(2, 125, 21');
+          expect(contentPaneState.css['background-color']).to.include('rgba(0, 255, 0');
 
           done();
         });
@@ -87,7 +87,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(3);
 
           // Assert.
-          expect(contentPaneState.css['background-color']).to.include('rgba(240, 192, 0');
+          expect(contentPaneState.css['background-color']).to.include('rgba(255, 255, 0');
 
           done();
         });
@@ -109,7 +109,7 @@ describe('Fepper website', function () {
           const contentPaneState = panesOrg.getState(5);
 
           // Assert.
-          expect(contentPaneState.css['background-color']).to.include('rgba(208, 0, 0');
+          expect(contentPaneState.css['background-color']).to.include('rgba(255, 0, 0');
 
           done();
         });

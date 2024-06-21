@@ -203,7 +203,7 @@ strong {
   display: none !important;
   visibility: hidden !important;
 }
-.slide .slider {
+.slider {
   transition: transform 0.25s;
 }
 .visually-hidden {
@@ -361,60 +361,31 @@ strong {
 }
 .nav--main {
   bottom: 0;
-  height: 100%;
-  overflow: hidden;
-  position: fixed;
-  z-index: 2;
-}
-.nav--main.in {
-  width: 18rem;
-}
-.nav--main.out {
-  width: 4.5rem;
-}
-@media all and (max-width: 480px) {
-  .nav--main.out {
-    width: 3.7rem;
-  }
-}
-.nav--main__slider {
-  bottom: 0;
-  left: 0;
+  left: -14rem;
   overflow: hidden;
   padding-top: 1rem;
-  position: absolute;
+  position: fixed;
   width: 18rem;
 }
-.nav--main__slider.shifted {
-  bottom: 8.4rem;
-}
-.in .nav--main__slider {
-  background-color: #fff;
+.nav--main.in {
   box-shadow: -0.2rem 0.3rem 1rem #986;
   width: 14rem;
+  transform: translateX(14rem);
 }
-.dark .in .nav--main__slider {
+.dark .nav--main.in {
   background-color: #000200;
 }
-.out .nav--main__slider {
-  transform: translateX(-13rem);
-}
-@media all and (max-width: 480px) {
-  .out .nav--main__slider {
-    transform: translateX(-14rem);
-  }
-}
-.nav--main__slider__slider {
+.nav--main__slider {
   display: flex;
   position: relative;
   left: 0;
   width: 28rem;
 }
-.nav--main .button--nav--left {
+.nav--main__button--left {
   margin: 0 5.5rem 0 0;
 }
 @media all and (max-width: 480px) {
-  .nav--main .button--nav--left {
+  .nav--main__button--left {
     margin-right: 7.5rem;
     margin-left: -0.5rem;
   }
@@ -422,9 +393,7 @@ strong {
 .nav--main__button--settings {
   color: #bbb;
   font-size: 2.5rem;
-}
-.out .nav--main__button--settings {
-  opacity: 0;
+  margin-right: 0.5rem;
 }
 @media all and (max-width: 480px) {
   .nav--main__button--settings {
@@ -434,16 +403,15 @@ strong {
 .settings-in .nav--main__button--settings {
   color: #027d15;
 }
-.nav--main__slider.settings-in .nav--main__slider__slider {
+.nav--main__button--right {
+  transition: opacity 0.15s ease-in 0.1s;
+}
+.in .nav--main__button--right {
+  opacity: 0;
+}
+.nav--main.settings-in .nav--main__slider {
   transform: translateX(-14rem);
 }
-.out .button--nav--left {
-  opacity: 0;
-}
-.in .button--nav--right {
-  opacity: 0;
-}
-.button--nav--left,
 .navlist,
 .settings {
   width: 14rem;
@@ -453,6 +421,12 @@ strong {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.settings {
+  opacity: 0;
+}
+.in .settings {
+  opacity: 1;
 }
 .settings__item {
   display: flex;
@@ -500,9 +474,6 @@ strong {
 }
 .settings__dark-mode__input:checked + .settings__dark-mode__toggle::before {
   transform: translateX(1.3rem);
-}
-.out .settings {
-  opacity: 0;
 }
 .button--scroll {
   position: fixed;

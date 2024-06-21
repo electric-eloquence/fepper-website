@@ -113,43 +113,36 @@
   &__buttons
     display: flex
     padding-bottom: 0
-.nav--main
-  bottom: 0
-  height: 100%
-  overflow: hidden
-  position: fixed
-  z-index: 2
-  &.in
-    width: $nav-main-width-full
-  &.out
-    width: 4.5rem
-    @media all and (max-width: $bp-xs-max)
+/*
+@media all and (max-width: $bp-xs-max)
       width: 3.7rem
-  &__slider
-    bottom: 0
-    left: 0
-    overflow: hidden
-    padding-top: 1rem
-    position: absolute
-    width: $nav-main-width-full
     &.shifted
       bottom: $bottom-height
-    .in &
-      background-color: white
-      box-shadow: -0.2rem 0.3rem 1rem rgb(153, 136, 102)
-      width: $nav-main-width-shown
-      .dark &
-        background-color: $dark-mode-background
     .out &
       transform: translateX(-13rem)
       @media all and (max-width: $bp-xs-max)
         transform: translateX(-($nav-main-width-shown))
-    &__slider
-      display: flex
-      position: relative
-      left: 0
-      width: 2 * $nav-main-width-shown
-  .button--nav--left
+      */
+.nav--main
+  bottom: 0
+  left: -($nav-main-width-shown)
+  overflow: hidden
+  padding-top: 1rem
+  position: fixed
+  width: $nav-main-width-full
+  &.in
+    //background-color: white
+    box-shadow: -0.2rem 0.3rem 1rem rgb(153, 136, 102)
+    width: $nav-main-width-shown
+    transform: translateX($nav-main-width-shown)
+    .dark &
+      background-color: $dark-mode-background
+  &__slider
+    display: flex
+    position: relative
+    left: 0
+    width: 2 * $nav-main-width-shown
+  &__button--left
     margin: 0 5.5rem 0 0
     @media all and (max-width: $bp-xs-max)
       margin-right: 7.5rem
@@ -157,22 +150,18 @@
   &__button--settings
     color: $dark-mode-text
     font-size: 2.5rem
-    .out &
-      opacity: 0
+    margin-right: 0.5rem
     @media all and (max-width: $bp-xs-max)
       font-size: 2rem
     .settings-in &
       color: $green
-  &__slider__slider
-    .nav--main__slider.settings-in &
+  &__button--right
+    transition: opacity 0.15s ease-in 0.1s
+    .in &
+      opacity: 0
+  &__slider
+    .nav--main.settings-in &
       transform: translateX(-($nav-main-width-shown))
-.button--nav--left
-  .out &
-    opacity: 0
-.button--nav--right
-  .in &
-    opacity: 0
-.button--nav--left
 .navlist,
 .settings
   width: $nav-main-width-shown
@@ -182,6 +171,9 @@
   padding-left: 1rem
   padding-right: 1rem
 .settings
+  opacity: 0
+  .in &
+    opacity: 1
   &__item
     display: flex
     align-items: center
@@ -222,8 +214,6 @@
         box-shadow: 0 0 1px #2196F3
       &:checked + .settings__dark-mode__toggle::before
         transform: translateX(1.3rem)
-  .out &
-    opacity: 0
 .button--scroll
   position: fixed
   right: 0

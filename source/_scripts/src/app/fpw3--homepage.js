@@ -101,11 +101,6 @@ export default class {
     this.behaviors.updateDims();
     this.behaviors.navMainSlideOut();
 
-    // So it doesn't slide when the page loads.
-    setTimeout(() => {
-      this.behaviors.navMainSlide();
-    }, 0);
-
     let project = '';
 
     if (typeof URLSearchParams === 'function') {

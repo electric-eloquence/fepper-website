@@ -67,7 +67,7 @@ export default class {
     const footerState = this.$orgs['.footer'].getState();
 
     if (footerState.boundingClientRect.top < windowState.innerHeight - 50) {
-      //this.$orgs['.nav--main__slider'].dispatchAction('addClass', 'shifted');
+      this.$orgs['.nav--main'].dispatchAction('addClass', 'shifted');
 
       if (this.$orgs['.button--scroll--up']) {
         this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'shifted');
@@ -78,7 +78,7 @@ export default class {
       }
     }
     else {
-      //this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'shifted');
+      this.$orgs['.nav--main'].dispatchAction('removeClass', 'shifted');
 
       if (this.$orgs['.button--scroll--up']) {
         this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'shifted');
@@ -104,5 +104,6 @@ export default class {
 
   navMainSlideOut() {
     this.$orgs['.nav--main'].dispatchAction('removeClass', 'in');
+    this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'settings-in');
   }
 }

@@ -359,16 +359,6 @@ strong {
   display: flex;
   padding-bottom: 0;
 }
-/*
-@media all and (max-width: $bp-xs-max)
-      width: 3.7rem
-    &.shifted
-      bottom: $bottom-height
-    .out &
-      transform: translateX(-13rem)
-      @media all and (max-width: $bp-xs-max)
-        transform: translateX(-($nav-main-width-shown))
-      */
 .nav--main {
   bottom: 0;
   left: -14rem;
@@ -376,14 +366,24 @@ strong {
   padding-top: 1rem;
   position: fixed;
   width: 18rem;
+  z-index: 2;
 }
 .nav--main.in {
-  box-shadow: -0.2rem 0.3rem 1rem #986;
+  background-color: #fff;
+  box-shadow: 0.05rem 0.05rem 1rem #986;
   width: 14rem;
   transform: translateX(14rem);
 }
 .dark .nav--main.in {
   background-color: #000200;
+}
+.nav--main.shifted {
+  bottom: 8.4rem;
+}
+@media all and (max-width: 480px) {
+  .nav--main {
+    width: 3.7rem;
+  }
 }
 .nav--main__slider {
   display: flex;
@@ -410,7 +410,7 @@ strong {
     font-size: 2rem;
   }
 }
-.settings-in .nav--main__button--settings {
+.settings-in + .nav--main__buttons .nav--main__button--settings {
   color: #027d15;
 }
 .nav--main__button--right {
@@ -419,7 +419,7 @@ strong {
 .in .nav--main__button--right {
   opacity: 0;
 }
-.nav--main.settings-in .nav--main__slider {
+.nav--main__slider.settings-in {
   transform: translateX(-14rem);
 }
 .navlist,

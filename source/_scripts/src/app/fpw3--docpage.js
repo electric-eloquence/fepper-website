@@ -108,11 +108,11 @@ export default class {
     this.behaviors.logoRipen(windowState);
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
+    this.behaviors.navButtonsShift(windowState);
 
     setTimeout(() => {
       // So it doesn't slide when the page loads.
       this.behaviors.navDocpageSlide();
-      this.behaviors.navMainSlide();
     }, 0);
 
     if (!this.bodyClasses.includes('docpage--index')) {

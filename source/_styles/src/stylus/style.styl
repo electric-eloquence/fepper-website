@@ -113,16 +113,6 @@
   &__buttons
     display: flex
     padding-bottom: 0
-/*
-@media all and (max-width: $bp-xs-max)
-      width: 3.7rem
-    &.shifted
-      bottom: $bottom-height
-    .out &
-      transform: translateX(-13rem)
-      @media all and (max-width: $bp-xs-max)
-        transform: translateX(-($nav-main-width-shown))
-      */
 .nav--main
   bottom: 0
   left: -($nav-main-width-shown)
@@ -130,13 +120,18 @@
   padding-top: 1rem
   position: fixed
   width: $nav-main-width-full
+  z-index: 2
   &.in
-    //background-color: white
-    box-shadow: -0.2rem 0.3rem 1rem rgb(153, 136, 102)
+    background-color: white
+    box-shadow: 0.05rem 0.05rem 1rem rgb(153, 136, 102)
     width: $nav-main-width-shown
     transform: translateX($nav-main-width-shown)
     .dark &
       background-color: $dark-mode-background
+  &.shifted
+    bottom: $bottom-height
+  @media all and (max-width: $bp-xs-max)
+      width: 3.7rem
   &__slider
     display: flex
     position: relative
@@ -153,14 +148,14 @@
     margin-right: 0.5rem
     @media all and (max-width: $bp-xs-max)
       font-size: 2rem
-    .settings-in &
+    .settings-in + .nav--main__buttons &
       color: $green
   &__button--right
     transition: opacity 0.15s ease-in 0.1s
     .in &
       opacity: 0
   &__slider
-    .nav--main.settings-in &
+    &.settings-in
       transform: translateX(-($nav-main-width-shown))
 .navlist,
 .settings

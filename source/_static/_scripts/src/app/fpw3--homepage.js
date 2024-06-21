@@ -46,6 +46,15 @@ export default class {
 
     $orgs['.nav--main__button--left'].on('click', () => {
       this.behaviors.navMainSlideOut();
+      this.behaviors.navMainSettingsOut();
+    });
+
+    $orgs['.nav--main__button--settings'].on('click', () => {
+      this.behaviors.navMainSettingsToggle();
+    });
+
+    $orgs['.settings__dark-mode__input'].on('change', () => {
+      this.behaviors.darkModeToggle($orgs['.settings__dark-mode__input']);
     });
 
     $orgs['.nav--main__button--right'].on('click', () => {
@@ -54,6 +63,8 @@ export default class {
   }
 
   stoke() {
+    this.behaviors.darkModeInit();
+
     // Scroll to top of page on beforeunload. This is so refreshing loads the page scrolled to the top.
     // Does not work in Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded in vanilla.js.
     if (typeof window === 'object') {
@@ -91,11 +102,6 @@ export default class {
     this.behaviors.hiderOut();
     this.behaviors.updateDims();
     this.behaviors.navMainSlideOut();
-
-    // So it doesn't slide when the page loads.
-    setTimeout(() => {
-      this.behaviors.navMainSlide();
-    }, 0);
 
     let project = '';
 

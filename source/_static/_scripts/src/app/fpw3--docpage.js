@@ -50,6 +50,7 @@ export default class {
 
     $orgs['.nav--docpage__button--left'].on('click', () => {
       this.behaviors.navDocpageSlideIn();
+      this.behaviors.navMainSettingsOut();
     });
 
     $orgs['.nav--docpage__button--right'].on('click', () => {
@@ -60,12 +61,22 @@ export default class {
       this.behaviors.navMainSlideOut();
     });
 
+    $orgs['.nav--main__button--settings'].on('click', () => {
+      this.behaviors.navMainSettingsToggle();
+    });
+
+    $orgs['.settings__dark-mode__input'].on('change', () => {
+      this.behaviors.darkModeToggle($orgs['.settings__dark-mode__input']);
+    });
+
     $orgs['.nav--main__button--right'].on('click', () => {
       this.behaviors.navMainSlideIn();
     });
   }
 
   stoke() {
+    this.behaviors.darkModeInit();
+
     const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();
@@ -99,12 +110,7 @@ export default class {
     this.behaviors.logoRipen(windowState);
     this.behaviors.navDocpageSlideOut();
     this.behaviors.navMainSlideOut();
-
-    setTimeout(() => {
-      // So it doesn't slide when the page loads.
-      this.behaviors.navDocpageSlide();
-      this.behaviors.navMainSlide();
-    }, 0);
+    this.behaviors.navButtonsShift(windowState);
 
     if (!this.bodyClasses.includes('docpage--index')) {
       // To give time to save gradient position.
@@ -112,5 +118,10 @@ export default class {
         this.behaviors.navDocpageBgColor();
       });
     }
+
+    setTimeout(() => {
+      // So it doesn't slide when the page loads.
+      this.behaviors.navDocpageSlide();
+    }, 0);
   }
 }

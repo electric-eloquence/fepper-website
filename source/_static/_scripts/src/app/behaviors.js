@@ -19,6 +19,69 @@ export default class {
     };
   }
 
+  darkModeInit() {
+    // First, check if a browser extension has implemented a dark mode.
+    const bodyBgColor = getComputedStyle(document.documentElement).backgroundColor;
+    const bodyBgColorSplit = typeof bodyBgColor === 'string' && bodyBgColor.split('(');
+
+    if (bodyBgColorSplit && bodyBgColorSplit[1]) {
+      const bodyBgRgb = bodyBgColorSplit[1].slice(0, -1).split(',');
+
+      if (bodyBgRgb.length > 2) {
+        const red = Number(bodyBgRgb[0]);
+        const green = Number(bodyBgRgb[1]);
+        const blue = Number(bodyBgRgb[2]);
+        const brightness = red + green + blue;
+
+        // Skip if regular dark mode or default bg.
+        if (brightness > 0) {
+          // Check if browser extension has set dark body background-color.
+          if (brightness < 100) {
+            this.$orgs['#html'].addClass('dark');
+
+            if (typeof window === 'object') {
+              this.root.onload = () => {
+                this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: true});
+              };
+            }
+          }
+        }
+      }
+    }
+
+    const cookieObj = {};
+
+    if (typeof document.cookie === 'string') {
+      document.cookie.split('; ').forEach(function (keyVal) {
+        var keyValSplit = keyVal.split('=');
+        cookieObj[keyValSplit[0]] = keyValSplit[1];
+      });
+    }
+
+    if (cookieObj.dark_mode === 'true') {
+      this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: true});
+      this.$orgs['#html'].addClass('dark');
+    }
+    else {
+      this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: false});
+    }
+  }
+
+  darkModeToggle(inputOrg) {
+    if (inputOrg[0].checked) {
+      document.cookie = `dark_mode=true;max-age=31536000;domain=${window.location.hostname};sameSite=strict;path=/`;
+
+      inputOrg.dispatchAction('prop', {checked: true});
+      this.$orgs['#html'].addClass('dark');
+    }
+    else {
+      document.cookie = `dark_mode=;max-age=0;domain=${window.location.hostname};sameSite=strict;path=/`;
+
+      inputOrg.dispatchAction('prop', {checked: false});
+      this.$orgs['#html'].removeClass('dark');
+    }
+  }
+
   logoRipen(windowState) {
     if (this.logoRipenFrameId) {
       return;
@@ -56,7 +119,7 @@ export default class {
     const footerState = this.$orgs['.footer'].getState();
 
     if (footerState.boundingClientRect.top < windowState.innerHeight - 50) {
-      this.$orgs['.nav--main__slider'].dispatchAction('addClass', 'shifted');
+      this.$orgs['.nav--main'].dispatchAction('addClass', 'shifted');
 
       if (this.$orgs['.button--scroll--up']) {
         this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'shifted');
@@ -67,7 +130,7 @@ export default class {
       }
     }
     else {
-      this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'shifted');
+      this.$orgs['.nav--main'].dispatchAction('removeClass', 'shifted');
 
       if (this.$orgs['.button--scroll--up']) {
         this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'shifted');
@@ -79,17 +142,20 @@ export default class {
     }
   }
 
-  navMainSlide() {
-    this.$orgs['.nav--main'].dispatchAction('addClass', 'slide');
+  navMainSettingsOut() {
+    this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'settings-in');
+  }
+
+  navMainSettingsToggle() {
+    this.$orgs['.nav--main__slider'].dispatchAction('toggleClass', 'settings-in');
   }
 
   navMainSlideIn() {
-    this.$orgs['.nav--main'].dispatchAction('removeClass', 'out');
     this.$orgs['.nav--main'].dispatchAction('addClass', 'in');
   }
 
   navMainSlideOut() {
     this.$orgs['.nav--main'].dispatchAction('removeClass', 'in');
-    this.$orgs['.nav--main'].dispatchAction('addClass', 'out');
+    this.$orgs['.nav--main__slider'].dispatchAction('removeClass', 'settings-in');
   }
 }

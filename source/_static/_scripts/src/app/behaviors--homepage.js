@@ -52,25 +52,25 @@ export default class extends Behaviors {
         // Calculate bgColor.
         switch (i) {
           case 1: {
-            red = this.root.fepper_green_r;
-            green = this.root.fepper_green_g;
-            blue = this.root.fepper_green_b;
+            red = 0;
+            green = 255;
+            blue = 0;
 
             break;
           }
 
           case 3: {
-            red = this.root.fepper_yellow_r;
-            green = this.root.fepper_yellow_g;
-            blue = this.root.fepper_yellow_b;
+            red = 255;
+            green = 255;
+            blue = 0;
 
             break;
           }
 
           case 5: {
-            red = this.root.fepper_red_r;
-            green = this.root.fepper_red_g;
-            blue = this.root.fepper_red_b;
+            red = 255;
+            green = 0;
+            blue = 0;
 
             break;
           }

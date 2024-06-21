@@ -75,6 +75,8 @@ export default class {
   }
 
   stoke() {
+    this.behaviors.darkModeInit();
+
     const doclistLinkMembers = this.requerio.$orgs['.doclist__link'].getState().members;
     const windowOrg = this.requerio.$orgs.window;
     const windowState = windowOrg.getState();

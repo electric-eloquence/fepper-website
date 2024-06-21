@@ -19,12 +19,32 @@ export default class {
     };
   }
 
+  darkModeInit() {
+    const cookieObj = {};
+
+    if (typeof document.cookie === 'string') {
+      document.cookie.split('; ').forEach(function (keyVal) {
+        var keyValSplit = keyVal.split('=');
+        cookieObj[keyValSplit[0]] = keyValSplit[1];
+      });
+    }
+
+    if (cookieObj.dark_mode === 'true') {
+      this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: true});
+      this.$orgs['#body'].addClass('dark');
+    }
+  }
+
   darkModeToggle(inputOrg) {
     if (inputOrg[0].checked) {
+      document.cookie = `dark_mode=true;max-age=31536000;domain=${window.location.hostname};sameSite=strict;path=/`;
+
       inputOrg.dispatchAction('prop', {checked: true});
       this.$orgs['#body'].addClass('dark');
     }
     else {
+      document.cookie = `dark_mode=;max-age=0;domain=${window.location.hostname};sameSite=strict;path=/`;
+
       inputOrg.dispatchAction('prop', {checked: false});
       this.$orgs['#body'].removeClass('dark');
     }

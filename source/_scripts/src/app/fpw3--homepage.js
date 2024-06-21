@@ -63,6 +63,8 @@ export default class {
   }
 
   stoke() {
+    this.behaviors.darkModeInit();
+
     // Scroll to top of page on beforeunload. This is so refreshing loads the page scrolled to the top.
     // Does not work in Safari. For Safari, window.scrollTo() is invoked on DOMContentLoaded in vanilla.js.
     if (typeof window === 'object') {

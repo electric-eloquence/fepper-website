@@ -102,8 +102,7 @@ body {
   min-height: 100vh;
   position: relative;
 }
-body.dark {
-  background-color: #000200;
+.dark body {
   color: #bbb;
 }
 h1 {
@@ -145,6 +144,9 @@ code {
   font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace;
   font-size: 0.875em;
 }
+.dark code {
+  background-color: #363636 !important;
+}
 ol,
 ul {
   list-style-type: none;
@@ -164,9 +166,6 @@ pre > code {
   background-color: transparent;
   display: block;
   font-size: 1em;
-}
-.dark pre {
-  color: #bbb;
 }
 strong {
   font-weight: 500;
@@ -244,7 +243,7 @@ strong {
   }
 }
 .dark .branding {
-  background-color: #000200;
+  background-color: #000;
 }
 .logo {
   display: block;
@@ -292,7 +291,7 @@ strong {
 }
 .dark .logo__img__gradient-cover--top,
 .dark .logo__img__gradient-cover--bottom {
-  fill: #000200;
+  fill: #000;
 }
 .logo__border {
   border: 0.1rem solid #fff;
@@ -303,7 +302,7 @@ strong {
   height: 100%;
 }
 .dark .logo__border {
-  border-color: #000200;
+  border-color: #000;
 }
 .button--nav,
 .button--scroll {
@@ -376,7 +375,7 @@ strong {
   transform: translateX(14rem);
 }
 .dark .nav--main.in {
-  background-color: #000200;
+  background-color: #000;
 }
 .nav--main.shifted {
   bottom: 8.4rem;
@@ -508,10 +507,10 @@ strong {
   position: relative;
 }
 .dark .bottom {
-  background-color: #000200;
+  background-color: #000;
 }
 .footer {
-  background-color: #000200;
+  background-color: #000;
   color: #fff;
   padding: 3rem 1.5rem;
   position: relative;
@@ -526,6 +525,9 @@ strong {
   body {
     overflow-x: hidden;
   }
+}
+.dark body {
+  background-color: #000;
 }
 h4 {
   margin: 1.6rem 0 0;
@@ -548,6 +550,10 @@ pre {
 .chromium pre {
   background-color: #363636;
 }
+.dark pre {
+  background-color: #363636;
+  color: #bbb;
+}
 ul + p {
   margin-top: 1.6rem;
 }
@@ -561,6 +567,9 @@ ul + p {
   margin: 0 auto;
   max-width: 1280px;
   min-height: calc(100vh - 150px - 8.4rem);
+}
+.dark .foundation {
+  background-color: #000;
 }
 @media all and (max-width: 767px) {
   .foundation {
@@ -633,6 +642,12 @@ ul + p {
 .chromium .content a {
   color: #363636;
 }
+.dark .content {
+  color: #bbb;
+}
+.dark .content a {
+  color: #bbb;
+}
 .nav--docpage {
   width: 28.8rem;
 }
@@ -675,6 +690,18 @@ ul + p {
 }
 .chromium .docpage--index .nav--docpage a {
   color: #363636;
+}
+.dark .docpage--index .nav--docpage {
+  color: #bbb;
+}
+.dark .docpage--index .nav--docpage a {
+  color: #bbb;
+}
+.nav--docpage__slider {
+  background-color: #fff;
+}
+.dark .nav--docpage__slider {
+  background-color: #000;
 }
 .nav--docpage__sections {
   padding: 2rem 0.8rem 4rem 3rem;

@@ -1,5 +1,4 @@
 import Behaviors from './behaviors.js';
-import colorGradient from './color-gradient.js';
 
 export default class extends Behaviors {
   constructor(requerio, root) {
@@ -8,14 +7,13 @@ export default class extends Behaviors {
 
   navDocpageBgColor() {
     const gradientPosition = this.$orgs['#logo__bg'].getState().data.gradientPosition || 0;
-
-    this.$orgs['.nav--docpage__slider'].dispatchAction(
+    this.$orgs['.nav--docpage__sections'].dispatchAction(
       'css',
       {
-        backgroundColor: 'rgb(' +
-          colorGradient[gradientPosition][0] + ',' +
-          colorGradient[gradientPosition][1] + ',' +
-          colorGradient[gradientPosition][2] + ')'
+        backgroundColor: 'rgba(' +
+          (gradientPosition * (255 / 90)) + ',' +
+          (255 - (gradientPosition * (255 / 90))) + ',' +
+          '0,0.1)'
       }
     );
   }

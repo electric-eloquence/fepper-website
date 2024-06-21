@@ -20,6 +20,35 @@ export default class {
   }
 
   darkModeInit() {
+    // First, check if a browser extension has implemented a dark mode.
+    const bodyBgColor = getComputedStyle(document.documentElement).backgroundColor;
+    const bodyBgColorSplit = typeof bodyBgColor === 'string' && bodyBgColor.split('(');
+
+    if (bodyBgColorSplit && bodyBgColorSplit[1]) {
+      const bodyBgRgb = bodyBgColorSplit[1].slice(0, -1).split(',');
+
+      if (bodyBgRgb.length > 2) {
+        const red = Number(bodyBgRgb[0]);
+        const green = Number(bodyBgRgb[1]);
+        const blue = Number(bodyBgRgb[2]);
+        const brightness = red + green + blue;
+
+        // Skip if regular dark mode or default bg.
+        if (brightness > 0) {
+          // Check if browser extension has set dark body background-color.
+          if (brightness < 100) {
+            this.$orgs['#html'].addClass('dark');
+
+            if (typeof window === 'object') {
+              this.root.onload = () => {
+                this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: true});
+              };
+            }
+          }
+        }
+      }
+    }
+
     const cookieObj = {};
 
     if (typeof document.cookie === 'string') {
@@ -31,7 +60,10 @@ export default class {
 
     if (cookieObj.dark_mode === 'true') {
       this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: true});
-      this.$orgs['#body'].addClass('dark');
+      this.$orgs['#html'].addClass('dark');
+    }
+    else {
+      this.$orgs['.settings__dark-mode__input'].dispatchAction('prop', {checked: false});
     }
   }
 
@@ -40,13 +72,13 @@ export default class {
       document.cookie = `dark_mode=true;max-age=31536000;domain=${window.location.hostname};sameSite=strict;path=/`;
 
       inputOrg.dispatchAction('prop', {checked: true});
-      this.$orgs['#body'].addClass('dark');
+      this.$orgs['#html'].addClass('dark');
     }
     else {
       document.cookie = `dark_mode=;max-age=0;domain=${window.location.hostname};sameSite=strict;path=/`;
 
       inputOrg.dispatchAction('prop', {checked: false});
-      this.$orgs['#body'].removeClass('dark');
+      this.$orgs['#html'].removeClass('dark');
     }
   }
 

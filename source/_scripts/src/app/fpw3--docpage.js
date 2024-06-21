@@ -112,16 +112,16 @@ export default class {
     this.behaviors.navMainSlideOut();
     this.behaviors.navButtonsShift(windowState);
 
-    setTimeout(() => {
-      // So it doesn't slide when the page loads.
-      this.behaviors.navDocpageSlide();
-    }, 0);
-
     if (!this.bodyClasses.includes('docpage--index')) {
       // To give time to save gradient position.
       requestAnimationFrame(() => {
         this.behaviors.navDocpageBgColor();
       });
     }
+
+    setTimeout(() => {
+      // So it doesn't slide when the page loads.
+      this.behaviors.navDocpageSlide();
+    }, 0);
   }
 }

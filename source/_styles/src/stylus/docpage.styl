@@ -7,6 +7,8 @@ $nav-docpage-height = 105rem
 body
   @media all and (max-width: $bp-sm-max)
     overflow-x: hidden
+  .dark &
+    background-color: $dark-mode-background
 h4
   margin: 1.6rem 0 0
 code
@@ -22,6 +24,9 @@ pre
       background-color: transparent
   .chromium &
     background-color: rgb(54, 54, 54)
+  .dark &
+    background-color: $black-less-contrast
+    color: $dark-mode-text
 ul + p
   margin-top: 1.6rem
 .octicon
@@ -33,6 +38,8 @@ ul + p
   margin: 0 auto
   max-width: $bp-lg-max
   min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
+  .dark &
+    background-color: $dark-mode-background
   @media all and (max-width: $bp-sm-max)
     display: block // Necessary for overlay--opacity to work.
     .safari &
@@ -74,6 +81,10 @@ ul + p
     color: rgb(54, 54, 54)
     a
       color: rgb(54, 54, 54)
+  .dark &
+    color: $dark-mode-text
+    a
+      color: $dark-mode-text
 .nav--docpage
   width: $nav-docpage-width
   &.in
@@ -100,6 +111,14 @@ ul + p
       color: rgb(54, 54, 54)
       a
         color: rgb(54, 54, 54)
+    .dark &
+      color: $dark-mode-text
+      a
+        color: $dark-mode-text
+  &__slider
+    background-color: white
+    .dark &
+      background-color: $dark-mode-background
   &__sections
     padding: 2rem 0.8rem 4rem 3rem
     @media all and (max-width: $bp-sm-max)

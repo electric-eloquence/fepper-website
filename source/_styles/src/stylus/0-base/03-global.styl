@@ -7,8 +7,7 @@ body
   min-width: $bp-xx-max
   min-height: 100vh
   position: relative
-  &.dark
-    background-color: $dark-mode-background
+  .dark &
     color: $dark-mode-text
 /* Override user-agent heading defaults */
 h1
@@ -38,6 +37,8 @@ code
   background-color: #c4c4c4
   font-family: Menlo, "Lucida Console", "DejaVu Sans Mono", "Liberation Mono", "Roboto Mono", monospace
   font-size: 0.875em
+  .dark &
+    background-color: $black-less-contrast !important
 ol, ul
   list-style-type: none
 ol, p
@@ -52,8 +53,6 @@ pre
     background-color: transparent
     display: block
     font-size: 1em
-  .dark &
-    color: $dark-mode-text
 strong
   font-weight: 500
 .bg

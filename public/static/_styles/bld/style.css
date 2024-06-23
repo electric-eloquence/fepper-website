@@ -369,7 +369,7 @@ strong {
 }
 .nav--main.in {
   background-color: #fff;
-  box-shadow: 0.05rem 0.05rem 1rem #986;
+  box-shadow: 0.05rem -0.05rem 1rem #986;
   width: 14rem;
   transform: translateX(14rem);
 }

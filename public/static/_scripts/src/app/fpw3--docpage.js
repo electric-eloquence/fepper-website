@@ -106,10 +106,5 @@ export default class {
         this.behaviors.navDocpageBgColor();
       });
     }
-
-    setTimeout(() => {
-      // So it doesn't slide when the page loads.
-      //this.behaviors.navDocpageSlide();
-    }, 0);
   }
 }

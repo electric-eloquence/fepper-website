@@ -393,6 +393,9 @@ strong {
 .in .nav--main__slider {
   width: 28rem;
 }
+.dark .nav--main__slider {
+  background-color: #000;
+}
 .nav--main__button--left {
   margin: 0 5.5rem 0 0;
 }

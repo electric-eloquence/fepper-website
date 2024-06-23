@@ -20,7 +20,6 @@ export default class {
     }));
 
     $orgs.window.scroll(() => {
-      const sectionsState = $orgs['.nav--docpage__sections'].getState();
       const windowState = $orgs.window.getState();
 
       this.behaviors.logoRipen(windowState);
@@ -35,17 +34,6 @@ export default class {
           });
         }
       }
-
-      if (windowState.scrollTop > sectionsState.innerHeight) {
-        this.behaviors.navDocpageButtonScrollUpShow();
-      }
-      else {
-        this.behaviors.navDocpageButtonScrollUpHide();
-      }
-    });
-
-    $orgs['.button--scroll--up'].on('click', () => {
-      this.behaviors.navDocpageScrollUp();
     });
 
     $orgs['.nav--docpage__button--left'].on('click', () => {
@@ -119,9 +107,11 @@ export default class {
       });
     }
 
+    /* // The following doesn't look necessary.
     setTimeout(() => {
       // So it doesn't slide when the page loads.
       this.behaviors.navDocpageSlide();
     }, 0);
+    */
   }
 }

@@ -380,15 +380,18 @@ strong {
 .nav--main.shifted {
   bottom: 8.4rem;
 }
-@media all and (max-width: 480px) {
-  .nav--main {
-    width: 3.7rem;
-  }
+.nav--main.shifted--more {
+  bottom: 10.8rem;
 }
 .nav--main__slider {
+  background-color: #fff;
   display: flex;
+  overflow: hidden;
   position: relative;
   left: 0;
+  width: 14rem;
+}
+.in .nav--main__slider {
   width: 28rem;
 }
 .nav--main__button--left {
@@ -431,12 +434,6 @@ strong {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.settings {
-  opacity: 0;
-}
-.in .settings {
-  opacity: 1;
 }
 .settings__item {
   display: flex;
@@ -497,6 +494,12 @@ strong {
 }
 .button--scroll--down {
   bottom: 0;
+}
+.button--scroll--down.shifted {
+  bottom: 8.4rem;
+}
+.button--scroll--down.shifted--more {
+  bottom: 10.8rem;
 }
 .button--scroll--up {
   display: none;
@@ -656,10 +659,6 @@ ul + p {
     transform: translateX(0);
   }
 }
-.nav--docpage.in .button--nav--left {
-  opacity: 0;
-  pointer-events: none;
-}
 @media all and (max-width: 1024px) {
   .nav--docpage {
     width: 25rem;
@@ -697,10 +696,10 @@ ul + p {
 .dark .docpage--index .nav--docpage a {
   color: #bbb;
 }
-.nav--docpage__slider {
+.nav--docpage__opaque-bg {
   background-color: #fff;
 }
-.dark .nav--docpage__slider {
+.dark .nav--docpage__opaque-bg {
   background-color: #000;
 }
 .nav--docpage__sections {
@@ -741,6 +740,18 @@ ul + p {
 .nav--docpage__buttons.shifted {
   bottom: 8.4rem;
 }
+.nav--docpage__buttons.shifted--more {
+  bottom: 10.8rem;
+}
+.nav--docpage__buttons .button--nav--left {
+  opacity: 1;
+  transition: opacity 0.15s ease-in 0.1s;
+}
+.in .nav--docpage__buttons .button--nav--left {
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
 @media all and (max-width: 767px) {
   .nav--docpage__buttons {
     display: flex;
@@ -768,30 +779,6 @@ ul + p {
 .content,
 .nav--docpage__sections {
   padding-bottom: 4rem;
-}
-.button--scroll--up {
-  display: block;
-  opacity: 0;
-  position: fixed;
-  top: auto;
-  right: 0;
-  bottom: 5rem;
-  transition: opacity 0.25s;
-  width: 5rem;
-  height: 5rem;
-}
-.in .button--scroll--up.opaque {
-  opacity: 1;
-}
-.button--scroll--up.shifted {
-  bottom: 12.4rem;
-}
-@media all and (max-width: 480px) {
-  .button--scroll--up {
-    bottom: 4rem;
-    width: 4rem;
-    height: 4rem;
-  }
 }
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider {
   min-height: 100%;

@@ -119,25 +119,49 @@ export default class {
     const footerState = this.$orgs['.footer'].getState();
 
     if (footerState.boundingClientRect.top < windowState.innerHeight - 50) {
-      this.$orgs['.nav--main'].dispatchAction('addClass', 'shifted');
+      let classToAdd;
+      let classToRemove;
 
-      if (this.$orgs['.button--scroll--up']) {
-        this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'shifted');
+      if (footerState.innerHeight > window.footer_height) {
+        classToAdd = 'shifted--more';
+        classToRemove = 'shifted';
+      }
+      else {
+        classToAdd = 'shifted';
+        classToRemove = 'shifted--more';
+      }
+
+      this.$orgs['.nav--main']
+        .dispatchAction('removeClass', classToRemove)
+        .dispatchAction('addClass', classToAdd);
+
+      if (this.$orgs['.button--scroll--down']) {
+        this.$orgs['.button--scroll--down']
+          .dispatchAction('removeClass', classToRemove)
+          .dispatchAction('addClass', classToAdd);
       }
 
       if (this.$orgs['.nav--docpage__buttons']) {
-        this.$orgs['.nav--docpage__buttons'].dispatchAction('addClass', 'shifted');
+        this.$orgs['.nav--docpage__buttons']
+          .dispatchAction('removeClass', classToRemove)
+          .dispatchAction('addClass', classToAdd);
       }
     }
     else {
-      this.$orgs['.nav--main'].dispatchAction('removeClass', 'shifted');
+      this.$orgs['.nav--main']
+        .dispatchAction('removeClass', 'shifted')
+        .dispatchAction('removeClass', 'shifted--more');
 
-      if (this.$orgs['.button--scroll--up']) {
-        this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'shifted');
+      if (this.$orgs['.button--scroll--down']) {
+        this.$orgs['.button--scroll--down']
+          .dispatchAction('removeClass', 'shifted')
+          .dispatchAction('removeClass', 'shifted--more');
       }
 
       if (this.$orgs['.nav--docpage__buttons']) {
-        this.$orgs['.nav--docpage__buttons'].dispatchAction('removeClass', 'shifted');
+        this.$orgs['.nav--docpage__buttons']
+          .dispatchAction('removeClass', 'shifted')
+          .dispatchAction('removeClass', 'shifted--more');
       }
     }
   }

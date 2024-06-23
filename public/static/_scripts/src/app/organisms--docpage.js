@@ -20,7 +20,6 @@ export default {
   '.nav--docpage__slider': null,
   '.nav--docpage__sections': null,
   '.doclist__link': null,
-  '.button--scroll--up': null,
   '.nav--docpage__buttons': null,
   '.nav--docpage__button--left': null,
   '.nav--docpage__button--right': null,

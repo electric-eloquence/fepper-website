@@ -18,31 +18,16 @@ export default class extends Behaviors {
     );
   }
 
-  navDocpageButtonScrollUpHide() {
-    this.$orgs['.button--scroll--up'].dispatchAction('removeClass', 'opaque');
-  }
-
-  navDocpageButtonScrollUpShow() {
-    this.$orgs['.button--scroll--up'].dispatchAction('addClass', 'opaque');
-  }
-
-  navDocpageScrollUp() {
-    this.$orgs['#html'].animate({scrollTop: 0});
-    this.$orgs['#body'].animate({scrollTop: 0});
-  }
-
   navDocpageSlide() {
     this.$orgs['.nav--docpage'].dispatchAction('addClass', 'slide');
   }
 
   navDocpageSlideIn() {
-    this.$orgs['.nav--docpage'].dispatchAction('removeClass', 'out');
     this.$orgs['.nav--docpage'].dispatchAction('addClass', 'in');
   }
 
   navDocpageSlideOut() {
     this.$orgs['.nav--docpage'].dispatchAction('removeClass', 'in');
-    this.$orgs['.nav--docpage'].dispatchAction('addClass', 'out');
   }
 
   overlayMiddleHeightAdjust(windowState) {

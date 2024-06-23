@@ -37,7 +37,7 @@ ul + p
   position: relative
   margin: 0 auto
   max-width: $bp-lg-max
-  min-height: 'calc(100vh - %s - %s)' % ($logo-height $bottom-height)
+  min-height: 'calc(100vh - %s - %s)' % ($logo-height $footer-height)
   .dark &
     background-color: $dark-mode-background
   @media all and (max-width: $bp-sm-max)
@@ -45,7 +45,7 @@ ul + p
     .safari &
       overflow-x: hidden
   @media all and (min-width: $bp-xl-min)
-    min-height: 'calc(100vh - %s - %s)' % ($logo-height-xl $bottom-height)
+    min-height: 'calc(100vh - %s - %s)' % ($logo-height-xl $footer-height)
 .content
   padding: 2rem 1.5rem 4rem 4.5rem
   width: 'calc(100vw - %s)' % $nav-docpage-width
@@ -91,9 +91,6 @@ ul + p
     .nav--docpage__slider.nav--docpage__slider.nav--docpage__slider
       @media all and (max-width: $bp-sm-max)
         transform: translateX(0)
-    .button--nav--left
-      opacity: 0
-      pointer-events: none
   @media all and (max-width: $bp-md-max)
     width: $nav-docpage-width-small
   @media all and (max-width: $bp-sm-max)
@@ -115,7 +112,7 @@ ul + p
       color: $dark-mode-text
       a
         color: $dark-mode-text
-  &__slider
+  &__opaque-bg
     background-color: white
     .dark &
       background-color: $dark-mode-background
@@ -139,7 +136,16 @@ ul + p
     display: none
     z-index: 2
     &.shifted
-      bottom: $bottom-height 
+      bottom: $footer-height
+      &--more
+        bottom: $footer-height-more
+    .button--nav--left
+      opacity: 1
+      transition: opacity 0.15s ease-in 0.1s
+      .in &
+        opacity: 0
+        pointer-events: none
+        transition: none
     @media all and (max-width: $bp-sm-max)
       @extend .slider
       display: flex
@@ -159,25 +165,6 @@ ul + p
 .content,
 .nav--docpage__sections
   padding-bottom: $button-width-small
-.button--scroll--up
-  display: block
-  opacity: 0
-  position: fixed
-  top: auto
-  right: 0
-  bottom: $button-width
-  transition: opacity 0.25s
-  width: $button-width
-  height: $button-width
-  &.opaque
-    .in &
-      opacity: 1
-  &.shifted
-    bottom: $button-width-small + $bottom-height 
-  @media all and (max-width: $bp-xs-max)
-    bottom: $button-width-small
-    width: $button-width-small
-    height: $button-width-small
 :not(.docpage--index) > .foundation > .nav--docpage > .nav--docpage__slider
   min-height: 100%
   position: relative

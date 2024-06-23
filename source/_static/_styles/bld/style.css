@@ -379,15 +379,18 @@ strong {
 .nav--main.shifted {
   bottom: 8.4rem;
 }
-@media all and (max-width: 480px) {
-  .nav--main {
-    width: 3.7rem;
-  }
+.nav--main.shifted--more {
+  bottom: 10.8rem;
 }
 .nav--main__slider {
+  background-color: #fff;
   display: flex;
+  overflow: hidden;
   position: relative;
   left: 0;
+  width: 14rem;
+}
+.in .nav--main__slider {
   width: 28rem;
 }
 .nav--main__button--left {
@@ -430,12 +433,6 @@ strong {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-.settings {
-  opacity: 0;
-}
-.in .settings {
-  opacity: 1;
 }
 .settings__item {
   display: flex;
@@ -496,6 +493,12 @@ strong {
 }
 .button--scroll--down {
   bottom: 0;
+}
+.button--scroll--down.shifted {
+  bottom: 8.4rem;
+}
+.button--scroll--down.shifted--more {
+  bottom: 10.8rem;
 }
 .button--scroll--up {
   display: none;
